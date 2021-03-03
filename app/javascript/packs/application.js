@@ -14,3 +14,4 @@ ActiveStorage.start()
 import "controllers"
 import "bootstrap"
 import "../src/application.scss"
+require("@fortawesome/fontawesome-free/js/all")
