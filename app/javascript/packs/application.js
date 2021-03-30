@@ -1,7 +1,6 @@
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
+function importAll(r) {
+  r.keys().forEach(r);
+}
 
 import Rails from "@rails/ujs"
 import "@hotwired/turbo-rails"
@@ -18,3 +17,7 @@ import "bootstrap"
 import "../styles/main.scss"
 
 require("@fortawesome/fontawesome-free/js/all")
+
+importAll(require.context('../src', true, /\.js(\.erb)?$/))
+import "../styles/fonts/fonts.scss"
+require.context('../images', true)
