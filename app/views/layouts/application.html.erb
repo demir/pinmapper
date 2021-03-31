@@ -13,9 +13,11 @@
   </head>
 
   <body>
-    <%= render 'shared/header' %>
-    <%= yield %>
-    <%= render 'shared/footer' %>
+    <div id="page">
+      <%= render 'shared/header' %>
+      <%= yield %>
+      <%= render 'shared/footer' %>
+    </div>
     <div id="toTop"></div><!-- Back to top button -->
   </body>
 </html>
