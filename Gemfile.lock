@@ -120,6 +120,9 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     pg (1.2.3)
+    pry (0.14.0)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     public_suffix (4.0.6)
     puma (5.2.1)
       nio4r (~> 2.0)
@@ -245,6 +248,7 @@ DEPENDENCIES
   jbuilder
   listen
   pg
+  pry
   puma
   rack-mini-profiler
   rails
