@@ -1,12 +1,30 @@
 <header class="header menu_fixed">
   <div id="preloader"><div data-loader="circle-side"></div></div><!-- /Page Preload -->
   <div id="logo">
-    <a href="index.html">
+    <%= link_to root_path do %>
       <%= image_pack_tag 'media/images/logo.png', size: '150x36', class: 'logo_normal' %>
       <%= image_pack_tag 'media/images/logo-sticky.png', size: '150x36', class: 'logo_sticky' %>
-    </a>
+    <% end %>
   </div>
   <ul id="top_menu">
+    <li>
+      <% if user_signed_in? %>
+        <div class="dropdown dropdown-user">
+          <%= link_to '#0', class: 'logged', 'data-toggle': 'dropdown', title: 'Logged' do %>
+            <%= image_pack_tag 'media/images/avatar.jpg', alt: '' %>
+          <% end %>
+          <div class="dropdown-menu">
+            <ul>
+              <li>
+                <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, title: 'Sign Out' %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      <% else %>
+        <%= link_to 'Sign In', new_user_session_path, id: 'sign-in', class: 'login', title: 'Sign In' %>
+      <% end %>
+    </li>
   </ul>
   <!-- /top_menu -->
   <a href="#sidemenu" class="btn_mobile">
