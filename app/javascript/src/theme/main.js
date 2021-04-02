@@ -35,49 +35,52 @@ import "theia-sticky-sidebar/js/theia-sticky-sidebar";
 
   // Mobile Mmenu
   document.addEventListener('turbo:load', () => {
-    var menu = new Mmenu(
-      document.querySelector('#sidemenu'),
-      {
-        wrappers: ["turbolinks"],
-        setSelected: true,
-        counters: true,
-        searchfield: {
-          placeholder: 'Search menu items',
-        },
-        navbars: [
-          {
-            content: ['searchfield'],
+    var sidemenu = document.querySelector('#sidemenu');
+    if (sidemenu !== null) {
+      var menu = new Mmenu(
+        sidemenu,
+        {
+          wrappers: ["turbolinks"],
+          setSelected: true,
+          counters: true,
+          searchfield: {
+            placeholder: 'Search menu items',
           },
-          {
-            position: 'bottom',
-            content: [
-              'Pinmapper',
-            ],
-          },
-        ]
-      },
-      {
-        searchfield: {
-          clear: true,
+          navbars: [
+            {
+              content: ['searchfield'],
+            },
+            {
+              position: 'bottom',
+              content: [
+                'Pinmapper',
+              ],
+            },
+          ]
         },
-        navbars: {
-          breadcrumbs: {
-            removeFirst: true,
+        {
+          searchfield: {
+            clear: true,
           },
-        },
-      }
-    );
-    var $hamburger = $("#hamburger");
-    var api = menu.API
-    api.bind('close:finish', function () {
-      if ($hamburger.hasClass("is-active")) {
-        $hamburger.removeClass("is-active")
-      }
-    });
+          navbars: {
+            breadcrumbs: {
+              removeFirst: true,
+            },
+          },
+        }
+      );
+      var $hamburger = $("#hamburger");
+      var api = menu.API
+      api.bind('close:finish', function () {
+        if ($hamburger.hasClass("is-active")) {
+          $hamburger.removeClass("is-active")
+        }
+      });
 
-    api.bind('open:finish', function () {
-      $hamburger.addClass("is-active");
-    });
+      api.bind('open:finish', function () {
+        $hamburger.addClass("is-active");
+      });
+    }
   });
 
   //Scroll to top
