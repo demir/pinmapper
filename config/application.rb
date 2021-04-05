@@ -11,6 +11,7 @@ module Pinmapper
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    config.time_zone = 'Istanbul'
     config.i18n.available_locales = %i[en tr]
     config.i18n.default_locale = :tr
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
