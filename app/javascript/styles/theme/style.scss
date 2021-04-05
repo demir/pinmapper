@@ -682,9 +682,10 @@ ul#top_menu {
 			margin: 0 0 0 10px;
 		}
 		@include mobile {
-			&:first-child {
-			display: none;
-		}
+    //  mobil ekranlarda ilk ikonu gösterme
+		// 	&:first-child {
+		// 	display: none;
+		// }
 		}
 		a {
 			color: #fff;
