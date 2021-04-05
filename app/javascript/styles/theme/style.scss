@@ -3509,6 +3509,17 @@ ul.hotel_facilities {
 }
 
 /*-------- 2.5 Login/register --------*/
+#login_bg, #register_bg {
+	background: url(../images/theme/balloons.jpg) center center no-repeat fixed;
+	@include background-size(cover);
+	min-height: 100vh;
+	width: 100%;
+}
+#register_bg {
+	background: url(../images/theme/balloons.jpg) center center no-repeat fixed;
+	@include background-size(cover);
+}
+
 #login, #register {
 	figure {
 		text-align: center;
@@ -3596,9 +3607,9 @@ a.social_bt {
 	}
 	&.facebook,
 	&.google,
-	&.linkedin {
+	&.twitter {
 		&:before {
-			font-family: 'ElegantIcons';
+			font-family: 'Font Awesome 5 Brands';
 			position: absolute;
 			left: 12px;
 			top: 10px;
@@ -3609,20 +3620,20 @@ a.social_bt {
 	&.facebook {
 		background-color: #3B5998;
 		&:before {
-			content: "\e093";
+			content: "\f39e";
 		}
 	}
 	&.google {
-		background-color: #DC4E41;
+		background-color: #4285F4;
 		&:before {
-			content: "\e096";
+			content: "\f007";
 			top: 12px;
 		}
 	}
-	&.linkedin {
-		background-color: #0077B5;
+	&.twitter {
+		background-color: #1da1f2;
 		&:before {
-			content: "\e09d";
+			content: "\f099";
 		}
 	}
 }
@@ -6099,8 +6110,8 @@ a.social_bt {
 }
 a.social_bt.facebook:before,
 a.social_bt.google:before,
-a.social_bt.linkedin:before {
-	font-family: 'ElegantIcons';
+a.social_bt.twitter:before {
+	font-family: 'Font Awesome 5 Brands';
 	position: absolute;
 	left: 12px;
 	top: 10px;
@@ -6111,14 +6122,22 @@ a.social_bt.linkedin:before {
 a.social_bt.facebook {
 	background-color: #3B5998;
 	&:before {
-		content: "\e093";
+		content: "\f39e";
 	}
 }
 
 a.social_bt.google {
-	background-color: #DC4E41;
+	background-color: #4285F4;
 	&:before {
-		content: "\e096";
+		content: "\f1a0";
+		top: 12px;
+	}
+}
+
+a.social_bt.twitter {
+	background-color: #1da1f2;
+	&:before {
+		content: "\f099";
 		top: 12px;
 	}
 }
