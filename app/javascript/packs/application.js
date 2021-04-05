@@ -16,8 +16,8 @@ import "bootstrap"
 // import styles
 import "../styles/main.scss"
 
+import "../styles/fonts/fonts.scss"
 require("@fortawesome/fontawesome-free/js/all")
 
 importAll(require.context('../src', true, /\.js(\.erb)?$/))
-import "../styles/fonts/fonts.scss"
 require.context('../images', true)
