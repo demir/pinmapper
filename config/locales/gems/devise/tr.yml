@@ -1,5 +1,11 @@
 tr:
   devise:
+    sign_in: Giriş Yap
+    sign_up: Kayıt Ol
+    register: Kayıt Ol
+    already_have_an_account: Hesabınız var mı?
+    do_not_have_an_account: Hesabınız yok mu?
+    minimum_characters: 'Minimum %{count} karakter'
     confirmations:
       confirmed: "Eposta adresiniz başırılı bir şekilde onaylandı."
       send_instructions: "Bir kaç dakika içerisinde eposta adresinizi nasıl onaylayacağınız hakkında bir eposta alacaksınız."
@@ -34,6 +40,13 @@ tr:
       send_paranoid_instructions: "Eğer eposta adresiniz sistemimizde kayıtlı ise birkaç dakika içerisinde eposta adresinize bir parola kurtarma linki alacaksınız."
       updated: "Parolanız başarılı bir şekilde değiştirildi. Şimdi giriş yapabilirsiniz."
       updated_not_active: "Parolanız başarılı bir şekilde değiştirildi."
+      new:
+        send_reset_link: Gönder
+        send_reset_link_message: E-posta adresinize bir sıfırlama bağlantısı göndereceğiz. Lütfen e-posta adresinizi giriniz.
+      edit:
+        change_my_password: Parolamı değiştir
+        new_password: Yeni parola
+        new_password_confirmation: Yeni parola (Tekrar)
     registrations:
       destroyed: "Güle güle! Hesabınız başarılı bir şekilde iptal edildi. Sizi tekrar görmeyi umut ediyoruz."
       signed_up: "Hoşgeldiniz! Başarılı bir şekilde kayıt oldunuz."
@@ -46,6 +59,12 @@ tr:
       signed_in: "Başarılı giriş."
       signed_out: "Başarılı çıkış."
       already_signed_out: "Başarılı çıkış."
+      new:
+        sign_in_with_google: Google ile Giriş Yap
+        sign_in_with_facebook: Facebook ile Giriş Yap
+        sign_in_with_twitter: Twitter ile Giriş Yap
+        remember_me: Beni hatırla
+        forgot_password: Parolanı mı unuttun?
     unlocks:
       send_instructions: "Birkaç dakika içerisinde hesabınızın kilidini nasıl kaldıracağınız hakkında bir eposta alacaksınız."
       send_paranoid_instructions: "Eğer hesabınız varsa birkaç dakika içerisinde hesabınızın kilidini nasıl kaldırıcağınız hakkında bir eposta alacaksınız."

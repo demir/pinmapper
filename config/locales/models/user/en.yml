@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user: &user_attributes
+        email: Email
+        password: Password
+        password_confirmation: Password Confirmation
+        current_password: Current Password
+  simple_form:
+    labels:
+      user:
+        <<: *user_attributes

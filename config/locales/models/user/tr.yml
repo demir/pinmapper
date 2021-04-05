@@ -1,0 +1,14 @@
+tr:
+  activerecord:
+    models:
+      user: Kullanıcı
+    attributes:
+      user: &user_attributes
+        email: E-posta
+        password: Parola
+        password_confirmation: Parola (Tekrar)
+        current_password: Mevcut Parolanız
+  simple_form:
+    labels:
+      user:
+        <<: *user_attributes
