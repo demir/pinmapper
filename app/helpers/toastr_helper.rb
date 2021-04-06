@@ -3,7 +3,7 @@
 module ToastrHelper
   def toastr_flash_class(type)
     {
-      'alert' => 'toastr.error',
+      'alert'  => 'toastr.error',
       'notice' => 'toastr.success'
     }.fetch(type, 'toastr.info')
   end
