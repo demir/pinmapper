@@ -1,0 +1,20 @@
+require: rubocop-rails
+require: rubocop-rspec
+
+inherit_from:
+  - .rubocop_common.yml
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'vendor/bundle/**/*'
+    - 'bundle/**/*'
+    - 'config/**/*'
+    - 'test/*'
+    - 'db/migrate/*.rb'
+    - '**/*.jbuilder'
+    - bin/**/*
+    - tmp/**/*
+    - config/initializers/simple_form.rb
+    - config/initializers/simple_form_bootstrap.rb
+    - node_modules/**/*

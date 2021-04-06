@@ -1,36 +1,42 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read('.ruby-version')
 
-gem 'rails'
+gem 'bootsnap', require: false
+gem 'devise'
+gem 'hotwire-rails'
+gem 'jbuilder'
 gem 'pg'
 gem 'puma'
-gem 'sass-rails'
-gem 'webpacker'
-gem 'jbuilder'
+gem 'rails'
 gem 'redis'
-gem 'bootsnap', require: false
-gem 'hotwire-rails'
-gem 'devise'
+gem 'sass-rails'
 gem 'simple_form'
+gem 'webpacker'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
-  gem 'shoulda-matchers'
   gem 'faker'
   gem 'pry'
+  gem 'rspec-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'shoulda-matchers'
 end
 
 group :development do
-  gem 'web-console'
-  gem 'rack-mini-profiler'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'listen'
+  gem 'rack-mini-profiler'
   gem 'spring'
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'web-console'
 end
 
 group :test do
@@ -39,4 +45,4 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
