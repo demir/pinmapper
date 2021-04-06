@@ -1,0 +1,7 @@
+<%= tag.script do %>
+  <% flash.each do |type, message| %>
+    <% next if message.blank? %>
+
+    <%= toastr_flash_class(type.to_s) %>('<%= message %>')
+  <% end %>
+<% end %>

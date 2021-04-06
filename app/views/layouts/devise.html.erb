@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
 
-  <p class="text-center" style="color: white"><%= notice %></p>
-  <p class="text-center" style="color: yellow"><%= alert %></p>
+  <div class="clearfix"></div>
+  <%= render 'shared/toastr' %>
   <%= yield %>
   </div>
 </html>
