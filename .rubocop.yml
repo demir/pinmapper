@@ -4,6 +4,15 @@ require: rubocop-rspec
 inherit_from:
   - .rubocop_common.yml
 
+RSpec/Focus:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+Metrics/BlockLength:
+  IgnoredMethods: ['describe', 'context']
+
 AllCops:
   Exclude:
     - 'db/schema.rb'
