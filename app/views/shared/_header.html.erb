@@ -16,13 +16,13 @@
           <div class="dropdown-menu">
             <ul>
               <li>
-                <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, title: 'Sign Out' %>
+                <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out') %>
               </li>
             </ul>
           </div>
         </div>
       <% else %>
-        <%= link_to 'Sign In', new_user_session_path, id: 'sign-in', class: 'login', title: 'Sign In' %>
+        <%= link_to t('devise.sign_in'), new_user_session_path, id: 'sign-in', class: 'login', title: t('devise.sign_in') %>
       <% end %>
     </li>
   </ul>

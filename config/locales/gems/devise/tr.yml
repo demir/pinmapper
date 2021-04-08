@@ -2,6 +2,7 @@ tr:
   devise:
     sign_in: Giriş Yap
     sign_up: Kayıt Ol
+    sign_out: Çıkış Yap
     register: Kayıt Ol
     already_have_an_account: Hesabınız var mı?
     do_not_have_an_account: Hesabınız yok mu?
