@@ -1,44 +1,42 @@
 <header class="header menu_fixed">
   <div id="preloader"><div data-loader="circle-side"></div></div><!-- /Page Preload -->
-  <div id="logo">
-    <%= link_to root_path do %>
-      <%= image_pack_tag 'media/images/logo.png', size: '150x36', class: 'logo_normal' %>
-      <%= image_pack_tag 'media/images/logo-sticky.png', size: '150x36', class: 'logo_sticky' %>
-    <% end %>
-  </div>
-  <ul id="top_menu">
-    <li>
-      <% if user_signed_in? %>
-        <div class="dropdown dropdown-user">
-          <%= link_to '#0', class: 'logged', 'data-toggle': 'dropdown', title: 'Logged' do %>
-            <%= image_pack_tag 'media/images/avatar.jpg', alt: '' %>
-          <% end %>
-          <div class="dropdown-menu">
-            <ul>
-              <li>
-                <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out') %>
-              </li>
-            </ul>
-          </div>
-        </div>
-      <% else %>
-        <%= link_to t('devise.sign_in'), new_user_session_path, id: 'sign-in', class: 'login', title: t('devise.sign_in') %>
-      <% end %>
-    </li>
-  </ul>
-  <!-- /top_menu -->
-  <a href="#sidemenu" class="btn_mobile">
-    <div class="hamburger hamburger--spin" id="hamburger">
+  <%= link_to root_path do %>
+    <%= image_pack_tag 'media/images/logo.png', size: '150x36', class: 'logo_normal' %>
+    <%= image_pack_tag 'media/images/logo-sticky.png', size: '150x36', class: 'logo_sticky' %>
+  <% end %>
+  <div class="btn_mobile">
+    <div class="hamburger hamburger--spin-r" id="hamburger">
       <div class="hamburger-box">
         <div class="hamburger-inner"></div>
       </div>
     </div>
-  </a>
-  <nav id="sidemenu">
-    <div id="panel-menu">
-      <ul>
-      </ul>
-    </div>
+  </div>
+  <nav class="main-menu">
+    <ul class="nav-menu">
+      <% if user_signed_in? %>
+        <li>
+          <div class="dropdown dropdown-user">
+            <%= link_to '#0', class: 'logged', 'data-toggle': 'dropdown', title: 'Logged' do %>
+              <%= image_pack_tag 'media/images/avatar.jpg', alt: '' %>
+            <% end %>
+            <div class="dropdown-menu">
+              <ul>
+                <li>
+                  <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out') %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      <% else %>
+        <li><span>
+          <%= link_to t('devise.sign_in'), new_user_session_path, id: 'sign-in', class: 'login', title: t('devise.sign_in') %>
+        </span></li>
+        <li><span>
+          <%= link_to t('devise.sign_up'), new_user_registration_path, class: 'login', title: t('devise.sign_up') %>
+        </span></li>
+      <% end %>
+    </ul>
   </nav>
 </header>
 <!-- /header -->
