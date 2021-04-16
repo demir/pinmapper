@@ -1,4 +1,3 @@
-import "mmenu-js/dist/mmenu";
 import "theia-sticky-sidebar/js/theia-sticky-sidebar";
 
 (function ($) {
@@ -33,7 +32,7 @@ import "theia-sticky-sidebar/js/theia-sticky-sidebar";
     additionalMarginTop: 180
   });
 
-  // Mobile Mmenu
+  // Mobile Menu
   document.addEventListener('turbo:load', () => {
     var hamburger = $("#hamburger");
     const navMenu = document.querySelector(".nav-menu");
