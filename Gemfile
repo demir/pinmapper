@@ -17,6 +17,7 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'webpacker'
 gem 'draper'
+gem 'view_component', require: 'view_component/engine'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

@@ -276,6 +276,8 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
+    view_component (2.30.0)
+      activesupport (>= 5.0.0, < 7.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -332,6 +334,7 @@ DEPENDENCIES
   simple_form
   spring
   tzinfo-data
+  view_component
   web-console
   webdrivers
   webpacker
