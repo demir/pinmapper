@@ -16,6 +16,7 @@ gem 'redis'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'webpacker'
+gem 'draper'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
