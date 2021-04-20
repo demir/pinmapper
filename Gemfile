@@ -19,6 +19,7 @@ gem 'webpacker'
 gem 'draper'
 gem 'view_component', require: 'view_component/engine'
 gem 'translate_enum'
+gem 'inline_svg'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
