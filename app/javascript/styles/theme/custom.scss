@@ -160,3 +160,96 @@ header {
     padding: 7.5px;
   }
 }
+
+.filters_listing {
+	&.center {
+    padding-top: 5px;
+  }
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.pin {
+  background-color: #fff;
+  max-width: 600px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
+  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 16px;
+    border-bottom: 1px solid $border-color-2;
+    img {
+      width: 32px;
+      height: 32px;
+      margin-right: 5px;
+    }
+    svg {
+      cursor: pointer;
+    }
+    .dropdown-menu {
+      padding: 0;
+    }
+  }
+  img {
+    width: 100%;
+  }
+  .body {
+    padding: 16px;
+    .time_ago {
+      margin-bottom: 10px;
+    }
+  }
+  .footer {
+    border-top: 1px solid $border-color-2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 16px;
+  }
+  a.like_btn {
+		z-index: 1;
+		@include rgba(bg, #000, 0.1);
+		padding: 9px 10px;
+		display: inline-block;
+		color: #555;
+		line-height: $line-height-none;
+		@include border-radius(3px);
+		&:after {
+			font-family: 'ElegantIcons';
+			content: "\e030";
+			@include transition-default (all,0.5s, ease);
+		}
+		&.liked:after{
+			content: "\e089";
+			color: $color-1;
+		}
+		&:hover.liked:after{
+			color: $color-1;
+		}
+		&:hover:after {
+			content: "\e089";
+			color: #999;
+		}
+	}
+}
+
+.form-horizontal-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
+  &.fhg-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
