@@ -1,0 +1,26 @@
+en:
+  activerecord:
+    models:
+      pin: Pin
+    attributes:
+      pin: &pin_attributes
+        name: Pin Name
+        address: Address
+        latitude: Latitude
+        longitude: Longitude
+        category: Category
+        privacy: Privacy
+        cover_image_description: Cover Image Description
+        category_list:
+          food: Food
+          coffee: Coffee
+          nightlife: Nightlife
+          fun: Fun
+          shopping: Shopping
+        privacy_list:
+          private: Private
+          public: Public
+  simple_form:
+    labels:
+      pin:
+        <<: *pin_attributes

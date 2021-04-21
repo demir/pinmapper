@@ -1,0 +1,8 @@
+en:
+  pins:
+    create:
+      success: Pin created
+    update:
+      success: Pin updated
+    destroy:
+      success: Pin destroyed

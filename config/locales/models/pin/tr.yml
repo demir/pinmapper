@@ -1,0 +1,26 @@
+tr:
+  activerecord:
+    models:
+      pin: Pin
+    attributes:
+      pin: &pin_attributes
+        name: Pin Adı
+        address: Adres
+        latitude: Enlem
+        longitude: Boylam
+        category: Kategori
+        privacy: Gizlilik
+        cover_image_description: Kapak Resmi Açıklaması
+        category_list:
+          food: Yemek
+          coffee: Kahve
+          nightlife: Gece Hayatı
+          fun: Eğlence
+          shopping: Alışveriş
+        privacy_list:
+          private: Gizli
+          public: Herkese Açık
+  simple_form:
+    labels:
+      pin:
+        <<: *pin_attributes

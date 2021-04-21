@@ -1,0 +1,10 @@
+en:
+  pins:
+    pin: Pin
+    pins: Pins
+    index:
+      new_pin: New Pin
+    new:
+      create_new_pin: Create New Pin
+    edit:
+      edit_pin: Edit Pin

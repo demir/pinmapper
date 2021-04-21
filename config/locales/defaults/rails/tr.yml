@@ -147,9 +147,9 @@ tr:
     select:
       prompt: Lütfen seçiniz
     submit:
-      create: "%{model} Ekle"
-      submit: "%{model} Kaydet"
-      update: "%{model} Güncelle"
+      create: Oluştur
+      submit: Kaydet
+      update: Güncelle
   not_found: 'Erişmeye çalıştığınız sayfa bulunamadı!'
   number:
     currency:
