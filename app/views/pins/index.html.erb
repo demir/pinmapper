@@ -1,0 +1,20 @@
+<%= render(Pins::TopHeroComponent.new(title: t('pins.pins'))) %>
+
+<div class="filters_listing center sticky_horizontal">
+  <div class="container">
+    <div class="actions">
+      <%= link_to t('.new_pin'), new_pin_path, class: 'btn_1' %>
+    </div>
+  </div>
+  <!-- /container -->
+</div>
+<!-- /filters -->
+
+<div class="container margin_60_35">
+  <div class="row">
+    <%= render(Pins::PinComponent.with_collection(@pins)) %>
+    <!-- /pin_lists -->
+  </div>
+  <!-- /row -->
+</div>
+<!-- /container -->

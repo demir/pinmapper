@@ -1,0 +1,4 @@
+<%= render(Pins::TopHeroComponent.new(title: t('.create_new_pin'))) %>
+<div class="container margin_80_55 col-lg-5">
+  <%= render(Pins::FormComponent.new(pin: @pin)) %>
+<div>
