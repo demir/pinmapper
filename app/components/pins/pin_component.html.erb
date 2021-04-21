@@ -1,0 +1,31 @@
+<div class="pin" data-controller="pin">
+  <div class="header">
+    <div class="user">
+      <%= image_pack_tag 'media/images/avatar.jpg', class: 'rounded-circle', alt: '' %>
+      <span>username</span>
+    </div>
+    <div class="dropdown dropleft">
+      <%= inline_svg_pack_tag 'media/images/theme/three-dots.svg', class: 'bi bi-three-dots dropdown-toggle',
+                                                                  width: '16px',
+                                                                  height: '16px',
+                                                                  fill: 'currentColor',
+                                                                  viewBox: '0 0 16 16',
+                                                                  id: 'pin-options',
+                                                                  data: { toggle: 'dropdown' } %>
+      <div class="dropdown-menu" aria-labelledby="pin-options">
+        <%= link_to t('show'), @pin, class: 'dropdown-item' %>
+        <%= link_to t('edit'), edit_pin_path(@pin), class: 'dropdown-item' %>
+        <%= link_to t('destroy'), @pin, method: :delete, data: { confirm: t('are_you_sure') }, class: 'dropdown-item' %>
+      </div>
+    </div>
+  </div>
+  <%= image_pack_tag 'media/images/theme/dummy_image.jpeg', class: 'img-fluid', alt: '' %>
+  <div class="body">
+    <h3><%= link_to @pin.name, pin_path(@pin) %></h3>
+    <p class="time_ago"><%= @pin.cover_image_description %></p>
+    <small><%= "#{time_ago_in_words(@pin.created_at)} #{t('ago')}" %></small>
+  </div>
+  <div class="footer">
+    <a href="#0" class="like_btn" data-action="click->pin#liked"></a>
+  </div>
+</div>
