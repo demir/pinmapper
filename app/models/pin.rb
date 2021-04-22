@@ -7,4 +7,7 @@ class Pin < ApplicationRecord
 
   translate_enum :category
   translate_enum :privacy
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 end
