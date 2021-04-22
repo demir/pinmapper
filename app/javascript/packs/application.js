@@ -21,3 +21,10 @@ require("@fortawesome/fontawesome-free/js/all")
 
 importAll(require.context('../src', true, /\.js(\.erb)?$/))
 require.context('../images', true)
+
+window.initMap = function (...args) {
+  const event = document.createEvent("Events")
+  event.initEvent("google-maps-callback", true, true)
+  event.args = args
+  window.dispatchEvent(event)
+}
