@@ -253,3 +253,21 @@ header {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after,
+.is-active .hamburger-inner,
+.is-active .hamburger-inner::before,
+.is-active .hamburger-inner::after {
+  background-color: #FFF !important;
+}
+
+header.sticky .hamburger-inner,
+header.sticky .hamburger-inner::before,
+header.sticky .hamburger-inner::after,
+header.sticky .is-active .hamburger-inner,
+header.sticky .is-active .hamburger-inner::before,
+header.sticky .is-active .hamburger-inner::after {
+  background-color: #444 !important;
+}
