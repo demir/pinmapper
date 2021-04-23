@@ -5,7 +5,7 @@ export default class extends Controller {
   static values = { latitude: String, longitude: String }
 
   connect() {
-    if (typeof (google) != 'undefined') {
+    if ((typeof (google) != 'undefined') && this.hasMapTarget) {
       this.initMap()
     }
   }
