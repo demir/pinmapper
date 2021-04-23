@@ -11,56 +11,48 @@ import "theia-sticky-sidebar/js/theia-sticky-sidebar";
     $('.hero_in h1,.hero_in form').addClass('animated');
     $('.hero_single, .hero_in').addClass('start_bg_zoom');
     $(window).scroll();
-  });
 
-  // Sticky nav
-  $(window).on('scroll', function () {
-    if ($(this).scrollTop() > 1) {
-      $('.header').addClass("sticky");
-    } else {
-      $('.header').removeClass("sticky");
-    }
-  });
-
-  // Sticky sidebar
-  $('#sidebar').theiaStickySidebar({
-    additionalMarginTop: 150
-  });
-
-  // Sticky titles
-  $('.fixed_title').theiaStickySidebar({
-    additionalMarginTop: 180
-  });
-
-  // Mobile Menu
-  document.addEventListener('turbo:load', () => {
-    var hamburger = $("#hamburger");
-    const navMenu = document.querySelector(".nav-menu");
-    hamburger.on("click", function () {
-      navMenu.classList.toggle("active");
-      if (hamburger.hasClass("is-active")) {
-        hamburger.removeClass("is-active");
+    // Sticky nav
+    $(window).on('scroll', function () {
+      if ($(this).scrollTop() > 1) {
+        $('.header').addClass("sticky");
       } else {
-        hamburger.addClass("is-active");
+        $('.header').removeClass("sticky");
       }
     });
-  });
 
-  //Scroll to top
-  $(window).on('scroll', function () {
-    'use strict';
-    if ($(this).scrollTop() != 0) {
-      $('#toTop').fadeIn();
-    } else {
-      $('#toTop').fadeOut();
-    }
-  });
-  $('#toTop').on('click', function () {
-    $('body,html').animate({
-      scrollTop: 0
-    }, 500);
-  });
+    // Sticky sidebar
+    $('#sidebar').theiaStickySidebar({
+      additionalMarginTop: 150
+    });
 
+    // Sticky titles
+    $('.fixed_title').theiaStickySidebar({
+      additionalMarginTop: 180
+    });
+
+    // Mobile Menu
+    const hamburger = document.getElementById("hamburger");
+    hamburger.addEventListener("click", function (event) {
+      document.querySelector(".nav-menu").classList.toggle("active");
+      hamburger.classList.toggle("is-active")
+    });
+
+    //Scroll to top
+    $(window).on('scroll', function () {
+      'use strict';
+      if ($(this).scrollTop() != 0) {
+        $('#toTop').fadeIn();
+      } else {
+        $('#toTop').fadeOut();
+      }
+    });
+    $('#toTop').on('click', function () {
+      $('body,html').animate({
+        scrollTop: 0
+      }, 500);
+    });
+  });
 })(window.jQuery);
 
 
