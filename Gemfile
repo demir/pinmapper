@@ -21,6 +21,7 @@ gem 'view_component', require: 'view_component/engine'
 gem 'translate_enum'
 gem 'inline_svg'
 gem 'geocoder'
+gem 'aws-sdk-s3', require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
