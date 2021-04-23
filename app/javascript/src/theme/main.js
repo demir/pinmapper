@@ -33,10 +33,12 @@ import "theia-sticky-sidebar/js/theia-sticky-sidebar";
 
     // Mobile Menu
     const hamburger = document.getElementById("hamburger");
-    hamburger.addEventListener("click", function (event) {
-      document.querySelector(".nav-menu").classList.toggle("active");
-      hamburger.classList.toggle("is-active")
-    });
+    if (hamburger) {
+      hamburger.addEventListener("click", function (event) {
+        document.querySelector(".nav-menu").classList.toggle("active");
+        hamburger.classList.toggle("is-active")
+      });
+    }
 
     //Scroll to top
     $(window).on('scroll', function () {
