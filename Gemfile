@@ -22,6 +22,7 @@ gem 'translate_enum'
 gem 'inline_svg'
 gem 'geocoder'
 gem 'aws-sdk-s3', require: false
+gem 'image_processing'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
