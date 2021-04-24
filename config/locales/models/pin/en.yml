@@ -10,6 +10,7 @@ en:
         longitude: Longitude
         category: Category
         privacy: Privacy
+        cover_image: Cover Image
         cover_image_description: Cover Image Description
         category_list:
           food: Food

@@ -10,7 +10,8 @@ tr:
         longitude: Boylam
         category: Kategori
         privacy: Gizlilik
-        cover_image_description: Kapak Resmi Açıklaması
+        cover_image: Kapak Fotoğrafı
+        cover_image_description: Kapak Fotoğrafı Açıklaması
         category_list:
           food: Yemek
           coffee: Kahve

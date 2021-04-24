@@ -20,7 +20,6 @@ class PinsController < ApplicationController
   # POST /pins or /pins.json
   def create
     @pin = Pin.new(pin_params)
-
     respond_to do |format|
       if @pin.save
         format.html { redirect_to @pin, notice: t('.success') }
@@ -64,6 +63,7 @@ class PinsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def pin_params
     params.require(:pin).permit(:name, :address, :latitude, :longitude, :category, :privacy,
-                                :cover_image_description)
+                                :cover_image_description, :cover_image,
+                                cover_image_crop_attributes: %i[crop_x crop_y crop_width crop_height])
   end
 end

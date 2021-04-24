@@ -19,7 +19,9 @@
       </div>
     </div>
   </div>
-  <%= image_pack_tag 'media/images/theme/dummy_image.jpeg', class: 'img-fluid', alt: '' %>
+  <%= image_tag @pin.cover_image.variant(
+        @pin.cover_image_crop_constraints.merge(resize_to_limit: [600, 600])
+      ), alt: '' if @pin.cover_image.attached? %>
   <div class="body">
     <h3><%= link_to @pin.name, pin_path(@pin) %></h3>
     <p class="time_ago"><%= @pin.cover_image_description %></p>

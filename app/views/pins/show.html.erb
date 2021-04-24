@@ -30,6 +30,10 @@
   <%= @pin.translated_privacy %>
 </p>
 
+<%= image_tag @pin.cover_image.variant(
+      @pin.cover_image_crop_constraints.merge(resize_to_limit: [300, 300])
+    ) if @pin.cover_image.attached? %>
+
 <p>
   <strong>Cover image description:</strong>
   <%= @pin.cover_image_description %>
