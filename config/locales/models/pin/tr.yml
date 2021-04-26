@@ -12,6 +12,7 @@ tr:
         privacy: Gizlilik
         cover_image: Kapak Fotoğrafı
         cover_image_description: Kapak Fotoğrafı Açıklaması
+        description: Pin İçeriği
         category_list:
           food: Yemek
           coffee: Kahve

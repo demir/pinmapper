@@ -12,6 +12,7 @@ en:
         privacy: Privacy
         cover_image: Cover Image
         cover_image_description: Cover Image Description
+        description: Pin Description
         category_list:
           food: Food
           coffee: Coffee
