@@ -201,7 +201,10 @@ hr {
 		@include mobile {margin-bottom: 45px;}
 	}
 }
-ul,ol {
+// DÜZENLENDİ
+// Sadece header ve footer için ul,ol düzenlemesi
+// geçerli olsun
+header ul, header ol, footer ul, footer ol {
 	list-style: none;
 	margin: 0 0 25px 0;
 	padding: 0;
