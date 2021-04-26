@@ -247,12 +247,50 @@ header {
 	}
 }
 
-.form-horizontal-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 10px;
-  &.fhg-3 {
-    grid-template-columns: 1fr 1fr 1fr;
+.form-horizontal-map {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+
+  &-left {
+    width: 65%;
+  }
+
+  .map {
+    height: 300px;
+    width: 35%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.form-horizontal-inputs {
+  display: flex;
+  gap: 10px;
+
+  > * {
+    flex: 1 1 100%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .form-horizontal-map {
+    display: block;
+
+    &-left {
+      width: 100%;
+    }
+
+    .map {
+      width: 100%;
+    }
+  }
+
+  .form-horizontal-inputs {
+    display: block;
+    > * {
+      width: 100%;
+    }
   }
 }
 

@@ -3,14 +3,16 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :address, as: :search, input_html: { data: { 'pin-target': 'field' , action: 'keydown->pin#keydown' }} %>
-    <div class="p-4">
-      <div data-pin-target="map" style="height:400px;width:100%"></div>
-    </div>
-    <div class="form-horizontal-group">
-      <%= f.input :category, collection: f.object.class.translated_categories %>
-      <%= f.input :privacy, collection: f.object.class.translated_privacies %>
+    <div class="form-horizontal-map">
+      <div class="form-horizontal-map-left">
+        <%= f.input :name %>
+        <%= f.input :address, as: :search, input_html: { data: { 'pin-target': 'field' , action: 'keydown->pin#keydown' }} %>
+        <div class="form-horizontal-inputs">
+          <%= f.input :category, collection: f.object.class.translated_categories %>
+          <%= f.input :privacy, collection: f.object.class.translated_privacies %>
+        </div>
+      </div>
+      <div class="map" data-pin-target="map"></div>
     </div>
     <div class="field"
       data-controller='instant-upload cropper'
@@ -31,7 +33,7 @@
               'data-action': 'instant-uploaded->cropper#changed' unless pin.cover_image.attached? %>
       </p>
     </div>
-    <%= f.input :cover_image_description %>
+    <%= f.input :cover_image_description, input_html: { rows: 5 } %>
     <%= f.input :description, as: :rich_text_area, input_html: { class: 'trix-content' } %>
   </div>
 
