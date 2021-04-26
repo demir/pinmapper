@@ -311,3 +311,13 @@ header.sticky .is-active .hamburger-inner::before,
 header.sticky .is-active .hamburger-inner::after {
   background-color: #444 !important;
 }
+
+main .container form {
+  background-color: #fff;
+  padding: 20px;
+  @include border-radius(3px);
+}
+
+.form-group.rich_text_area {
+  margin-top: 30px;
+}
