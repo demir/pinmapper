@@ -8,3 +8,5 @@ tr:
       create_new_pin: Yeni Pin Oluştur
     edit:
       edit_pin: Pin'i Düzenle
+    show:
+      nearby_pins: Yakındaki Pinler

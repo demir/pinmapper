@@ -1,43 +1,42 @@
 <%= render(Pins::TopHeroComponent.new(title: t('pins.pin'))) %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @pin.name %>
-</p>
+<div class="container margin_60_35 reset-ol-ul">
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="bloglist singlepost">
+        <h1><%= @pin.name %></h1>
+        <div class="postmeta">
+          <ul>
+            <li><a href="#"><i class="icon_pencil-edit"></i> username</a></li>
+            <li><a href="#"><i class="icon_clock_alt"></i> <%= l(@pin.created_at) %></a></li>
+          </ul>
+        </div>
+        <!-- /post meta -->
+        <div class="post-content">
+          <%= @pin.description %>
+        </div>
+        <!-- /post -->
+      </div>
+      <!-- /single-post -->
+    </div>
+    <!-- /col -->
 
-<p>
-  <strong>Address:</strong>
-  <%= @pin.address %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @pin.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @pin.longitude %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @pin.translated_category %>
-</p>
-
-<p>
-  <strong>Privacy:</strong>
-  <%= @pin.translated_privacy %>
-</p>
-
-<%= image_tag @pin.cover_image.variant(
-      @pin.cover_image_crop_constraints.merge(resize_to_limit: [300, 300])
-    ) if @pin.cover_image.attached? %>
-
-<p>
-  <strong>Cover image description:</strong>
-  <%= @pin.cover_image_description %>
-</p>
-
-<%= link_to 'Edit', edit_pin_path(@pin) %> |
-<%= link_to 'Back', pins_path %>
+    <aside class="col-lg-3 blog">
+      <% nearby_pins = @pin.geocode.present? && @pin.nearbys(1).limit(3) %>
+      <% if nearby_pins.present? %>
+        <div class="widget">
+          <div class="widget-title">
+            <h4><%= t('.nearby_pins') %></h4>
+          </div>
+          <ul class="pins-list">
+            <%= render(Pins::PinListItemComponent.with_collection(nearby_pins)) %>
+          </ul>
+        </div>
+      <% end %>
+      <!-- /widget -->
+    </aside>
+    <!-- /aside -->
+  </div>
+  <!-- /row -->
+</div>
+<!-- /container -->

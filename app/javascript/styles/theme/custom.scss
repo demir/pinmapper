@@ -321,3 +321,11 @@ main .container form {
 .form-group.rich_text_area {
   margin-top: 30px;
 }
+
+.reset-ol-ul {
+  ol, ul {
+    list-style: none;
+    margin: 0 0 25px 0;
+    padding: 0;
+  }
+}

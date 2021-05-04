@@ -8,3 +8,5 @@ en:
       create_new_pin: Create New Pin
     edit:
       edit_pin: Edit Pin
+    show:
+      nearby_pins: Nearby Pins
