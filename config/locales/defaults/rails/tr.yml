@@ -207,7 +207,7 @@ tr:
   time:
     am: öğleden önce
     formats:
-      default: "%a %d.%b.%y %H:%M"
+      default: "%d %b %Y - %H:%M"
       long: "%e %B %Y, %A, %H:%M"
       short: "%e %B, %H:%M"
     pm: öğleden sonra
