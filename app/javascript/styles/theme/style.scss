@@ -593,7 +593,7 @@ header.sticky .hamburger-inner, header.sticky .hamburger-inner::before, header.s
 		.wrapper {@include rgba(bg, #000, 0.6);}
 	}
 	&:before {
-		animation: pop-in 5s .3s cubic-bezier(0, 0.5, 0, 1) forwards;
+    animation: pop-in 5s 0s cubic-bezier(.17,.67,.64,.8) forwards;
 		content: "";
 		opacity: 0;
 		position: absolute;
@@ -654,7 +654,7 @@ header.sticky .hamburger-inner, header.sticky .hamburger-inner::before, header.s
 /* Animations */
 @keyframes pop-in {
   0% {
-    opacity: 0;
+    opacity: .7;
   }
   100% {
     opacity: 1;
@@ -1408,7 +1408,7 @@ video {
 	color: #fff;
 	.wrapper {@include rgba(bg, #000, 0.8);}
 	&.start_bg_zoom:before {
-		animation: pop-in 6s .3s cubic-bezier(0, 0.5, 0, 1) forwards;
+    animation: pop-in 6s 0s cubic-bezier(.17,.67,.64,.8) forwards;
 		content: "";
 		opacity: 0;
 		position: absolute;
