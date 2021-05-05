@@ -197,9 +197,6 @@ header {
       height: 32px;
       margin-right: 5px;
     }
-    svg {
-      cursor: pointer;
-    }
     .dropdown-menu {
       padding: 0;
     }
@@ -246,6 +243,12 @@ header {
 			color: #999;
 		}
 	}
+  &-more {
+    svg {
+      cursor: pointer;
+      margin-left: 20px;
+    }
+  }
 }
 
 .form-horizontal-map {
