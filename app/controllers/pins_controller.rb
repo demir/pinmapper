@@ -1,6 +1,7 @@
 class PinsController < ApplicationController
   before_action :set_pin, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
+  before_action :authorize_pin, except: %i[index show]
 
   # GET /pins or /pins.json
   def index
@@ -66,5 +67,9 @@ class PinsController < ApplicationController
     params.require(:pin).permit(:name, :address, :latitude, :longitude, :category, :privacy,
                                 :cover_image_description, :cover_image, :description,
                                 cover_image_crop_attributes: %i[crop_x crop_y crop_width crop_height])
+  end
+
+  def authorize_pin
+    authorize @pin || Pin.new
   end
 end
