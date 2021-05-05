@@ -92,3 +92,10 @@
 aside.blog {
   padding-left: 0;
 }
+
+// tablet ve altındaki cihazlar için
+@media only screen and (max-width: 991px) {
+  aside.blog {
+    padding-left: 15px;
+  }
+}
