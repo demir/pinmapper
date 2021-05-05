@@ -66,6 +66,14 @@
 	p {
 		line-height: $line-height-large;
 	}
+  .header {
+    display: flex;
+    justify-content: space-between;
+    svg {
+      margin-left: 20px;
+      cursor: pointer;
+    }
+  }
 }
 
 .postmeta {

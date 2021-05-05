@@ -4,7 +4,24 @@
   <div class="row">
     <div class="col-lg-9">
       <div class="bloglist singlepost">
+        <div class="header">
         <h1><%= @pin.name %></h1>
+        <div class="dropdown dropleft">
+          <%= inline_svg_pack_tag 'media/images/theme/three-dots.svg', class: 'bi bi-three-dots dropdown-toggle',
+                                                                      width: '16px',
+                                                                      height: '16px',
+                                                                      fill: 'currentColor',
+                                                                      viewBox: '0 0 16 16',
+                                                                      id: 'pin-options',
+                                                                      data: { toggle: 'dropdown' } %>
+          <div class="dropdown-menu" aria-labelledby="pin-options">
+            <% if @pin.user == current_user %>
+              <%= link_to t('edit'), edit_pin_path(@pin), class: 'dropdown-item' %>
+              <%= link_to t('destroy'), @pin, method: :delete, data: { confirm: t('are_you_sure') }, class: 'dropdown-item' %>
+            <% end %>
+          </div>
+        </div>
+        </div>
         <div class="postmeta">
           <ul>
             <li><a href="#"><i class="icon_pencil-edit"></i> <%= @pin.user.email %></a></li>
