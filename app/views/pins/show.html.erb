@@ -7,7 +7,7 @@
         <h1><%= @pin.name %></h1>
         <div class="postmeta">
           <ul>
-            <li><a href="#"><i class="icon_pencil-edit"></i> username</a></li>
+            <li><a href="#"><i class="icon_pencil-edit"></i> <%= @pin.user.email %></a></li>
             <li><a href="#"><i class="icon_clock_alt"></i> <%= l(@pin.created_at) %></a></li>
           </ul>
         </div>

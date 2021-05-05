@@ -2,7 +2,7 @@
   <div class="header">
     <div class="user">
       <%= image_pack_tag 'media/images/avatar.jpg', class: 'rounded-circle', alt: '' %>
-      <span>username</span>
+      <span><%= @pin.user.email %></span>
     </div>
     <div class="dropdown dropleft">
       <%= inline_svg_pack_tag 'media/images/theme/three-dots.svg', class: 'bi bi-three-dots dropdown-toggle',
@@ -13,7 +13,6 @@
                                                                   id: 'pin-options',
                                                                   data: { toggle: 'dropdown' } %>
       <div class="dropdown-menu" aria-labelledby="pin-options">
-        <%= link_to t('show'), @pin, class: 'dropdown-item' %>
         <%= link_to t('edit'), edit_pin_path(@pin), class: 'dropdown-item' %>
         <%= link_to t('destroy'), @pin, method: :delete, data: { confirm: t('are_you_sure') }, class: 'dropdown-item' %>
       </div>
