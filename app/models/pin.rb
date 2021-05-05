@@ -8,6 +8,7 @@ class Pin < ApplicationRecord
   accepts_nested_attributes_for :cover_image_crop, update_only: true
   has_one_attached :cover_image
   has_rich_text :description
+  belongs_to :user
 
   # enums
   enum category: { food: 0, coffee: 1, nightlife: 2, fun: 3, shopping: 4 }
