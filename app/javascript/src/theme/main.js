@@ -5,8 +5,7 @@ import "theia-sticky-sidebar/js/theia-sticky-sidebar";
   "use strict";
 
   $(document).on('turbo:load', function () {
-    $('body').delay(350);
-    $('.hero_in h1,.hero_in form').addClass('animated');
+    $('.hero_in h1,.hero_in form').addClass('animate__animated');
     $('.hero_single, .hero_in').addClass('start_bg_zoom');
     $(window).scroll();
 

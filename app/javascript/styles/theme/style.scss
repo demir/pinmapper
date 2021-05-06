@@ -664,7 +664,7 @@ header.sticky .hamburger-inner, header.sticky .hamburger-inner::before, header.s
 
 /* Delays */
 .hero_in h1{
-	@include animation-delay (0.8s);
+	@include animation-delay (0.3s);
 }
 .hero_in p{
 	@include animation-delay (1.5s);
