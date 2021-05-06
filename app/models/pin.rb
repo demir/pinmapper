@@ -1,7 +1,18 @@
 class Pin < ApplicationRecord
   include TranslateEnum
+  geocoded_by :address do |obj, results|
+    if results.present?
+      obj.latitude = results.first.latitude
+      obj.longitude = results.first.longitude
+    else
+      obj.latitude = nil
+      obj.longitude = nil
+    end
+  end
+
   # callbacks
   before_destroy :delete_crops
+  before_validation :geocode, if: ->(obj) { obj.address.present? && obj.address_changed? }
 
   # relations
   has_one :cover_image_crop, as: :cropable, class_name: 'Crop'
@@ -10,15 +21,19 @@ class Pin < ApplicationRecord
   has_rich_text :description
   belongs_to :user
 
+  # validations
+  validates :name, presence: true
+  validates :address, presence: true
+  validate :found_address_presence?, if: ->(obj) { obj.address.present? && obj.address_changed? }
+  validates :category, presence: true
+  validates :privacy, presence: true
+
   # enums
   enum category: { food: 0, coffee: 1, nightlife: 2, fun: 3, shopping: 4 }
   enum privacy: { private: 0, public: 1 }, _suffix: true
 
   translate_enum :category
   translate_enum :privacy
-
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
 
   def cover_image_crop_constraints
     return {} if cover_image_crop.blank?
@@ -42,5 +57,11 @@ class Pin < ApplicationRecord
     return if cover_image_crop.blank?
 
     cover_image_crop.destroy
+  end
+
+  def found_address_presence?
+    return if latitude.present? && longitude.present?
+
+    errors.add(:address, :invalid)
   end
 end
