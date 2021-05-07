@@ -192,11 +192,6 @@ header {
     height: 60px;
     padding: 16px;
     border-bottom: 1px solid $border-color-2;
-    img {
-      width: 32px;
-      height: 32px;
-      margin-right: 5px;
-    }
     .dropdown-menu {
       padding: 0;
     }
@@ -206,8 +201,12 @@ header {
   }
   .body {
     padding: 16px;
-    .time_ago {
-      margin-bottom: 10px;
+    .cover-image-description {
+      margin-bottom: 15px;
+    }
+    .time-ago {
+      display: block;
+      color: #999;
     }
   }
   .footer {
@@ -248,6 +247,19 @@ header {
       cursor: pointer;
       margin-left: 20px;
     }
+  }
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+}
+
+.pin-tag {
+  color: #999;
+  &:hover {
+    color: #fc5b62;
   }
 }
 

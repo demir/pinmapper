@@ -34,6 +34,9 @@
       </p>
     </div>
     <%= f.input :cover_image_description, input_html: { rows: 5 } %>
+    <%= f.input :tag_list, placeholder: t('.tag_list.placeholder'),
+                           hint: t('.tag_list.hint'),
+                           input_html: { value: f.object.tag_list.to_s } %>
     <%= f.input :description, as: :rich_text_area, input_html: { class: 'trix-content' } %>
   </div>
 

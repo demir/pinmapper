@@ -1,5 +1,12 @@
 en:
   activerecord:
+    errors:
+      models:
+        pin:
+          attributes:
+            tag_list:
+              max_tag_count: can be add up to 5
+              max_tag_length: can be max 30 characters
     models:
       pin: Pin
     attributes:
@@ -13,6 +20,7 @@ en:
         cover_image: Cover Image
         cover_image_description: Cover Image Description
         description: Pin Description
+        tag_list: Tags
         category_list:
           food: Food
           coffee: Coffee

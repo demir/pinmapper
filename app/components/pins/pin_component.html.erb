@@ -1,7 +1,7 @@
 <div class="pin" data-controller="pin">
   <div class="header">
     <div class="user">
-      <%= image_pack_tag 'media/images/avatar.jpg', class: 'rounded-circle', alt: '' %>
+      <%= image_pack_tag 'media/images/avatar.jpg', class: 'rounded-circle user-avatar', alt: '' %>
       <span><%= @pin.user.email %></span>
     </div>
     <%= render(Pins::MoreButtonComponent.new(pin: @pin)) %>
@@ -11,8 +11,9 @@
       ), alt: '' if @pin.cover_image.attached? %>
   <div class="body">
     <h3><%= link_to @pin.name, pin_path(@pin) %></h3>
-    <p class="time_ago"><%= @pin.cover_image_description %></p>
-    <small><%= "#{time_ago_in_words(@pin.created_at)} #{t('ago')}" %></small>
+    <p class="cover-image-description"><%= @pin.cover_image_description %></p>
+    <%= render(Pins::TagListComponent.new(tag_list: @pin.tag_list)) %>
+    <small class="time-ago"><%= "#{time_ago_in_words(@pin.created_at)} #{t('ago')}" %></small>
   </div>
   <div class="footer">
     <a href="#0" class="like_btn" data-action="click->pin#liked"></a>

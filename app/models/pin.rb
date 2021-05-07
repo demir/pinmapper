@@ -14,6 +14,7 @@ class Pin < ApplicationRecord
   # callbacks
   before_destroy :delete_crops
   before_validation :geocode, if: ->(obj) { obj.address.present? && obj.address_changed? }
+  before_validation :fix_tags, if: :tag_list_changed?
 
   # relations
   has_one :cover_image_crop, as: :cropable, class_name: 'Crop'
@@ -28,6 +29,8 @@ class Pin < ApplicationRecord
   validate :found_address_presence?, if: ->(obj) { obj.address.present? && obj.address_changed? }
   validates :category, presence: true
   validates :privacy, presence: true
+  validate :max_tag_count, if: :tag_list_changed?
+  validate :max_tag_length, if: :tag_list_changed?
 
   # enums
   enum category: { food: 0, coffee: 1, nightlife: 2, fun: 3, shopping: 4 }
@@ -64,5 +67,22 @@ class Pin < ApplicationRecord
     return if latitude.present? && longitude.present?
 
     errors.add(:address, :invalid)
+  end
+
+  def fix_tags
+    tag_list_downcased = tag_list.to_s.downcase(:turkic)
+    self.tag_list = tag_list_downcased.gsub(/[^a-z0-9,öçğışü]/, '').split(',')
+  end
+
+  def max_tag_count
+    return if tag_list.count <= 5
+
+    errors.add(:tag_list, :max_tag_count)
+  end
+
+  def max_tag_length
+    return if tag_list.collect(&:length).max <= 30
+
+    errors.add(:tag_list, :max_tag_length)
   end
 end

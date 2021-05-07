@@ -1,5 +1,12 @@
 tr:
   activerecord:
+    errors:
+      models:
+        pin:
+          attributes:
+            tag_list:
+              max_tag_count: en fazla 5 tane olabilir
+              max_tag_length: en fazla 30 karakter olabilir
     models:
       pin: Pin
     attributes:
@@ -13,6 +20,7 @@ tr:
         cover_image: Kapak Fotoğrafı
         cover_image_description: Kapak Fotoğrafı Açıklaması
         description: Pin İçeriği
+        tag_list: Etiketler
         category_list:
           food: Yemek
           coffee: Kahve
