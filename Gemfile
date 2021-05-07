@@ -24,6 +24,7 @@ gem 'geocoder'
 gem 'aws-sdk-s3', require: false
 gem 'image_processing'
 gem 'pundit'
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
