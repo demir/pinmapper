@@ -7,7 +7,6 @@ RSpec.describe 'pins/edit', type: :view do
                           address:                 'MyString',
                           latitude:                '9.99',
                           longitude:               '9.99',
-                          category:                1,
                           privacy:                 1,
                           cover_image_description: 'MyText'
                         ))
@@ -24,8 +23,6 @@ RSpec.describe 'pins/edit', type: :view do
       assert_select 'input[name=?]', 'pin[latitude]'
 
       assert_select 'input[name=?]', 'pin[longitude]'
-
-      assert_select 'input[name=?]', 'pin[category]'
 
       assert_select 'input[name=?]', 'pin[privacy]'
 

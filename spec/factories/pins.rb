@@ -4,7 +4,6 @@ FactoryBot.define do
     address { "MyString" }
     latitude { "9.99" }
     longitude { "9.99" }
-    category { 1 }
     privacy { 1 }
     cover_image_description { "MyText" }
   end

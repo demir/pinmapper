@@ -8,7 +8,6 @@
         <%= f.input :name %>
         <%= f.input :address, as: :search, input_html: { data: { 'pin-target': 'field' , action: 'keydown->pin#keydown' }} %>
         <div class="form-horizontal-inputs">
-          <%= f.input :category, collection: f.object.class.translated_categories %>
           <%= f.input :privacy, collection: f.object.class.translated_privacies %>
         </div>
       </div>

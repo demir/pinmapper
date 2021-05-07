@@ -15,18 +15,11 @@ en:
         address: Address
         latitude: Latitude
         longitude: Longitude
-        category: Category
         privacy: Privacy
         cover_image: Cover Image
         cover_image_description: Cover Image Description
         description: Pin Description
         tag_list: Tags
-        category_list:
-          food: Food
-          coffee: Coffee
-          nightlife: Nightlife
-          fun: Fun
-          shopping: Shopping
         privacy_list:
           private: Private
           public: Public

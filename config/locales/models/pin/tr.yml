@@ -15,18 +15,11 @@ tr:
         address: Adres
         latitude: Enlem
         longitude: Boylam
-        category: Kategori
         privacy: Gizlilik
         cover_image: Kapak Fotoğrafı
         cover_image_description: Kapak Fotoğrafı Açıklaması
         description: Pin İçeriği
         tag_list: Etiketler
-        category_list:
-          food: Yemek
-          coffee: Kahve
-          nightlife: Gece Hayatı
-          fun: Eğlence
-          shopping: Alışveriş
         privacy_list:
           private: Gizli
           public: Herkese Açık

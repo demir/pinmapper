@@ -7,7 +7,6 @@ RSpec.describe 'pins/show', type: :view do
                           address:                 'Address',
                           latitude:                '9.99',
                           longitude:               '9.99',
-                          category:                2,
                           privacy:                 3,
                           cover_image_description: 'MyText'
                         ))
@@ -19,7 +18,6 @@ RSpec.describe 'pins/show', type: :view do
     expect(rendered).to match(/Address/)
     expect(rendered).to match(/9.99/)
     expect(rendered).to match(/9.99/)
-    expect(rendered).to match(/2/)
     expect(rendered).to match(/3/)
     expect(rendered).to match(/MyText/)
   end
