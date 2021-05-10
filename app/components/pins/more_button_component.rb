@@ -5,4 +5,8 @@ class Pins::MoreButtonComponent < ViewComponent::Base
     @pin = pin
     @current_user = current_user
   end
+
+  def render?
+    @current_user.present?
+  end
 end
