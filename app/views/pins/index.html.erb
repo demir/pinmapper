@@ -14,7 +14,7 @@
 
 <div class="container margin_60_35">
   <div class="row">
-    <%= render(Pins::PinComponent.with_collection(@pins)) %>
+    <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
     <!-- /pin_lists -->
   </div>
   <!-- /row -->

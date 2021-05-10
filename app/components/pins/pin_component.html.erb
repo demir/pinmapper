@@ -4,7 +4,7 @@
       <%= image_pack_tag 'media/images/avatar.jpg', class: 'rounded-circle user-avatar', alt: '' %>
       <span><%= @pin.user.email %></span>
     </div>
-    <%= render(Pins::MoreButtonComponent.new(pin: @pin)) %>
+    <%= render(Pins::MoreButtonComponent.new(pin: @pin, current_user: @current_user )) %>
   </div>
   <%= image_tag @pin.cover_image.variant(
         @pin.cover_image_crop_constraints.merge(resize_to_limit: [600, 600])
