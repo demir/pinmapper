@@ -73,7 +73,7 @@ RSpec.describe '/pins', type: :request do
           end.to change(Pin, :count).by(0)
         end
 
-        it "renders a successful response (i.e. to display the 'new' template)" do
+        it 'renders new template' do
           post pins_url, params: { pin: attributes_for(:pin, :invalid) }
           expect(response).to have_http_status(:unprocessable_entity)
           assert_select 'div[class="alert alert-danger"]',
@@ -98,7 +98,7 @@ RSpec.describe '/pins', type: :request do
       end
 
       context 'with invalid parameters' do
-        it "renders a successful response (i.e. to display the 'edit' template)" do
+        it 'renders a successful response' do
           patch pin_url(pin), params: { pin: attributes_for(:pin, :invalid) }
           expect(response).to have_http_status(:unprocessable_entity)
           assert_select 'div[class="alert alert-danger"]',
