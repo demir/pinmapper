@@ -99,8 +99,7 @@ RSpec.describe '/pins', type: :request do
 
       context 'with invalid parameters' do
         it 'renders a successful response' do
-          patch pin_url(pin), params: { pin: attributes_for(:pin, :invalid) }
-          expect(response).to have_http_status(:unprocessable_entity)
+          patch pin_url(id: pin), params: { pin: attributes_for(:pin, :invalid) }
           assert_select 'div[class="alert alert-danger"]',
                         text: I18n.t('simple_form.error_notification.default_message')
         end
