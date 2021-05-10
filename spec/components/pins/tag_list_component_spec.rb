@@ -1,13 +1,11 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Pins::TagListComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
-
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  it 'renders tags' do
+    pin = create(:pin)
+    render_inline(described_class.new(tag_list: pin.tag_list))
+    expect(rendered_component).to have_css '.pin-tag', text: "##{pin.tag_list.first}"
+    expect(rendered_component).to have_css '.pin-tag', text: "##{pin.tag_list.second}"
+    expect(rendered_component).to have_css '.pin-tag', text: "##{pin.tag_list.third}"
+  end
 end
