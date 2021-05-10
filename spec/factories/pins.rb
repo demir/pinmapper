@@ -9,8 +9,12 @@ FactoryBot.define do
     description { Faker::Lorem.paragraph }
 
     trait :invalid do
-      address { 'FooBoo' }
+      address { 'FooBooFooFFFooBooFooFF' }
       tag_list { Faker::Lorem.words(number: 6).join(',') }
+    end
+
+    trait :cover_image_crop do
+      association :cover_image_crop, factory: :crop
     end
   end
 end
