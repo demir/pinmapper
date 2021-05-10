@@ -1,13 +1,14 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Pins::PinListItemComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
-
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  it 'renders pin list items' do
+    pins = create_list(:pin, 3)
+    render_inline(described_class.with_collection(pins))
+    expect(rendered_component).to have_css 'li h3 a', text: pins.first.name
+    expect(rendered_component).to have_css 'li h3 a', text: pins.second.name
+    expect(rendered_component).to have_css 'li h3 a', text: pins.third.name
+    expect(rendered_component.squish).to have_css 'li small', text: pins.first.tag_list.map { |t| "##{t}" }.join(' ')
+    expect(rendered_component.squish).to have_css 'li small', text: pins.second.tag_list.map { |t| "##{t}" }.join(' ')
+    expect(rendered_component.squish).to have_css 'li small', text: pins.third.tag_list.map { |t| "##{t}" }.join(' ')
+  end
 end
