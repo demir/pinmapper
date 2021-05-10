@@ -11,7 +11,7 @@ RSpec.describe 'pins/index', type: :view do
     assign(:pins, pins)
   end
 
-  context 'specs with sign in' do
+  context 'specs with current_user' do
     it 'renders a list of pins' do
       sign_in(user)
       render
@@ -26,7 +26,7 @@ RSpec.describe 'pins/index', type: :view do
     end
   end
 
-  context 'specs without sign in' do
+  context 'specs without current_user' do
     it 'renders a list of pins' do
       render
       pin = pins.first
