@@ -1,34 +1,42 @@
 require 'rails_helper'
 
 RSpec.describe 'pins/index', type: :view do
-  before do
-    assign(:pins, [
-             Pin.create!(
-               name:                    'Name',
-               address:                 'Address',
-               latitude:                '9.99',
-               longitude:               '9.99',
-               privacy:                 3,
-               cover_image_description: 'MyText'
-             ),
-             Pin.create!(
-               name:                    'Name',
-               address:                 'Address',
-               latitude:                '9.99',
-               longitude:               '9.99',
-               privacy:                 3,
-               cover_image_description: 'MyText'
-             )
-           ])
+  let(:user) { create(:user, :confirmed) }
+  let(:pins) do
+    pin_attributes = attributes_for(:pin, user_id: user.id)
+    create_list(:pin, 2, pin_attributes)
   end
 
-  it 'renders a list of pins' do
-    render
-    assert_select 'tr>td', text: 'Name'.to_s, count: 2
-    assert_select 'tr>td', text: 'Address'.to_s, count: 2
-    assert_select 'tr>td', text: '9.99'.to_s, count: 2
-    assert_select 'tr>td', text: '9.99'.to_s, count: 2
-    assert_select 'tr>td', text: 3.to_s, count: 2
-    assert_select 'tr>td', text: 'MyText'.to_s, count: 2
+  before do
+    assign(:pins, pins)
+  end
+
+  context 'specs with sign in' do
+    it 'renders a list of pins' do
+      sign_in(user)
+      render
+      pin = pins.first
+      assert_select '.pin .header .dropdown-item:nth-of-type(1)', text: t('edit'), count: 2
+      assert_select '.pin .user span', text: pin.user.email, count: 2
+      assert_select '.pin .body h3', text: pin.name, count: 2
+      assert_select '.pin .body .cover-image-description', text: pin.cover_image_description, count: 2
+      assert_select '.pin .body a.pin-tag:nth-of-type(1)', text: "##{pin.tag_list.first}", count: 2
+      assert_select '.pin .body .time-ago', text: "#{time_ago_in_words(pin.created_at)} #{t('ago')}", count: 2
+      assert_select 'a[class=?]', 'like_btn'
+    end
+  end
+
+  context 'specs without sign in' do
+    it 'renders a list of pins' do
+      render
+      pin = pins.first
+      assert_select '.pin .header .dropdown-item:nth-of-type(1)', count: 0
+      assert_select '.pin .user span', text: pin.user.email, count: 2
+      assert_select '.pin .body h3', text: pin.name, count: 2
+      assert_select '.pin .body .cover-image-description', text: pin.cover_image_description, count: 2
+      assert_select '.pin .body a.pin-tag:nth-of-type(1)', text: "##{pin.tag_list.first}", count: 2
+      assert_select '.pin .body .time-ago', text: "#{time_ago_in_words(pin.created_at)} #{t('ago')}", count: 2
+      assert_select 'a[class=?]', 'like_btn'
+    end
   end
 end

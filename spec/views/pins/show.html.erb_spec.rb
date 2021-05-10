@@ -1,24 +1,56 @@
 require 'rails_helper'
 
 RSpec.describe 'pins/show', type: :view do
+  Pin.destroy_all
+  let(:user) { create(:user, :confirmed) }
+  let(:pin) { create(:pin, user: user) }
+
   before do
-    @pin = assign(:pin, Pin.create!(
-                          name:                    'Name',
-                          address:                 'Address',
-                          latitude:                '9.99',
-                          longitude:               '9.99',
-                          privacy:                 3,
-                          cover_image_description: 'MyText'
-                        ))
+    assign(:pin, pin)
   end
 
-  it 'renders attributes in <p>' do
+  it 'renders attributes of pin' do
     render
-    expect(rendered).to match(/Name/)
-    expect(rendered).to match(/Address/)
-    expect(rendered).to match(/9.99/)
-    expect(rendered).to match(/9.99/)
-    expect(rendered).to match(/3/)
-    expect(rendered).to match(/MyText/)
+    expect(rendered).to match(/#{pin.name}/)
+    expect(rendered).to match(/#{pin.user.email}/)
+    expect(rendered).to match(/##{pin.tag_list.first}/)
+    expect(rendered).to match(/#{l(pin.created_at)}/)
+    expect(rendered).to match(/#{pin.description}/)
+  end
+
+  context 'nearby pins' do
+    it 'renders nearby pins' do
+      create_list(:pin, 3, user: user)
+      render
+      expect(rendered).to match(/#{t('pins.show.nearby_pins')}/)
+    end
+
+    it 'is not renders nearby pins' do
+      render
+      expect(rendered).not_to match(/#{t('pins.show.nearby_pins')}/)
+    end
+  end
+
+  context 'more button' do
+    context 'with sign in' do
+      it 'renders edit actions if the owner of pin' do
+        sign_in(user)
+        render
+        assert_select '.header .pin-more .dropdown-menu a', text: t('edit'), count: 1
+      end
+
+      it 'is not renders edit actions if not the owner of pin' do
+        sign_in(create(:user, :confirmed))
+        render
+        assert_select '.header .pin-more .dropdown-menu a', text: t('edit'), count: 0
+      end
+    end
+
+    context 'without sign in' do
+      it 'is not renders' do
+        render
+        assert_select '.header .pin-more', count: 0
+      end
+    end
   end
 end
