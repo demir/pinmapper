@@ -25,7 +25,7 @@ RSpec.describe 'pins/show', type: :view do
       expect(rendered).to match(/#{t('pins.show.nearby_pins')}/)
     end
 
-    it 'is not renders nearby pins' do
+    it 'does not render nearby pins' do
       render
       expect(rendered).not_to match(/#{t('pins.show.nearby_pins')}/)
     end
@@ -39,7 +39,7 @@ RSpec.describe 'pins/show', type: :view do
         assert_select '.header .pin-more .dropdown-menu a', text: t('edit'), count: 1
       end
 
-      it 'is not renders edit actions if not the owner of pin' do
+      it 'does not render edit actions if not the owner of pin' do
         sign_in(create(:user, :confirmed))
         render
         assert_select '.header .pin-more .dropdown-menu a', text: t('edit'), count: 0
@@ -47,7 +47,7 @@ RSpec.describe 'pins/show', type: :view do
     end
 
     context 'without sign in' do
-      it 'is not renders' do
+      it 'does not render' do
         render
         assert_select '.header .pin-more', count: 0
       end

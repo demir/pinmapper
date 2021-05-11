@@ -20,7 +20,7 @@ RSpec.describe Pins::PinComponent, type: :component do
   end
 
   context 'without current_user' do
-    it 'is not renders more button' do
+    it 'does not render more button' do
       render_inline(described_class.new(pin: pin))
       expect(rendered_component).not_to have_css '.pin-more'
     end
