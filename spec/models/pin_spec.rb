@@ -28,7 +28,7 @@ RSpec.describe Pin, type: :model do
     end
 
     it 'validates max tag count' do
-      pin = build(:pin, tag_list: Faker::Lorem.words(number: 6).join(','))
+      pin = build(:pin, tag_list: 'dolorem,quaerat,nesciunt,voluptas,assumenda,ullam')
       expect(pin).to be_invalid
       error_message = "#{Pin.human_attribute_name(:tag_list)} #{pin.errors.generate_message(:tag_list, :max_tag_count)}"
       expect(pin.errors.full_messages).to include(error_message)
