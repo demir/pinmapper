@@ -11,13 +11,30 @@ RSpec.describe 'pins/show', type: :view do
     assign(:pin, pin)
   end
 
-  it 'renders attributes of pin' do
-    render
-    expect(rendered).to match(/#{pin.name}/)
-    expect(rendered).to match(/#{pin.user.email}/)
-    expect(rendered).to match(/##{pin.tag_list.first}/)
-    expect(rendered).to match(/#{l(pin.created_at)}/)
-    expect(rendered).to match(/#{pin.description}/)
+  context 'renders attributes of pin' do
+    before do
+      render
+    end
+
+    it '#name' do
+      expect(rendered).to match(/#{pin.name}/)
+    end
+
+    it '#user.email' do
+      expect(rendered).to match(/#{pin.user.email}/)
+    end
+
+    it '#tag_list.first' do
+      expect(rendered).to match(/##{pin.tag_list.first}/)
+    end
+
+    it '#created_at' do
+      expect(rendered).to match(/#{l(pin.created_at)}/)
+    end
+
+    it '#description' do
+      expect(rendered).to match(/#{pin.description}/)
+    end
   end
 
   context 'nearby pins' do
