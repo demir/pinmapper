@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Pin < ApplicationRecord
   include TranslateEnum
   acts_as_taggable_on :tags

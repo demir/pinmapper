@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Pin, type: :model do
@@ -23,22 +25,23 @@ RSpec.describe Pin, type: :model do
     it 'validates that address presence' do
       pin = build(:pin, address: 'FooBooFoBoFfFf')
       expect(pin).to be_invalid
-      error_message = "#{Pin.human_attribute_name(:address)} #{I18n.t('errors.messages.invalid')}"
+      error_message = "#{described_class.human_attribute_name(:address)} #{I18n.t('errors.messages.invalid')}"
       expect(pin.errors.full_messages).to include(error_message)
     end
 
     it 'validates max tag count' do
       pin = build(:pin, tag_list: 'dolorem,quaerat,nesciunt,voluptas,assumenda,ullam')
       expect(pin).to be_invalid
-      error_message = "#{Pin.human_attribute_name(:tag_list)} #{pin.errors.generate_message(:tag_list, :max_tag_count)}"
+      error_message = "#{described_class.human_attribute_name(:tag_list)} #{pin.errors.generate_message(:tag_list,
+                                                                                                        :max_tag_count)}"
       expect(pin.errors.full_messages).to include(error_message)
     end
 
     it 'validates max tag length' do
       pin = build(:pin, tag_list: Array(Faker::Lorem.characters(number: 31, min_alpha: 31)))
       expect(pin).to be_invalid
-      error_message = "#{Pin.human_attribute_name(:tag_list)} #{pin.errors.generate_message(:tag_list,
-                                                                                            :max_tag_length)}"
+      error_message = "#{described_class.human_attribute_name(:tag_list)} #{pin.errors.generate_message(:tag_list,
+                                                                                                        :max_tag_length)}"
       expect(pin.errors.full_messages).to include(error_message)
     end
   end

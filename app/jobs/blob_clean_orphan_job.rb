@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BlobCleanOrphanJob < ApplicationJob
   queue_as :default
 

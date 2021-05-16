@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :crop do
     crop_x { Faker::Number.within(range: 1..400).to_s }

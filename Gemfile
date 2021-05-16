@@ -5,26 +5,26 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read('.ruby-version')
 
+gem 'acts-as-taggable-on'
+gem 'aws-sdk-s3', require: false
 gem 'bootsnap', require: false
 gem 'devise'
+gem 'draper'
+gem 'geocoder'
 gem 'hotwire-rails'
+gem 'image_processing'
+gem 'inline_svg'
 gem 'jbuilder'
 gem 'pg'
 gem 'puma'
+gem 'pundit'
 gem 'rails'
 gem 'redis'
 gem 'sass-rails'
 gem 'simple_form'
-gem 'webpacker'
-gem 'draper'
-gem 'view_component', require: 'view_component/engine'
 gem 'translate_enum'
-gem 'inline_svg'
-gem 'geocoder'
-gem 'aws-sdk-s3', require: false
-gem 'image_processing'
-gem 'pundit'
-gem 'acts-as-taggable-on'
+gem 'view_component', require: 'view_component/engine'
+gem 'webpacker'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
