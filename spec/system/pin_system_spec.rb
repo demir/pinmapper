@@ -92,8 +92,9 @@ RSpec.describe 'Pins', type: :system, js: true do
           more_button = find('.pin .header .pin-more svg', match: :first)
           pin_element = more_button.ancestor('.pin')
           more_button.click
-          edit_pin_link_element = pin_element.find('.header .dropdown.pin-more .dropdown-menu a', text:       I18n.t('edit'),
-                                                                                                  exact_text: true)
+          edit_pin_link_element = pin_element.find('.header .dropdown.pin-more .dropdown-menu a',
+                                                   text:       I18n.t('edit'),
+                                                   exact_text: true)
           edit_pin_link_element.click
           expect(page).to have_current_path edit_pin_link_element[:href]
           expect(page).to have_field(Pin.human_attribute_name(:name), with: pin_element.find('.body h3 a').text)
@@ -104,8 +105,9 @@ RSpec.describe 'Pins', type: :system, js: true do
           more_button = find('.pin .header .pin-more svg', match: :first)
           pin_element = more_button.ancestor('.pin')
           more_button.click
-          delete_pin_link_element = pin_element.find('.header .dropdown.pin-more .dropdown-menu a', text:       I18n.t('destroy'),
-                                                                                                    exact_text: true)
+          delete_pin_link_element = pin_element.find('.header .dropdown.pin-more .dropdown-menu a',
+                                                     text:       I18n.t('destroy'),
+                                                     exact_text: true)
           delete_pin_link_element.click
           page.accept_alert
           expect(page).to have_current_path pins_path
@@ -120,8 +122,9 @@ RSpec.describe 'Pins', type: :system, js: true do
           more_button = find('.container .header .pin-more svg', match: :first)
           pin_element = more_button.ancestor('.singlepost')
           more_button.click
-          edit_pin_link_element = pin_element.find('.header .dropdown.pin-more .dropdown-menu a', text:       I18n.t('edit'),
-                                                                                                  exact_text: true)
+          edit_pin_link_element = pin_element.find('.header .dropdown.pin-more .dropdown-menu a',
+                                                   text:       I18n.t('edit'),
+                                                   exact_text: true)
           edit_pin_link_element.click
           expect(page).to have_current_path edit_pin_link_element[:href]
           expect(page).to have_field(Pin.human_attribute_name(:name), with: pin.name)
@@ -133,8 +136,9 @@ RSpec.describe 'Pins', type: :system, js: true do
           more_button = find('.container .header .pin-more svg', match: :first)
           pin_element = more_button.ancestor('.singlepost')
           more_button.click
-          delete_pin_link_element = pin_element.find('.header .dropdown.pin-more .dropdown-menu a', text:       I18n.t('destroy'),
-                                                                                                    exact_text: true)
+          delete_pin_link_element = pin_element.find('.header .dropdown.pin-more .dropdown-menu a',
+                                                     text:       I18n.t('destroy'),
+                                                     exact_text: true)
           delete_pin_link_element.click
           page.accept_alert
           expect(page).to have_current_path pins_path
