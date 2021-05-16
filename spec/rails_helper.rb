@@ -24,7 +24,7 @@ require 'capybara/rspec'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -84,8 +84,15 @@ RSpec.configure do |config|
     driven_by :rack_test
   end
 
+  driver =
+    if ActiveRecord::Type::Boolean.new.cast(ENV['HEADLESS'])
+      :headless_chrome
+    else
+      :chrome
+    end
+
   config.before(:each, type: :system, js: true) do
-    driven_by :selenium, using: :chrome
+    driven_by driver
   end
   config.filter_run_when_matching :focus
 end
