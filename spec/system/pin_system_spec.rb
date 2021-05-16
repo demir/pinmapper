@@ -3,11 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Pins', type: :system, js: true do
-  let(:user) { create(:user, :confirmed) }
-
-  before do
-    @pins = create_list(:pin, 2, user: user)
-  end
+  let!(:user) { create(:user, :confirmed) }
+  let!(:pins) { create_list(:pin, 2, user: user) }
 
   context 'When signed in' do
     before do
@@ -27,7 +24,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
     it 'visits pin#show via pin name link' do
       visit pins_path
-      pin = @pins.first
+      pin = pins.first
       click_link pin.name
       expect(page).to have_css '.singlepost .header h1', text: pin.name
     end
@@ -62,13 +59,13 @@ RSpec.describe 'Pins', type: :system, js: true do
     end
 
     it 'visits #edit' do
-      pin = @pins.first
+      pin = pins.first
       visit edit_pin_path(id: pin)
       expect(page).to have_field(Pin.human_attribute_name(:name), with: pin.name)
     end
 
     it 'edits a pin' do
-      pin = @pins.first
+      pin = pins.first
       visit edit_pin_path(id: pin)
       new_name = Faker::Lorem.sentence
       fill_in User.human_attribute_name(:name), with: new_name
@@ -78,7 +75,7 @@ RSpec.describe 'Pins', type: :system, js: true do
     end
 
     it 'renders edit template after validation errors' do
-      pin = @pins.first
+      pin = pins.first
       visit edit_pin_path(id: pin)
       fill_in User.human_attribute_name(:name), with: ''
       click_button I18n.t('helpers.submit.update')
@@ -117,7 +114,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
       context 'from the show page' do
         it 'visits the edit page' do
-          pin = @pins.first
+          pin = pins.first
           visit pin_path(id: pin)
           more_button = find('.container .header .pin-more svg', match: :first)
           pin_element = more_button.ancestor('.singlepost')
@@ -131,7 +128,7 @@ RSpec.describe 'Pins', type: :system, js: true do
         end
 
         it 'deletes a pin' do
-          pin = @pins.first
+          pin = pins.first
           visit pin_path(id: pin)
           more_button = find('.container .header .pin-more svg', match: :first)
           pin_element = more_button.ancestor('.singlepost')
@@ -162,7 +159,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
     it 'visits pin#show' do
       visit pins_path
-      pin = @pins.first
+      pin = pins.first
       click_link pin.name
       expect(page).to have_css '.singlepost .header h1', text: pin.name
     end
@@ -183,7 +180,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
       describe '#edit' do
         it 'redirects to sign in page' do
-          pin = @pins.first
+          pin = pins.first
           visit edit_pin_path(id: pin)
           expect(page).to have_current_path new_user_session_path
           expect(page).to have_content I18n.t('devise.failure.unauthenticated')
