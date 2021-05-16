@@ -1,4 +1,5 @@
-name: CI
+name: rspec
+
 on:
   pull_request:
     branches:
@@ -37,9 +38,7 @@ jobs:
           bundler-cache: true
       - name: Install required system packages
         run: sudo apt-get update -y && sudo apt-get install openssh-client rsync libpq-dev cmake -y
-      - name: Install dependencies
-        run: bundle install
-      - name: Setup Node 15
+      - name: Install node
         uses: actions/setup-node@v2
         with:
           node-version: 15.x
@@ -62,10 +61,8 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
-      - name: Yarn install
-        run:  |
-          yarn upgrade webpack@^4.44.1
-          yarn install
+      - name: Install yarn
+        run: yarn install
         if: |
           steps.cache-yarn-cache.outputs.cache-hit != 'true' ||
           steps.cache-node-modules.outputs.cache-hit != 'true'
@@ -76,13 +73,13 @@ jobs:
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }}
         run: bundle exec rails db:prepare
-      - name: Test with rspec
+      - name: Run specs without system
         env:
           DATABASE_URL: postgres://pinmapper:pinmapper@localhost:5432/pinmapper_test
           REDIS_URL: redis://localhost:6379/0
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }}
-        run: bundle exec rspec --exclude-pattern "**/system/*_spec.rb" # run specs without system
+        run: bundle exec rspec --exclude-pattern "**/system/*_spec.rb"
       - name: Install ChromeDriver
         run: |
           CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1) \
@@ -94,14 +91,14 @@ jobs:
             && sudo mv chromedriver /usr/local/bin/chromedriver \
             && sudo chmod +x /usr/local/bin/chromedriver \
             && chromedriver --version
-      - name: Run capybara
+      - name: Run only system specs
         env:
           DATABASE_URL: postgres://pinmapper:pinmapper@localhost:5432/pinmapper_test
           REDIS_URL: redis://localhost:6379/0
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }}
           HEADLESS: true
-        run: bundle exec rspec spec/system # run only system specs
+        run: bundle exec rspec spec/system
       - name: Upload failure screenshots
         uses: actions/upload-artifact@v2
         if: failure()
