@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Pin, type: :model do
-  subject { build(:pin) }
+  subject(:pin) { build(:pin) }
 
   it 'has a valid factory' do
-    expect(subject).to be_valid
+    expect(pin).to be_valid
   end
 
   describe 'associations' do
