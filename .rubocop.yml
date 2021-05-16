@@ -18,6 +18,7 @@ Lint/MissingSuper:
     - 'app/components/**/*.rb'
 
 AllCops:
+  NewCops: enable
   Exclude:
     - 'db/schema.rb'
     - 'vendor/bundle/**/*'
