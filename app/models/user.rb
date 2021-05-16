@@ -7,5 +7,5 @@ class User < ApplicationRecord
          :rememberable, :validatable, :confirmable
 
   #  callbacks
-  has_many :pins
+  has_many :pins, dependent: :destroy
 end

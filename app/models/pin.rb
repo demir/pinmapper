@@ -14,12 +14,12 @@ class Pin < ApplicationRecord
   end
 
   # callbacks
-  before_destroy :delete_crops
   before_validation :geocode, if: ->(obj) { obj.address.present? && obj.address_changed? }
   before_validation :fix_tags, if: :tag_list_changed?
+  before_destroy :delete_crops
 
   # relations
-  has_one :cover_image_crop, as: :cropable, class_name: 'Crop'
+  has_one :cover_image_crop, as: :cropable, class_name: 'Crop', dependent: :destroy
   accepts_nested_attributes_for :cover_image_crop, update_only: true
   has_one_attached :cover_image
   has_rich_text :description
@@ -44,13 +44,8 @@ class Pin < ApplicationRecord
                      cover_image_crop.crop_width && cover_image_crop.crop_height
 
     {
-      crop:
-            [
-              cover_image_crop.crop_x.to_f,
-              cover_image_crop.crop_y.to_f,
-              cover_image_crop.crop_width.to_f,
-              cover_image_crop.crop_height.to_f
-            ]
+      crop: [cover_image_crop.crop_x.to_f, cover_image_crop.crop_y.to_f,
+             cover_image_crop.crop_width.to_f, cover_image_crop.crop_height.to_f]
     }
   end
 
