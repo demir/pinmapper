@@ -1,7 +1,9 @@
-require: rubocop-rails
-require: rubocop-rspec
+require:
+  - rubocop-rails
+  - rubocop-rspec
 
 inherit_from:
+  - .rubocop_todo.yml
   - .rubocop_common.yml
 
 RSpec/Focus:
