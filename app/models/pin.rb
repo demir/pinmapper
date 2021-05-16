@@ -40,13 +40,11 @@ class Pin < ApplicationRecord
 
   def cover_image_crop_constraints
     return {} if cover_image_crop.blank?
-    return {} unless cover_image_crop.crop_x && cover_image_crop.crop_y &&
-                     cover_image_crop.crop_width && cover_image_crop.crop_height
 
-    {
-      crop: [cover_image_crop.crop_x.to_f, cover_image_crop.crop_y.to_f,
-             cover_image_crop.crop_width.to_f, cover_image_crop.crop_height.to_f]
-    }
+    crop = [cover_image_crop.crop_x.to_f, cover_image_crop.crop_y.to_f,
+            cover_image_crop.crop_width.to_f, cover_image_crop.crop_height.to_f]
+
+    crop.compact.count == 4 ? { crop: crop } : {}
   end
 
   private
