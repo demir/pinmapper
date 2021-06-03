@@ -3,6 +3,7 @@
 class Pin < ApplicationRecord
   include TranslateEnum
   acts_as_taggable_on :tags
+  acts_as_votable
   geocoded_by :address do |obj, results|
     if results.present?
       obj.latitude = results.first.latitude
