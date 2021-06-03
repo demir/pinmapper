@@ -13,6 +13,8 @@ RSpec/ContextWording:
 
 Metrics/BlockLength:
   IgnoredMethods: ['describe', 'context']
+  Exclude:
+    - 'spec/rails_helper.rb'
 
 Lint/MissingSuper:
   Exclude:
