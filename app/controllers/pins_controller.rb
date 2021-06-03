@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PinsController < ApplicationController
-  before_action :set_pin, only: %i[show edit update destroy]
+  before_action :set_pin, only: %i[show edit update destroy like unlike]
   before_action :authenticate_user!, except: %i[index show]
   before_action :authorize_pin, except: %i[index show]
 
@@ -55,6 +55,14 @@ class PinsController < ApplicationController
       format.html { redirect_to pins_url, notice: t('.success') }
       format.json { head :no_content }
     end
+  end
+
+  def like
+    @pin.liked_by current_user
+  end
+
+  def unlike
+    @pin.unliked_by current_user
   end
 
   private

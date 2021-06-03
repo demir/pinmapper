@@ -1,4 +1,4 @@
-<div class="pin" data-controller="pin">
+<div class="pin">
   <div class="header">
     <div class="user">
       <%= image_pack_tag 'media/images/avatar.jpg', class: 'rounded-circle user-avatar', alt: '' %>
@@ -16,6 +16,6 @@
     <small class="time-ago"><%= "#{time_ago_in_words(@pin.created_at)} #{t('ago')}" %></small>
   </div>
   <div class="footer">
-    <a href="#0" class="like_btn" data-action="click->pin#liked"></a>
+    <%= render Pins::LikeButtonComponent.new(pin: @pin, current_user: @current_user) %>
   </div>
 </div>

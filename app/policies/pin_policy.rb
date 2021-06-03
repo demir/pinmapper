@@ -26,4 +26,16 @@ class PinPolicy < ApplicationPolicy
   def destroy?
     update?
   end
+
+  def like?
+    return if user.blank?
+
+    !user.liked?(record)
+  end
+
+  def unlike?
+    return if user.blank?
+
+    user.liked?(record)
+  end
 end

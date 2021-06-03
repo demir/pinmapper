@@ -241,6 +241,13 @@ header {
 			content: "\e089";
 			color: #999;
 		}
+    &.disabled {
+      cursor: default;
+    }
+    &.disabled:after {
+      content: "\e030";
+			color: #555;
+    }
 	}
   &-more {
     svg {
@@ -248,6 +255,12 @@ header {
       margin-left: 20px;
     }
   }
+}
+
+.pin-likes-count {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .user-avatar {
