@@ -1,0 +1,6 @@
+<%= turbo_frame_tag dom_id(pin) do %>
+  <div class="pin-likes-count">
+    <%= link_to url, class: klass, disabled: disabled? do %><% end %>
+    <%= pin.votes_for.size unless pin.votes_for.size.zero? %>
+  </div>
+<% end %>
