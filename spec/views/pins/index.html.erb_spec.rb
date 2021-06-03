@@ -38,7 +38,7 @@ RSpec.describe 'pins/index', type: :view do
       assert_select '.pin .body .cover-image-description', text: pin.cover_image_description, count: 2
       assert_select '.pin .body a.pin-tag:nth-of-type(1)', text: "##{pin.tag_list.first}", count: 2
       assert_select '.pin .body .time-ago', text: "#{time_ago_in_words(pin.created_at)} #{t('ago')}", count: 2
-      assert_select 'a[class=?]', 'like_btn'
+      assert_select 'a[class=?]', 'like_btn disabled'
     end
   end
 end

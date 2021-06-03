@@ -28,4 +28,34 @@ RSpec.describe PinPolicy, type: :policy do
       expect(pin_policy).to permit(user, pin)
     end
   end
+
+  permissions :like? do
+    it 'can not like without current_user' do
+      expect(pin_policy).not_to permit(nil, pin)
+    end
+
+    it 'denies access if liked by current_user' do
+      pin.liked_by user
+      expect(pin_policy).not_to permit(user, pin)
+    end
+
+    it 'grants access if not liked by current_user' do
+      expect(pin_policy).to permit(user, pin)
+    end
+  end
+
+  permissions :unlike? do
+    it 'can not unlike without current_user' do
+      expect(pin_policy).not_to permit(nil, pin)
+    end
+
+    it 'denies access if not liked by current_user' do
+      expect(pin_policy).not_to permit(user, pin)
+    end
+
+    it 'grants access if liked by current_user' do
+      pin.liked_by user
+      expect(pin_policy).to permit(user, pin)
+    end
+  end
 end

@@ -35,5 +35,13 @@ RSpec.describe PinsController, type: :routing do
     it 'routes to #destroy' do
       expect(delete: '/pins/1').to route_to('pins#destroy', id: '1')
     end
+
+    it 'routes to #like' do
+      expect(get: '/pins/1/like').to route_to('pins#like', id: '1')
+    end
+
+    it 'routes to #unlike' do
+      expect(get: '/pins/1/unlike').to route_to('pins#unlike', id: '1')
+    end
   end
 end

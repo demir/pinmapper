@@ -22,6 +22,20 @@ RSpec.describe 'Pins', type: :system, js: true do
       expect(page).to have_css '.pin .pin-more'
     end
 
+    it 'likes a pin' do
+      visit pins_path
+      find('.pin-likes-count .like_btn', match: :first).click
+      expect(page).to have_css '.pin-likes-count .like_btn.liked'
+    end
+
+    it 'unlikes a pin' do
+      visit pins_path
+      find('.pin-likes-count .like_btn', match: :first).click
+      find('.pin-likes-count .like_btn.liked', match: :first).click
+      visit pins_path
+      expect(page).not_to have_css '.pin-likes-count .like_btn.liked'
+    end
+
     it 'visits pin#show via pin name link' do
       visit pins_path
       pin = pins.first

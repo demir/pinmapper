@@ -33,6 +33,18 @@ RSpec.describe '/pins', type: :request do
         expect(response).to be_successful
       end
     end
+
+    it 'can not likes a pin' do
+      pin = create(:pin)
+      get like_pin_path(id: pin)
+      expect(response).not_to be_successful
+    end
+
+    it 'can not unlikes a pin' do
+      pin = create(:pin)
+      get unlike_pin_path(id: pin)
+      expect(response).not_to be_successful
+    end
   end
 
   context 'specs with sign in' do
@@ -50,6 +62,19 @@ RSpec.describe '/pins', type: :request do
     describe 'GET /edit' do
       it 'render a successful response' do
         get edit_pin_url(pin)
+        expect(response).to be_successful
+      end
+    end
+
+    describe 'GET /like' do
+      it 'likes a pin' do
+        get like_pin_path(id: pin)
+        expect(response).to be_successful
+      end
+
+      it 'unlikes a pin' do
+        pin.liked_by user
+        get unlike_pin_path(id: pin)
         expect(response).to be_successful
       end
     end
