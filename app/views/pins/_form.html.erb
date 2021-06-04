@@ -1,0 +1,45 @@
+<%= simple_form_for(pin, data: { controller: 'pin', action: 'google-maps-callback@window->pin#initMap', 'pin-latitude-value': pin.latitude, 'pin-longitude-value': pin.longitude }) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="form-horizontal-map">
+      <div class="form-horizontal-map-left">
+        <%= f.input :name %>
+        <%= f.input :address, as: :search, input_html: { data: { 'pin-target': 'field' , action: 'keydown->pin#keydown' }} %>
+        <div class="form-horizontal-inputs">
+          <%= f.input :privacy, collection: f.object.class.translated_privacies %>
+        </div>
+      </div>
+      <div class="map" data-pin-target="map"></div>
+    </div>
+    <div class="field"
+      data-controller='instant-upload cropper'
+      data-cropper-model-value='pin'
+      data-cropper-crop-model-value='cover_image_crop'>
+      <%= f.input :cover_image, as: :file, input_html: { 'data-instant-upload-target': 'input',
+            'data-action': 'instant-upload#changed' } %>
+      <p>
+        <%= image_tag pin.cover_image.variant(resize_to_limit: [400, 400]),
+              width: 400, height: '100%',
+              'data-instant-upload-target': 'image',
+              'data-cropper-target': 'image',
+              'data-action': 'instant-uploaded->cropper#changed' if pin.cover_image.attached? %>
+
+        <%= content_tag :img, nil, src: nil, width: 400, height: 400,
+              'data-instant-upload-target': 'image',
+              'data-cropper-target': 'image',
+              'data-action': 'instant-uploaded->cropper#changed' unless pin.cover_image.attached? %>
+      </p>
+    </div>
+    <%= f.input :cover_image_description, input_html: { rows: 5 } %>
+    <%= f.input :tag_list, placeholder: t('.tag_list.placeholder'),
+                           hint: t('.tag_list.hint'),
+                           input_html: { value: f.object.tag_list.to_s } %>
+    <%= f.input :description, as: :rich_text_area, input_html: { class: 'trix-content' } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn_1 rounded' %>
+  </div>
+<% end %>

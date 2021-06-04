@@ -147,9 +147,9 @@ en:
     select:
       prompt: Please select
     submit:
-      create: Create %{model}
-      submit: Save %{model}
-      update: Update %{model}
+      create: Create
+      submit: Save
+      update: Update
   not_found: 'Not found!'
   number:
     currency:
@@ -207,7 +207,7 @@ en:
   time:
     am: am
     formats:
-      default: "%a, %d %b %Y %I:%M:%S %p %Z"
+      default: "%b %d, %Y - %H:%M"
       long: "%B %d, %Y %I:%M %p"
       short: "%d %b %I:%M %p"
     pm: pm

@@ -1,0 +1,29 @@
+tr:
+  activerecord:
+    errors:
+      models:
+        pin:
+          attributes:
+            tag_list:
+              max_tag_count: en fazla 5 tane olabilir
+              max_tag_length: en fazla 30 karakter olabilir
+    models:
+      pin: Pin
+    attributes:
+      pin: &pin_attributes
+        name: Pin Adı
+        address: Adres
+        latitude: Enlem
+        longitude: Boylam
+        privacy: Gizlilik
+        cover_image: Kapak Fotoğrafı
+        cover_image_description: Kapak Fotoğrafı Açıklaması
+        description: Pin İçeriği
+        tag_list: Etiketler
+        privacy_list:
+          private: Gizli
+          public: Herkese Açık
+  simple_form:
+    labels:
+      pin:
+        <<: *pin_attributes

@@ -1,0 +1,16 @@
+tr:
+  pins:
+    pin: Pin
+    pins: Pinler
+    index:
+      new_pin: Yeni Pin
+    new:
+      create_new_pin: Yeni Pin Oluştur
+    edit:
+      edit_pin: Pin'i Düzenle
+    show:
+      nearby_pins: Yakındaki Pinler
+    form:
+      tag_list:
+        placeholder: En fazla beş etiket ekleyin (virgülle ayrılmış)
+        hint: Etiketler, kullanıcıların Pin'inizi bulmasına yardımcı olur. Etiketleri, Pin'inizi en iyi tanımlayan kategoriler olarak düşünün.

@@ -1,0 +1,8 @@
+tr:
+  pins:
+    create:
+      success: Pin oluşturuldu
+    update:
+      success: Pin güncellendi
+    destroy:
+      success: Pin silindi
