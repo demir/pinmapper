@@ -84,6 +84,7 @@ header {
       height: 25px;
       position: relative;
       overflow: hidden;
+      margin-left: 15px;
       @include border-radius(50%);
       img {
         width: 26px;
@@ -158,5 +159,202 @@ header {
 
   .main-menu ul li {
     padding: 7.5px;
+  }
+}
+
+.filters_listing {
+	&.center {
+    padding-top: 5px;
+  }
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.pin {
+  background-color: #fff;
+  max-width: 600px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 16px;
+    border-bottom: 1px solid $border-color-2;
+    .dropdown-menu {
+      padding: 0;
+    }
+  }
+  img {
+    align-self: center;
+  }
+  .body {
+    padding: 16px;
+    .cover-image-description {
+      margin-bottom: 15px;
+    }
+    .time-ago {
+      display: block;
+      color: #999;
+    }
+  }
+  .footer {
+    border-top: 1px solid $border-color-2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 16px;
+  }
+  a.like_btn {
+		z-index: 1;
+		@include rgba(bg, #000, 0.1);
+		padding: 9px 10px;
+		display: inline-block;
+		color: #555;
+		line-height: $line-height-none;
+		@include border-radius(3px);
+		&:after {
+			font-family: 'ElegantIcons';
+			content: "\e030";
+			@include transition-default (all,0.5s, ease);
+		}
+		&.liked:after{
+			content: "\e089";
+			color: $color-1;
+		}
+		&:hover.liked:after{
+			color: $color-1;
+		}
+		&:hover:after {
+			content: "\e089";
+			color: #999;
+		}
+    &.disabled {
+      cursor: default;
+    }
+    &.disabled:after {
+      content: "\e030";
+			color: #555;
+    }
+	}
+  &-more {
+    svg {
+      cursor: pointer;
+      margin-left: 20px;
+    }
+  }
+}
+
+.pin-likes-count {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+}
+
+.pin-tag {
+  color: #999;
+  &:hover {
+    color: #fc5b62;
+  }
+}
+
+.form-horizontal-map {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+
+  &-left {
+    width: 65%;
+  }
+
+  .map {
+    height: 300px;
+    width: 35%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.form-horizontal-inputs {
+  display: flex;
+  gap: 10px;
+
+  > * {
+    flex: 1 1 100%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .form-horizontal-map {
+    display: block;
+
+    &-left {
+      width: 100%;
+    }
+
+    .map {
+      width: 100%;
+    }
+  }
+
+  .form-horizontal-inputs {
+    display: block;
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after,
+.is-active .hamburger-inner,
+.is-active .hamburger-inner::before,
+.is-active .hamburger-inner::after {
+  background-color: #FFF !important;
+}
+
+header.sticky .hamburger-inner,
+header.sticky .hamburger-inner::before,
+header.sticky .hamburger-inner::after,
+header.sticky .is-active .hamburger-inner,
+header.sticky .is-active .hamburger-inner::before,
+header.sticky .is-active .hamburger-inner::after {
+  background-color: #444 !important;
+}
+
+main .container form {
+  background-color: #fff;
+  padding: 20px;
+  @include border-radius(3px);
+}
+
+.form-group.rich_text_area {
+  margin-top: 30px;
+}
+
+.reset-ol-ul {
+  ol, ul {
+    list-style: none;
+    margin: 0 0 25px 0;
+    padding: 0;
   }
 }

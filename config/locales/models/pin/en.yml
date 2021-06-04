@@ -1,0 +1,29 @@
+en:
+  activerecord:
+    errors:
+      models:
+        pin:
+          attributes:
+            tag_list:
+              max_tag_count: can be add up to 5
+              max_tag_length: can be max 30 characters
+    models:
+      pin: Pin
+    attributes:
+      pin: &pin_attributes
+        name: Pin Name
+        address: Address
+        latitude: Latitude
+        longitude: Longitude
+        privacy: Privacy
+        cover_image: Cover Image
+        cover_image_description: Cover Image Description
+        description: Pin Description
+        tag_list: Tags
+        privacy_list:
+          private: Private
+          public: Public
+  simple_form:
+    labels:
+      pin:
+        <<: *pin_attributes

@@ -1,0 +1,107 @@
+name: rspec
+
+on:
+  pull_request:
+    branches:
+      - '*'
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:alpine
+        env:
+          POSTGRES_USER: pinmapper
+          POSTGRES_PASSWORD: pinmapper
+          POSTGRES_DB: pinmapper_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:alpine
+        ports: ["6379:6379"]
+        options: --entrypoint redis-server
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Ruby version specified in `.ruby-version`
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Install required system packages
+        run: sudo apt-get update -y && sudo apt-get install openssh-client rsync libpq-dev cmake -y
+      - name: Install node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 15.x
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache yarn cache
+        uses: actions/cache@v2
+        id: cache-yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
+      - name: Install yarn
+        run: yarn install
+        if: |
+          steps.cache-yarn-cache.outputs.cache-hit != 'true' ||
+          steps.cache-node-modules.outputs.cache-hit != 'true'
+      - name: Create database
+        env:
+          DATABASE_URL: postgres://pinmapper:pinmapper@localhost:5432/pinmapper_test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }}
+        run: bundle exec rails db:prepare
+      - name: Run specs without system
+        env:
+          DATABASE_URL: postgres://pinmapper:pinmapper@localhost:5432/pinmapper_test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }}
+        run: bundle exec rspec --exclude-pattern "**/system/*_spec.rb"
+      - name: Install ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1) \
+            && CHROMEDRIVER_RELEASE=$(curl --location --fail --retry 3 http://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}) \
+            && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_RELEASE/chromedriver_linux64.zip" \
+            && cd /tmp \
+            && unzip chromedriver_linux64.zip \
+            && rm -rf chromedriver_linux64.zip \
+            && sudo mv chromedriver /usr/local/bin/chromedriver \
+            && sudo chmod +x /usr/local/bin/chromedriver \
+            && chromedriver --version
+      - name: Run only system specs
+        env:
+          DATABASE_URL: postgres://pinmapper:pinmapper@localhost:5432/pinmapper_test
+          REDIS_URL: redis://localhost:6379/0
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }}
+          HEADLESS: true
+        run: bundle exec rspec spec/system
+      - name: Upload failure screenshots
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: Failure screenshots
+          path: /home/runner/work/pinmapper/pinmapper/tmp/screenshots

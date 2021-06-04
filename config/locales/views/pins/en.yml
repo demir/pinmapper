@@ -1,0 +1,16 @@
+en:
+  pins:
+    pin: Pin
+    pins: Pins
+    index:
+      new_pin: New Pin
+    new:
+      create_new_pin: Create New Pin
+    edit:
+      edit_pin: Edit Pin
+    show:
+      nearby_pins: Nearby Pins
+    form:
+      tag_list:
+        placeholder: Add up to five tags (comma separated)
+        hint: Tags help people find your pin. Think of tags as the categories that best describe your pin.

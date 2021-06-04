@@ -1,0 +1,51 @@
+<%= render(Pins::TopHeroComponent.new(title: t('pins.pin'))) %>
+
+<div class="container margin_60_35 reset-ol-ul">
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="bloglist singlepost">
+        <div class="header">
+        <h1><%= @pin.name %></h1>
+        <%= render(Pins::MoreButtonComponent.new(pin: @pin, current_user: current_user)) %>
+        </div>
+        <%= render(Pins::TagListComponent.new(tag_list: @pin.tag_list)) %>
+        <div class="postmeta">
+          <ul>
+            <li>
+              <div class="user">
+                <%= image_pack_tag 'media/images/avatar.jpg', class: 'rounded-circle user-avatar', alt: '' %>
+                <%= link_to @pin.user.email, '#' %>
+              </div>
+            </li>
+            <li><a href="#"><i class="icon_clock_alt"></i> <%= l(@pin.created_at) %></a></li>
+          </ul>
+        </div>
+        <!-- /post meta -->
+        <div class="post-content">
+          <%= @pin.description %>
+        </div>
+        <!-- /post -->
+      </div>
+      <!-- /single-post -->
+    </div>
+    <!-- /col -->
+
+    <aside class="col-lg-3 blog">
+      <% nearby_pins = @pin.geocode.present? && @pin.nearbys(1).limit(3) %>
+      <% if nearby_pins.present? %>
+        <div class="widget">
+          <div class="widget-title">
+            <h4><%= t('.nearby_pins') %></h4>
+          </div>
+          <ul class="pins-list">
+            <%= render(Pins::PinListItemComponent.with_collection(nearby_pins)) %>
+          </ul>
+        </div>
+      <% end %>
+      <!-- /widget -->
+    </aside>
+    <!-- /aside -->
+  </div>
+  <!-- /row -->
+</div>
+<!-- /container -->

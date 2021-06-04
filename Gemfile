@@ -5,16 +5,26 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read('.ruby-version')
 
+gem 'acts-as-taggable-on'
+gem 'acts_as_votable'
+gem 'aws-sdk-s3', require: false
 gem 'bootsnap', require: false
 gem 'devise'
+gem 'draper'
+gem 'geocoder'
 gem 'hotwire-rails'
+gem 'image_processing'
+gem 'inline_svg'
 gem 'jbuilder'
 gem 'pg'
 gem 'puma'
+gem 'pundit'
 gem 'rails'
 gem 'redis'
 gem 'sass-rails'
 gem 'simple_form'
+gem 'translate_enum'
+gem 'view_component', require: 'view_component/engine'
 gem 'webpacker'
 
 group :development, :test do
@@ -33,6 +43,7 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'brakeman'
   gem 'listen'
   gem 'rack-mini-profiler'
   gem 'spring'

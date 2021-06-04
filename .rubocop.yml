@@ -1,5 +1,6 @@
-require: rubocop-rails
-require: rubocop-rspec
+require:
+  - rubocop-rails
+  - rubocop-rspec
 
 inherit_from:
   - .rubocop_common.yml
@@ -12,8 +13,29 @@ RSpec/ContextWording:
 
 Metrics/BlockLength:
   IgnoredMethods: ['describe', 'context']
+  Exclude:
+    - 'spec/rails_helper.rb'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/components/**/*.rb'
+
+RSpec/ExampleLength:
+  Max: 12
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/system/**/*.rb'
+
+RSpec/NestedGroups:
+  Max: 4
+
+RSpec/RepeatedExample:
+  Exclude:
+    - 'spec/policies/**/*.rb'
 
 AllCops:
+  NewCops: enable
   Exclude:
     - 'db/schema.rb'
     - 'vendor/bundle/**/*'
