@@ -584,13 +584,6 @@ header.sticky .hamburger-inner, header.sticky .hamburger-inner::before, header.s
 	text-align: center;
 	color: #fff;
 	@include mobile {height: 350px;}
-  &.pins {
-		&:before {
-			background: url("../images/theme/pins_hero.jpg") center center no-repeat;
-			@include background-size(cover);
-		}
-		.wrapper {@include rgba(bg, #000, 0.6);}
-	}
 	&:before {
     animation: pop-in 5s 0s cubic-bezier(.17,.67,.64,.8) forwards;
 		content: "";

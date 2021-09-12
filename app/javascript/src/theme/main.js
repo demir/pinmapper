@@ -3,10 +3,6 @@
   "use strict";
 
   $(document).on('turbo:load', function () {
-    $('.hero_in h1,.hero_in form').addClass('animate__animated');
-    $('.hero_single, .hero_in').addClass('start_bg_zoom');
-    $(window).scroll();
-
     // Mobile Menu
     const hamburger = document.getElementById("hamburger");
     if (hamburger) {
