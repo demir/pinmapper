@@ -15,10 +15,10 @@
         <li>
           <%= link_to t('.new_pin'), new_pin_path, class: 'btn_1' %>
         </li>
-        <li>
-          <span><%= link_to t('pins.pins'), pins_path, title: t('pins.pins') %></span>
-        </li>
       <% end %>
+      <li>
+        <span><%= link_to t('pins.pins'), pins_path, title: t('pins.pins') %></span>
+      </li>
       <% if user_signed_in? %>
         <li>
           <div class="dropdown dropdown-user">
