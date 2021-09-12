@@ -106,7 +106,7 @@ hr {
 // geçerli olsun
 header ul, header ol, footer ul, footer ol {
 	list-style: none;
-	margin: 0 0 25px 0;
+	margin: 0;
 	padding: 0;
 }
 .main_title {
@@ -346,8 +346,12 @@ header {
 	z-index: 99999999;
 	border-bottom: 1px solid rgba(255, 255, 255, 0);
   height: 60px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+  @include tablet {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 	&.header {
 		.logo_sticky {
 			display: none;
