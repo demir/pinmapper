@@ -5,3 +5,11 @@ en:
   edit: Edit
   destroy: Destroy
   are_you_sure: Are you sure?
+  profile: Profile
+  follow: Follow
+  unfollow: Unfollow
+  followers: Followers
+  followers_tr: Followers
+  following: Following
+  following_tr: Following
+  follows_you: Follows you

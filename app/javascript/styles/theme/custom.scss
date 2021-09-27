@@ -234,7 +234,7 @@ header {
   align-items: center;
 }
 
-.user-avatar {
+.user-avatar-32 {
   width: 32px;
   height: 32px;
   margin-right: 5px;
@@ -244,6 +244,34 @@ header {
   color: #999;
   &:hover {
     color: #fc5b62;
+  }
+}
+
+.black-link {
+  color: #999;
+  &:hover {
+    color: #fc5b62;
+  }
+}
+
+header {
+  .dropdown-menu {
+    border-radius: 5px !important;
+  }
+  .dropdown-item {
+    padding: 5px 15px !important;
+    color: #444;
+    &:hover {
+      color: #fc5b62;
+    }
+    &:first-of-type {
+      border-top-left-radius: 5px !important;
+      border-top-right-radius: 5px !important;
+    }
+    &:last-of-type {
+      border-bottom-left-radius: 5px !important;
+      border-bottom-right-radius: 5px !important;
+    }
   }
 }
 

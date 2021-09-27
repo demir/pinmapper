@@ -5,3 +5,13 @@ tr:
   edit: Düzenle
   destroy: Sil
   are_you_sure: Emin misin?
+  profile: Profil
+  follow: Takip et
+  unfollow: Takibi bırak
+  followers: Takipçiler
+  followers_tr: Takipçi
+  following: Takip ediliyor
+  following_tr: Takip edilen
+  follows_you: Seni takip ediyor
+
+
