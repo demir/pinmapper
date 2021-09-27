@@ -4101,7 +4101,7 @@ jest-worker@^26.5.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jquery@>=1.12.0, jquery@>=1.7.0, jquery@^3.6.0:
+jquery@>=1.12.0, jquery@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
   integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
@@ -7139,13 +7139,6 @@ terser@^5.3.4:
     commander "^2.20.0"
     source-map "~0.7.2"
     source-map-support "~0.5.19"
-
-theia-sticky-sidebar@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/theia-sticky-sidebar/-/theia-sticky-sidebar-1.7.0.tgz#0fbb924e84eaff987368fd284d00caea7a7ec35a"
-  integrity sha1-D7uSToTq/5hzaP0oTQDK6np+w1o=
-  dependencies:
-    jquery ">=1.7.0"
 
 through2@^2.0.0:
   version "2.0.5"

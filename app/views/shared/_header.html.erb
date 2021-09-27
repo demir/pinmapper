@@ -1,6 +1,5 @@
-<header class="header menu_fixed">
+<header class="header sticky menu_fixed">
   <%= link_to root_path do %>
-    <%= image_pack_tag 'media/images/logo.png', size: '150x36', class: 'logo_normal' %>
     <%= image_pack_tag 'media/images/logo-sticky.png', size: '150x36', class: 'logo_sticky' %>
   <% end %>
   <div class="btn_mobile">
@@ -12,21 +11,23 @@
   </div>
   <nav class="main-menu">
     <ul class="nav-menu">
-      <li><span>
-        <%= link_to t('pins.pins'), pins_path, title: t('pins.pins') %>
-      </span></li>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to t('.new_pin'), new_pin_path, class: 'btn_1' %>
+        </li>
+      <% end %>
+      <li>
+        <span><%= link_to t('pins.pins'), pins_path, title: t('pins.pins') %></span>
+      </li>
       <% if user_signed_in? %>
         <li>
           <div class="dropdown dropdown-user">
-            <%= link_to '#0', class: 'logged', 'data-toggle': 'dropdown', title: 'Logged' do %>
+            <%= link_to '#0', class: 'logged', 'data-toggle': 'dropdown', title: current_user.email do %>
               <%= image_pack_tag 'media/images/avatar.jpg', alt: '' %>
             <% end %>
             <div class="dropdown-menu">
-              <ul>
-                <li>
-                  <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out') %>
-                </li>
-              </ul>
+              <%= link_to t('profile'), profile_path(current_user), title: t('profile'), class: 'dropdown-item' %>
+              <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out'), class: 'dropdown-item' %>
             </div>
           </div>
         </li>
