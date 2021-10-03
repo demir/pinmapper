@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "follow_button_#{dom_id(@user)}" do %>
+  <%= render(Profiles::FollowUnfollowButtonComponent.new(user: @user, current_user: current_user)) %>
+<% end %>
+
+<%= turbo_stream.replace "followers_link_#{dom_id(@user)}" do %>
+  <%= render(Profiles::FollowersLinkComponent.new(user: @user)) %>
+<% end %>
