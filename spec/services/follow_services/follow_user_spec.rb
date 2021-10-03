@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe FollowServices::FollowUser do
   describe '#call' do
-    subject { described_class.call(follower, following) }
+    subject(:followed) { described_class.call(follower, following) }
 
     let(:follower) { create(:user, :confirmed) }
     let(:following) { create(:user, :confirmed) }
@@ -13,11 +13,11 @@ RSpec.describe FollowServices::FollowUser do
       it { is_expected.to be_instance_of(OpenStruct) }
 
       it 'has the success? method' do
-        expect(subject).to respond_to(:success?)
+        expect(followed).to respond_to(:success?)
       end
 
       it 'has the payload method' do
-        expect(subject).to respond_to(:payload)
+        expect(followed).to respond_to(:payload)
       end
 
       context 'when there is an error' do
@@ -41,14 +41,14 @@ RSpec.describe FollowServices::FollowUser do
 
       context 'when arguments are valid' do
         it 'to be a success' do
-          expect(subject.success?).to be(true)
+          expect(followed.success?).to be(true)
         end
       end
     end
 
     context 'success' do
       before do
-        subject
+        followed
       end
 
       it 'follows' do

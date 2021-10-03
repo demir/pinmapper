@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe FollowServices::UnfollowUser do
   describe '#call' do
-    subject do
+    subject(:unfollowed) do
       FollowServices::FollowUser.call(follower, following)
       described_class.call(follower, following)
     end
@@ -16,11 +16,11 @@ RSpec.describe FollowServices::UnfollowUser do
       it { is_expected.to be_instance_of(OpenStruct) }
 
       it 'has the success? method' do
-        expect(subject).to respond_to(:success?)
+        expect(unfollowed).to respond_to(:success?)
       end
 
       it 'has the payload method' do
-        expect(subject).to respond_to(:payload)
+        expect(unfollowed).to respond_to(:payload)
       end
 
       context 'when there is an error' do
@@ -44,14 +44,14 @@ RSpec.describe FollowServices::UnfollowUser do
 
       context 'when arguments are valid' do
         it 'to be a success' do
-          expect(subject.success?).to be(true)
+          expect(unfollowed.success?).to be(true)
         end
       end
     end
 
     context 'success' do
       before do
-        subject
+        unfollowed
       end
 
       it 'unfollows' do
