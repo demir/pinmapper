@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :follow do
-    association :follower, factory: [:user, :confirmed]
-    association :following, factory: [:user, :confirmed]
+    association :follower, factory: %i[user confirmed]
+    association :following, factory: %i[user confirmed]
   end
 end
