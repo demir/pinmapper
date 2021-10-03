@@ -9,6 +9,12 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
+  describe 'associations' do
+    it { is_expected.to have_many(:pins) }
+    it { is_expected.to have_many(:followers) }
+    it { is_expected.to have_many(:following) }
+  end
+
   context 'validations' do
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_uniqueness_of(:email).ignoring_case_sensitivity }

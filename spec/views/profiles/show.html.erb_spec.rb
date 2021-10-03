@@ -9,7 +9,30 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
     assign(:user, user)
   end
 
-  context 'renders profile header' do
+  context 'renders profile header when user not signed in' do
+    before do
+      render
+    end
+
+    it 'without follow/unfollow buton' do
+      assert_select '.profile > .header > .information .item .btn_1', count: 0
+    end
+  end
+
+  context 'renders profile header when user signed in' do
+    before do
+      sign_in(user)
+      render
+    end
+
+    context 'when in own profile' do
+      it 'without follow button' do
+        assert_select '.profile > .header > .information .item .btn_1', count: 0
+      end
+    end
+  end
+
+  context 'renders profile header when user signed in or not signed in' do
     before do
       render
     end
@@ -32,10 +55,6 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
 
     it 'following' do
       expect(rendered).to match(/#{t('following_tr')}/)
-    end
-
-    it 'follow button' do
-      assert_select '.profile > .header > .information .item .btn_1', count: 1
     end
   end
 

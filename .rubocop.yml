@@ -34,6 +34,9 @@ RSpec/RepeatedExample:
   Exclude:
     - 'spec/policies/**/*.rb'
 
+Rails/InverseOf:
+  Enabled: false
+
 AllCops:
   NewCops: enable
   Exclude:
@@ -49,3 +52,4 @@ AllCops:
     - config/initializers/simple_form.rb
     - config/initializers/simple_form_bootstrap.rb
     - node_modules/**/*
+    - app/services/**/*

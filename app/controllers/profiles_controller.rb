@@ -1,8 +1,22 @@
 # frozen_string_literal: true
 
 class ProfilesController < ApplicationController
-  before_action :set_user, only: %i[show]
+  before_action :set_user
   def show; end
+
+  def follow
+    FollowServices::FollowUser.call(current_user, @user)
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
+  def unfollow
+    FollowServices::UnfollowUser.call(current_user, @user)
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
 
   private
 
