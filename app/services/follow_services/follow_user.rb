@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FollowServices
   class FollowUser < ApplicationService
     attr_reader :follower, :following
