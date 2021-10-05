@@ -166,6 +166,9 @@ header {
     .dropdown-menu {
       padding: 0;
     }
+    .user > *:not(:last-child) {
+      margin-right: 5px;
+    }
   }
   img {
     align-self: center;
@@ -232,12 +235,6 @@ header {
   display: flex;
   gap: 10px;
   align-items: center;
-}
-
-.user-avatar-32 {
-  width: 32px;
-  height: 32px;
-  margin-right: 5px;
 }
 
 .pin-tag {

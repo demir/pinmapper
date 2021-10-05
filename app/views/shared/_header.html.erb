@@ -24,6 +24,7 @@
           <div class="dropdown dropdown-user">
             <%= link_to '#0', class: 'logged', 'data-toggle': 'dropdown', title: current_user.email do %>
               <%= image_pack_tag 'media/images/avatar.jpg', alt: '' %>
+              <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'), size: 26)) %>
             <% end %>
             <div class="dropdown-menu">
               <%= link_to t('profile'), profile_path(current_user), title: t('profile'), class: 'dropdown-item' %>

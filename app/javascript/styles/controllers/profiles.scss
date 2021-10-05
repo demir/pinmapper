@@ -17,10 +17,8 @@
       gap: 20px;
       height: 150px;
     }
-    >.user-avatar {
-      width: auto;
-      height: 140px;
-      @include tablet {height: 80px;}
+    >.profile-user-avatar {
+      @include tablet {height: 80px; width: 80px;}
     }
     .information {
       width: 100%;

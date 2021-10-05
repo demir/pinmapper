@@ -12,7 +12,7 @@ RSpec.describe Pins::PinComponent, type: :component do
     end
 
     it 'user#avatar' do
-      expect(rendered_component).to have_css '.header .user .user-avatar-32'
+      expect(rendered_component).to have_css '.header .user .user-avatar'
     end
 
     it 'user#email' do
