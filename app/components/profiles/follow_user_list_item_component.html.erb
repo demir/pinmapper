@@ -1,0 +1,7 @@
+<div class="follow-user-list-item">
+  <div class="user">
+    <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'), size: 50)) %>
+    <span><%= link_to user.email, profile_path(user), class: 'black-link', target: '_top' %></span>
+  </div>
+  <%= render(Profiles::FollowUnfollowButtonComponent.new(user: user, current_user: current_user)) %>
+</div>
