@@ -37,3 +37,19 @@
     }
   }
 }
+
+.follow-user-list-item {
+  max-width:600px;
+  margin-left:auto;
+  margin-right: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $border-color-2;
+  padding: 15px 0;
+  .user > *:not(:last-child) {
+    margin-right: 5px;
+  }
+}

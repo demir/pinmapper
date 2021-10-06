@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "profile_body_#{dom_id(@user)}" do %>
+  <%= render(Profiles::FollowUserListItemComponent.with_collection(@user.followers, current_user: current_user)) %>
+<% end %>

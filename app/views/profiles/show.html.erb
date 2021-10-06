@@ -9,19 +9,21 @@
             <%= render(Profiles::FollowUnfollowButtonComponent.new(user: @user, current_user: current_user)) %>
           </div>
           <div class="item">
-            <%= link_to '#', class: 'black-link' do %>
+            <%= link_to profile_path(@user), class: 'black-link' do %>
               <b><%= @user.pins.count %></b>
               <span><%= t('activerecord.models.pin') %></span>
             <% end %>
             <%= render(Profiles::FollowersLinkComponent.new(user: @user)) %>
-            <%= link_to '#', class: 'black-link' do %>
+            <%= link_to following_profile_path(@user), class: 'black-link', data: { 'turbo-frame': "profile_body_#{dom_id(@user)}" } do %>
               <b><%= @user.following.count %></b>
               <span><%= t('following_tr') %></span>
             <% end %>
           </div>
         </div>
       </div>
-      <%= render(Pins::PinComponent.with_collection(@user.pins, current_user: current_user)) %>
+      <%= turbo_frame_tag "profile_body_#{dom_id(@user)}" do %>
+        <%= render(Pins::PinComponent.with_collection(@user.pins, current_user: current_user)) %>
+      <% end %>
     </div>
   </div>
 </div>
