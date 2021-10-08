@@ -2,7 +2,6 @@
 
 class ProfilesController < ApplicationController
   include Pagy::Backend
-  helper Pagy::Frontend
   before_action :set_user
   def show; end
 
