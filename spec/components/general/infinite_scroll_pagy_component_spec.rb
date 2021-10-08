@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe General::InfiniteScrollPagyComponent, type: :component do
@@ -14,8 +16,9 @@ RSpec.describe General::InfiniteScrollPagyComponent, type: :component do
     end
 
     it '#data-infinite-scroll-next-page-url-value' do
-      expect(rendered_component).to have_css "div[data-infinite-scroll-next-page-url-value='#{pagy_url_for(pagy,
-                                                                                                           pagy.next)}']"
+      expect(rendered_component).to(
+        have_css("div[data-infinite-scroll-next-page-url-value='#{pagy_url_for(pagy, pagy.next)}']")
+      )
     end
 
     it '#data-infinite-scroll-next-page-value' do
@@ -44,10 +47,6 @@ RSpec.describe General::InfiniteScrollPagyComponent, type: :component do
   context 'turbo-stream' do
     before do
       render_inline(described_class.new(pagy: pagy, format: :turbo_stream))
-    end
-
-    it 'tag' do
-      expect(rendered_component).to have_css 'turbo-stream[action="update"]'
     end
 
     it '#action' do
