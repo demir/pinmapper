@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["scrollArea"]
+  static targets = ["scrollArea", "spinner"]
   static values = { nextPage: String, nextPageUrl: String }
 
   connect() {
@@ -30,6 +30,10 @@ export default class extends Controller {
     if (!nextPage || !nextPageUrl) {
       return
     }
+    // show spinner
+    if (this.spinnerTarget.classList.contains('d-none')) {
+      this.spinnerTarget.classList.remove('d-none')
+    }
     fetch(nextPageUrl, {
       headers: {
         Accept: "text/vnd.turbo-stream.html",
@@ -37,5 +41,11 @@ export default class extends Controller {
     })
       .then(r => r.text())
       .then(html => Turbo.renderStreamMessage(html))
+      .then(r => {
+        // hide spinner
+        if (!this.spinnerTarget.classList.contains('d-none')) {
+          this.spinnerTarget.classList.add('d-none')
+        }
+      })
   }
 }
