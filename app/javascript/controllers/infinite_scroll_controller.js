@@ -1,7 +1,8 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["scrollArea", "pagination"]
+  static targets = ["scrollArea"]
+  static values = { nextPage: String, nextPageUrl: String }
 
   connect() {
     this.createObserver()
@@ -24,12 +25,12 @@ export default class extends Controller {
     })
   }
   loadMore() {
-    const next = this.paginationTarget.querySelector(".page.next > a")
-    if (!next) {
+    const nextPage = this.nextPageValue
+    const nextPageUrl = this.nextPageUrlValue
+    if (!nextPage || !nextPageUrl) {
       return
     }
-    const href = next.href
-    fetch(href, {
+    fetch(nextPageUrl, {
       headers: {
         Accept: "text/vnd.turbo-stream.html",
       },

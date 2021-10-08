@@ -3,5 +3,8 @@
 <% end %>
 
 <%= turbo_stream.update "pagination" do %>
-  <%= sanitize pagy_nav(@pagy) %>
+  <div data-controller="infinite-scroll" data-infinite-scroll-next-page-url-value="<%= pagy_url_for(@pagy, @pagy.next) %>"
+                                         data-infinite-scroll-next-page-value="<%= @pagy.next %>">
+    <div data-infinite-scroll-target="scrollArea"></div>
+  </div>
 <% end %>

@@ -1,11 +1,11 @@
 <%= turbo_frame_tag "profile_body_#{dom_id(@user)}" do %>
-  <div class="list-group" data-controller="infinite-scroll">
-    <div id="followers">
-      <%= render(Profiles::FollowUserListItemComponent.with_collection(@followers, current_user: current_user)) %>
-    </div>
-    <div data-infinite-scroll-target="scrollArea"></div>
-    <div class="list-group-item pt-3" data-infinite-scroll-target="pagination" id="pagination" style="visibility: hidden;">
-      <%= sanitize pagy_nav(@pagy) %>
+  <div id="followers">
+    <%= render(Profiles::FollowUserListItemComponent.with_collection(@followers, current_user: current_user)) %>
+  </div>
+  <div id="pagination">
+    <div data-controller="infinite-scroll" data-infinite-scroll-next-page-url-value="<%= pagy_url_for(@pagy, @pagy.next) %>"
+                                           data-infinite-scroll-next-page-value="<%= @pagy.next %>">
+      <div data-infinite-scroll-target="scrollArea"></div>
     </div>
   </div>
 <% end %>
