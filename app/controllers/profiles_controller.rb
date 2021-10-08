@@ -27,7 +27,13 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def following; end
+  def following
+    @pagy, @following = pagy @user.following
+    respond_to do |f|
+      f.turbo_stream
+      f.html
+    end
+  end
 
   private
 

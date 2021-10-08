@@ -1,3 +1,6 @@
 <%= turbo_frame_tag "profile_body_#{dom_id(@user)}" do %>
-  <%= render(Profiles::FollowUserListItemComponent.with_collection(@user.following, current_user: current_user)) %>
+  <div id="following">
+    <%= render(Profiles::FollowUserListItemComponent.with_collection(@following, current_user: current_user)) %>
+  </div>
+  <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
 <% end %>
