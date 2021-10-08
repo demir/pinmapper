@@ -21,9 +21,11 @@
           </div>
         </div>
       </div>
-      <%= turbo_frame_tag "profile_body_#{dom_id(@user)}" do %>
-        <%= render(Pins::PinComponent.with_collection(@user.pins, current_user: current_user)) %>
-      <% end %>
+      <div class="body">
+        <%= turbo_frame_tag "profile_body_#{dom_id(@user)}" do %>
+          <%= render(Pins::PinComponent.with_collection(@user.pins, current_user: current_user)) %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
