@@ -1,0 +1,7 @@
+<%= turbo_stream.append "followers" do %>
+  <%= render(Profiles::FollowUserListItemComponent.with_collection(@followers, current_user: current_user)) %>
+<% end %>
+
+<%= turbo_stream.update "pagination" do %>
+  <%= sanitize pagy_nav(@pagy) %>
+<% end %>
