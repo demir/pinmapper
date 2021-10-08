@@ -1,13 +1,22 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Profiles::FollowUserListItemComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:current_user) { create(:user, :confirmed) }
+  let(:followers) { create_list(:user, 10, :confirmed) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  before do
+    render_inline(described_class.with_collection(followers, current_user: current_user))
+  end
+
+  it 'user#avatar' do
+    expect(rendered_component).to have_css '.user > img.user-avatar'
+  end
+
+  it 'user#username link' do
+    expect(rendered_component).to have_css '.user > span > a.black-link'
+  end
+
+  it 'follow/unfollow button' do
+    expect(rendered_component).to have_css 'div[data-controller="profile"]'
+  end
 end
