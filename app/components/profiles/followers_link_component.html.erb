@@ -1,5 +1,5 @@
 <%= tag.div id: "followers_link_#{dom_id(@user)}" do %>
-  <%= link_to '#', class: 'black-link' do %>
+  <%= link_to followers_profile_path(@user), class: 'black-link' do %>
     <b><%= @user.followers.count %></b>
     <span><%= t('followers_tr') %></span>
   <% end %>
