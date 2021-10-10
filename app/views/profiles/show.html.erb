@@ -14,7 +14,7 @@
               <span><%= t('activerecord.models.pin') %></span>
             <% end %>
             <%= render(Profiles::FollowersLinkComponent.new(user: @user)) %>
-            <%= link_to following_profile_path(@user), class: 'black-link', data: { 'turbo-frame': "profile_body_#{dom_id(@user)}" } do %>
+            <%= link_to following_profile_path(@user), class: 'black-link' do %>
               <b><%= @user.following.count %></b>
               <span><%= t('following_tr') %></span>
             <% end %>
@@ -22,9 +22,7 @@
         </div>
       </div>
       <div class="body">
-        <%= turbo_frame_tag "profile_body_#{dom_id(@user)}" do %>
-          <%= render(Pins::PinComponent.with_collection(@user.pins, current_user: current_user)) %>
-        <% end %>
+        <%= render(Pins::PinComponent.with_collection(@user.pins, current_user: current_user)) %>
       </div>
     </div>
   </div>

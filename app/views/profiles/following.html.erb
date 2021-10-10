@@ -1,6 +1,32 @@
-<%= turbo_frame_tag "profile_body_#{dom_id(@user)}" do %>
-  <div id="following">
-    <%= render(Profiles::FollowUserListItemComponent.with_collection(@following, current_user: current_user)) %>
+<div class="container margin_100_55">
+  <div class="row">
+    <div class="col-lg-12 profile">
+      <div class="header">
+        <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'), size: 140, klass: 'profile-user-avatar')) %>
+        <div class="information">
+          <div class="item">
+            <span><%= @user.email %></span>
+            <%= render(Profiles::FollowUnfollowButtonComponent.new(user: @user, current_user: current_user)) %>
+          </div>
+          <div class="item">
+            <%= link_to profile_path(@user), class: 'black-link' do %>
+              <b><%= @user.pins.count %></b>
+              <span><%= t('activerecord.models.pin') %></span>
+            <% end %>
+            <%= render(Profiles::FollowersLinkComponent.new(user: @user)) %>
+            <%= link_to following_profile_path(@user), class: 'black-link' do %>
+              <b><%= @user.following.count %></b>
+              <span><%= t('following_tr') %></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <div id="following">
+          <%= render(Profiles::FollowUserListItemComponent.with_collection(@following, current_user: current_user)) %>
+        </div>
+        <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+      </div>
+    </div>
   </div>
-  <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
-<% end %>
+</div>
