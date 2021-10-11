@@ -5,3 +5,9 @@
 <%= turbo_stream.replace "followers_link_#{dom_id(@user)}" do %>
   <%= render(Profiles::FollowersLinkComponent.new(user: @user)) %>
 <% end %>
+
+<% if @current_profile == current_user %>
+  <%= turbo_stream.replace "following_link_#{dom_id(current_user)}" do %>
+    <%= render(Profiles::FollowingLinkComponent.new(user: current_user)) %>
+  <% end %>
+<% end %>

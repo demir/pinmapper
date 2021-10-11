@@ -14,10 +14,7 @@
               <span><%= t('activerecord.models.pin') %></span>
             <% end %>
             <%= render(Profiles::FollowersLinkComponent.new(user: @user)) %>
-            <%= link_to following_profile_path(@user), class: 'black-link' do %>
-              <b><%= @user.following.count %></b>
-              <span><%= t('following_tr') %></span>
-            <% end %>
+            <%= render(Profiles::FollowingLinkComponent.new(user: @user)) %>
           </div>
         </div>
       </div>
