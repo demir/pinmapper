@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
-class Profiles::FollowingLinkComponent < ViewComponent::Base
-  include Turbo::FramesHelper
-  attr_reader :user
+module Profiles
+  class FollowingLinkComponent < ViewComponent::Base
+    include Turbo::FramesHelper
+    attr_reader :user
 
-  def initialize(user:)
-    @user = user
-  end
+    def initialize(user:)
+      @user = user
+    end
 
-  def render?
-    user.present?
+    def render?
+      user.present?
+    end
   end
 end
