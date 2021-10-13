@@ -28,43 +28,12 @@ header {
 
   /* Menu */
   .main-menu {
-    position: relative;
-    z-index: 9;
-    width: auto;
-    right: 15px;
-    float: right;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    color: #fff;
-  }
-  .main-menu ul,
-  .main-menu ul li {
-    position: relative;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-  }
-  .main-menu ul a,
-  .main-menu ul li a {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    display: block;
-    padding-left: 10px;
-    padding-right: 10px;
-    white-space: nowrap;
-  }
-
-  /*First level styles */
-  .main-menu > ul > li span > a {
-    color: #fff;
-    padding: 0 8px 0px 8px;
-    font-size: 14px;
-    font-size: 0.875rem;
-    font-weight: 500;
+    display: flex;
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
   }
 
   header.sticky .main-menu > ul > li span > a {
@@ -74,9 +43,7 @@ header {
     opacity: 1;
     color: #fc5b62;
   }
-  .main-menu ul {
-    display: flex;
-  }
+
   .nav-menu {
     .logged {
       display: inline-block;
@@ -84,7 +51,6 @@ header {
       height: 25px;
       position: relative;
       overflow: hidden;
-      margin-left: 15px;
       @include border-radius(50%);
       img {
         width: 26px;
@@ -101,6 +67,11 @@ header {
 
 /* All styles for screen size under 767px */
 @media only screen and (max-width: 767px) {
+
+  header .nav-menu .btn_1,
+  header .nav-menu .btn_1:hover {
+    color: #fff;
+  }
 
   header .btn_mobile {
     display: block;
@@ -181,7 +152,7 @@ header {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
@@ -194,6 +165,9 @@ header {
     border-bottom: 1px solid $border-color-2;
     .dropdown-menu {
       padding: 0;
+    }
+    .user > *:not(:last-child) {
+      margin-right: 5px;
     }
   }
   img {
@@ -263,16 +237,38 @@ header {
   align-items: center;
 }
 
-.user-avatar {
-  width: 32px;
-  height: 32px;
-  margin-right: 5px;
-}
-
 .pin-tag {
   color: #999;
   &:hover {
     color: #fc5b62;
+  }
+}
+
+.black-link {
+  color: #999;
+  &:hover {
+    color: #fc5b62;
+  }
+}
+
+header {
+  .dropdown-menu {
+    border-radius: 5px !important;
+  }
+  .dropdown-item {
+    padding: 5px 15px !important;
+    color: #444;
+    &:hover {
+      color: #fc5b62;
+    }
+    &:first-of-type {
+      border-top-left-radius: 5px !important;
+      border-top-right-radius: 5px !important;
+    }
+    &:last-of-type {
+      border-bottom-left-radius: 5px !important;
+      border-bottom-right-radius: 5px !important;
+    }
   }
 }
 
@@ -357,4 +353,8 @@ main .container form {
     margin: 0 0 25px 0;
     padding: 0;
   }
+}
+
+.spinner-border.pinmapper {
+  color: $color-1;
 }

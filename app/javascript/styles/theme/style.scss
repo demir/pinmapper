@@ -106,7 +106,7 @@ hr {
 // geçerli olsun
 header ul, header ol, footer ul, footer ol {
 	list-style: none;
-	margin: 0 0 25px 0;
+	margin: 0;
 	padding: 0;
 }
 .main_title {
@@ -268,7 +268,7 @@ a.btn_1,
 	&.outline {
 		border: 2px solid $color-1;
 		color: $color-1;
-		padding: 11px 40px;
+		padding: 13px 40px;
 		background: none;
 		&:hover {background: $color-2; color:#fff; border-color:$color-2;}
 		&:focus {outline: none;}
@@ -343,12 +343,15 @@ header {
 	left: 0;
 	top: 0;
 	width: 100%;
-	padding: 20px 30px;
 	z-index: 99999999;
 	border-bottom: 1px solid rgba(255, 255, 255, 0);
-	@include mobile {
-		padding: 15px 15px 5px 15px;
-	}
+  height: 60px;
+  padding-left: 100px;
+  padding-right: 100px;
+  @include tablet {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 	&.header {
 		.logo_sticky {
 			display: none;
@@ -357,10 +360,6 @@ header {
 			@include transition-default;
 			border-bottom: 1px solid $border-color-2;
 			background-color: #fff;
-			padding: 15px 20px;
-			@include tablet {
-				padding: 15px 15px 5px 15px;
-			}
 			.logo_normal {
 				display: none;
 			}
@@ -585,13 +584,6 @@ header.sticky .hamburger-inner, header.sticky .hamburger-inner::before, header.s
 	text-align: center;
 	color: #fff;
 	@include mobile {height: 350px;}
-  &.pins {
-		&:before {
-			background: url("../images/theme/pins_hero.jpg") center center no-repeat;
-			@include background-size(cover);
-		}
-		.wrapper {@include rgba(bg, #000, 0.6);}
-	}
 	&:before {
     animation: pop-in 5s 0s cubic-bezier(.17,.67,.64,.8) forwards;
 		content: "";
@@ -5498,7 +5490,13 @@ ul.bullets {
 .margin_60_35 {
 	padding-top: 60px;
 	padding-bottom: 35px;
-	@include extra-small-mobile {padding-top: 30px; padding-bottom: 5px;}
+	@include extra-small-mobile {padding-bottom: 5px;}
+}
+
+.margin_100_35 {
+	padding-top: 100px;
+	padding-bottom: 35px;
+	@include extra-small-mobile {padding-bottom: 5px;}
 }
 .margin_80 {
 	padding-top: 80px;
@@ -5511,6 +5509,12 @@ ul.bullets {
 	padding-bottom: 55px;
 	@include tablet {padding-top: 60px; padding-bottom: 35px;}
 	@include extra-small-mobile {padding-top: 45px; padding-bottom: 15px;}
+}
+.margin_100_55 {
+	padding-top: 100px;
+	padding-bottom: 55px;
+	@include tablet {padding-bottom: 35px;}
+	@include extra-small-mobile {padding-bottom: 15px;}
 }
 .margin_80_0 {
 	padding-top: 80px;
