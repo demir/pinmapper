@@ -45,12 +45,12 @@ RSpec.describe 'Pins', type: :system, js: true do
 
     it 'renders a new pin button' do
       visit pins_path
-      expect(page).to have_css '.sticky_horizontal .actions .btn_1', text: I18n.t('pins.index.new_pin')
+      expect(page).to have_css 'header ul', text: I18n.t('shared.header.new_pin')
     end
 
     it 'visits pin#new' do
       visit pins_path
-      click_link I18n.t('pins.index.new_pin')
+      click_link I18n.t('shared.header.new_pin')
       expect(page).to have_current_path new_pin_path
     end
 

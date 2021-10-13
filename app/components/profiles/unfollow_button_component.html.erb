@@ -1,0 +1,7 @@
+<%= link_to t('following'), unfollow_profile_path(@user), class: 'btn_1 rounded small', method: :get,
+                            data: {
+                              controller: 'profile',
+                              action: 'mouseover->profile#unfollow_button_mouseover mouseout->profile#unfollow_button_mouseout',
+                              'profile-mouseout-text-value': t('following'),
+                              'profile-mouseover-text-value': t('unfollow')
+                              } %>

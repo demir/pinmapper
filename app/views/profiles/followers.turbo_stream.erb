@@ -1,0 +1,4 @@
+<%= turbo_stream.append "followers" do %>
+  <%= render(Profiles::FollowUserListItemComponent.with_collection(@followers, current_user: current_user)) %>
+<% end %>
+<%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy, format: :turbo_stream)) %>

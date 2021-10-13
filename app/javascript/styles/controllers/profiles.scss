@@ -1,0 +1,58 @@
+.profile {
+  padding-left: 0;
+  padding-right: 0;
+  >.header {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    height: 200px;
+    padding: 20px 50px;
+    border-bottom: 2px solid $border-color-2;
+    margin-bottom: 30px;
+    @include tablet {
+      padding: 0 10px;
+      gap: 20px;
+      height: 150px;
+    }
+    >.profile-user-avatar {
+      @include tablet {height: 80px; width: 80px;}
+    }
+    .information {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 15px;
+      max-width: 500px;
+      .item{
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+  >.body {
+    max-width:600px;
+    margin-left:auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
+
+.follow-user-list-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $border-color-2;
+  padding: 15px 0;
+  .user > *:not(:last-child) {
+    margin-right: 5px;
+  }
+}

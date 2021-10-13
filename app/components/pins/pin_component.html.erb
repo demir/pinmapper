@@ -1,8 +1,8 @@
 <div class="pin">
   <div class="header">
     <div class="user">
-      <%= image_pack_tag 'media/images/avatar.jpg', class: 'rounded-circle user-avatar', alt: '' %>
-      <span><%= @pin.user.email %></span>
+      <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'))) %>
+      <span><%= link_to @pin.user.email, profile_path(@pin.user), class: 'black-link' %></span>
     </div>
     <%= render(Pins::MoreButtonComponent.new(pin: @pin, current_user: @current_user )) %>
   </div>
