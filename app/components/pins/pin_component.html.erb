@@ -1,4 +1,4 @@
-<div class="pin">
+<div id="<%= dom_id(@pin) %>" class="pin">
   <div class="header">
     <div class="user">
       <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'))) %>
