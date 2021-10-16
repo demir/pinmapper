@@ -1,0 +1,6 @@
+<%= tag.div id: "pins_link_#{dom_id(user)}" do %>
+  <%= link_to profile_path(user), class: 'black-link' do %>
+    <b><%= user.pins.count %></b>
+    <span><%= t('activerecord.models.pin') %></span>
+  <% end %>
+<% end %>
