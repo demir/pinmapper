@@ -7,9 +7,13 @@
                                                               id: 'pin-more',
                                                               data: { toggle: 'dropdown' } %>
   <div class="dropdown-menu" aria-labelledby="pin-more">
-    <% if @pin.user == @current_user %>
-      <%= link_to t('edit'), edit_pin_path(@pin), class: 'dropdown-item' %>
-      <%= link_to t('destroy'), @pin, method: :delete, data: { confirm: t('are_you_sure') }, class: 'dropdown-item' %>
+    <% if pin.user == current_user %>
+      <%= link_to t('edit'), edit_pin_path(pin), class: 'dropdown-item' %>
+      <% if turbo %>
+        <%= link_to t('destroy'), pin, method: :delete, data: { confirm: t('are_you_sure') }, class: 'dropdown-item' %>
+      <% else %>
+        <%= button_to t('destroy'), pin, method: :delete, data: { confirm: t('are_you_sure'), turbo: false }, class: 'dropdown-item' %>
+      <% end %>
     <% end %>
   </div>
 </div>

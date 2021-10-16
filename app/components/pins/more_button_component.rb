@@ -2,9 +2,12 @@
 
 module Pins
   class MoreButtonComponent < ViewComponent::Base
-    def initialize(pin:, current_user: nil)
+    attr_reader :pin, :current_user, :turbo
+
+    def initialize(pin:, current_user: nil, turbo: true)
       @pin = pin
       @current_user = current_user
+      @turbo = turbo
     end
 
     def render?
