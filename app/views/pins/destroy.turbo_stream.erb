@@ -1,0 +1,6 @@
+<%= turbo_stream.update('toastr', partial: 'shared/toastr.turbo_stream.erb') %>
+<%= turbo_stream.remove(@pin) %>
+
+<%= turbo_stream.replace "pins_link_#{dom_id(@pin.user)}" do %>
+  <%= render(Profiles::PinsLinkComponent.new(user: @pin.user)) %>
+<% end %>

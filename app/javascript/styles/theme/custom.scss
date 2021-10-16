@@ -231,6 +231,10 @@ header {
   }
 }
 
+.pin-more .dropdown-menu form.button_to {
+  padding: 0;
+}
+
 .pin-likes-count {
   display: flex;
   gap: 10px;

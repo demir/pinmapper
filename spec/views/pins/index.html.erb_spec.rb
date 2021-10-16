@@ -3,14 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe 'pins/index', type: :view do
+  include Pagy::Backend
   let(:user) { create(:user, :confirmed) }
   let(:pins) do
     pin_attributes = attributes_for(:pin, user_id: user.id)
     create_list(:pin, 2, pin_attributes)
   end
+  let(:pagy_obj) do
+    ar_pins = Pin.where(id: pins.pluck(:id))
+    pagy(ar_pins).first
+  end
 
   before do
     assign(:pins, pins)
+    assign(:pagy, pagy_obj)
   end
 
   context 'specs with current_user' do

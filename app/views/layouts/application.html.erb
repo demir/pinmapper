@@ -18,7 +18,9 @@
     <div id="page">
       <%= render 'shared/header' %>
       <main>
-        <%= render 'shared/toastr' %>
+        <%= turbo_frame_tag "toastr" do %>
+          <%= render 'shared/toastr' %>
+        <% end %>
         <%= yield %>
       </main>
       <%= render 'shared/footer' %>

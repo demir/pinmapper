@@ -4,7 +4,14 @@ class ProfilesController < ApplicationController
   include Pagy::Backend
   before_action :set_user
   before_action :set_current_profile, only: %i[follow unfollow]
-  def show; end
+
+  def show
+    @user_pins_pagy, @user_pins = pagy @user.pins.order(created_at: :desc)
+    respond_to do |f|
+      f.turbo_stream
+      f.html
+    end
+  end
 
   def follow
     FollowServices::FollowUser.call(current_user, @user)
