@@ -1,13 +1,18 @@
 # frozen_string_literal: true
 
 class PinsController < ApplicationController
+  include Pagy::Backend
   before_action :set_pin, only: %i[show edit update destroy like unlike]
   before_action :authenticate_user!, except: %i[index show]
   before_action :authorize_pin, except: %i[index show]
 
   # GET /pins or /pins.json
   def index
-    @pins = Pin.order(created_at: :desc)
+    @pagy, @pins = pagy pins
+    respond_to do |f|
+      f.html
+      f.turbo_stream
+    end
   end
 
   # GET /pins/1 or /pins/1.json
@@ -81,5 +86,15 @@ class PinsController < ApplicationController
 
   def authorize_pin
     authorize @pin || Pin.new
+  end
+
+  def pins
+    if current_user.present?
+      Pin.joins(:user)
+         .where(users: { id: current_user.following | Array(current_user) })
+         .order(created_at: :desc)
+    else
+      Pin.order(created_at: :desc)
+    end
   end
 end
