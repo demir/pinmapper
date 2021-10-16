@@ -22,10 +22,6 @@ export default class extends Controller {
   }
 
   activateScript(element) {
-    console.log(element)
-    if (document.documentElement.hasAttribute("data-turbo-preview")) {
-      console.log('ADSAD')
-    }
     if (element.nodeName == 'SCRIPT') {
       const createdScriptElement = document.createElement("script");
       createdScriptElement.textContent = element.textContent;
