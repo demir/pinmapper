@@ -10,5 +10,9 @@ module General
       @pagy = pagy
       @format = format
     end
+
+    def render?
+      pagy.present?
+    end
   end
 end
