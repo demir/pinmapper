@@ -2,8 +2,10 @@
 
 module Pins
   class TagListComponent < ViewComponent::Base
-    def initialize(tag_list:)
-      @tag_list = tag_list
+    attr_reader :tags
+
+    def initialize(tags:)
+      @tags = tags
     end
   end
 end
