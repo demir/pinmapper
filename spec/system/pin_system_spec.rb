@@ -6,6 +6,15 @@ RSpec.describe 'Pins', type: :system, js: true do
   let!(:user) { create(:user, :confirmed) }
   let!(:pins) { create_list(:pin, 2, user: user) }
 
+  context 'signed in or not signed in' do
+    it 'visits tags/show' do
+      visit pins_path
+      first_tag_element = find('.pin > .body > .pin-tag', match: :first)
+      first_tag_element.click
+      expect(page).to have_css '.tag > .header > .tag-name', text: first_tag_element.text
+    end
+  end
+
   context 'When signed in' do
     before do
       sign_in(user)
