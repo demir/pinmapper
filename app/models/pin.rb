@@ -18,6 +18,7 @@ class Pin < ApplicationRecord
   before_validation :geocode, if: ->(obj) { obj.address.present? && obj.address_changed? }
   before_validation :fix_tags, if: :tag_list_changed?
   before_destroy :delete_crops
+  before_destroy :delete_user_tags, prepend: true
 
   # relations
   has_one :cover_image_crop, as: :cropable, class_name: 'Crop', dependent: :destroy
@@ -77,5 +78,9 @@ class Pin < ApplicationRecord
     return if tag_list.collect(&:length).max <= 30
 
     errors.add(:tag_list, :max_tag_length)
+  end
+
+  def delete_user_tags
+    UserTag.where(tag: tags.where(taggings_count: 1)).destroy_all
   end
 end
