@@ -137,7 +137,7 @@ RSpec.describe '/pins', type: :request do
       it 'destroys the requested pin' do
         new_pin = create(:pin, user: user)
         expect do
-          delete pin_url(new_pin)
+          delete pin_url(id: new_pin)
         end.to change(Pin, :count).by(-1)
       end
 

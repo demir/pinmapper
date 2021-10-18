@@ -3,10 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe 'profiles/show.html.erb', type: :view do
+  include Pagy::Backend
   let(:user) { create(:user, :confirmed) }
+  let(:pins) do
+    pin_attributes = attributes_for(:pin, user_id: user.id)
+    create_list(:pin, 2, pin_attributes)
+  end
+  let(:pagy_obj) do
+    ar_pins = Pin.where(id: pins.pluck(:id))
+    pagy(ar_pins).first
+  end
 
   before do
     assign(:user, user)
+    assign(:user_pins, pins)
+    assign(:user_pins_pagy, pagy_obj)
   end
 
   context 'renders profile header when user not signed in' do
@@ -60,7 +71,6 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
 
   context 'renders body' do
     it 'pins' do
-      create_list(:pin, 2, user: user)
       render
       assert_select '.profile .pin', count: 2
     end

@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "follow_button_#{dom_id(@tag)}" do %>
+  <%= render(Taggable::FollowUnfollowButtonComponent.new(tag: @tag, current_user: current_user)) %>
+<% end %>

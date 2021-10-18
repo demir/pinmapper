@@ -6,6 +6,15 @@ RSpec.describe 'Pins', type: :system, js: true do
   let!(:user) { create(:user, :confirmed) }
   let!(:pins) { create_list(:pin, 2, user: user) }
 
+  context 'signed in or not signed in' do
+    it 'visits tags/show' do
+      visit pins_path
+      first_tag_element = find('.pin > .body > .pin-tag', match: :first)
+      first_tag_element.click
+      expect(page).to have_css '.tag > .header > .tag-name', text: first_tag_element.text
+    end
+  end
+
   context 'When signed in' do
     before do
       sign_in(user)
@@ -121,7 +130,6 @@ RSpec.describe 'Pins', type: :system, js: true do
                                                      exact_text: true)
           delete_pin_link_element.click
           page.accept_alert
-          expect(page).to have_current_path pins_path
           expect(page).to have_content I18n.t('pins.destroy.success')
         end
       end
@@ -147,9 +155,8 @@ RSpec.describe 'Pins', type: :system, js: true do
           more_button = find('.container .header .pin-more svg', match: :first)
           pin_element = more_button.ancestor('.singlepost')
           more_button.click
-          delete_pin_link_element = pin_element.find('.header .dropdown.pin-more .dropdown-menu a',
-                                                     text:       I18n.t('destroy'),
-                                                     exact_text: true)
+          delete_pin_link_element = pin_element.find(".header .dropdown.pin-more .dropdown-menu
+                                                      form.button_to .dropdown-item[value='#{I18n.t('destroy')}']")
           delete_pin_link_element.click
           page.accept_alert
           expect(page).to have_current_path pins_path

@@ -4,9 +4,9 @@
       <div class="bloglist singlepost">
         <div class="header">
           <h1><%= @pin.name %></h1>
-          <%= render(Pins::MoreButtonComponent.new(pin: @pin, current_user: current_user)) %>
+          <%= render(Pins::MoreButtonComponent.new(pin: @pin, current_user: current_user, turbo: false)) %>
         </div>
-        <%= render(Pins::TagListComponent.new(tag_list: @pin.tag_list)) %>
+        <%= render(Pins::TagListComponent.new(tags: @pin.tags)) %>
         <div class="postmeta">
           <ul>
             <li>
