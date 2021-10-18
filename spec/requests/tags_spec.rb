@@ -2,13 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Profiles', type: :request do
-  let(:current_user) { create(:user, :confirmed) }
+RSpec.describe 'Tags', type: :request do
+  let(:user) { create(:user, :confirmed) }
+  let(:tag) { create(:tag) }
 
   describe 'specs without sign in' do
     context 'GET /show' do
       it 'returns http success' do
-        get profile_path(id: current_user)
+        get tag_path(id: tag)
         expect(response).to have_http_status(:success)
       end
     end
@@ -16,12 +17,12 @@ RSpec.describe 'Profiles', type: :request do
 
   describe 'specs with sign in' do
     before do
-      sign_in(current_user)
+      sign_in(user)
     end
 
     context 'GET /show' do
       it 'returns http success' do
-        get profile_path(id: current_user)
+        get tag_path(id: tag)
         expect(response).to have_http_status(:success)
       end
     end

@@ -92,11 +92,19 @@ class PinsController < ApplicationController
 
   def pins
     if current_user.present?
-      Pin.joins(:user)
-         .where(users: { id: current_user.following | Array(current_user) })
-         .order(created_at: :desc)
+      Pin.where(id: own_and_following_pins.ids | tag_pins.ids)
     else
-      Pin.order(created_at: :desc)
-    end
+      Pin.all
+    end.order(created_at: :desc)
+  end
+
+  def tag_pins
+    Pin.tagged_with(current_user.tags, any: true).order(created_at: :desc)
+  end
+
+  def own_and_following_pins
+    Pin.joins(:user)
+       .where(users: { id: current_user.following | Array(current_user) })
+       .order(created_at: :desc)
   end
 end

@@ -1,4 +1,4 @@
 <li>
   <h3><%= link_to @pin.name, @pin %></h3>
-  <small><%= render(Pins::TagListComponent.new(tag_list: @pin.tag_list)) %></small>
+  <small><%= render(Pins::TagListComponent.new(tags: @pin.tags)) %></small>
 </li>
