@@ -12,6 +12,20 @@ class TagsController < ApplicationController
     end
   end
 
+  def follow
+    current_user.tags << @tag
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
+  def unfollow
+    current_user.tags.delete(@tag)
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   private
 
   def set_tag

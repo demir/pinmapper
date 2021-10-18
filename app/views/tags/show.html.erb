@@ -3,7 +3,7 @@
     <div class="col-lg-12 tag">
       <div class="header">
         <span class="tag-name"><%= "##{@tag.name}" %></span>
-        <span></span>
+        <%= render(Taggable::FollowUnfollowButtonComponent.new(tag: @tag, current_user: current_user)) %>
       </div>
       <div id="infinite-pins" class="body">
         <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
