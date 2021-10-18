@@ -4,7 +4,6 @@ require 'rails_helper'
 
 RSpec.describe 'Profiles', type: :request do
   let(:current_user) { create(:user, :confirmed) }
-  let(:user) { create(:user, :confirmed) }
 
   describe 'specs without sign in' do
     context 'GET /show' do
