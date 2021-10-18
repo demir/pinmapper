@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  require 'securerandom'
+
   factory :tag do
-    name { Faker::Lorem.unique.word }
+    name { SecureRandom.hex(14) }
   end
 end

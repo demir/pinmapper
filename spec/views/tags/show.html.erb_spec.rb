@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'tags/show.html.erb', type: :view do
   include Pagy::Backend
-  let(:user) { create(:user, :confirmed) }
+  let(:current_user) { create(:user, :confirmed) }
   let(:tag) { create(:tag) }
   let(:pins) do
-    pin_attributes = attributes_for(:pin, user_id: user.id, tag_list: tag)
+    pin_attributes = attributes_for(:pin, user_id: current_user.id, tag_list: tag)
     create_list(:pin, 2, pin_attributes)
   end
   let(:pagy_obj) do
@@ -16,8 +16,7 @@ RSpec.describe 'tags/show.html.erb', type: :view do
   end
 
   before do
-    tag.users << user
-    assign(:current_user, user)
+    assign(:current_user, current_user)
     assign(:pins, pins)
     assign(:tag, tag)
     assign(:pagy, pagy_obj)
@@ -28,16 +27,26 @@ RSpec.describe 'tags/show.html.erb', type: :view do
       render
     end
 
-    it 'without follow/unfollow buton'
+    it 'without follow/unfollow buton' do
+      assert_select '.tag > .header a.btn_1', text: I18n.t('follow'), count: 0
+    end
   end
 
   context 'renders tag header when user signed in' do
     before do
-      sign_in(user)
-      render
+      sign_in(current_user)
     end
 
-    it 'follow button'
+    it 'do not show follow button when following tag' do
+      current_user.tags << tag
+      render
+      assert_select '.tag > .header a.btn_1', text: I18n.t('follow'), count: 0
+    end
+
+    it 'show follow button when following tag' do
+      render
+      assert_select '.tag > .header a.btn_1', text: I18n.t('follow'), count: 1
+    end
   end
 
   context 'renders tag header when user signed in or not signed in' do
