@@ -58,7 +58,7 @@ RSpec.describe '/pins', type: :request do
     end
 
     it 'GET /liked_pins' do
-      get new_pin_url
+      get liked_pins_pins_path
       expect(response).to be_successful
     end
 
