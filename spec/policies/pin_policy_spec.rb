@@ -8,7 +8,7 @@ RSpec.describe PinPolicy, type: :policy do
   let(:user) { create(:user, :confirmed) }
   let(:pin) { create(:pin, user: user) }
 
-  permissions :create?, :new? do
+  permissions :create?, :new?, :liked_pins? do
     it 'denies access without current_user' do
       expect(pin_policy).not_to permit(nil, pin)
     end

@@ -20,6 +20,13 @@ RSpec.describe 'Pins', type: :system, js: true do
       sign_in(user)
     end
 
+    it '#liked_pins' do
+      visit root_path
+      find('.dropdown-user').click
+      click_link I18n.t('liked_pins')
+      expect(page).to have_css '.liked-pins > .header'
+    end
+
     it 'visits pins' do
       visit root_path
       click_link I18n.t('pins.pins')

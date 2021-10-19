@@ -21,6 +21,9 @@ Rails.application.routes.draw do
         get 'like'
         get 'unlike'
       end
+      collection do
+        get 'liked_pins'
+      end
     end
   end
 end
