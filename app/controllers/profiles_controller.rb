@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
   end
 
   def follow
+    authorize @user, policy_class: ProfilePolicy
     FollowServices::FollowUser.call(current_user, @user)
     respond_to do |format|
       format.turbo_stream
@@ -21,6 +22,7 @@ class ProfilesController < ApplicationController
   end
 
   def unfollow
+    authorize @user, policy_class: ProfilePolicy
     FollowServices::UnfollowUser.call(current_user, @user)
     respond_to do |format|
       format.turbo_stream
