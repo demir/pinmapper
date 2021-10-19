@@ -72,6 +72,15 @@ class PinsController < ApplicationController
     @pin.unliked_by current_user
   end
 
+  def liked_pins
+    pin_ids = current_user.votes.where(votable_type: 'Pin').pluck(:votable_id)
+    @pagy, @pins = pagy Pin.where(id: pin_ids).order(created_at: :desc)
+    respond_to do |f|
+      f.html
+      f.turbo_stream
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
