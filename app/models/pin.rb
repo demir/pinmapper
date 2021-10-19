@@ -17,6 +17,7 @@ class Pin < ApplicationRecord
   # callbacks
   before_validation :geocode, if: ->(obj) { obj.address.present? && obj.address_changed? }
   before_validation :fix_tags, if: :tag_list_changed?
+  before_update :delete_user_tags, prepend: true
   before_destroy :delete_crops
   before_destroy :delete_user_tags, prepend: true
 
