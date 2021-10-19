@@ -1,0 +1,6 @@
+<div class="tag-list-item">
+  <div class="tag">
+    <span><%= link_to "##{@tag.name}", tag_path(@tag), class: 'bold-black-link', target: '_top' %></span>
+  </div>
+  <%= render(Taggable::FollowUnfollowButtonComponent.new(tag: @tag, current_user: current_user)) %>
+</div>

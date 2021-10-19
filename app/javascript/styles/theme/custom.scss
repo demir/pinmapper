@@ -268,9 +268,18 @@ header {
   }
 }
 
+.bold-black-link {
+  color: #000;
+  &:hover {
+    color: #fc5b62;
+  }
+}
+
 header {
   .dropdown-menu {
     border-radius: 5px !important;
+    width: 200px !important;
+    left: -45px !important;
   }
   .dropdown-item {
     padding: 5px 15px !important;

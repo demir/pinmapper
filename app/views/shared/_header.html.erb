@@ -29,6 +29,7 @@
             <div class="dropdown-menu">
               <%= link_to t('profile'), profile_path(current_user), title: t('profile'), class: 'dropdown-item' %>
               <%= link_to t('liked_pins'), liked_pins_pins_path, title: t('liked_pins'), class: 'dropdown-item' %>
+              <%= link_to t('following_tags'), following_tags_tags_path, title: t('following_tags'), class: 'dropdown-item' %>
               <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out'), class: 'dropdown-item' %>
             </div>
           </div>
