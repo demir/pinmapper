@@ -45,11 +45,21 @@ RSpec.describe '/pins', type: :request do
       get unlike_pin_path(id: pin)
       expect(response).not_to be_successful
     end
+
+    it 'can not GET /liked_pins' do
+      get liked_pins_pins_path
+      expect(response).not_to be_successful
+    end
   end
 
   context 'specs with sign in' do
     before do
       sign_in(user)
+    end
+
+    it 'GET /liked_pins' do
+      get new_pin_url
+      expect(response).to be_successful
     end
 
     describe 'GET /new' do
