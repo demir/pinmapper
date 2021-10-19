@@ -9,5 +9,9 @@ module Taggable
       @tag = tag
       @current_user = current_user
     end
+
+    def render?
+      current_user.present?
+    end
   end
 end
