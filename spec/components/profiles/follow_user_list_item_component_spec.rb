@@ -17,8 +17,4 @@ RSpec.describe Profiles::FollowUserListItemComponent, type: :component do
   it 'user#username link' do
     expect(rendered_component).to have_css '.user > span > a.black-link'
   end
-
-  it 'follow/unfollow button' do
-    expect(rendered_component).to have_css 'div[data-controller="profile"]'
-  end
 end
