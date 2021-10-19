@@ -14,8 +14,15 @@
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    @include tablet {
-      padding: 0 20px;
+    @include mobile {
+      padding: 0 15px;
+    }
+    >.tag-name {
+      margin-bottom: 0;
+      @include fontSize(18px);
+      @include mobile {
+        @include fontSize(13px);
+      }
     }
   }
   >.body {
