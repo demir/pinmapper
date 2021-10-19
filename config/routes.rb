@@ -7,6 +7,9 @@ Rails.application.routes.draw do
         get 'follow'
         get 'unfollow'
       end
+      collection do
+        get 'following_tags'
+      end
     end
     resources :profiles, only: %i[show] do
       member do
