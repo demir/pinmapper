@@ -14,5 +14,6 @@ tr:
   following_tr: Takip edilen
   follows_you: Seni takip ediyor
   liked_pins: Beğenilen Pinler
+  user_not_authorized: Bu eylemi gerçekleştirme yetkiniz yok.
 
 
