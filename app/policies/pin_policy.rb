@@ -38,4 +38,8 @@ class PinPolicy < ApplicationPolicy
 
     user.liked?(record)
   end
+
+  def liked_pins?
+    user.present?
+  end
 end

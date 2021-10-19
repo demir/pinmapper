@@ -43,5 +43,9 @@ RSpec.describe PinsController, type: :routing do
     it 'routes to #unlike' do
       expect(get: '/pins/1/unlike').to route_to('pins#unlike', id: '1')
     end
+
+    it 'routes to #liked_pins' do
+      expect(get: '/pins/liked_pins').to route_to('pins#liked_pins')
+    end
   end
 end
