@@ -13,8 +13,6 @@ RSpec.describe 'pins/edit', type: :view do
 
       assert_select 'input[name=?]', 'pin[address]'
 
-      assert_select 'select[name=?]', 'pin[privacy]'
-
       assert_select 'input[name=?]', 'pin[cover_image]'
 
       assert_select 'textarea[name=?]', 'pin[cover_image_description]'

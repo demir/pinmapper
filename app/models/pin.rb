@@ -32,14 +32,8 @@ class Pin < ApplicationRecord
   validates :name, presence: true
   validates :address, presence: true
   validate :found_address_presence?, if: ->(obj) { obj.address.present? && obj.address_changed? }
-  validates :privacy, presence: true
   validate :max_tag_count, if: :tag_list_changed?
   validate :max_tag_length, if: :tag_list_changed?
-
-  # enums
-  enum privacy: { private: 0, public: 1 }, _suffix: true
-
-  translate_enum :privacy
 
   def cover_image_crop_constraints
     return {} if cover_image_crop.blank?

@@ -15,14 +15,10 @@ en:
         address: Address
         latitude: Latitude
         longitude: Longitude
-        privacy: Privacy
         cover_image: Cover Image
         cover_image_description: Cover Image Description
         description: Pin Description
         tag_list: Tags
-        privacy_list:
-          private: Private
-          public: Public
   simple_form:
     labels:
       pin:

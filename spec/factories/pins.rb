@@ -4,7 +4,6 @@ FactoryBot.define do
   factory :pin do
     name { Faker::Address.city }
     address { 'Samsun, Türkiye' }
-    privacy { 'public' }
     cover_image_description { Faker::Lorem.paragraph }
     association :user, :confirmed
     tag_list { Faker::Lorem.unique.words(number: 3).join(',') }

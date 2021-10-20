@@ -15,14 +15,10 @@ tr:
         address: Adres
         latitude: Enlem
         longitude: Boylam
-        privacy: Gizlilik
         cover_image: Kapak Fotoğrafı
         cover_image_description: Kapak Fotoğrafı Açıklaması
         description: Pin İçeriği
         tag_list: Etiketler
-        privacy_list:
-          private: Gizli
-          public: Herkese Açık
   simple_form:
     labels:
       pin:
