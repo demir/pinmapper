@@ -1,0 +1,8 @@
+en:
+  boards:
+    create:
+      success: Board created
+    update:
+      success: Board updated
+    destroy:
+      success: Board destroyed

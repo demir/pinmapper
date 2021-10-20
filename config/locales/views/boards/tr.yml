@@ -1,0 +1,8 @@
+tr:
+  boards:
+    board: Pano
+    boards: Panolar
+    index:
+      create_new_board: Pano Oluştur
+    edit:
+      edit_board: Panoyu Düzenle
