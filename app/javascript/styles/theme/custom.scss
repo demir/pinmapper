@@ -261,18 +261,22 @@ header {
   }
 }
 
-.black-link {
+.soft-black-link {
   color: #999;
   &:hover {
     color: #fc5b62;
   }
 }
 
-.bold-black-link {
+.black-link {
   color: #000;
   &:hover {
     color: #fc5b62;
   }
+}
+
+.soft-black-text {
+  color: #999;
 }
 
 header {

@@ -2,7 +2,7 @@
   <div class="header">
     <div class="user">
       <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'))) %>
-      <span><%= link_to @pin.user.email, profile_path(@pin.user), class: 'black-link' %></span>
+      <span><%= link_to @pin.user.email, profile_path(@pin.user), class: 'soft-black-link' %></span>
     </div>
     <%= render(Pins::MoreButtonComponent.new(pin: @pin, current_user: @current_user )) %>
   </div>
