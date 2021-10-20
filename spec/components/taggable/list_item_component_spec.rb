@@ -11,6 +11,6 @@ RSpec.describe Taggable::ListItemComponent, type: :component do
   end
 
   it 'tag#name link' do
-    expect(rendered_component).to have_css '.tag > span > a.bold-black-link'
+    expect(rendered_component).to have_css '.tag > span > a.black-link'
   end
 end
