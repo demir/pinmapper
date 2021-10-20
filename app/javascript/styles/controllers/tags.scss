@@ -14,8 +14,15 @@
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    @include tablet {
-      padding: 0 20px;
+    @include mobile {
+      padding: 0 15px;
+    }
+    >.tag-name {
+      margin-bottom: 0;
+      @include fontSize(18px);
+      @include mobile {
+        @include fontSize(13px);
+      }
     }
   }
   >.body {
@@ -23,5 +30,25 @@
     margin-left:auto;
     margin-right: auto;
     width: 100%;
+  }
+}
+
+.following-tags {
+  max-width:600px;
+  margin-left:auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.tag-list-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $border-color-2;
+  padding: 15px 0;
+  .tag > *:not(:last-child) {
+    margin-right: 5px;
   }
 }

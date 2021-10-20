@@ -15,6 +15,13 @@ RSpec.describe 'Tags', type: :system, js: true do
       sign_in(current_user)
     end
 
+    it '#following_tags' do
+      visit root_path
+      find('.dropdown-user').click
+      click_link I18n.t('following_tags')
+      expect(page).to have_css '.following-tags > .header'
+    end
+
     context 'tags#show' do
       it '#follow' do
         visit tag_path(id: tag)

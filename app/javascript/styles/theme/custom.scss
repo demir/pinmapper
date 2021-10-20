@@ -146,131 +146,29 @@ header {
   }
 }
 
-.pin {
-  background-color: #fff;
-  max-width: 600px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
-    padding: 16px;
-    border-bottom: 1px solid $border-color-2;
-    .dropdown-menu {
-      padding: 0;
-    }
-    .user > *:not(:last-child) {
-      margin-right: 5px;
-    }
-  }
-  img {
-    align-self: center;
-  }
-  .body {
-    padding: 16px;
-    .cover-image-description {
-      margin-bottom: 15px;
-    }
-    .time-ago {
-      display: block;
-      color: #999;
-    }
-  }
-  .footer {
-    border-top: 1px solid $border-color-2;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
-    padding: 16px;
-  }
-  a.like_btn {
-		z-index: 1;
-		@include rgba(bg, #000, 0.1);
-		padding: 9px 10px;
-		display: inline-block;
-		color: #555;
-		line-height: $line-height-none;
-		@include border-radius(3px);
-		&:after {
-			font-family: 'ElegantIcons';
-			content: "\e030";
-			@include transition-default (all,0.5s, ease);
-		}
-		&.liked:after{
-			content: "\e089";
-			color: $color-1;
-		}
-		&:hover.liked:after{
-			color: $color-1;
-		}
-		&:hover:after {
-			content: "\e089";
-			color: #999;
-		}
-    &.disabled {
-      cursor: default;
-    }
-    &.disabled:after {
-      content: "\e030";
-			color: #555;
-    }
-	}
-  &-more {
-    svg {
-      cursor: pointer;
-      margin-left: 20px;
-    }
-  }
-}
-
-.pin-more .dropdown-menu form.button_to {
-  padding: 0;
-}
-
-.pin-likes-count {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.pin-tag {
+.soft-black-link {
   color: #999;
   &:hover {
     color: #fc5b62;
-  }
-}
-
-.liked-pins {
-  padding-left: 0;
-  padding-right: 0;
-  > .header {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    @include tablet {
-      padding: 0 20px;
-    }
   }
 }
 
 .black-link {
-  color: #999;
+  color: #000;
   &:hover {
     color: #fc5b62;
   }
+}
+
+.soft-black-text {
+  color: #999;
 }
 
 header {
   .dropdown-menu {
     border-radius: 5px !important;
+    width: 200px !important;
+    left: -45px !important;
   }
   .dropdown-item {
     padding: 5px 15px !important;

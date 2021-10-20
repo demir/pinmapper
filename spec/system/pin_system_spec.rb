@@ -74,7 +74,6 @@ RSpec.describe 'Pins', type: :system, js: true do
       visit new_pin_path
       fill_in Pin.human_attribute_name(:name), with: Faker::Address.city
       fill_in Pin.human_attribute_name(:address), with: 'Samsun, Türkiye'
-      find(:css, 'select#pin_privacy').find(:option, Pin.translated_privacy(:public)).select_option
       fill_in Pin.human_attribute_name(:cover_image_description), with: Faker::Lorem.paragraph
       fill_in Pin.human_attribute_name(:tag_list), with: Faker::Lorem.words(number: 3).join(',')
       find('trix-editor#pin_description').click.set(Faker::Lorem.paragraph)

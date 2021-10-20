@@ -7,9 +7,6 @@
       <div class="form-horizontal-map-left">
         <%= f.input :name %>
         <%= f.input :address, as: :search, input_html: { data: { 'pin-target': 'field' , action: 'keydown->pin#keydown' }} %>
-        <div class="form-horizontal-inputs">
-          <%= f.input :privacy, collection: f.object.class.translated_privacies %>
-        </div>
       </div>
       <div class="map" data-pin-target="map"></div>
     </div>

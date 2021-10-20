@@ -11,7 +11,7 @@ RSpec.describe Profiles::FollowingLinkComponent, type: :component do
     end
 
     it 'shows link' do
-      expect(rendered_component).to have_css '.black-link', text: /#{I18n.t('following_tr')}/
+      expect(rendered_component).to have_css '.soft-black-link', text: /#{I18n.t('following_tr')}/
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.describe Profiles::FollowingLinkComponent, type: :component do
     end
 
     it 'do not show link' do
-      expect(rendered_component).not_to have_css '.black-link'
+      expect(rendered_component).not_to have_css '.soft-black-link'
     end
   end
 end

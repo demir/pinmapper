@@ -1,0 +1,4 @@
+<%= turbo_stream.append "infinite-tags" do %>
+  <%= render(Taggable::ListItemComponent.with_collection(@tags, current_user: current_user)) %>
+<% end %>
+<%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy, format: :turbo_stream)) %>

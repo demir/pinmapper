@@ -13,6 +13,11 @@ RSpec.describe 'Tags', type: :request do
         expect(response).to have_http_status(:success)
       end
     end
+
+    it 'can not GET /following_tags' do
+      get following_tags_tags_path
+      expect(response).not_to be_successful
+    end
   end
 
   describe 'specs with sign in' do
@@ -25,6 +30,11 @@ RSpec.describe 'Tags', type: :request do
         get tag_path(id: tag)
         expect(response).to have_http_status(:success)
       end
+    end
+
+    it 'GET /following_tags' do
+      get following_tags_tags_path
+      expect(response).to be_successful
     end
   end
 end
