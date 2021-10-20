@@ -20,7 +20,6 @@ RSpec.describe Pin, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:address) }
-    it { is_expected.to validate_presence_of(:privacy) }
 
     context 'adress presence' do
       let!(:pin) { build(:pin, address: 'FooBooFoBoFfFf') }
@@ -64,14 +63,6 @@ RSpec.describe Pin, type: :model do
         error_message = "#{tag_list_human_name} #{pin.errors.generate_message(:tag_list, :max_tag_length)}"
         expect(pin.errors.full_messages).to include(error_message)
       end
-    end
-  end
-
-  describe 'enums' do
-    it { is_expected.to define_enum_for(:privacy) }
-
-    it 'translates privacy' do
-      expect(described_class.respond_to?(:translated_privacies)).to be true
     end
   end
 end
