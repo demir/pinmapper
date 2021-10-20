@@ -6,12 +6,14 @@ FactoryBot.define do
     address { 'Samsun, Türkiye' }
     cover_image_description { Faker::Lorem.paragraph }
     association :user, :confirmed
-    tag_list { Faker::Lorem.unique.words(number: 3).join(',') }
+    # SecureRandom.hex(30).scan(/.{1,20}/) -> 3 words
+    tag_list { SecureRandom.hex(30).scan(/.{1,20}/).join(',') }
     description { Faker::Lorem.paragraph }
 
     trait :invalid do
       address { 'FooBooFooFFFooBooFooFF' }
-      tag_list { Faker::Lorem.unique.words(number: 6).join(',') }
+      # SecureRandom.hex(45).scan(/.{1,15}/) -> 6 words
+      tag_list { SecureRandom.hex(45).scan(/.{1,15}/).join(',') }
     end
 
     trait :cover_image_crop do
