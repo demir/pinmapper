@@ -1,0 +1,19 @@
+<div class="container margin_100_55">
+  <div class="row">
+    <div class="col-lg-12 boards">
+      <div class="header">
+        <div class="main_title_3">
+          <span><em></em></span>
+          <h2 id="boards-count"><%= "#{t('boards.boards')} (#{@boards.count})" %></h2>
+        </div>
+        <%= link_to t('.create_new_board'), new_board_path, class: 'btn_1 outline' %>
+      </div>
+      <div class="body">
+        <div id="infinite-boards">
+          <%= render(Boards::BoardComponent.with_collection(@boards, current_user: current_user)) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /container -->

@@ -1,0 +1,6 @@
+<%= turbo_stream.update('toastr', partial: 'shared/toastr.turbo_stream.erb') %>
+<%= turbo_stream.remove(@board) %>
+
+<%= turbo_stream.update "boards-count" do %>
+  <%= "#{t('boards.boards')} (#{current_user.boards.count})" %>
+<% end %>
