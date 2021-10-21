@@ -15,117 +15,158 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe '/boards', type: :request do
-  # Board. As you add validations to Board, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
-  end
+  let(:current_user) { create(:user, :confirmed) }
+  let(:board) { create(:board, user: current_user) }
 
-  let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
-  end
-
-  describe 'GET /index' do
-    it 'renders a successful response' do
-      Board.create! valid_attributes
-      get boards_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET /show' do
-    it 'renders a successful response' do
-      board = Board.create! valid_attributes
-      get board_url(board)
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET /new' do
-    it 'renders a successful response' do
-      get new_board_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET /edit' do
-    it 'render a successful response' do
-      board = Board.create! valid_attributes
-      get edit_board_url(board)
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'POST /create' do
-    context 'with valid parameters' do
-      it 'creates a new Board' do
-        expect do
-          post boards_url, params: { board: valid_attributes }
-        end.to change(Board, :count).by(1)
-      end
-
-      it 'redirects to the created board' do
-        post boards_url, params: { board: valid_attributes }
-        expect(response).to redirect_to(board_url(Board.last))
-      end
+  context 'with current_user' do
+    before do
+      sign_in(current_user)
     end
 
-    context 'with invalid parameters' do
-      it 'does not create a new Board' do
-        expect do
-          post boards_url, params: { board: invalid_attributes }
-        end.to change(Board, :count).by(0)
-      end
-
-      it "renders a successful response (i.e. to display the 'new' template)" do
-        post boards_url, params: { board: invalid_attributes }
+    describe 'GET /index' do
+      it 'renders a successful response' do
+        get boards_url
         expect(response).to be_successful
       end
     end
-  end
 
-  describe 'PATCH /update' do
-    context 'with valid parameters' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
-
-      it 'updates the requested board' do
-        board = Board.create! valid_attributes
-        patch board_url(board), params: { board: new_attributes }
-        board.reload
-        skip('Add assertions for updated state')
-      end
-
-      it 'redirects to the board' do
-        board = Board.create! valid_attributes
-        patch board_url(board), params: { board: new_attributes }
-        board.reload
-        expect(response).to redirect_to(board_url(board))
-      end
-    end
-
-    context 'with invalid parameters' do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        board = Board.create! valid_attributes
-        patch board_url(board), params: { board: invalid_attributes }
+    describe 'GET /show' do
+      it 'renders a successful response' do
+        get board_url(board)
         expect(response).to be_successful
       end
     end
+
+    describe 'GET /new' do
+      it 'renders a successful response' do
+        get new_board_url
+        expect(response).to be_successful
+      end
+    end
+
+    describe 'GET /edit' do
+      it 'render a successful response' do
+        get edit_board_url(board)
+        expect(response).to be_successful
+      end
+    end
+
+    describe 'POST /create' do
+      context 'with valid parameters' do
+        it 'creates a new Board' do
+          expect do
+            post boards_url, params: { board: attributes_for(:board) }
+          end.to change(Board, :count).by(1)
+        end
+
+        it 'redirects to the created board' do
+          post boards_url, params: { board: attributes_for(:board) }
+          expect(response).to redirect_to(boards_url)
+        end
+      end
+
+      context 'with invalid parameters' do
+        it 'does not create a new Board' do
+          expect do
+            post boards_url, params: { board: attributes_for(:board, :invalid) }
+          end.to change(Board, :count).by(0)
+        end
+
+        it 'renders new template' do
+          post boards_url, params: { board: attributes_for(:board, :invalid) }
+          expect(response).to have_http_status(:unprocessable_entity)
+          assert_select 'div[class="alert alert-danger"]',
+                        text: I18n.t('simple_form.error_notification.default_message')
+        end
+      end
+    end
+
+    describe 'PATCH /update' do
+      context 'with valid parameters' do
+        it 'updates the requested board' do
+          patch board_url(id: board), params: { board: attributes_for(:board, name: 'Pinmapper!!') }
+          board.reload
+          expect(board.name).to match('Pinmapper!!')
+        end
+
+        it 'redirects to the index' do
+          patch board_url(id: board), params: { board: attributes_for(:board, name: 'Pinmapper!!') }
+          board.reload
+          expect(response).to redirect_to(boards_url)
+        end
+      end
+
+      context 'with invalid parameters' do
+        it 'renders a successful response' do
+          patch board_url(id: board), params: { board: attributes_for(:board, :invalid) }
+          assert_select 'div[class="alert alert-danger"]',
+                        text: I18n.t('simple_form.error_notification.default_message')
+        end
+      end
+    end
+
+    describe 'DELETE /destroy' do
+      it 'destroys the requested board' do
+        new_board = create(:board, user: current_user)
+        expect do
+          delete board_url(id: new_board)
+        end.to change(Board, :count).by(-1)
+      end
+
+      it 'redirects to the boards list' do
+        new_board = create(:board, user: current_user)
+        delete board_url(id: new_board)
+        expect(response).to redirect_to(boards_url)
+      end
+    end
   end
 
-  describe 'DELETE /destroy' do
-    it 'destroys the requested board' do
-      board = Board.create! valid_attributes
+  context 'without current_user' do
+    describe 'GET /index' do
+      it 'can not renders a successful response' do
+        get boards_url
+        expect(response).not_to be_successful
+      end
+    end
+
+    describe 'GET /show' do
+      it 'can not renders a successful response' do
+        get board_url(board)
+        expect(response).not_to be_successful
+      end
+    end
+
+    describe 'GET /new' do
+      it 'can not renders a successful response' do
+        get new_board_url
+        expect(response).not_to be_successful
+      end
+    end
+
+    describe 'GET /edit' do
+      it 'can not render a successful response' do
+        get edit_board_url(board)
+        expect(response).not_to be_successful
+      end
+    end
+
+    it 'can not POST /create' do
       expect do
-        delete board_url(board)
-      end.to change(Board, :count).by(-1)
+        post boards_url, params: { board: attributes_for(:board) }
+      end.to change(Board, :count).by(0)
     end
 
-    it 'redirects to the boards list' do
-      board = Board.create! valid_attributes
-      delete board_url(board)
-      expect(response).to redirect_to(boards_url)
+    it 'can not PATCH /update' do
+      patch board_url(id: board), params: { board: attributes_for(:board, name: 'Pinmapper!!') }
+      board.reload
+      expect(board.name).not_to match('Pinmapper!!')
+    end
+
+    it 'can not DELETE /destroy' do
+      new_board = create(:board, user: current_user)
+      expect do
+        delete board_url(id: new_board)
+      end.to change(Board, :count).by(0)
     end
   end
 end

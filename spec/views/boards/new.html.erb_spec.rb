@@ -4,10 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'boards/new', type: :view do
   before do
-    assign(:board, Board.new(
-                     name:    'MyString',
-                     privacy: 1
-                   ))
+    user = create(:user, :confirmed)
+    assign(:board, build(:board, user: user))
   end
 
   it 'renders new board form' do
@@ -16,7 +14,7 @@ RSpec.describe 'boards/new', type: :view do
     assert_select 'form[action=?][method=?]', boards_path, 'post' do
       assert_select 'input[name=?]', 'board[name]'
 
-      assert_select 'input[name=?]', 'board[privacy]'
+      assert_select 'select[name=?]', 'board[privacy]'
     end
   end
 end

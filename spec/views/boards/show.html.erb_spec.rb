@@ -3,16 +3,25 @@
 require 'rails_helper'
 
 RSpec.describe 'boards/show', type: :view do
+  Board.destroy_all
+  let(:current_user) { create(:user, :confirmed) }
+  let(:board) { create(:board, user: current_user) }
+
   before do
-    @board = assign(:board, Board.create!(
-                              name:    'Name',
-                              privacy: 2
-                            ))
+    assign(:board, board)
   end
 
-  it 'renders attributes in <p>' do
-    render
-    expect(rendered).to match(/Name/)
-    expect(rendered).to match(/2/)
+  context 'renders attributes of board' do
+    before do
+      render
+    end
+
+    it '#name' do
+      expect(rendered).to match(/#{board.name}/)
+    end
+
+    it '#user.privacy' do
+      expect(rendered).to match(/#{board.translated_privacy}/)
+    end
   end
 end

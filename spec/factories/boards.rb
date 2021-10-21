@@ -2,7 +2,12 @@
 
 FactoryBot.define do
   factory :board do
-    name { 'MyString' }
-    privacy { 1 }
+    name { SecureRandom.hex(15) }
+    privacy { 'public' }
+    association :user, :confirmed
+
+    trait :invalid do
+      name { nil }
+    end
   end
 end

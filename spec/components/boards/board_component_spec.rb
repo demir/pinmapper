@@ -3,13 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe Boards::BoardComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:current_user) { create(:user, :confirmed) }
+  let(:boards) { create_list(:board, 10) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  before do
+    render_inline(described_class.with_collection(boards, current_user: current_user))
+  end
+
+  it 'board#name link' do
+    expect(rendered_component).to have_css '.board > span > a.black-link'
+  end
 end
