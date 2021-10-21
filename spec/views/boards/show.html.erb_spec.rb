@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "boards/show", type: :view do
-  before(:each) do
+RSpec.describe 'boards/show', type: :view do
+  before do
     @board = assign(:board, Board.create!(
-      name: "Name",
-      privacy: 2
-    ))
+                              name:    'Name',
+                              privacy: 2
+                            ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/2/)
