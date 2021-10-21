@@ -4,7 +4,7 @@
       <div class="header">
         <div class="main_title_3">
           <span><em></em></span>
-          <h2 id="boards-count"><%= "#{t('boards.boards')} (#{@boards.count})" %></h2>
+          <h2 id="boards-count"><%= "#{t('boards.boards')} (#{current_user.boards.count})" %></h2>
         </div>
         <%= link_to t('.create_new_board'), new_board_path, class: 'btn_1 outline' %>
       </div>
@@ -12,6 +12,7 @@
         <div id="infinite-boards">
           <%= render(Boards::BoardComponent.with_collection(@boards, current_user: current_user)) %>
         </div>
+        <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
       </div>
     </div>
   </div>

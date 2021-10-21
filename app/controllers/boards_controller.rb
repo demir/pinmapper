@@ -1,12 +1,17 @@
 # frozen_string_literal: true
 
 class BoardsController < ApplicationController
+  include Pagy::Backend
   before_action :set_board, only: %i[show edit update destroy]
   before_action :authorize_board
 
   # GET /boards or /boards.json
   def index
-    @boards = current_user.boards.order(created_at: :desc)
+    @pagy, @boards = pagy current_user.boards.order(created_at: :desc)
+    respond_to do |f|
+      f.html
+      f.turbo_stream
+    end
   end
 
   # GET /boards/1 or /boards/1.json
