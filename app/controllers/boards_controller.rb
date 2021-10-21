@@ -20,10 +20,10 @@ class BoardsController < ApplicationController
   # GET /boards/1/edit
   def edit; end
 
+  # rubocop:disable Metrics/AbcSize
   # POST /boards or /boards.json
   def create
     @board = current_user.boards.build(board_params)
-
     respond_to do |format|
       if @board.save
         format.html { redirect_to boards_url, notice: t('.success') }
@@ -34,6 +34,7 @@ class BoardsController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   # PATCH/PUT /boards/1 or /boards/1.json
   def update
