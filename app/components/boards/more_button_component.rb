@@ -4,7 +4,7 @@ module Boards
   class MoreButtonComponent < ViewComponent::Base
     attr_reader :board, :current_user, :turbo
 
-    def initialize(board:, current_user:, turbo: true)
+    def initialize(board:, current_user: nil, turbo: true)
       @board = board
       @current_user = current_user
       @turbo = turbo
