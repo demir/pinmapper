@@ -23,6 +23,7 @@ RSpec.describe 'boards/index', type: :view do
   it 'renders a list of boards' do
     render
     assert_select '.board .board-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 2
-    assert_select '.board > span > a.black-link', count: 2
+    assert_select '.board span > a.black-link', count: 2
+    assert_select '.board .badge.privacy', count: 2
   end
 end

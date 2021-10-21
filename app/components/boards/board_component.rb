@@ -8,5 +8,11 @@ module Boards
       @board = board
       @current_user = current_user
     end
+
+    private
+
+    def privacy_badge_class
+      board.public_privacy? ? :primary : :secondary
+    end
   end
 end

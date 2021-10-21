@@ -18,4 +18,7 @@
   align-items: center;
   border-bottom: 1px solid $border-color-2;
   padding: 15px 0;
+  span > a.board-name {
+    @include fontSize(20px);
+  }
 }
