@@ -273,3 +273,9 @@ main .container form {
 .spinner-border.pinmapper {
   color: $color-1;
 }
+
+.btn_1 {
+  &.xsmall {
+    padding: 7px 15px !important;
+  }
+}

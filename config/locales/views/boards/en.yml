@@ -3,6 +3,7 @@ en:
     board: Board
     boards: Boards
     boards_tr: Boards
+    add_to_board: Add to board
     index:
       create_new_board: Create Board
     edit:
