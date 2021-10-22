@@ -1,0 +1,8 @@
+tr:
+  boards:
+    create:
+      success: Pano oluşturuldu
+    update:
+      success: Pano güncellendi
+    destroy:
+      success: Pano silindi

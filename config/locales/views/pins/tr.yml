@@ -2,6 +2,7 @@ tr:
   pins:
     pin: Pin
     pins: Pinler
+    pins_tr: Pin
     new:
       create_new_pin: Yeni Pin Oluştur
     edit:

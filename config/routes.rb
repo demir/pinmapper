@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
     root to: 'pages#index'
     devise_for :users
+    resources :boards
     resources :tags, only: %i[show] do
       member do
         get 'follow'
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
         get 'unfollow'
         get 'followers'
         get 'following'
+        get 'boards'
       end
     end
     resources :pins do

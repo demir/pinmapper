@@ -1,0 +1,19 @@
+<div class="dropdown dropleft board-more">
+  <%= inline_svg_pack_tag 'media/images/theme/three-dots.svg', class: 'bi bi-three-dots dropdown-toggle',
+                                                              width: '16px',
+                                                              height: '16px',
+                                                              fill: 'currentColor',
+                                                              viewBox: '0 0 16 16',
+                                                              id: 'board-more',
+                                                              data: { toggle: 'dropdown' } %>
+  <div class="dropdown-menu" aria-labelledby="board-more">
+    <% if board.user == current_user %>
+      <%= link_to t('edit'), edit_board_path(board), class: 'dropdown-item' %>
+      <% if turbo %>
+        <%= link_to t('destroy'), board, method: :delete, data: { confirm: t('are_you_sure') }, class: 'dropdown-item' %>
+      <% else %>
+        <%= button_to t('destroy'), board, method: :delete, data: { confirm: t('are_you_sure'), turbo: false }, class: 'dropdown-item' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

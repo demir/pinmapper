@@ -19,4 +19,5 @@ class User < ApplicationRecord
   has_many :following, through: :following_relationships, source: :following
   has_many :user_tags, dependent: :destroy
   has_many :tags, through: :user_tags, dependent: :destroy
+  has_many :boards, dependent: :destroy
 end

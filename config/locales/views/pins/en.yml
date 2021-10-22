@@ -2,6 +2,7 @@ en:
   pins:
     pin: Pin
     pins: Pins
+    pins_tr: Pins
     new:
       create_new_pin: Create New Pin
     edit:

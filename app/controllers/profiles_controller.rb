@@ -45,6 +45,14 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def boards
+    @pagy, @boards = pagy @user.boards.public_privacy.order(created_at: :desc)
+    respond_to do |f|
+      f.turbo_stream
+      f.html
+    end
+  end
+
   private
 
   def set_user

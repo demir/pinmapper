@@ -9,13 +9,18 @@
             <%= render(Profiles::FollowUnfollowButtonComponent.new(user: @user, current_user: current_user)) %>
           </div>
           <div class="item">
-            <%= render(Profiles::PinsLinkComponent.new(user: @user)) %>
-            <%= render(Profiles::FollowersLinkComponent.new(user: @user)) %>
-            <%= render(Profiles::FollowingLinkComponent.new(user: @user)) %>
+            <div>
+              <%= render(Profiles::PinsLinkComponent.new(user: @user)) %>
+              <%= render(Profiles::BoardsLinkComponent.new(user: @user)) %>
+            </div>
+            <div>
+              <%= render(Profiles::FollowersLinkComponent.new(user: @user)) %>
+              <%= render(Profiles::FollowingLinkComponent.new(user: @user)) %>
+            </div>
           </div>
         </div>
       </div>
-      <div class="body">
+      <div class="body  px-tablet">
         <div id="followers">
           <%= render(Profiles::FollowUserListItemComponent.with_collection(@followers, current_user: current_user)) %>
         </div>

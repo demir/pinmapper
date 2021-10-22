@@ -9,9 +9,12 @@
     align-items: center;
     gap: 50px;
     height: 200px;
-    padding: 20px 50px;
+    padding: 20px 0;
     border-bottom: 2px solid $border-color-2;
     margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
     @include tablet {
       padding: 0 10px;
       gap: 20px;
@@ -27,6 +30,9 @@
       justify-content: center;
       gap: 15px;
       max-width: 500px;
+      @include tablet {
+        gap: 5px;
+      }
       .item{
         display: flex;
         flex-direction: row;
@@ -41,6 +47,12 @@
     margin-left:auto;
     margin-right: auto;
     width: 100%;
+    &.px-tablet {
+      @include tablet {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
   }
 }
 

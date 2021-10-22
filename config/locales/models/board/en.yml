@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      board: Board
+    attributes:
+      board: &board_attributes
+        name: Board Name
+        privacy: Privacy
+        privacy_list:
+          public: Public
+          secret: Secret
+  simple_form:
+    labels:
+      board:
+        <<: *board_attributes

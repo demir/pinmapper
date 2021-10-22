@@ -1,0 +1,10 @@
+<div id="<%= dom_id(board) %>" class="board">
+  <div>
+    <span><%= link_to "#{board.name}", board_path(board), class: "#{name_class} board-name" %></span>
+    <% if show_privacy_badge %>
+      <br>
+      <small class="badge badge-<%= privacy_badge_class %> privacy"><%= board.translated_privacy %></small>
+    <% end %>
+  </div>
+  <%= render(Boards::MoreButtonComponent.new(board: board, current_user: current_user )) %>
+</div>

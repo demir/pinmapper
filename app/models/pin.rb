@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Pin < ApplicationRecord
-  include TranslateEnum
   acts_as_taggable_on :tags
   acts_as_votable
   geocoded_by :address do |obj, results|
