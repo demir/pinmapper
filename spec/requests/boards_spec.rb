@@ -32,7 +32,7 @@ RSpec.describe '/boards', type: :request do
 
     describe 'GET /show' do
       it 'renders a successful response' do
-        get board_url(board)
+        get board_url(id: board)
         expect(response).to be_successful
       end
     end
@@ -130,9 +130,19 @@ RSpec.describe '/boards', type: :request do
     end
 
     describe 'GET /show' do
-      it 'can not renders a successful response' do
-        get board_url(board)
-        expect(response).not_to be_successful
+      context 'secret board' do
+        it 'can not renders a successful response' do
+          new_board = create(:board, privacy: 'secret')
+          get board_url(id: new_board)
+          expect(response).not_to be_successful
+        end
+      end
+
+      context 'public board' do
+        it 'renders a successful response' do
+          get board_url(id: board)
+          expect(response).to be_successful
+        end
       end
     end
 

@@ -32,6 +32,7 @@ class BoardPolicy < ApplicationPolicy
   end
 
   def show?
-    update?
+    record.user == user ||
+      record.public_privacy?
   end
 end
