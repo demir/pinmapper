@@ -5,6 +5,8 @@ class Board < ApplicationRecord
 
   # relations
   belongs_to :user
+  has_many :pin_boards, dependent: :destroy
+  has_many :pins, through: :pin_boards, dependent: :destroy
 
   # validations
   validates :name, presence: true
