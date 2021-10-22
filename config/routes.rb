@@ -18,6 +18,7 @@ Rails.application.routes.draw do
         get 'unfollow'
         get 'followers'
         get 'following'
+        get 'boards'
       end
     end
     resources :pins do

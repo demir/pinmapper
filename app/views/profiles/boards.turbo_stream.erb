@@ -1,0 +1,4 @@
+<%= turbo_stream.append "boards" do %>
+  <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user })) %>
+<% end %>
+<%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy, format: :turbo_stream)) %>

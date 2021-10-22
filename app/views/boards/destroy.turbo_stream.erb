@@ -4,3 +4,7 @@
 <%= turbo_stream.update "boards-count" do %>
   <%= "#{t('boards.boards')} (#{current_user.boards.count})" %>
 <% end %>
+
+<%= turbo_stream.replace "boards_link_#{dom_id(current_user)}" do %>
+  <%= render(Profiles::BoardsLinkComponent.new(user: current_user)) %>
+<% end %>

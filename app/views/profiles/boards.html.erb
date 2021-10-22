@@ -20,10 +20,12 @@
           </div>
         </div>
       </div>
-      <div id="infinite-pins" class="body">
-        <%= render(Pins::PinComponent.with_collection(@user_pins, current_user: current_user)) %>
+      <div class="body px-tablet">
+        <div id="boards">
+          <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user })) %>
+        </div>
+        <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
       </div>
-      <%= render(General::InfiniteScrollPagyComponent.new(pagy: @user_pins_pagy)) %>
     </div>
   </div>
 </div>
