@@ -2,6 +2,7 @@ en:
   boards:
     board: Board
     boards: Boards
+    boards_tr: Boards
     index:
       create_new_board: Create Board
     edit:
