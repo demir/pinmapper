@@ -2,11 +2,18 @@
 
 module Boards
   class BoardComponent < ViewComponent::Base
-    attr_reader :board, :current_user
+    attr_reader :board, :current_user, :show_privacy_badge, :name_class
 
-    def initialize(board:, current_user:)
+    def initialize(board:, options:)
+      o = {
+        current_user:       nil,
+        show_privacy_badge: false,
+        name_class:         'soft-black-link'
+      }.merge(options)
       @board = board
-      @current_user = current_user
+      @current_user = o[:current_user]
+      @show_privacy_badge = o[:show_privacy_badge]
+      @name_class = o[:name_class]
     end
 
     private
