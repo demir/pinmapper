@@ -1,7 +1,5 @@
-<%= turbo_frame_tag "add_to_#{dom_id(board)}" do %>
-  <% if board.user == current_user && board.pins.include?(pin) %>
-    <%= render Pins::Boards::RemoveButtonComponent.new(board: board, pin: pin, current_user: current_user) %>
-  <% else %>
-    <%= render Pins::Boards::AddButtonComponent.new(board: board, pin: pin, current_user: current_user) %>
-  <% end %>
+<% if board.user == current_user && board.pins.include?(pin) %>
+  <%= render Pins::Boards::RemoveButtonComponent.new(board: board, pin: pin, current_user: current_user) %>
+<% else %>
+  <%= render Pins::Boards::AddButtonComponent.new(board: board, pin: pin, current_user: current_user) %>
 <% end %>
