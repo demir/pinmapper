@@ -1,7 +1,7 @@
-<div class="dropdown dropleft" data-controller="dropdown">
+<div class="dropdown dropleft add-pin-to-board-dropdown" data-controller="dropdown">
   <%= link_to '#', class: "#{klass}", id: 'add-pin-to-board-menu', data: { toggle: 'dropdown', 'aria-haspopup': true, 'aria-expanded': false } do %><% end %>
 
-  <div class="dropdown-menu add-pin-to-board" aria-labelledby="add-pin-to-board-menu" data-action="click->dropdown#stopPropagation mouseout->dropdown#button_mouseout">
+  <div class="dropdown-menu add-pin-to-board" aria-labelledby="add-pin-to-board-menu" data-action="click->dropdown#stopPropagation">
     <div class="px-3 py-3">
       <div class="header">
         <span><%= t('boards.add_to_board') %></span>

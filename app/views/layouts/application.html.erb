@@ -15,7 +15,7 @@
   </head>
 
   <body>
-    <div id="page">
+    <div id="page" data-controller="dropdown" data-action="click->dropdown#hide">
       <%= render 'shared/header' %>
       <main>
         <%= turbo_frame_tag "toastr" do %>
