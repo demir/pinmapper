@@ -17,6 +17,6 @@
   </div>
   <div class="footer">
     <%= render Pins::LikeButtonComponent.new(pin: @pin, current_user: @current_user) %>
-    <%= render Pins::AddToBoardButtonComponent.new(pin: @pin, current_user: @current_user) %>
+    <%= render Pins::Boards::AddToBoardButtonComponent.new(pin: @pin, current_user: @current_user) %>
   </div>
 </div>

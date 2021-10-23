@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Pins::AddToBoardButtonComponent, type: :component do
+RSpec.describe Pins::Boards::AddToBoardButtonComponent, type: :component do
   pending "add some examples to (or delete) #{__FILE__}"
 
   # it "renders something useful" do
