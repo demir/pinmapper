@@ -24,6 +24,8 @@
 }
 
 .dropdown-menu.add-pin-to-board{
+  max-height: 385px;
+  overflow-y: auto;
   @include border-radius(5px);
   .header {
     text-align: center;
