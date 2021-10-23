@@ -3,6 +3,7 @@
 module Pins
   module Boards
     class AddToBoardButtonComponent < ViewComponent::Base
+      include Turbo::FramesHelper
       attr_reader :pin, :current_user
 
       def initialize(pin:, current_user:)

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
         get 'add_pin/:pin_id', action: 'add_pin', as: 'add_pin'
         get 'remove_pin/:pin_id', action: 'remove_pin', as: 'remove_pin'
       end
+      collection do
+        get 'add_to_board_list/:pin_id', action: 'add_to_board_list', as: 'add_to_board_list'
+      end
     end
     resources :tags, only: %i[show] do
       member do

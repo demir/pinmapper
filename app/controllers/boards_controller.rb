@@ -3,11 +3,19 @@
 class BoardsController < ApplicationController
   include Pagy::Backend
   before_action :set_board, only: %i[show edit update destroy add_pin remove_pin]
-  before_action :set_pin, only: %i[add_pin remove_pin]
+  before_action :set_pin, only: %i[add_pin remove_pin add_to_board_list]
   before_action :authorize_board
 
   # GET /boards or /boards.json
   def index
+    @pagy, @boards = pagy current_user.boards.order(created_at: :desc)
+    respond_to do |f|
+      f.html
+      f.turbo_stream
+    end
+  end
+
+  def add_to_board_list
     @pagy, @boards = pagy current_user.boards.order(created_at: :desc)
     respond_to do |f|
       f.html

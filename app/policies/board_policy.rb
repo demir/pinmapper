@@ -43,4 +43,8 @@ class BoardPolicy < ApplicationPolicy
   def remove_pin?
     add_pin?
   end
+
+  def add_to_board_list?
+    index?
+  end
 end

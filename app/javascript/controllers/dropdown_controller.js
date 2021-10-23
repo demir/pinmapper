@@ -23,7 +23,7 @@ export default class extends Controller {
   toggle_added(dropdownParent) {
     let dropdownButton = dropdownParent.querySelector('.add_to_board_btn')
     let dropdownMenu = dropdownParent.querySelector('.add-pin-to-board')
-    let removeButtons = dropdownMenu.querySelectorAll('.body > .board-list-item-for-pin .remove-button')
+    let removeButtons = dropdownMenu.querySelectorAll('.body .board-list-item-for-pin .remove-button')
     if (removeButtons.length > 0) {
       if (!dropdownButton.classList.contains('added')) {
         dropdownButton.classList.add('added')
