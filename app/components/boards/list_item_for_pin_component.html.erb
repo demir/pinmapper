@@ -1,6 +1,4 @@
 <div id="<%= dom_id(board) %>" class="board-list-item-for-pin">
   <span class="board-name"><%= board.name %></span>
-  <%= turbo_frame_tag "add_to_#{dom_id(board)}" do %>
-    <%= link_to t('add'), add_pin_board_path(board, pin), class: 'btn_1 rounded outline xsmall' %>
-  <% end %>
+  <%= render Pins::Boards::AddRemoveButtonComponent.new(board: board, pin: pin, current_user: current_user) %>
 </div>

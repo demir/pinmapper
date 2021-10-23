@@ -10,6 +10,10 @@ module Pins
         @current_user = current_user
       end
 
+      def klass
+        pin.boards.where(user: current_user).any? ? 'add_to_board_btn added' : 'add_to_board_btn'
+      end
+
       def render?
         current_user.present?
       end
