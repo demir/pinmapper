@@ -277,5 +277,13 @@ main .container form {
 .btn_1 {
   &.xsmall {
     padding: 7px 15px !important;
+    border: 1px solid $color-1 !important;
+    font-weight: 400 !important;
+    &:hover {
+      border-color: $color-2 !important;
+    }
+  }
+  &.outline.xsmall {
+    padding: 7px 15px !important;
   }
 }

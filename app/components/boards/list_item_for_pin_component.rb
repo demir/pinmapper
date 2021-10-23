@@ -2,6 +2,7 @@
 
 module Boards
   class ListItemForPinComponent < ViewComponent::Base
+    include Turbo::FramesHelper
     with_collection_parameter :board
     attr_reader :board, :pin, :current_user
 

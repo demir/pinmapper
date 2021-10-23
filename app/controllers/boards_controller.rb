@@ -2,7 +2,8 @@
 
 class BoardsController < ApplicationController
   include Pagy::Backend
-  before_action :set_board, only: %i[show edit update destroy]
+  before_action :set_board, only: %i[show edit update destroy add_pin remove_pin]
+  before_action :set_pin, only: %i[add_pin remove_pin]
   before_action :authorize_board
 
   # GET /boards or /boards.json
@@ -65,11 +66,23 @@ class BoardsController < ApplicationController
     end
   end
 
+  def add_pin
+    @board.pins << @pin
+  end
+
+  def remove_pin
+    @board.pins.delete(@pin)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_board
     @board = Board.find(params[:id])
+  end
+
+  def set_pin
+    @pin = Pin.find(params[:pin_id])
   end
 
   # Only allow a list of trusted parameters through.

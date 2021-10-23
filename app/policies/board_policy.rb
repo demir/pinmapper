@@ -35,4 +35,12 @@ class BoardPolicy < ApplicationPolicy
     record.user == user ||
       record.public_privacy?
   end
+
+  def add_pin?
+    record.user == user
+  end
+
+  def remove_pin?
+    add_pin?
+  end
 end
