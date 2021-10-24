@@ -1,0 +1,4 @@
+<%= turbo_stream.append "add_to_board_list_#{dom_id(@pin)}" do %>
+  <%= render(Boards::ListItemForPinComponent.with_collection(@boards, pin: @pin, current_user: current_user)) %>
+<% end %>
+<%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy, record: @pin, format: :turbo_stream)) %>
