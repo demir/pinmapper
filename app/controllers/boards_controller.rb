@@ -16,7 +16,7 @@ class BoardsController < ApplicationController
   end
 
   def add_to_board_list
-    boards = current_user.boards.order(created_at: :desc)
+    boards = get_boards(@pin)
     %i[name].each do |param|
       boards = search(boards, param, params[param]) if params[param].present?
     end
@@ -108,5 +108,13 @@ class BoardsController < ApplicationController
 
   def search(boards, attr, attr_value)
     boards.send("search_by_#{attr}", attr_value)
+  end
+
+  def get_boards(pin)
+    added_boards = current_user.boards.left_joins(:pins)
+                               .where(pins: { id: pin })
+                               .order('boards.created_at DESC')
+    not_added_boards = current_user.boards.where.not(id: added_boards).order(created_at: :desc)
+    Board.find_ordered(added_boards.ids | not_added_boards.ids)
   end
 end
