@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_24_120105) do
+ActiveRecord::Schema.define(version: 2021_10_24_214316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2021_10_24_120105) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["board_id"], name: "index_pin_boards_on_board_id"
+    t.index ["pin_id", "board_id"], name: "index_pin_boards_on_pin_id_and_board_id", unique: true
     t.index ["pin_id"], name: "index_pin_boards_on_pin_id"
   end
 
