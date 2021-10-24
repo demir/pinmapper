@@ -1,7 +1,7 @@
-<div class="dropdown dropleft add-pin-to-board-dropdown" data-controller="dropdown">
+<div class="dropdown dropleft add-pin-to-board-dropdown" data-controller="dropdown"  data-dropdown-pin-id-value="<%= dom_id(pin) %>">
   <%= link_to '#', class: "#{klass}", id: 'add-pin-to-board-menu', data: { toggle: 'dropdown', 'aria-haspopup': true, 'aria-expanded': false } do %><% end %>
 
-  <div class="dropdown-menu add-pin-to-board" aria-labelledby="add-pin-to-board-menu" data-action="click->dropdown#stopPropagation">
+  <div class="dropdown-menu add-pin-to-board" aria-labelledby="add-pin-to-board-menu" data-action="click->dropdown#stopPropagation turbo:frame-load->dropdown#updateButton" >
     <div class="header">
       <span><%= t('boards.add_to_board') %></span>
       <%= render(General::SearchComponent.new(path: add_to_board_list_boards_path(pin), current_user: current_user)) %>

@@ -1,6 +1,8 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
+  static values = { pinId: String }
+
   stopPropagation(event) {
     if (!event.target.classList.contains('btn_1')) {
       event.stopPropagation();
@@ -20,6 +22,21 @@ export default class extends Controller {
         input.reset();
         let frame = dropdownParent.querySelector('.body > turbo-frame');
         frame.reload();
+      }
+    }
+  }
+
+  updateButton() {
+    let pin = document.getElementById(this.pinIdValue)
+    let dropdownButton = pin.querySelector('.add_to_board_btn')
+    let removeButtons = pin.querySelectorAll('.add-pin-to-board .body .board-list-item-for-pin .remove-button')
+    if (removeButtons.length > 0) {
+      if (!dropdownButton.classList.contains('added')) {
+        dropdownButton.classList.add('added')
+      }
+    } else {
+      if (dropdownButton.classList.contains('added')) {
+        dropdownButton.classList.remove('added')
       }
     }
   }
