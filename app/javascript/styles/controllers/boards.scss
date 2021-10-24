@@ -27,14 +27,20 @@
   min-width: 340px;
   @include border-radius(5px);
   .header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     text-align: center;
-    padding: 10px 15px;
+    padding: 20px 15px;
     @include fontSize(20px);
   }
   .body {
     padding: 0 15px;
     max-height: 385px;
     overflow-y: auto;
+    >span {
+      padding: 0 5px;
+    }
   }
   border: 0;
   @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));

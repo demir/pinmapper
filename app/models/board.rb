@@ -3,6 +3,12 @@
 class Board < ApplicationRecord
   include TranslateEnum
 
+  # search
+  include PgSearch::Model
+  pg_search_scope(:search_by_name,
+                  against: :name,
+                  using:   { trigram: { word_similarity: true, threshold: 0.5 } })
+
   # relations
   belongs_to :user
   has_many :pin_boards, dependent: :destroy

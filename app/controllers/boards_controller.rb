@@ -16,7 +16,11 @@ class BoardsController < ApplicationController
   end
 
   def add_to_board_list
-    @pagy, @boards = pagy current_user.boards.order(created_at: :desc)
+    boards = current_user.boards.order(created_at: :desc)
+    %i[name].each do |param|
+      boards = search(boards, param, params[param]) if params[param].present?
+    end
+    @pagy, @boards = pagy(boards)
     respond_to do |f|
       f.html
       f.turbo_stream
@@ -100,5 +104,9 @@ class BoardsController < ApplicationController
 
   def authorize_board
     authorize @board || Board
+  end
+
+  def search(boards, attr, attr_value)
+    boards.send("search_by_#{attr}", attr_value)
   end
 end

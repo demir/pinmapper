@@ -4,10 +4,11 @@
   <div class="dropdown-menu add-pin-to-board" aria-labelledby="add-pin-to-board-menu" data-action="click->dropdown#stopPropagation">
     <div class="header">
       <span><%= t('boards.add_to_board') %></span>
+      <%= render(General::SearchComponent.new(path: add_to_board_list_boards_path(pin), current_user: current_user)) %>
     </div>
     <div class="body">
-      <%= turbo_frame_tag dom_id(pin), src: add_to_board_list_boards_path(pin), loading: :lazy do %>
-      <% end %>
+      <span><%= t('boards.boards') %></span>
+      <%= turbo_frame_tag "add_to_board_list_body_#{dom_id(pin)}", src: add_to_board_list_boards_path(pin), loading: :lazy %>
     </div>
   </div>
 </div>

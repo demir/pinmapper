@@ -12,25 +12,13 @@ export default class extends Controller {
   hide() {
     let dropdowns = this.element.getElementsByClassName('add-pin-to-board-dropdown');
     for (let dropdownParent of dropdowns) {
-      let dropdown = dropdownParent.querySelector('.add-pin-to-board')
+      let dropdown = dropdownParent.querySelector('.add-pin-to-board');
       if (dropdown.classList.contains('show')) {
         dropdown.classList.remove('show');
-        this.toggle_added(dropdownParent);
-      }
-    }
-  }
-
-  toggle_added(dropdownParent) {
-    let dropdownButton = dropdownParent.querySelector('.add_to_board_btn')
-    let dropdownMenu = dropdownParent.querySelector('.add-pin-to-board')
-    let removeButtons = dropdownMenu.querySelectorAll('.body .board-list-item-for-pin .remove-button')
-    if (removeButtons.length > 0) {
-      if (!dropdownButton.classList.contains('added')) {
-        dropdownButton.classList.add('added')
-      }
-    } else {
-      if (dropdownButton.classList.contains('added')) {
-        dropdownButton.classList.remove('added')
+        let input = dropdownParent.querySelector('form');
+        input.reset();
+        let frame = dropdownParent.querySelector('.body > turbo-frame');
+        frame.reload();
       }
     }
   }

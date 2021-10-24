@@ -1,4 +1,4 @@
-<%= turbo_frame_tag dom_id(@pin) do %>
+<%= turbo_frame_tag "add_to_board_list_body_#{dom_id(@pin)}" do %>
   <div id="<%= "add_to_board_list_#{dom_id(@pin)}" %>">
     <%= render(Boards::ListItemForPinComponent.with_collection(@boards, pin: @pin, current_user: current_user)) %>
   </div>
