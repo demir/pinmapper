@@ -23,5 +23,9 @@ RSpec.describe ProfilesController, type: :routing do
     it 'routes to #following' do
       expect(get: '/profiles/1/following').to route_to('profiles#following', id: '1')
     end
+
+    it 'routes to #boards' do
+      expect(get: '/profiles/1/boards').to route_to('profiles#boards', id: '1')
+    end
   end
 end
