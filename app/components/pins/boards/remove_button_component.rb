@@ -13,7 +13,9 @@ module Pins
       end
 
       def render?
-        current_user.present?
+        return if current_user.blank?
+
+        board.pins.include?(pin)
       end
     end
   end
