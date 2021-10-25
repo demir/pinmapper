@@ -3,13 +3,19 @@
 require 'rails_helper'
 
 RSpec.describe Boards::ListItemForPinComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:current_user) { create(:user, :confirmed) }
+  let(:boards) { create_list(:board, 10, user: current_user) }
+  let(:pin) { create(:pin) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  before do
+    render_inline(described_class.with_collection(boards, pin: pin, current_user: current_user))
+  end
+
+  it 'board name' do
+    expect(rendered_component).to have_css '.board-name'
+  end
+
+  it 'add or remove button' do
+    expect(rendered_component).to have_css '.btn_1'
+  end
 end
