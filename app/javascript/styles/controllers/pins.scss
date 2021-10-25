@@ -43,76 +43,12 @@
     height: 60px;
     padding: 16px;
   }
-  a.like_btn {
-		z-index: 1;
-		@include rgba(bg, #000, 0.1);
-		padding: 9px 10px;
-		display: inline-block;
-		color: #555;
-		line-height: $line-height-none;
-		@include border-radius(3px);
-		&:after {
-			font-family: 'ElegantIcons';
-			content: "\e030";
-			@include transition-default (all,0.5s, ease);
-		}
-		&.liked:after{
-			content: "\e089";
-			color: $color-1;
-		}
-		&:hover.liked:after{
-			color: $color-1;
-		}
-		&:hover:after {
-			content: "\e089";
-			color: #999;
-		}
-    &.disabled {
-      cursor: default;
-    }
-    &.disabled:after {
-      content: "\e030";
-			color: #555;
-    }
-	}
   &-more {
     svg {
       cursor: pointer;
       margin-left: 20px;
     }
   }
-  a.add_to_board_btn {
-		z-index: 1;
-		@include rgba(bg, #000, 0.1);
-		padding: 9px 10px;
-		display: inline-block;
-		color: #555;
-		line-height: $line-height-none;
-		@include border-radius(3px);
-		&:after {
-			font-family: 'ElegantIcons';
-			content: "\e012";
-			@include transition-default (all,0.5s, ease);
-		}
-		&.added:after{
-			content: "\e078";
-			color: $color-4;
-		}
-		&:hover.added:after{
-			color: $color-4;
-		}
-		&:hover:after {
-			content: "\e078";
-			color: #999;
-		}
-    &.disabled {
-      cursor: default;
-    }
-    &.disabled:after {
-      content: "\e012";
-			color: #555;
-    }
-	}
 }
 
 .pin-more .dropdown-menu form.button_to {
