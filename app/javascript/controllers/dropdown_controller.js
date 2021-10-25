@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static values = { pinId: String }
+  static values = { id: String }
 
   stopPropagation(event) {
     if (!event.target.classList.contains('btn_1')) {
@@ -27,9 +27,9 @@ export default class extends Controller {
   }
 
   updateButton() {
-    let pin = document.getElementById(this.pinIdValue)
-    let dropdownButton = pin.querySelector('.add_to_board_btn')
-    let removeButtons = pin.querySelectorAll('.add-pin-to-board .body .board-list-item-for-pin .remove-button')
+    let dropdown = document.getElementById(this.idValue)
+    let dropdownButton = dropdown.querySelector('.add_to_board_btn')
+    let removeButtons = dropdown.querySelectorAll('.add-pin-to-board .body .board-list-item-for-pin .remove-button')
     if (removeButtons.length > 0) {
       if (!dropdownButton.classList.contains('added')) {
         dropdownButton.classList.add('added')
