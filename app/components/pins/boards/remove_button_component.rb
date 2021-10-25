@@ -14,6 +14,7 @@ module Pins
 
       def render?
         return if current_user.blank?
+        return if board.user != current_user
 
         board.pins.include?(pin)
       end
