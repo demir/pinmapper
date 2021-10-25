@@ -18,7 +18,7 @@ RSpec.describe Pins::Boards::AddButtonComponent, type: :component do
       end
     end
 
-    context 'when following to tag' do
+    context 'when added to board' do
       before do
         board.pins << pin
         render_inline(described_class.new(board: board, pin: pin, current_user: current_user))
