@@ -4,13 +4,22 @@
   <div class="dropdown-menu add-pin-to-board" aria-labelledby="add-pin-to-board-menu" data-action="click->dropdown#stopPropagation turbo:frame-load->dropdown#updateButton" >
     <div class="header">
       <span><%= t('boards.add_to_board') %></span>
-      <%= render(General::SearchComponent.new(path: add_to_board_list_boards_path(pin), current_user: current_user)) %>
+      <% if boards? %>
+        <%= render(General::SearchComponent.new(path: add_to_board_list_boards_path(pin), current_user: current_user)) %>
+      <% end %>
     </div>
     <div class="body">
-      <span><%= t('boards.boards') %></span>
-      <%= turbo_frame_tag "add_to_board_list_body_#{dom_id(pin)}", src: add_to_board_list_boards_path(pin), loading: :lazy do %>
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border pinmapper m-4" data-infinite-scroll-target="spinner"></div>
+      <% if boards? %>
+        <span><%= t('boards.boards') %></span>
+        <%= turbo_frame_tag "add_to_board_list_body_#{dom_id(pin)}", src: add_to_board_list_boards_path(pin), loading: :lazy do %>
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border pinmapper m-4" data-infinite-scroll-target="spinner"></div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="no-boards">
+          <span><%= t('boards.there_is_no_boards') %></span>
+          <%= link_to t('boards.index.create_new_board'), new_board_path, class: 'btn_1 outline full-width' %>
         </div>
       <% end %>
     </div>

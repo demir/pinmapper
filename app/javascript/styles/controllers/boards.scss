@@ -41,6 +41,12 @@
     >span {
       padding: 0 5px;
     }
+    .no-boards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
   }
   border: 0;
   @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));

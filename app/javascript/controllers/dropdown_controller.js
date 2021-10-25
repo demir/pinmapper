@@ -19,9 +19,11 @@ export default class extends Controller {
       if (dropdown.classList.contains('show')) {
         dropdown.classList.remove('show');
         let input = dropdownParent.querySelector('form');
-        input.reset();
-        let frame = dropdownParent.querySelector('.body > turbo-frame');
-        frame.reload();
+        if (input) {
+          input.reset();
+          let frame = dropdownParent.querySelector('.body > turbo-frame');
+          frame.reload();
+        }
       }
     }
   }
