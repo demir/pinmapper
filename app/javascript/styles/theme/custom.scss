@@ -285,5 +285,12 @@ main .container form {
   }
   &.outline.xsmall {
     padding: 7px 15px !important;
+    color: $color-1 !important;
+    &:hover {
+      color:#fff !important;
+    }
+  }
+  &.rounded.xsmall {
+    color: #fff;
   }
 }
