@@ -119,6 +119,46 @@ RSpec.describe '/boards', type: :request do
         expect(response).to redirect_to(boards_url)
       end
     end
+
+    describe 'add pin to board' do
+      let(:pin) { create(:pin) }
+
+      describe '#add_to_board_list' do
+        it 'render a successful response' do
+          get add_to_board_list_boards_path(pin_id: pin)
+          expect(response).to be_successful
+        end
+      end
+
+      context 'already added to board' do
+        before do
+          board.pins << pin
+        end
+
+        it 'raises validation error #add_pin' do
+          expect  do
+            get add_pin_board_path(id: board, pin_id: pin)
+          end.to raise_error(ActiveRecord::RecordInvalid)
+        end
+
+        it 'render a successful response #remove_pin' do
+          get remove_pin_board_path(id: board, pin_id: pin)
+          expect(response).to be_successful
+        end
+      end
+
+      context 'not added to board' do
+        it 'render a successful response #add_pin' do
+          get add_pin_board_path(id: board, pin_id: pin)
+          expect(response).to be_successful
+        end
+
+        it 'render a successful response #remove_pin' do
+          get remove_pin_board_path(id: board, pin_id: pin)
+          expect(response).to be_successful
+        end
+      end
+    end
   end
 
   context 'without current_user' do
@@ -177,6 +217,31 @@ RSpec.describe '/boards', type: :request do
       expect do
         delete board_url(id: new_board)
       end.to change(Board, :count).by(0)
+    end
+
+    describe 'add pin to board' do
+      let(:pin) { create(:pin) }
+
+      describe '#add_to_board_list' do
+        it 'not renders a successful response' do
+          get add_to_board_list_boards_path(pin_id: pin)
+          expect(response).not_to be_successful
+        end
+      end
+
+      describe '#add_pin' do
+        it 'not renders a successful response' do
+          get add_pin_board_path(id: board, pin_id: pin)
+          expect(response).not_to be_successful
+        end
+      end
+
+      describe '#remove_pin' do
+        it 'not renders a successful response' do
+          get remove_pin_board_path(id: board, pin_id: pin)
+          expect(response).not_to be_successful
+        end
+      end
     end
   end
 end

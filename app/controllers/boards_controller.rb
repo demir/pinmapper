@@ -2,12 +2,25 @@
 
 class BoardsController < ApplicationController
   include Pagy::Backend
-  before_action :set_board, only: %i[show edit update destroy]
+  before_action :set_board, only: %i[show edit update destroy add_pin remove_pin]
+  before_action :set_pin, only: %i[add_pin remove_pin add_to_board_list]
   before_action :authorize_board
 
   # GET /boards or /boards.json
   def index
     @pagy, @boards = pagy current_user.boards.order(created_at: :desc)
+    respond_to do |f|
+      f.html
+      f.turbo_stream
+    end
+  end
+
+  def add_to_board_list
+    boards = get_boards(@pin)
+    %i[name].each do |param|
+      boards = search(boards, param, params[param]) if params[param].present?
+    end
+    @pagy, @boards = pagy(boards)
     respond_to do |f|
       f.html
       f.turbo_stream
@@ -65,11 +78,23 @@ class BoardsController < ApplicationController
     end
   end
 
+  def add_pin
+    @board.pins << @pin
+  end
+
+  def remove_pin
+    @board.pins.delete(@pin)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_board
     @board = Board.find(params[:id])
+  end
+
+  def set_pin
+    @pin = Pin.find(params[:pin_id])
   end
 
   # Only allow a list of trusted parameters through.
@@ -79,5 +104,17 @@ class BoardsController < ApplicationController
 
   def authorize_board
     authorize @board || Board
+  end
+
+  def search(boards, attr, attr_value)
+    boards.send("search_by_#{attr}", attr_value)
+  end
+
+  def get_boards(pin)
+    added_boards = current_user.boards.left_joins(:pins)
+                               .where(pins: { id: pin })
+                               .order('boards.created_at DESC')
+    not_added_boards = current_user.boards.where.not(id: added_boards).order(created_at: :desc)
+    Board.find_ordered(added_boards.ids | not_added_boards.ids)
   end
 end

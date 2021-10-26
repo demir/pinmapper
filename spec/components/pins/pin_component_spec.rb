@@ -44,6 +44,10 @@ RSpec.describe Pins::PinComponent, type: :component do
     it 'like button' do
       expect(rendered_component).to have_css '.footer .like_btn'
     end
+
+    it 'add to board button' do
+      expect(rendered_component).to have_css '.footer .add_to_board_btn'
+    end
   end
 
   context 'without current_user' do

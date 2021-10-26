@@ -15,7 +15,7 @@ RSpec.describe 'Profiles', type: :system, js: true do
 
   it 'visits profiles#show from pins#show' do
     visit pin_path(id: pins.first)
-    expect(page).to have_css '.singlepost > .postmeta .user > a', text: user.email
+    expect(page).to have_css '.pin-show > .header .hrow > a', text: user.email
   end
 
   context 'when signed in' do

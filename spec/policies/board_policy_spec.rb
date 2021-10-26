@@ -8,7 +8,7 @@ RSpec.describe BoardPolicy, type: :policy do
   let(:user) { create(:user, :confirmed) }
   let(:board) { create(:board, user: user) }
 
-  permissions :create?, :new?, :index? do
+  permissions :create?, :new?, :index?, :add_to_board_list? do
     it 'denies access without current_user' do
       expect(board_policy).not_to permit(nil, board)
     end
@@ -18,7 +18,7 @@ RSpec.describe BoardPolicy, type: :policy do
     end
   end
 
-  permissions :update?, :edit?, :destroy? do
+  permissions :update?, :edit?, :destroy?, :add_pin?, :remove_pin? do
     it 'denies access if not the owner of board' do
       different_user = create(:user, :confirmed)
       expect(board_policy).not_to permit(different_user, board)

@@ -35,5 +35,17 @@ RSpec.describe BoardsController, type: :routing do
     it 'routes to #destroy' do
       expect(delete: '/boards/1').to route_to('boards#destroy', id: '1')
     end
+
+    it 'routes to #add_pin' do
+      expect(get: '/boards/1/add_pin/2').to route_to('boards#add_pin', id: '1', pin_id: '2')
+    end
+
+    it 'routes to #remove_pin' do
+      expect(get: '/boards/1/remove_pin/2').to route_to('boards#remove_pin', id: '1', pin_id: '2')
+    end
+
+    it 'routes to #add_to_board_list' do
+      expect(get: '/boards/add_to_board_list/1').to route_to('boards#add_to_board_list', pin_id: '1')
+    end
   end
 end

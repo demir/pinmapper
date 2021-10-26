@@ -273,3 +273,28 @@ main .container form {
 .spinner-border.pinmapper {
   color: $color-1;
 }
+
+.btn_1 {
+  &.xsmall {
+    padding: 7px 15px !important;
+    border: 1px solid $color-1 !important;
+    font-weight: 400 !important;
+    &:hover {
+      border-color: $color-2 !important;
+    }
+  }
+  &.outline.xsmall {
+    padding: 7px 15px !important;
+    color: $color-1 !important;
+    &:hover {
+      color:#fff !important;
+    }
+  }
+  &.rounded.xsmall {
+    color: #fff;
+  }
+}
+
+.dropdown-menu, .dropdown-menu form.button_to {
+  padding: 0;
+}
