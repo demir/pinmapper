@@ -52,6 +52,77 @@ RSpec.describe 'Pins', type: :system, js: true do
       expect(page).not_to have_css '.pin-likes-count .like_btn.liked'
     end
 
+    describe 'add to board' do
+      context 'when there is no board' do
+        it 'shows there is no board message' do
+          visit pins_path
+          pin = pins.first
+          pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
+          pin_element.find('#add-pin-to-board-menu').click
+          expect(page).to have_css "#add-pin-to-board-dropdown_pin_#{pin.id} .body .no-boards > span",
+                                   text: I18n.t('boards.there_is_no_boards')
+        end
+      end
+
+      context 'when there is board' do
+        let!(:boards) { create_list(:board, 3, user: user) }
+
+        it 'shows boards' do
+          visit pins_path
+          pin = pins.first
+          pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
+          pin_element.find('#add-pin-to-board-menu').click
+          expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin",
+                                   count: boards.count
+        end
+
+        it 'can search' do
+          visit pins_path
+          pin = pins.first
+          board = boards.first
+          pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
+          pin_element.find('#add-pin-to-board-menu').click
+          fill_in 'name', with: board.name
+          expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin",
+                                   minimum: 1
+        end
+
+        it 'add to board' do
+          visit pins_path
+          pin = pins.first
+          pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
+          pin_element.find('#add-pin-to-board-menu').click
+          find("#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin .add-button", match: :first).click
+          expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin .remove-button",
+                                   minimum: 1
+        end
+
+        it 'remove from board' do
+          visit pins_path
+          pin = pins.first
+          board = boards.first
+          board.pins.destroy_all
+          board.pins << pin
+          pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
+          pin_element.find('#add-pin-to-board-menu').click
+          pin_element.find("#board_#{board.id} .remove-button").click
+          expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin .remove-button",
+                                   count: 0
+        end
+
+        it 'can infinite scroll' do
+          create_list(:board, 30, user: user)
+          visit pins_path
+          pin = pins.first
+          pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
+          pin_element.find('#add-pin-to-board-menu').click
+          scroll_to(pin_element.find(".body #add_to_board_list_pin_#{pin.id}"), align: :bottom)
+          expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin",
+                                   minimum: user.boards.count
+        end
+      end
+    end
+
     it 'visits pin#show via pin name link' do
       visit pins_path
       pin = pins.first

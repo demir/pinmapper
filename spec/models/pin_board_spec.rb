@@ -13,4 +13,8 @@ RSpec.describe PinBoard, type: :model do
     it { is_expected.to belong_to(:pin) }
     it { is_expected.to belong_to(:board) }
   end
+
+  describe 'validations' do
+    it { is_expected.to validate_uniqueness_of(:board_id).scoped_to(:pin_id) }
+  end
 end

@@ -9,13 +9,10 @@ RSpec.describe 'pins/show', type: :view do
 
   before do
     assign(:pin, pin)
+    render
   end
 
   context 'renders attributes of pin' do
-    before do
-      render
-    end
-
     it '#name' do
       expect(rendered).to match(/#{pin.name}/)
     end
@@ -34,6 +31,33 @@ RSpec.describe 'pins/show', type: :view do
 
     it '#description' do
       expect(rendered).to match(/#{pin.description}/)
+    end
+  end
+
+  describe 'components' do
+    context 'with signed in' do
+      before do
+        sign_in(user)
+        render
+      end
+
+      it 'like button' do
+        expect(rendered).to have_css '.header .hrow .like_btn'
+      end
+
+      it 'add to board button' do
+        expect(rendered).to have_css '.header .hrow .add_to_board_btn'
+      end
+    end
+
+    context 'without signed in' do
+      it 'like button' do
+        expect(rendered).to have_css '.header .hrow .like_btn.disabled'
+      end
+
+      it 'add to board button' do
+        expect(rendered).not_to have_css '.header .hrow .add_to_board_btn'
+      end
     end
   end
 
