@@ -11,7 +11,7 @@ module Boards
     end
 
     def render?
-      current_user.present?
+      board.user == current_user
     end
   end
 end
