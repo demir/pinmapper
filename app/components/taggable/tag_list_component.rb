@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Pins
+module Taggable
   class TagListComponent < ViewComponent::Base
     attr_reader :tags
 

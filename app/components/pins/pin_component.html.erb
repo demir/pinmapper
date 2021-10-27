@@ -12,7 +12,7 @@
   <div class="body">
     <h3><%= link_to @pin.name, pin_path(@pin) %></h3>
     <p class="cover-image-description"><%= @pin.cover_image_description %></p>
-    <%= render(Pins::TagListComponent.new(tags: @pin.tags)) %>
+    <%= render(Taggable::TagListComponent.new(tags: @pin.tags)) %>
     <small class="time-ago"><%= "#{time_ago_in_words(@pin.created_at)} #{t('ago')}" %></small>
   </div>
   <div class="footer">

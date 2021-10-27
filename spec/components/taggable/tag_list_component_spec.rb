@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Pins::TagListComponent, type: :component do
+RSpec.describe Taggable::TagListComponent, type: :component do
   let!(:pin) { create(:pin) }
 
   before do
