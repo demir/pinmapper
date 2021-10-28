@@ -45,6 +45,10 @@ class Pin < ApplicationRecord
     crop.compact.count == 4 ? { crop: crop } : {}
   end
 
+  def city_country
+    address.split(',').last(2).join(',').strip
+  end
+
   private
 
   def delete_crops

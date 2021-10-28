@@ -28,7 +28,13 @@ class BoardsController < ApplicationController
   end
 
   # GET /boards/1 or /boards/1.json
-  def show; end
+  def show
+    @pagy, @pins = pagy @board.pins.order(created_at: :desc)
+    respond_to do |f|
+      f.html
+      f.turbo_stream
+    end
+  end
 
   # GET /boards/new
   def new
