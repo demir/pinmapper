@@ -8,6 +8,18 @@
     justify-content: space-between;
     align-items: center;
   }
+  >.body {
+    @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
+  }
+}
+
+.board-show {
+  >.body {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
 }
 
 .board {
@@ -16,16 +28,25 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  background-color: #fff;
   border-bottom: 1px solid $border-color-2;
-  padding: 15px 0;
+  padding: 16px;
   span > a.board-name {
     @include fontSize(20px);
+  }
+  &:first-child {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+  &:last-child {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
   }
 }
 
 .dropdown-menu.add-pin-to-board{
   min-width: 340px;
-  @include border-radius(5px);
+  @include border-radius(3px);
   .header {
     display: flex;
     flex-direction: column;
@@ -61,7 +82,7 @@
   gap: 50px;
   padding: 10px 5px;
   min-width: 300px;
-  @include border-radius(5px);
+  @include border-radius(3px);
   &:hover {
     background-color: $border-color-2;
   }

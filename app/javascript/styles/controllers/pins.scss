@@ -1,5 +1,9 @@
+//----------------------- Pin ----------------------//
+
 .pin {
+  @include border-radius(3px);
   background-color: #fff;
+  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
   max-width: 600px;
   width: 100%;
   margin-left: auto;
@@ -7,7 +11,6 @@
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
-  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
   >.header {
     display: flex;
     justify-content: space-between;
@@ -48,17 +51,12 @@
   }
 }
 
+//-------------------- Pin likes -------------------//
+
 .pin-likes-count {
   display: flex;
   gap: 10px;
   align-items: center;
-}
-
-.pin-tag {
-  color: #999;
-  &:hover {
-    color: #fc5b62;
-  }
 }
 
 .liked-pins {
@@ -74,7 +72,16 @@
   }
 }
 
-//-------------------- Pins#show --------------------//
+//-------------------- Pin tags --------------------//
+
+.pin-tag {
+  color: #999;
+  &:hover {
+    color: #fc5b62;
+  }
+}
+
+//-------------------- Pins#show -------------------//
 
 .pin-show{
   >.header {
@@ -121,7 +128,7 @@
 	display: block;
 	margin-bottom: 15px;
   background-color: #fff;
-  border-radius: 3px;
+  @include border-radius(3px);
 
   .pins-list {
     padding: 0;
@@ -160,7 +167,7 @@
 	background-color: #fff;
 	padding: 30px;
 	margin-bottom: 25px;
-  border-radius: 3px;
+  @include border-radius(3px);
 	@include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
 	h1 {
 		@include fontSize(32px);

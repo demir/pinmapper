@@ -1,6 +1,7 @@
 <div id="<%= dom_id(board) %>" class="board">
   <div>
     <span><%= link_to "#{board.name}", board_path(board), class: "#{name_class} board-name" %></span>
+    <span class="soft-black-text">(<%= board.pins.count %>)</span>
     <% if show_privacy_badge %>
       <br>
       <small class="badge badge-<%= privacy_badge_class %> privacy"><%= board.translated_privacy %></small>
