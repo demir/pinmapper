@@ -160,6 +160,13 @@ header {
   }
 }
 
+.black-link-555555 {
+  color: #555555;
+  &:hover {
+    color: #fc5b62;
+  }
+}
+
 .soft-black-text {
   color: #999;
 }

@@ -7,9 +7,11 @@
           <h2><%= @board.name %></h2>
         </div>
       </div>
-      <div class="body">
-        <%= @board.translated_privacy %>
+      <div id="infinite-pins" class="body">
+        <%= render Pins::SmallPinComponent.with_collection(@pins, current_user: @current_user) %>
+        <!-- /pin_lists -->
       </div>
+      <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
     </div>
   </div>
 </div>

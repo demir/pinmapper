@@ -51,6 +51,29 @@
   }
 }
 
+//-------------------- Small Pin -------------------//
+
+.small-pin {
+  display: flex;
+  background-color: #fff;
+  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
+  @include border-radius(3px);
+  max-height: 100px;
+  width: 100%;
+  .image img {
+    @include border-radius(3px 0 0 3px);
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    h6 {
+      margin-bottom: 0;
+    }
+  }
+}
+
 //-------------------- Pin likes -------------------//
 
 .pin-likes-count {
