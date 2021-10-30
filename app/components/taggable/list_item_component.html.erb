@@ -2,5 +2,13 @@
   <div class="tag">
     <span><%= link_to "##{@tag.name}", tag_path(@tag), class: 'black-link', target: '_top' %></span>
   </div>
-  <%= render(Taggable::FollowUnfollowButtonComponent.new(tag: @tag, current_user: current_user)) %>
+  <%= render(General::TwinButtonComponent.new(
+    display_block: -> {
+      current_user.present?
+    },
+    first_button: current_user&.tags&.exclude?(@tag),
+    record_dom_id: dom_id(@tag),
+    first_button_path: follow_tag_path(@tag),
+    second_button_path: unfollow_tag_path(@tag)
+  )) %>
 </div>
