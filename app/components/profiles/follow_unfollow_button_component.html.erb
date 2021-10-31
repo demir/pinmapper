@@ -1,7 +1,0 @@
-<%= tag.div id: "follow_button_#{dom_id(@user)}" do %>
-  <% if @current_user.following.include?(@user) %>
-    <%= render(Profiles::UnfollowButtonComponent.new(user: @user, current_user: @current_user)) %>
-  <% else %>
-    <%= render(Profiles::FollowButtonComponent.new(user: @user, current_user: @current_user)) %>
-  <% end %>
-<% end %>

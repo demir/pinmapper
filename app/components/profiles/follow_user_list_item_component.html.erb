@@ -3,5 +3,15 @@
     <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'), size: 50)) %>
     <span><%= link_to user.email, profile_path(user), class: 'soft-black-link', target: '_top' %></span>
   </div>
-  <%= render(Profiles::FollowUnfollowButtonComponent.new(user: user, current_user: current_user)) %>
+  <%= render(General::TwinButtonComponent.new(
+    display_block: -> {
+      return if current_user.blank?
+
+      current_user != @user
+    },
+    first_button: current_user&.following&.exclude?(@user),
+    record_dom_id: dom_id(@user),
+    first_button_path: follow_profile_path(@user),
+    second_button_path: unfollow_profile_path(@user)
+  )) %>
 </div>
