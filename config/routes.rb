@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       end
       collection do
         get 'add_to_board_list/:pin_id', action: 'add_to_board_list', as: 'add_to_board_list'
+        get 'following_boards'
       end
     end
     resources :tags, only: %i[show] do

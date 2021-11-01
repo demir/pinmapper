@@ -59,4 +59,8 @@ class BoardPolicy < ApplicationPolicy
 
     user.following_boards.include?(record)
   end
+
+  def following_boards?
+    user.present?
+  end
 end

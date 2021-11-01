@@ -107,6 +107,14 @@ class BoardsController < ApplicationController
     end
   end
 
+  def following_boards
+    @pagy, @boards = pagy current_user.following_boards.order(created_at: :desc)
+    respond_to do |f|
+      f.html
+      f.turbo_stream
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
