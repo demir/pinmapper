@@ -47,4 +47,16 @@ class BoardPolicy < ApplicationPolicy
   def add_to_board_list?
     index?
   end
+
+  def follow?
+    return if user.blank?
+
+    user.following_boards.exclude?(record)
+  end
+
+  def unfollow?
+    return if user.blank?
+
+    user.following_boards.include?(record)
+  end
 end

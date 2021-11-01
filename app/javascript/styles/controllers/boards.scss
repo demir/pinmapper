@@ -14,6 +14,11 @@
 }
 
 .board-show {
+  >.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   >.body {
     display: grid;
     justify-content: center;
@@ -41,6 +46,11 @@
   &:last-child {
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+  }
+  >.item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
   }
 }
 

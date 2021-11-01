@@ -13,6 +13,8 @@ class Board < ApplicationRecord
   belongs_to :user
   has_many :pin_boards, dependent: :destroy
   has_many :pins, through: :pin_boards, dependent: :destroy
+  has_many :user_boards, dependent: :destroy
+  has_many :followers, through: :user_boards, source: :user, dependent: :destroy
 
   # validations
   validates :name, presence: true

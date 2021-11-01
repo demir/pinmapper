@@ -7,5 +7,18 @@
       <small class="badge badge-<%= privacy_badge_class %> privacy"><%= board.translated_privacy %></small>
     <% end %>
   </div>
-  <%= render(Boards::MoreButtonComponent.new(board: board, current_user: current_user )) %>
+  <div class="item">
+    <%= render(General::TwinButtonComponent.new(
+      display_block: -> {
+        return if current_user.blank?
+
+        @board.user != current_user
+      },
+      first_button: current_user&.following_boards&.exclude?(@board),
+      record_dom_id: dom_id(@board),
+      first_button_path: follow_board_path(@board),
+      second_button_path: unfollow_board_path(@board)
+    )) %>
+    <%= render(Boards::MoreButtonComponent.new(board: board, current_user: current_user )) %>
+  </div>
 </div>
