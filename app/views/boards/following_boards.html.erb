@@ -9,7 +9,7 @@
       </div>
       <div class="body">
         <div id="infinite-boards">
-          <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user, show_privacy_badge: true, name_class: 'black-link' })) %>
+          <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user, name_class: 'black-link' })) %>
         </div>
         <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
       </div>
