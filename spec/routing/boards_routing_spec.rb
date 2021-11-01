@@ -55,5 +55,9 @@ RSpec.describe BoardsController, type: :routing do
     it 'routes to #unfollow' do
       expect(get: '/boards/1/unfollow').to route_to('boards#unfollow', id: '1')
     end
+
+    it 'routes to #following_boards' do
+      expect(get: '/boards/following_boards').to route_to('boards#following_boards')
+    end
   end
 end

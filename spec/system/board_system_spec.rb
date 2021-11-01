@@ -18,6 +18,13 @@ RSpec.describe 'Boards', type: :system, js: true do
       expect(page).to have_css '.boards .board', count: 2
     end
 
+    it '#following_boards' do
+      visit root_path
+      find('.dropdown-user').click
+      click_link I18n.t('boards.following_boards')
+      expect(page).to have_css '.boards > .header h2', text: I18n.t('boards.following_boards')
+    end
+
     it 'renders more button' do
       visit boards_path
       expect(page).to have_css '.board .board-more'
