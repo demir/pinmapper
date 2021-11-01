@@ -8,7 +8,7 @@ class PinsController < ApplicationController
 
   # GET /pins or /pins.json
   def index
-    @pagy, @pins = pagy pins
+    @pagy, @pins = pagy policy_scope(Pin)
     respond_to do |f|
       f.html
       f.turbo_stream
@@ -97,23 +97,5 @@ class PinsController < ApplicationController
 
   def authorize_pin
     authorize @pin || Pin.new
-  end
-
-  def pins
-    if current_user.present?
-      Pin.where(id: own_and_following_pins.ids | tag_pins.ids)
-    else
-      Pin.all
-    end.order(created_at: :desc)
-  end
-
-  def tag_pins
-    Pin.tagged_with(current_user.tags, any: true).order(created_at: :desc)
-  end
-
-  def own_and_following_pins
-    Pin.joins(:user)
-       .where(users: { id: current_user.following | Array(current_user) })
-       .order(created_at: :desc)
   end
 end

@@ -1,0 +1,4 @@
+<%= turbo_stream.append "infinite-boards" do %>
+  <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user, name_class: 'black-link' })) %>
+<% end %>
+<%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy, format: :turbo_stream)) %>

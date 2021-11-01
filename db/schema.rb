@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_24_214316) do
+ActiveRecord::Schema.define(version: 2021_10_31_234535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -135,6 +135,16 @@ ActiveRecord::Schema.define(version: 2021_10_24_214316) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "user_boards", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "board_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_user_boards_on_board_id"
+    t.index ["user_id", "board_id"], name: "index_user_boards_on_user_id_and_board_id", unique: true
+    t.index ["user_id"], name: "index_user_boards_on_user_id"
+  end
+
   create_table "user_tags", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "tag_id", null: false
@@ -184,6 +194,8 @@ ActiveRecord::Schema.define(version: 2021_10_24_214316) do
   add_foreign_key "pin_boards", "pins"
   add_foreign_key "pins", "users"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "user_boards", "boards"
+  add_foreign_key "user_boards", "users"
   add_foreign_key "user_tags", "tags"
   add_foreign_key "user_tags", "users"
 end

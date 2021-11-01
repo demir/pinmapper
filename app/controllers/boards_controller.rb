@@ -2,7 +2,8 @@
 
 class BoardsController < ApplicationController
   include Pagy::Backend
-  before_action :set_board, only: %i[show edit update destroy add_pin remove_pin]
+  before_action :set_board, only: %i[show edit update destroy
+                                     add_pin remove_pin follow unfollow]
   before_action :set_pin, only: %i[add_pin remove_pin add_to_board_list]
   before_action :authorize_board
 
@@ -90,6 +91,28 @@ class BoardsController < ApplicationController
 
   def remove_pin
     @board.pins.delete(@pin)
+  end
+
+  def follow
+    current_user.following_boards << @board
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
+  def unfollow
+    current_user.following_boards.delete(@board)
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
+  def following_boards
+    @pagy, @boards = pagy current_user.following_boards.order(created_at: :desc)
+    respond_to do |f|
+      f.html
+      f.turbo_stream
+    end
   end
 
   private

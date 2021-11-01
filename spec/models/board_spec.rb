@@ -12,6 +12,7 @@ RSpec.describe Board, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to have_many(:pins) }
+    it { is_expected.to have_many(:followers) }
   end
 
   describe 'validations' do

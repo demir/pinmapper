@@ -18,6 +18,13 @@ RSpec.describe 'Boards', type: :system, js: true do
       expect(page).to have_css '.boards .board', count: 2
     end
 
+    it '#following_boards' do
+      visit root_path
+      find('.dropdown-user').click
+      click_link I18n.t('boards.following_boards')
+      expect(page).to have_css '.boards > .header h2', text: I18n.t('boards.following_boards')
+    end
+
     it 'renders more button' do
       visit boards_path
       expect(page).to have_css '.board .board-more'
@@ -84,7 +91,7 @@ RSpec.describe 'Boards', type: :system, js: true do
       context 'from the index page' do
         it 'visits the edit page' do
           visit boards_path
-          more_button = find('.board > .board-more > svg', match: :first)
+          more_button = find('.board > .item .board-more > svg', match: :first)
           board_element = more_button.ancestor('.board')
           more_button.click
           edit_board_link_element = board_element.find('.dropdown.board-more .dropdown-menu a',
@@ -98,7 +105,7 @@ RSpec.describe 'Boards', type: :system, js: true do
 
         it 'deletes a board' do
           visit boards_path
-          more_button = find('.board > .board-more > svg', match: :first)
+          more_button = find('.board > .item .board-more > svg', match: :first)
           board_element = more_button.ancestor('.board')
           more_button.click
           delete_board_link_element = board_element.find('.dropdown.board-more .dropdown-menu a',
@@ -109,6 +116,30 @@ RSpec.describe 'Boards', type: :system, js: true do
           expect(page).to have_content I18n.t('boards.destroy.success')
         end
       end
+    end
+
+    context 'boards#show' do
+      let(:board) { create(:board) }
+
+      it '#follow' do
+        visit board_path(id: board)
+        find('.board-show > .header a.btn_1', text: I18n.t('follow')).click
+        expect(page).to have_css '.board-show > .header a.btn_1', text: I18n.t('unfollow')
+      end
+
+      it '#unfollow' do
+        current_user.following_boards << board
+        visit board_path(id: board)
+        find('.board-show > .header a.btn_1', text: I18n.t('following_tr')).click
+        expect(page).to have_css '.board-show > .header a.btn_1', text: I18n.t('follow')
+      end
+    end
+  end
+
+  context 'When not signed in' do
+    it 'renders more button' do
+      visit boards_path
+      expect(page).not_to have_css '.board .board-more'
     end
   end
 end

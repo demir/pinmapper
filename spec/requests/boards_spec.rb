@@ -30,6 +30,11 @@ RSpec.describe '/boards', type: :request do
       end
     end
 
+    it 'GET /following_boards' do
+      get following_boards_boards_path
+      expect(response).to be_successful
+    end
+
     describe 'GET /show' do
       it 'renders a successful response' do
         get board_url(id: board)
@@ -242,6 +247,11 @@ RSpec.describe '/boards', type: :request do
           expect(response).not_to be_successful
         end
       end
+    end
+
+    it 'can not GET /following_boards' do
+      get following_boards_boards_path
+      expect(response).not_to be_successful
     end
   end
 end

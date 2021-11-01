@@ -47,5 +47,17 @@ RSpec.describe BoardsController, type: :routing do
     it 'routes to #add_to_board_list' do
       expect(get: '/boards/add_to_board_list/1').to route_to('boards#add_to_board_list', pin_id: '1')
     end
+
+    it 'routes to #follow' do
+      expect(get: '/boards/1/follow').to route_to('boards#follow', id: '1')
+    end
+
+    it 'routes to #unfollow' do
+      expect(get: '/boards/1/unfollow').to route_to('boards#unfollow', id: '1')
+    end
+
+    it 'routes to #following_boards' do
+      expect(get: '/boards/following_boards').to route_to('boards#following_boards')
+    end
   end
 end

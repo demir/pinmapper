@@ -32,4 +32,11 @@ RSpec.describe Boards::BoardComponent, type: :component do
       end
     end
   end
+
+  it 'follow/unfollow button' do
+    render_inline(described_class.with_collection(boards, options: { current_user: current_user }))
+    # sadece 1 tanesini kontrol ediyor
+    board = boards.first
+    expect(rendered_component).to have_css "#twin_button_board_#{board.id}"
+  end
 end
