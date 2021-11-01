@@ -19,7 +19,43 @@ RSpec.describe 'boards/show', type: :view do
     assign(:pagy, pagy_obj)
   end
 
-  context 'renders attributes of board' do
+  context 'when user not signed in' do
+    before do
+      render
+    end
+
+    it 'without follow/unfollow buton' do
+      assert_select '.board-show > .header a.btn_1', text: I18n.t('follow'), count: 0
+    end
+  end
+
+  context 'renders board header when user signed in' do
+    let(:new_board) { create(:board) }
+
+    before do
+      sign_in(current_user)
+    end
+
+    it 'do not show follow button when following board' do
+      current_user.following_boards << new_board
+      render
+      assert_select '.board-show > .header a.btn_1', text: I18n.t('follow'), count: 0
+    end
+
+    it 'do not show follow button when board owner is current_user' do
+      current_user.following_boards << board
+      render
+      assert_select '.board-show > .header a.btn_1', text: I18n.t('follow'), count: 0
+    end
+
+    it 'show follow button when not following board' do
+      assign(:board, new_board)
+      render
+      assert_select '.board-show > .header a.btn_1', text: I18n.t('follow'), count: 1
+    end
+  end
+
+  context 'renders attributes of board (sign in not required)' do
     before do
       render
     end

@@ -53,4 +53,34 @@ RSpec.describe BoardPolicy, type: :policy do
       end
     end
   end
+
+  permissions :follow? do
+    it 'can not follow without current_user' do
+      expect(board_policy).not_to permit(nil, board)
+    end
+
+    it 'denies access if already followed by current_user' do
+      user.following_boards << board
+      expect(board_policy).not_to permit(user, board)
+    end
+
+    it 'grants access if not followed by current_user' do
+      expect(board_policy).to permit(user, board)
+    end
+  end
+
+  permissions :unfollow? do
+    it 'can not unfollow without current_user' do
+      expect(board_policy).not_to permit(nil, board)
+    end
+
+    it 'denies access if not followed by current_user' do
+      expect(board_policy).not_to permit(user, board)
+    end
+
+    it 'grants access if liked by current_user' do
+      user.following_boards << board
+      expect(board_policy).to permit(user, board)
+    end
+  end
 end

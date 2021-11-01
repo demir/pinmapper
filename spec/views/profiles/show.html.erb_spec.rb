@@ -67,6 +67,10 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
     it 'following' do
       expect(rendered).to match(/#{t('following_tr')}/)
     end
+
+    it 'boards' do
+      expect(rendered).to match(/#{t('boards.boards_tr')}/)
+    end
   end
 
   context 'renders body' do
