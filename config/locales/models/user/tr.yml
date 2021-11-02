@@ -5,6 +5,8 @@ tr:
     attributes:
       user: &user_attributes
         email: E-posta
+        username: Kullanıcı adı
+        login: E-posta ya da Kullanıcı adı
         password: Parola
         password_confirmation: Parola (Tekrar)
         current_password: Mevcut Parolanız

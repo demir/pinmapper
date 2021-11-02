@@ -5,6 +5,8 @@ en:
     attributes:
       user: &user_attributes
         email: Email
+        username: Username
+        login: Email or Username
         password: Password
         password_confirmation: Password Confirmation
         current_password: Current Password
