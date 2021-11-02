@@ -1,0 +1,29 @@
+<div class="container margin_100_55">
+  <div class="row">
+    <div class="col-lg-12 board-show">
+      <div class="header">
+        <div class="main_title_3">
+          <span><em></em></span>
+          <h2><%= @board.name %></h2>
+        </div>
+        <%= render(General::TwinButtonComponent.new(
+            display_block: -> {
+              return if current_user.blank?
+
+              @board.user != current_user
+            },
+            first_button: current_user&.following_boards&.exclude?(@board),
+            record_dom_id: dom_id(@board),
+            first_button_path: follow_board_path(@board),
+            second_button_path: unfollow_board_path(@board)
+          )) %>
+      </div>
+      <div id="infinite-pins" class="body">
+        <%= render Pins::SmallPinComponent.with_collection(@pins, current_user: @current_user) %>
+        <!-- /pin_lists -->
+      </div>
+      <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+    </div>
+  </div>
+</div>
+<!-- /container -->

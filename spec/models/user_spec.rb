@@ -14,6 +14,8 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:followers) }
     it { is_expected.to have_many(:following) }
     it { is_expected.to have_many(:tags) }
+    it { is_expected.to have_many(:boards) }
+    it { is_expected.to have_many(:following_boards) }
   end
 
   context 'validations' do

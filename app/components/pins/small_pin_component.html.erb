@@ -1,0 +1,16 @@
+<div class="small-pin">
+  <div class="image">
+    <%= image_tag pin.cover_image.variant(
+          pin.cover_image_crop_constraints.merge(resize_to_fill: [100, 100, gravity: 'center'])
+        ), alt: '' if pin.cover_image.attached? %>
+  </div>
+  <div class="body">
+    <div>
+      <h6><%= link_to pin.name, pin, class: 'black-link' %></h6>
+      <small><%= link_to pin.user.email, profile_path(pin.user), class: 'black-link-555555' %></small>
+    </div>
+    <div>
+      <i class="icon_pin_alt"></i><small class="address"><%= pin.city_country %></small>
+    </div>
+  </div>
+</div>

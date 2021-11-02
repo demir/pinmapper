@@ -6,16 +6,17 @@
     </div>
     <%= render(Pins::MoreButtonComponent.new(pin: @pin, current_user: @current_user )) %>
   </div>
-  <%= image_tag @pin.cover_image.variant(
-        @pin.cover_image_crop_constraints.merge(resize_to_limit: [600, 600])
-      ), alt: '' if @pin.cover_image.attached? %>
+  <% if @pin.cover_image.attached? %>
+    <%= image_tag @pin.cover_image.variant(@pin.cover_image_crop_constraints), class: 'responsive', alt: '' %>
+  <% end %>
   <div class="body">
     <h3><%= link_to @pin.name, pin_path(@pin) %></h3>
     <p class="cover-image-description"><%= @pin.cover_image_description %></p>
-    <%= render(Pins::TagListComponent.new(tags: @pin.tags)) %>
+    <%= render(Taggable::TagListComponent.new(tags: @pin.tags)) %>
     <small class="time-ago"><%= "#{time_ago_in_words(@pin.created_at)} #{t('ago')}" %></small>
   </div>
   <div class="footer">
     <%= render Pins::LikeButtonComponent.new(pin: @pin, current_user: @current_user) %>
+    <%= render Pins::Boards::AddToBoardButtonComponent.new(pin: @pin, current_user: @current_user) %>
   </div>
 </div>

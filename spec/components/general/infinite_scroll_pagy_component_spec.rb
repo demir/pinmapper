@@ -40,7 +40,19 @@ RSpec.describe General::InfiniteScrollPagyComponent, type: :component do
     end
 
     it 'div#infinite-scroll-pagination' do
-      expect(rendered_component).to have_css 'div#infinite-scroll-pagination'
+      expect(rendered_component).to have_css 'div#infinite-scroll-pagination-'
+    end
+
+    context 'for record' do
+      let(:pin) { create(:pin) }
+
+      before do
+        render_inline(described_class.new(pagy: pagy, record: pin, format: :html))
+      end
+
+      it 'div#infinite-scroll-pagination' do
+        expect(rendered_component).to have_css "div#infinite-scroll-pagination-pin_#{pin.id}"
+      end
     end
   end
 
@@ -54,7 +66,19 @@ RSpec.describe General::InfiniteScrollPagyComponent, type: :component do
     end
 
     it '#target' do
-      expect(rendered_component).to have_css 'turbo-stream[target="infinite-scroll-pagination"]'
+      expect(rendered_component).to have_css 'turbo-stream[target="infinite-scroll-pagination-"]'
+    end
+
+    context 'for record' do
+      let(:pin) { create(:pin) }
+
+      before do
+        render_inline(described_class.new(pagy: pagy, record: pin, format: :turbo_stream))
+      end
+
+      it 'div#infinite-scroll-pagination' do
+        expect(rendered_component).to have_css "turbo-stream[target='infinite-scroll-pagination-pin_#{pin.id}']"
+      end
     end
   end
 end

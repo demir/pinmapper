@@ -6,12 +6,27 @@
         <div class="information">
           <div class="item">
             <span><%= @user.email %></span>
-            <%= render(Profiles::FollowUnfollowButtonComponent.new(user: @user, current_user: current_user)) %>
+            <%= render(General::TwinButtonComponent.new(
+              display_block: -> {
+                return if current_user.blank?
+
+                current_user != @user
+              },
+              first_button: current_user&.following&.exclude?(@user),
+              record_dom_id: dom_id(@user),
+              first_button_path: follow_profile_path(@user),
+              second_button_path: unfollow_profile_path(@user)
+            )) %>
           </div>
           <div class="item">
-            <%= render(Profiles::PinsLinkComponent.new(user: @user)) %>
-            <%= render(Profiles::FollowersLinkComponent.new(user: @user)) %>
-            <%= render(Profiles::FollowingLinkComponent.new(user: @user)) %>
+            <div>
+              <%= render(Profiles::PinsLinkComponent.new(user: @user)) %>
+              <%= render(Profiles::BoardsLinkComponent.new(user: @user)) %>
+            </div>
+            <div>
+              <%= render(Profiles::FollowersLinkComponent.new(user: @user)) %>
+              <%= render(Profiles::FollowingLinkComponent.new(user: @user)) %>
+            </div>
           </div>
         </div>
       </div>

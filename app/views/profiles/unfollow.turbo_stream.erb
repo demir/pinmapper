@@ -1,5 +1,15 @@
-<%= turbo_stream.replace "follow_button_#{dom_id(@user)}" do %>
-  <%= render(Profiles::FollowUnfollowButtonComponent.new(user: @user, current_user: current_user)) %>
+<%= turbo_stream.replace "twin_button_#{dom_id(@user)}" do %>
+  <%= render(General::TwinButtonComponent.new(
+    display_block: -> {
+      return if current_user.blank?
+
+      current_user != @user
+    },
+    first_button: current_user&.following&.exclude?(@user),
+    record_dom_id: dom_id(@user),
+    first_button_path: follow_profile_path(@user),
+    second_button_path: unfollow_profile_path(@user)
+  )) %>
 <% end %>
 
 <%= turbo_stream.replace "followers_link_#{dom_id(@user)}" do %>

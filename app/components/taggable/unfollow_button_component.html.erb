@@ -1,7 +1,0 @@
-<%= link_to t('following'), unfollow_tag_path(tag), class: 'btn_1 rounded small', method: :get,
-                            data: {
-                              controller: 'unfollow',
-                              action: 'mouseover->unfollow#button_mouseover mouseout->unfollow#button_mouseout',
-                              'unfollow-mouseout-text-value': t('following'),
-                              'unfollow-mouseover-text-value': t('unfollow')
-                              } %>

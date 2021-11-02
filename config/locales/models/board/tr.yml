@@ -1,0 +1,15 @@
+tr:
+  activerecord:
+    models:
+      board: Pano
+    attributes:
+      board: &board_attributes
+        name: Pano Adı
+        privacy: Gizlilik
+        privacy_list:
+          public: Herkese açık
+          secret: Gizli
+  simple_form:
+    labels:
+      board:
+        <<: *board_attributes

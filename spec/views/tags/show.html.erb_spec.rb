@@ -43,7 +43,7 @@ RSpec.describe 'tags/show.html.erb', type: :view do
       assert_select '.tag > .header a.btn_1', text: I18n.t('follow'), count: 0
     end
 
-    it 'show follow button when following tag' do
+    it 'show follow button when not following tag' do
       render
       assert_select '.tag > .header a.btn_1', text: I18n.t('follow'), count: 1
     end

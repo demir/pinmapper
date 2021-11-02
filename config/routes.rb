@@ -2,6 +2,18 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
     root to: 'pages#index'
     devise_for :users
+    resources :boards do
+      member do
+        get 'add_pin/:pin_id', action: 'add_pin', as: 'add_pin'
+        get 'remove_pin/:pin_id', action: 'remove_pin', as: 'remove_pin'
+        get 'follow'
+        get 'unfollow'
+      end
+      collection do
+        get 'add_to_board_list/:pin_id', action: 'add_to_board_list', as: 'add_to_board_list'
+        get 'following_boards'
+      end
+    end
     resources :tags, only: %i[show] do
       member do
         get 'follow'
@@ -17,6 +29,7 @@ Rails.application.routes.draw do
         get 'unfollow'
         get 'followers'
         get 'following'
+        get 'boards'
       end
     end
     resources :pins do

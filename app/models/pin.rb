@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Pin < ApplicationRecord
-  include TranslateEnum
   acts_as_taggable_on :tags
   acts_as_votable
   geocoded_by :address do |obj, results|
@@ -27,6 +26,8 @@ class Pin < ApplicationRecord
   has_one_attached :cover_image
   has_rich_text :description
   belongs_to :user
+  has_many :pin_boards, dependent: :destroy
+  has_many :boards, through: :pin_boards, dependent: :destroy
 
   # validations
   validates :name, presence: true
@@ -42,6 +43,10 @@ class Pin < ApplicationRecord
             cover_image_crop.crop_width.to_f, cover_image_crop.crop_height.to_f]
 
     crop.compact.count == 4 ? { crop: crop } : {}
+  end
+
+  def city_country
+    address.split(',').last(2).join(',').strip
   end
 
   private

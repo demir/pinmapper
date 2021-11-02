@@ -11,7 +11,7 @@ module Pins
     end
 
     def render?
-      @current_user.present?
+      pin.user == current_user
     end
   end
 end

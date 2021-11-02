@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_115334) do
+ActiveRecord::Schema.define(version: 2021_10_31_234535) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -53,6 +54,15 @@ ActiveRecord::Schema.define(version: 2021_10_20_115334) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "boards", force: :cascade do |t|
+    t.string "name"
+    t.integer "privacy"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_boards_on_user_id"
+  end
+
   create_table "crops", force: :cascade do |t|
     t.integer "cropable_id"
     t.string "cropable_type"
@@ -73,6 +83,16 @@ ActiveRecord::Schema.define(version: 2021_10_20_115334) do
     t.index ["follower_id"], name: "index_follows_on_follower_id"
     t.index ["following_id", "follower_id"], name: "index_follows_on_following_id_and_follower_id", unique: true
     t.index ["following_id"], name: "index_follows_on_following_id"
+  end
+
+  create_table "pin_boards", force: :cascade do |t|
+    t.bigint "pin_id", null: false
+    t.bigint "board_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_pin_boards_on_board_id"
+    t.index ["pin_id", "board_id"], name: "index_pin_boards_on_pin_id_and_board_id", unique: true
+    t.index ["pin_id"], name: "index_pin_boards_on_pin_id"
   end
 
   create_table "pins", force: :cascade do |t|
@@ -113,6 +133,16 @@ ActiveRecord::Schema.define(version: 2021_10_20_115334) do
     t.datetime "updated_at"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "user_boards", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "board_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_user_boards_on_board_id"
+    t.index ["user_id", "board_id"], name: "index_user_boards_on_user_id_and_board_id", unique: true
+    t.index ["user_id"], name: "index_user_boards_on_user_id"
   end
 
   create_table "user_tags", force: :cascade do |t|
@@ -159,8 +189,13 @@ ActiveRecord::Schema.define(version: 2021_10_20_115334) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "boards", "users"
+  add_foreign_key "pin_boards", "boards"
+  add_foreign_key "pin_boards", "pins"
   add_foreign_key "pins", "users"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "user_boards", "boards"
+  add_foreign_key "user_boards", "users"
   add_foreign_key "user_tags", "tags"
   add_foreign_key "user_tags", "users"
 end

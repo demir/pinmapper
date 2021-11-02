@@ -160,6 +160,13 @@ header {
   }
 }
 
+.black-link-555555 {
+  color: #555555;
+  &:hover {
+    color: #fc5b62;
+  }
+}
+
 .soft-black-text {
   color: #999;
 }
@@ -256,6 +263,7 @@ main .container form {
   background-color: #fff;
   padding: 20px;
   @include border-radius(3px);
+  @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
 }
 
 .form-group.rich_text_area {
@@ -272,4 +280,34 @@ main .container form {
 
 .spinner-border.pinmapper {
   color: $color-1;
+}
+
+.btn_1 {
+  &.xsmall {
+    padding: 7px 15px !important;
+    border: 1px solid $color-1 !important;
+    font-weight: 400 !important;
+    &:hover {
+      border-color: $color-2 !important;
+    }
+  }
+  &.outline.xsmall {
+    padding: 7px 15px !important;
+    color: $color-1 !important;
+    &:hover {
+      color:#fff !important;
+    }
+  }
+  &.rounded.xsmall {
+    color: #fff;
+  }
+}
+
+.dropdown-menu, .dropdown-menu form.button_to {
+  padding: 0;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
 }

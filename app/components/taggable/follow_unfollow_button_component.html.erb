@@ -1,7 +1,0 @@
-<%= tag.div id: "follow_button_#{dom_id(@tag)}" do %>
-  <% if current_user.tags.include?(@tag) %>
-    <%= render(Taggable::UnfollowButtonComponent.new(tag: @tag, current_user: current_user)) %>
-  <% else %>
-    <%= render(Taggable::FollowButtonComponent.new(tag: @tag, current_user: current_user)) %>
-  <% end %>
-<% end %>

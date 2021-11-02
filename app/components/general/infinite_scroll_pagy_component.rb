@@ -4,11 +4,12 @@ module General
   class InfiniteScrollPagyComponent < ViewComponent::Base
     include Turbo::StreamsHelper
     include Pagy::Frontend
-    attr_reader :pagy, :format
+    attr_reader :pagy, :record, :format
 
-    def initialize(pagy:, format: :html)
+    def initialize(pagy:, record: nil, format: :html)
       @pagy = pagy
       @format = format
+      @record = record
     end
 
     def render?

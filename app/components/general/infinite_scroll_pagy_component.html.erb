@@ -1,5 +1,6 @@
+<% record_id = record.present? ? dom_id(record) : '' %>
 <% if format == :html %>
-  <%= tag.div id: 'infinite-scroll-pagination' do %>
+  <%= tag.div id: "infinite-scroll-pagination-#{record_id}" do %>
     <div data-controller="infinite-scroll" data-infinite-scroll-next-page-url-value="<%= pagy_url_for(pagy, pagy.next) %>"
                                            data-infinite-scroll-next-page-value="<%= pagy.next %>">
       <div data-infinite-scroll-target="scrollArea"></div>
@@ -9,7 +10,7 @@
     </div>
   <% end  %>
 <% elsif format == :turbo_stream %>
-  <%= turbo_stream.update 'infinite-scroll-pagination' do %>
+  <%= turbo_stream.update "infinite-scroll-pagination-#{record_id}" do %>
     <div data-controller="infinite-scroll" data-infinite-scroll-next-page-url-value="<%= pagy_url_for(pagy, pagy.next) %>"
                                            data-infinite-scroll-next-page-value="<%= pagy.next %>">
       <div data-infinite-scroll-target="scrollArea"></div>

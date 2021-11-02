@@ -1,0 +1,13 @@
+<%= tag.div id: "twin_button_#{record_dom_id}" do %>
+  <% if first_button %>
+    <%= link_to first_button_text, first_button_path, class: first_button_class, method: method %>
+  <% else %>
+    <%= link_to second_button_mouseout_text, second_button_path, class: second_button_class, method: method,
+                                data: {
+                                  controller: 'mouseoverout',
+                                  action: 'mouseover->mouseoverout#button_mouseover mouseout->mouseoverout#button_mouseout',
+                                  'mouseoverout-mouseout-text-value': second_button_mouseout_text,
+                                  'mouseoverout-mouseover-text-value': second_button_mouseover_text
+                                  } %>
+  <% end %>
+<% end %>

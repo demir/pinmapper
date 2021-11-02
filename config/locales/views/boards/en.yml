@@ -1,0 +1,12 @@
+en:
+  boards:
+    board: Board
+    boards: Boards
+    boards_tr: Boards
+    add_to_board: Add to board
+    following_boards: Following Boards
+    there_is_no_boards: There is no Board you can add yet.
+    index:
+      create_new_board: Create Board
+    edit:
+      edit_board: Edit Board

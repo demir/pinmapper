@@ -1,23 +1,23 @@
+//----------------------- Pin ----------------------//
+
 .pin {
+  @include border-radius(3px);
   background-color: #fff;
+  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
   max-width: 600px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
-  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
-  .header {
+  >.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 60px;
     padding: 16px;
     border-bottom: 1px solid $border-color-2;
-    .dropdown-menu {
-      padding: 0;
-    }
     .user > *:not(:last-child) {
       margin-right: 5px;
     }
@@ -43,38 +43,6 @@
     height: 60px;
     padding: 16px;
   }
-  a.like_btn {
-		z-index: 1;
-		@include rgba(bg, #000, 0.1);
-		padding: 9px 10px;
-		display: inline-block;
-		color: #555;
-		line-height: $line-height-none;
-		@include border-radius(3px);
-		&:after {
-			font-family: 'ElegantIcons';
-			content: "\e030";
-			@include transition-default (all,0.5s, ease);
-		}
-		&.liked:after{
-			content: "\e089";
-			color: $color-1;
-		}
-		&:hover.liked:after{
-			color: $color-1;
-		}
-		&:hover:after {
-			content: "\e089";
-			color: #999;
-		}
-    &.disabled {
-      cursor: default;
-    }
-    &.disabled:after {
-      content: "\e030";
-			color: #555;
-    }
-	}
   &-more {
     svg {
       cursor: pointer;
@@ -83,21 +51,35 @@
   }
 }
 
-.pin-more .dropdown-menu form.button_to {
-  padding: 0;
+//-------------------- Small Pin -------------------//
+
+.small-pin {
+  display: flex;
+  background-color: #fff;
+  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
+  @include border-radius(3px);
+  max-height: 100px;
+  width: 100%;
+  .image img {
+    @include border-radius(3px 0 0 3px);
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    h6 {
+      margin-bottom: 0;
+    }
+  }
 }
+
+//-------------------- Pin likes -------------------//
 
 .pin-likes-count {
   display: flex;
   gap: 10px;
   align-items: center;
-}
-
-.pin-tag {
-  color: #999;
-  &:hover {
-    color: #fc5b62;
-  }
 }
 
 .liked-pins {
@@ -110,5 +92,140 @@
     @include mobile {
       padding: 0 15px;
     }
+  }
+}
+
+//-------------------- Pin tags --------------------//
+
+.pin-tag {
+  color: #999;
+  &:hover {
+    color: #fc5b62;
+  }
+}
+
+//-------------------- Pins#show -------------------//
+
+.pin-show{
+  >.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 40px;
+    .hrow {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      &.negative-margin-top {
+        margin-top: -15px;
+      }
+      >a {
+        color: #999;
+        &:hover {
+          color: $color-1;
+        }
+      }
+    }
+    h1 {
+      margin: 0 !important;
+    }
+  }
+}
+
+.widget-title {
+	padding: 15px;
+	border-bottom: 1px solid $border-color-2;
+	 h4 {
+		padding: 0;
+		margin: 0;
+		font-weight: 500;
+		line-height:$line-height-none;
+		@include fontSize(15px);
+	}
+}
+.widget {
+	position: relative;
+	display: block;
+	margin-bottom: 15px;
+  background-color: #fff;
+  @include border-radius(3px);
+
+  .pins-list {
+    padding: 0;
+    list-style: none;
+    h3 {
+      font-size: 14px;
+      padding: 0 0 0;
+      margin-bottom: 0;
+      margin-top: 5px;
+      text-transform: capitalize;
+      letter-spacing: 0;
+      a {
+        color: #333;
+        &:hover {
+          color: $color-1;
+        }
+      }
+    }
+    li {
+      padding: 15px;
+      display: table;
+      width: 100%;
+      border-bottom: 1px solid $border-color-2;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    small {
+      color: #999999;
+    }
+  }
+}
+
+/*Blog Post*/
+.pin-show {
+	background-color: #fff;
+	padding: 30px;
+	margin-bottom: 25px;
+  @include border-radius(3px);
+	@include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
+	h1 {
+		@include fontSize(32px);
+		@include mobile {@include fontSize(21px);}
+	}
+	p {
+		line-height: $line-height-large;
+	}
+}
+
+.postmeta {
+  margin-top: 15px;
+	padding-bottom: 10px;
+	ul {
+		margin-bottom: 10px;
+		li {
+			display: inline-block;
+			margin:0 15px 5px 0;
+			a {
+				color: #999;
+				&:hover {
+					color: $color-1;
+				}
+			}
+		}
+	}
+}
+
+aside.blog {
+  padding-left: 0;
+}
+
+// tablet ve altındaki cihazlar için
+@media only screen and (max-width: 991px) {
+  aside.blog {
+    padding-left: 15px;
   }
 }
