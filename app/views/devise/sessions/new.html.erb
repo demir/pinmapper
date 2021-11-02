@@ -41,6 +41,12 @@
             <%= link_to t('devise.sign_up'), new_user_registration_path %>
           </strong>
         </div>
+        <div class="text-center add_top_10">
+          <%= t('devise.confirmations.did_not_receive_confirmation_instructions') %>
+          <strong>
+            <%= link_to t('resend'), new_user_confirmation_path %>
+          </strong>
+        </div>
       <% end %>
       <div class="copy"><%= render 'shared/copy' %></div>
 		</aside>
