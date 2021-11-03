@@ -1,7 +1,7 @@
 <body id="register_bg">
 	<nav id="menu" class="fake_menu"></nav>
 	<!-- End Preload -->
-	<div id="login">
+	<div id="login" data-controller="settings">
 		<aside>
 			<figure>
         <%= link_to root_path do %>
@@ -13,7 +13,7 @@
           <%= f.input :email, autofocus: true, input_html: { class: 'form-control', id: 'email' } %>
         </div>
         <div class="form-group">
-          <%= f.input :username, input_html: { class: 'form-control', id: 'usename' } %>
+          <%= f.input :username, input_html: { class: 'form-control', id: 'usename', 'data-action': "input->settings#fix_username", 'data-settings-target': 'username' } %>
         </div>
         <div class="form-group">
           <%= f.input :password, input_html: { class: 'form-control', id: 'password1' }, hint: t('devise.minimum_characters', count: @minimum_password_length) %>
