@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
     root to: 'pages#index'
     devise_for :users
+    get 'settings/password'
     resources :boards do
       member do
         get 'add_pin/:pin_id', action: 'add_pin', as: 'add_pin'
