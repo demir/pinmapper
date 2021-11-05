@@ -26,6 +26,26 @@ RSpec.describe 'Devise', type: :system, js: true do
       click_link I18n.t('devise.sign_out')
       expect(page).to have_content I18n.t('devise.sign_in')
     end
+
+    it 'resend confirmation instructions' do
+      visit root_path
+      click_link I18n.t('devise.sign_in')
+      click_link I18n.t('resend')
+      new_user = create(:user)
+      fill_in User.human_attribute_name(:email), with: new_user.email
+      click_button I18n.t('send')
+      expect(page).to have_content I18n.t('devise.confirmations.send_instructions')
+    end
+
+    it 'confirm resended confirmation instructions' do
+      visit new_user_confirmation_path
+      new_user = create(:user)
+      fill_in User.human_attribute_name(:email), with: new_user.email
+      click_button I18n.t('send')
+      ctoken = extract_token(Devise.mailer.deliveries.last, 'confirmation_token')
+      visit "#{user_confirmation_path}?confirmation_token=#{ctoken}"
+      expect(page).to have_content I18n.t('devise.confirmations.confirmed')
+    end
   end
 
   context 'registration' do
