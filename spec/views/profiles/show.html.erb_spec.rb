@@ -52,8 +52,8 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
       assert_select '.profile > .header > .user-avatar'
     end
 
-    it 'user email' do
-      expect(rendered).to match(/#{user.email}/)
+    it 'user username' do
+      expect(rendered).to match(/#{user.username}/)
     end
 
     it 'pin' do

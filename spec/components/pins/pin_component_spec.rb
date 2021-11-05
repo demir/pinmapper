@@ -15,8 +15,8 @@ RSpec.describe Pins::PinComponent, type: :component do
       expect(rendered_component).to have_css '.header .user .user-avatar'
     end
 
-    it 'user#email' do
-      expect(rendered_component).to have_css '.header .user span', text: pin.user.email
+    it 'user#username' do
+      expect(rendered_component).to have_css '.header .user span', text: pin.user.username
     end
 
     it 'more button' do

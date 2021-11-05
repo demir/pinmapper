@@ -10,12 +10,12 @@ RSpec.describe 'Profiles', type: :system, js: true do
   it 'visits profiles#show from pins#index' do
     visit pins_path
     first('.pin > .header > .user > span > a').click
-    expect(page).to have_css '.profile .header .information .item span', text: user.email
+    expect(page).to have_css '.profile .header .information .item span', text: user.username
   end
 
   it 'visits profiles#show from pins#show' do
     visit pin_path(id: pins.first)
-    expect(page).to have_css '.pin-show > .header .hrow > a', text: user.email
+    expect(page).to have_css '.pin-show > .header .hrow > a', text: user.username
   end
 
   context 'when signed in' do

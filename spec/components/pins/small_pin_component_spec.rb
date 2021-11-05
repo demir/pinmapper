@@ -15,8 +15,8 @@ RSpec.describe Pins::SmallPinComponent, type: :component do
       expect(rendered_component).to have_css '.small-pin .image'
     end
 
-    it 'user#email' do
-      expect(rendered_component).to have_css '.small-pin .body small .black-link-555555', text: pin.user.email
+    it 'user#username' do
+      expect(rendered_component).to have_css '.small-pin .body small .black-link-555555', text: pin.user.username
     end
 
     it 'pin#name' do
