@@ -3,5 +3,5 @@
 class SettingsController < ApplicationController
   before_action :authenticate_user!
 
-  def password; end
+  def change_password; end
 end
