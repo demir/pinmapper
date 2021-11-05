@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     root to: 'pages#index'
     devise_for :users
     get 'settings/password'
+    namespace :settings do
+      put 'users/change_password'
+    end
     resources :boards do
       member do
         get 'add_pin/:pin_id', action: 'add_pin', as: 'add_pin'

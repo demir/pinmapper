@@ -1,0 +1,5 @@
+tr:
+  settings:
+    users:
+      change_password:
+        password_changed: Parola değiştirildi
