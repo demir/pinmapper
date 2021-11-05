@@ -2,5 +2,4 @@ tr:
   settings:
     settings: Ayarlar
     change_password: Parola Değiştir
-    password_form:
-      current_password_hint: Değişikliklerinizi onaylamak için mevcut parolanıza ihtiyacımız var
+    current_password_hint: Değişikliklerinizi onaylamak için mevcut parolanıza ihtiyacımız var

@@ -2,5 +2,4 @@ en:
   settings:
     settings: Settings
     change_password: Change Password
-    password_form:
-      current_password_hint: We need your current password to confirm your changes
+    current_password_hint: We need your current password to confirm your changes

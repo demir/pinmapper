@@ -12,7 +12,7 @@ RSpec.describe 'Settings', type: :request do
 
     describe 'GET /password' do
       it 'returns http success' do
-        get settings_password_path
+        get settings_change_password_path
         expect(response).to have_http_status(:success)
       end
     end
@@ -21,7 +21,7 @@ RSpec.describe 'Settings', type: :request do
   context 'without sign in' do
     describe 'GET /password' do
       it 'returns http success' do
-        get settings_password_path
+        get settings_change_password_path
         expect(response).not_to have_http_status(:success)
       end
     end

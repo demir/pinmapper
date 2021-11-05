@@ -12,12 +12,12 @@ module Settings
           flash.now[:notice] = t('.password_changed')
           format.turbo_stream do
             render turbo_stream: [
-              turbo_stream.update('change_password_form', partial: 'settings/password_form'),
+              turbo_stream.update('change_password_form', partial: 'settings/change_password_form'),
               turbo_stream.update('toastr', partial: 'shared/toastr', formats: [:turbo_stream])
             ]
           end
         else
-          format.html { render 'settings/password', status: :unprocessable_entity }
+          format.html { render 'settings/change_password', status: :unprocessable_entity }
         end
       end
     end
