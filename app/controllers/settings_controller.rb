@@ -6,4 +6,6 @@ class SettingsController < ApplicationController
   def change_password; end
 
   def change_username; end
+
+  def change_email; end
 end

@@ -3,4 +3,5 @@ en:
     settings: Settings
     change_password: Change Password
     change_username: Change Username
+    change_email: Change Email
     current_password_hint: We need your current password to confirm your changes

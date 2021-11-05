@@ -37,6 +37,22 @@ module Settings
         end
       end
     end
+
+    def change_email
+      respond_to do |format|
+        if current_user.update(change_email_params)
+          flash.now[:notice] = t('.email_changed')
+          format.turbo_stream do
+            render turbo_stream: [
+              turbo_stream.update('change_email_form', partial: 'settings/change_email_form'),
+              turbo_stream.update('toastr', partial: 'shared/toastr', formats: [:turbo_stream])
+            ]
+          end
+        else
+          format.html { render 'settings/change_email', status: :unprocessable_entity }
+        end
+      end
+    end
     # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
     private
@@ -47,6 +63,10 @@ module Settings
 
     def change_username_params
       params.require(:user).permit(:username)
+    end
+
+    def change_email_params
+      params.require(:user).permit(:email)
     end
   end
 end

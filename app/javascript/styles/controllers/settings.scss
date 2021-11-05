@@ -33,11 +33,11 @@
       border-bottom-right-radius: 3px;
     }
     &:not(:last-child) {
-      border-bottom: 1px solid $border-color-2;
+      border-bottom: 1px solid #e5e5e5;
     }
     &.active {
-      background-color: $border-color-2;
-      border-color: $border-color-2;
+      background-color: #e5e5e5;
+      border-color: #e5e5e5;
       color: inherit;
       margin: 0;
     }

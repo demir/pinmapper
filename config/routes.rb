@@ -4,9 +4,11 @@ Rails.application.routes.draw do
     devise_for :users
     get 'settings/change_password'
     get 'settings/change_username'
+    get 'settings/change_email'
     namespace :settings do
       put 'users/change_password'
       put 'users/change_username'
+      put 'users/change_email'
     end
     resources :boards do
       member do

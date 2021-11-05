@@ -5,3 +5,5 @@ en:
         password_changed: Password has been changed
       change_username:
         username_changed: Username has been changed
+      change_email:
+        email_changed: Email has been changed, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address.

@@ -5,3 +5,5 @@ tr:
         password_changed: Parola değiştirildi
       change_username:
         username_changed: Kullanıcı adı değiştirildi
+      change_email:
+        email_changed: E-posta adresiniz değiştirildi fakat e-posta adresinizi doğrulamanız gerekiyor. Lütfen e-posta kutunuzu kontrol edin ve onaylama bağlantısına tıklayarak yeni e-posta adresinizi doğrulayın.
