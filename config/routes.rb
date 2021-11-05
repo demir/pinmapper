@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
     root to: 'pages#index'
-    devise_for :users
+    devise_for :users, skip: [:registrations]
+    # devise/registrations#edit route'unu iptal etmek için aşağıdaki block eklendi
+    as :user do
+      get 'users/cancel' => 'devise/registrations#cancel', as: 'cancel_user_registration'
+      get 'users/sign_up' => 'devise/registrations#new', as: 'new_user_registration'
+      patch 'users' => 'devise/registrations#update', as: 'user_registration'
+      put 'users' => 'devise/registrations#update'
+      delete 'users' => 'devise/registrations#destroy'
+      post 'users' => 'devise/registrations#create'
+    end
     get 'settings/change_password'
     get 'settings/change_username'
     get 'settings/change_email'
