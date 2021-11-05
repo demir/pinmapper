@@ -26,7 +26,9 @@ class User < ApplicationRecord
   has_many :following_boards, through: :user_boards, source: :board, dependent: :destroy
 
   # validations
-  validates :username, presence: true, uniqueness: { case_sensitive: true }, if: :username_changed?
+  validates :username, presence: true, uniqueness: { case_sensitive: false }, if: proc { |u|
+                                                                                   u.username.blank? || u.username_changed?
+                                                                                 }
   validates :username, format: { with: /\A[a-z0-9_]*\z/, multiline: true }, if: :username_changed?
   validate :validate_username, if: :username_changed?
 

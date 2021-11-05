@@ -5,7 +5,7 @@
         <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'), size: 140, klass: 'profile-user-avatar')) %>
         <div class="information">
           <div class="item">
-            <span><%= @user.email %></span>
+            <span><%= @user.username %></span>
             <%= render(General::TwinButtonComponent.new(
               display_block: -> {
                 return if current_user.blank?

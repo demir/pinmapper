@@ -6,7 +6,7 @@
           <div class="hrow">
             <div class="hrow">
               <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'))) %>
-              <%= link_to @pin.user.email, profile_path(@pin.user) %>
+              <%= link_to @pin.user.username, profile_path(@pin.user) %>
               <div class="soft-black-text"><i class="icon_clock_alt"></i> <%= l(@pin.created_at) %></div>
             </div>
             <div class="hrow">
