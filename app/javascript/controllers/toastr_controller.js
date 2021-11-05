@@ -5,7 +5,7 @@ export default class extends Controller {
     // Could be replaced by requestAnimationFrame()
     setTimeout(() => {
       [...this.element.children].map(el => this.activateScript(el));
-    }, 300);
+    }, 50);
   }
 
   // Trigger this method to remove the script elements when the turbo:before-cache event is emitted
