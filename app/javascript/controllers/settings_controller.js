@@ -8,6 +8,11 @@ export default class extends Controller {
   }
 
   fix_username(event) {
+    // backspace butonuna basılmış ise birşey yapmasın
+    if (event.inputType == 'deleteContentBackward') {
+      return
+    }
+
     const regex = /^[a-zA-Z0-9_]*$/g;
     if ((event.data !== null) && (event.data.turkishToEnglish().match(regex) !== null)) {
       this.usernameTarget.value = this.usernameTarget.value.turkishToEnglish().toLocaleLowerCase('en-US');

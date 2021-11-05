@@ -2,4 +2,6 @@ en:
   settings:
     users:
       change_password:
-        password_changed: Password changed
+        password_changed: Password has been changed
+      change_username:
+        username_changed: Username has been changed

@@ -3,3 +3,5 @@ tr:
     users:
       change_password:
         password_changed: Parola değiştirildi
+      change_username:
+        username_changed: Kullanıcı adı değiştirildi

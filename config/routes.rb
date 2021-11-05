@@ -3,8 +3,10 @@ Rails.application.routes.draw do
     root to: 'pages#index'
     devise_for :users
     get 'settings/change_password'
+    get 'settings/change_username'
     namespace :settings do
       put 'users/change_password'
+      put 'users/change_username'
     end
     resources :boards do
       member do

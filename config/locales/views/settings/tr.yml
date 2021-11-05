@@ -1,5 +1,6 @@
 tr:
   settings:
     settings: Ayarlar
-    change_password: Parola Değiştir
+    change_password: Parolayı Değiştir
+    change_username: Kullanıcı Adını Değiştir
     current_password_hint: Değişikliklerinizi onaylamak için mevcut parolanıza ihtiyacımız var
