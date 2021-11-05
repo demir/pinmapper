@@ -10,18 +10,46 @@ RSpec.describe 'Settings', type: :request do
       sign_in(current_user)
     end
 
-    describe 'GET /password' do
+    describe 'GET /change_password' do
       it 'returns http success' do
         get settings_change_password_path
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe 'GET /change_username' do
+      it 'returns http success' do
+        get settings_change_username_path
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe 'GET /change_email' do
+      it 'returns http success' do
+        get settings_change_email_path
         expect(response).to have_http_status(:success)
       end
     end
   end
 
   context 'without sign in' do
-    describe 'GET /password' do
+    describe 'GET /change_password' do
       it 'returns http success' do
         get settings_change_password_path
+        expect(response).not_to have_http_status(:success)
+      end
+    end
+
+    describe 'GET /change_username' do
+      it 'returns http success' do
+        get settings_change_username_path
+        expect(response).not_to have_http_status(:success)
+      end
+    end
+
+    describe 'GET /change_email' do
+      it 'returns http success' do
+        get settings_change_email_path
         expect(response).not_to have_http_status(:success)
       end
     end
