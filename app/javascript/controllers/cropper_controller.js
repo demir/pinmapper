@@ -11,6 +11,8 @@ export default class extends Controller {
     new Cropper(this.imageTarget, {
       minCropBoxWidth: 200,
       minCropBoxHeight: 50,
+      zoomOnWheel: false,
+      viewMode: 1,
       crop(event) {
         _this.crop_x().value = event.detail.x
         _this.crop_y().value = event.detail.y
