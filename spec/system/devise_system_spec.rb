@@ -70,6 +70,7 @@ RSpec.describe 'Devise', type: :system, js: true do
 
   def sign_up
     fill_in User.human_attribute_name(:email), with: Faker::Internet.unique.email
+    fill_in User.human_attribute_name(:username), with: SecureRandom.hex(15)
     fill_in User.human_attribute_name(:password), with: 'password'
     fill_in User.human_attribute_name(:password_confirmation), with: 'password'
     click_button I18n.t('devise.register')

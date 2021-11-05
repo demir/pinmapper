@@ -8,7 +8,7 @@ module Settings
     def change_password
       respond_to do |format|
         if current_user.update_with_password(change_password_params)
-          sign_in(current_user, bypass: true)
+          bypass_sign_in(current_user)
           flash.now[:notice] = t('.password_changed')
           format.turbo_stream do
             render turbo_stream: [
