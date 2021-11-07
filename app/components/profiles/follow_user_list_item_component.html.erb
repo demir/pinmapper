@@ -1,6 +1,6 @@
 <div class="follow-user-list-item">
   <div class="user">
-    <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'), size: 50)) %>
+    <%= render(Profiles::AvatarComponent.new(src: @user.profile.avatar.variant(@user.profile.avatar_crop_constraints), size: 50)) %>
     <span><%= link_to user.username, profile_path(user), class: 'soft-black-link', target: '_top' %></span>
   </div>
   <%= render(General::TwinButtonComponent.new(

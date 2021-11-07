@@ -5,7 +5,8 @@
         <div class="header">
           <div class="hrow">
             <div class="hrow">
-              <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'))) %>
+              <% user_profile = @pin.user.profile %>
+              <%= render(Profiles::AvatarComponent.new(src: user_profile.avatar.variant(user_profile.avatar_crop_constraints))) %>
               <%= link_to @pin.user.username, profile_path(@pin.user) %>
               <div class="soft-black-text"><i class="icon_clock_alt"></i> <%= l(@pin.created_at) %></div>
             </div>

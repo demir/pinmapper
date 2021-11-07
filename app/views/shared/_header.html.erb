@@ -23,8 +23,9 @@
         <li>
           <div class="dropdown dropdown-user">
             <%= link_to '#0', class: 'logged', 'data-toggle': 'dropdown', title: current_user.username do %>
-              <%= image_pack_tag 'media/images/avatar.jpg', alt: '' %>
-              <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'), size: 26)) %>
+              <div id="header-avatar">
+                <%= render(Profiles::AvatarComponent.new(src: current_user.profile.avatar.variant(current_user.profile.avatar_crop_constraints), size: 32)) %>
+              </div>
             <% end %>
             <div class="dropdown-menu">
               <%= link_to t('profile'), profile_path(current_user), title: t('profile'), class: 'dropdown-item' %>
@@ -32,7 +33,7 @@
               <%= link_to t('following_tags'), following_tags_tags_path, title: t('following_tags'), class: 'dropdown-item' %>
               <%= link_to t('boards.boards'), boards_path, title: t('boards.boards'), class: 'dropdown-item' %>
               <%= link_to t('boards.following_boards'), following_boards_boards_path, title: t('boards.following_boards'), class: 'dropdown-item' %>
-              <%= link_to t('settings.settings'), settings_change_password_path, title: t('settings.settings'), class: 'dropdown-item' %>
+              <%= link_to t('settings.settings'), settings_edit_profile_path, title: t('settings.settings'), class: 'dropdown-item' %>
               <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out'), class: 'dropdown-item' %>
             </div>
           </div>
