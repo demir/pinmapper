@@ -9,6 +9,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :validatable, :confirmable
 
+  #  callbacks
+  after_create :create_profile_record
+
   #  relations
   has_many :pins, dependent: :destroy
   has_many :follower_relationships, foreign_key: :following_id,
@@ -24,9 +27,10 @@ class User < ApplicationRecord
   has_many :boards, dependent: :destroy
   has_many :user_boards, dependent: :destroy
   has_many :following_boards, through: :user_boards, source: :board, dependent: :destroy
+  has_one :profile, dependent: :destroy
 
   # validations
-  validates :username, presence: true, uniqueness: { case_sensitive: false },
+  validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 30 },
                        if: proc { |u| u.username.blank? || u.username_changed? }
   validates :username, format: { with: /\A[a-z0-9_]*\z/, multiline: true }, if: :username_changed?
   validate :validate_username, if: :username_changed?
@@ -50,5 +54,9 @@ class User < ApplicationRecord
 
   def validate_username
     errors.add(:username, :invalid) if User.exists?(email: username)
+  end
+
+  def create_profile_record
+    create_profile(bio: nil)
   end
 end

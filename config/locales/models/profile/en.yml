@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      profile: Profile
+    attributes:
+      profile: &profile_attributes
+        avatar: Profile Photo
+        bio: Bio
+  simple_form:
+    labels:
+      profile:
+        <<: *profile_attributes
