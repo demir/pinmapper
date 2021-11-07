@@ -20,7 +20,7 @@ RSpec.describe 'settings/change_password.html.erb', type: :view do
     end
 
     it 'sidemenu items count' do
-      assert_select '.settings .row .col-lg-3.settings-sidemenu .list-group-item-action', count: 3
+      assert_select '.settings .row .col-lg-3.settings-sidemenu .list-group-item-action', count: 4
     end
 
     it 'sidemenu active item' do
