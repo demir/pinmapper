@@ -1,0 +1,7 @@
+<p>Merhaba <%= @resource.username %>!</p>
+
+<% if @resource.try(:unconfirmed_email?) %>
+  <p>E-posta adresiniz <%= @resource.unconfirmed_email %> olarak değiştirilmek üzere.</p>
+<% else %>
+  <p>E-posta adresiniz <%= @resource.email %> olarak değiştirildi.</p>
+<% end %>

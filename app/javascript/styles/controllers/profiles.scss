@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     gap: 50px;
-    height: 200px;
+    height: 250px;
     padding: 20px 0;
     border-bottom: 2px solid $border-color-2;
     margin-bottom: 30px;
@@ -18,7 +18,7 @@
     @include tablet {
       padding: 0 10px;
       gap: 20px;
-      height: 150px;
+      height: 230px;
     }
     >.profile-user-avatar {
       @include tablet {height: 80px; width: 80px;}
@@ -28,17 +28,21 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 15px;
+      gap: 25px;
       max-width: 500px;
       @include tablet {
-        gap: 5px;
+        gap: 20px;
       }
-      .item{
+      .item {
         display: flex;
         flex-direction: row;
         align-content: center;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
+        .username {
+          @include fontSize(20px);
+        }
       }
     }
   }

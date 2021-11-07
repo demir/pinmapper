@@ -1,3 +1,8 @@
+.rounded-cropper .cropper-view-box,
+.rounded-cropper .cropper-face {
+  border-radius: 50%;
+}
+
 .dropdown-footer {
 	border: none;
   padding-right: 10px;
@@ -42,26 +47,6 @@ header {
   header.sticky .main-menu > ul > li span:hover > a {
     opacity: 1;
     color: #fc5b62;
-  }
-
-  .nav-menu {
-    .logged {
-      display: inline-block;
-      width: 25px;
-      height: 25px;
-      position: relative;
-      overflow: hidden;
-      @include border-radius(50%);
-      img {
-        width: 26px;
-        height: auto;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        @include transform (translate(-50%, -50%));
-      }
-      @include transition-default (opacity, 0.5s, ease);
-    }
   }
 }
 
@@ -112,14 +97,6 @@ header {
       position: relative;
       overflow: hidden;
       @include border-radius(50%);
-      img {
-        width: 26px;
-        height: auto;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        @include transform (translate(-50%, -50%));
-      }
       @include transition-default (opacity, 0.5s, ease);
     }
   }
@@ -300,6 +277,17 @@ main .container form {
   }
   &.rounded.xsmall {
     color: #fff;
+  }
+}
+
+.btn_1.soft-black-border {
+  border: 1px solid#999 !important;
+  color: #888 !important;
+  padding: 10px 15px !important;
+  font-weight: 500 !important;
+  &:hover {
+    border-color: $color-2 !important;
+    color: #fff !important;
   }
 }
 

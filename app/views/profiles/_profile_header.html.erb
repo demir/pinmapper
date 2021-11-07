@@ -1,0 +1,35 @@
+<div class="header">
+  <%= render(Profiles::AvatarComponent.new(src: user.profile.avatar.variant(user.profile.avatar_crop_constraints), size: 140, klass: 'profile-user-avatar')) %>
+  <div class="information">
+    <div class="item">
+      <span class="username"><%= user.username %></span>
+      <%= render(General::TwinButtonComponent.new(
+        display_block: -> {
+          return if current_user.blank?
+
+          current_user != user
+        },
+        first_button: current_user&.following&.exclude?(user),
+        record_dom_id: dom_id(user),
+        first_button_path: follow_profile_path(user),
+        second_button_path: unfollow_profile_path(user)
+      )) %>
+      <% if current_user == user %>
+        <%= link_to t('settings.edit_profile'), settings_edit_profile_path, class: 'btn_1 outline soft-black-border' %>
+      <% end %>
+    </div>
+    <div class="item">
+      <div>
+        <%= render(Profiles::PinsLinkComponent.new(user: user)) %>
+        <%= render(Profiles::BoardsLinkComponent.new(user: user)) %>
+      </div>
+      <div>
+        <%= render(Profiles::FollowersLinkComponent.new(user: user)) %>
+        <%= render(Profiles::FollowingLinkComponent.new(user: user)) %>
+      </div>
+    </div>
+    <div class="item">
+      <span><%= user.profile.bio %></span>
+    </div>
+  </div>
+</div>

@@ -56,7 +56,7 @@ RSpec.describe 'Pins', type: :system, js: true do
       context 'when there is no board' do
         it 'shows there is no board message' do
           visit pins_path
-          pin = pins.first
+          pin = pins.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
           pin_element.find('#add-pin-to-board-menu').click
           expect(page).to have_css "#add-pin-to-board-dropdown_pin_#{pin.id} .body .no-boards > span",
@@ -69,7 +69,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
         it 'shows boards' do
           visit pins_path
-          pin = pins.first
+          pin = pins.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
           pin_element.find('#add-pin-to-board-menu').click
           expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin",
@@ -78,8 +78,8 @@ RSpec.describe 'Pins', type: :system, js: true do
 
         it 'can search' do
           visit pins_path
-          pin = pins.first
-          board = boards.first
+          pin = pins.last
+          board = boards.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
           pin_element.find('#add-pin-to-board-menu').click
           fill_in 'name', with: board.name
@@ -89,7 +89,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
         it 'add to board' do
           visit pins_path
-          pin = pins.first
+          pin = pins.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
           pin_element.find('#add-pin-to-board-menu').click
           find("#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin .add-button", match: :first).click
@@ -99,8 +99,8 @@ RSpec.describe 'Pins', type: :system, js: true do
 
         it 'remove from board' do
           visit pins_path
-          pin = pins.first
-          board = boards.first
+          pin = pins.last
+          board = boards.last
           board.pins.destroy_all
           board.pins << pin
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
@@ -113,7 +113,7 @@ RSpec.describe 'Pins', type: :system, js: true do
         it 'can infinite scroll' do
           create_list(:board, 30, user: user)
           visit pins_path
-          pin = pins.first
+          pin = pins.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
           pin_element.find('#add-pin-to-board-menu').click
           scroll_to(pin_element.find(".body #add_to_board_list_pin_#{pin.id}"), align: :bottom)
@@ -125,7 +125,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
     it 'visits pin#show via pin name link' do
       visit pins_path
-      pin = pins.first
+      pin = pins.last
       click_link pin.name
       expect(page).to have_css '.pin-show .header h1', text: pin.name
     end
@@ -159,13 +159,13 @@ RSpec.describe 'Pins', type: :system, js: true do
     end
 
     it 'visits #edit' do
-      pin = pins.first
+      pin = pins.last
       visit edit_pin_path(id: pin)
       expect(page).to have_field(Pin.human_attribute_name(:name), with: pin.name)
     end
 
     it 'edits a pin' do
-      pin = pins.first
+      pin = pins.last
       visit edit_pin_path(id: pin)
       new_name = Faker::Lorem.sentence
       fill_in User.human_attribute_name(:name), with: new_name
@@ -175,7 +175,7 @@ RSpec.describe 'Pins', type: :system, js: true do
     end
 
     it 'renders edit template after validation errors' do
-      pin = pins.first
+      pin = pins.last
       visit edit_pin_path(id: pin)
       fill_in User.human_attribute_name(:name), with: ''
       click_button I18n.t('helpers.submit.update')
@@ -213,7 +213,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
       context 'from the show page' do
         it 'visits the edit page' do
-          pin = pins.first
+          pin = pins.last
           visit pin_path(id: pin)
           more_button = find('.container .header .pin-more svg', match: :first)
           pin_element = more_button.ancestor('.pin-show')
@@ -227,7 +227,7 @@ RSpec.describe 'Pins', type: :system, js: true do
         end
 
         it 'deletes a pin' do
-          pin = pins.first
+          pin = pins.last
           visit pin_path(id: pin)
           more_button = find('.container .header .pin-more svg', match: :first)
           pin_element = more_button.ancestor('.pin-show')
@@ -257,7 +257,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
     it 'visits pin#show' do
       visit pins_path
-      pin = pins.first
+      pin = pins.last
       click_link pin.name
       expect(page).to have_css '.pin-show .header h1', text: pin.name
     end
@@ -278,7 +278,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
       describe '#edit' do
         it 'redirects to sign in page' do
-          pin = pins.first
+          pin = pins.last
           visit edit_pin_path(id: pin)
           expect(page).to have_current_path new_user_session_path
           expect(page).to have_content I18n.t('devise.failure.unauthenticated')

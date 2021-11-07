@@ -1,0 +1,6 @@
+<ul class="list-group">
+  <%= link_to t('settings.edit_profile'), settings_edit_profile_path, title: t('settings.edit_profile'), class: "black-link list-group-item list-group-item-action #{:edit_profile == page ? 'active' : ''}" %>
+  <%= link_to t('settings.change_username'), settings_change_username_path, title: t('settings.change_username'), class: "black-link list-group-item list-group-item-action #{:change_username == page ? 'active' : ''}" %>
+  <%= link_to t('settings.change_email'), settings_change_email_path, title: t('settings.change_email'), class: "black-link list-group-item list-group-item-action #{:change_email == page ? 'active' : ''}" %>
+  <%= link_to t('settings.change_password'), settings_change_password_path, title: t('settings.change_password'), class: "black-link list-group-item list-group-item-action #{:change_password == page ? 'active' : ''}" %>
+</ul>

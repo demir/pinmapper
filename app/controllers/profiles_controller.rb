@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
   end
 
   def followers
-    @pagy, @followers = pagy @user.followers
+    @pagy, @followers = pagy @user.followers.order(created_at: :desc)
     respond_to do |f|
       f.turbo_stream
       f.html
@@ -38,7 +38,7 @@ class ProfilesController < ApplicationController
   end
 
   def following
-    @pagy, @following = pagy @user.following
+    @pagy, @following = pagy @user.following.order(created_at: :desc)
     respond_to do |f|
       f.turbo_stream
       f.html

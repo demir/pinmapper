@@ -38,7 +38,12 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
 
     context 'when in own profile' do
       it 'without follow button' do
-        assert_select '.profile > .header > .information .item .btn_1', count: 0
+        assert_select '.profile > .header > .information .item .btn_1', text: I18n.t('follow'), count: 0
+      end
+
+      it 'edit profile button' do
+        assert_select '.profile > .header > .information .item .btn_1.soft-black-border',
+                      text: I18n.t('settings.edit_profile'), count: 1
       end
     end
   end
@@ -52,8 +57,8 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
       assert_select '.profile > .header > .user-avatar'
     end
 
-    it 'user email' do
-      expect(rendered).to match(/#{user.email}/)
+    it 'user username' do
+      expect(rendered).to match(/#{user.username}/)
     end
 
     it 'pin' do
@@ -70,6 +75,10 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
 
     it 'boards' do
       expect(rendered).to match(/#{t('boards.boards_tr')}/)
+    end
+
+    it 'bio' do
+      expect(rendered).to match(/#{user.profile.bio}/)
     end
   end
 

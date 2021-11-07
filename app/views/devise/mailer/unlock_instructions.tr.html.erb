@@ -1,0 +1,7 @@
+<p>Merhaba <%= @resource.email %>!</p>
+
+<p>Çok sayıda başarısız giriş denemesinden dolayı hesabınız kilitlendi.</p>
+
+<p>Hesabınızın kilidini açmak için aşağıdaki bağlantıya tıklayın:</p>
+
+<p><%= link_to 'Hesabımın kilidini aç', unlock_url(@resource, unlock_token: @token) %></p>

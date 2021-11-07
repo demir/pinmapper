@@ -1,0 +1,6 @@
+<%= simple_form_for(current_user, url: settings_users_change_username_path, html: { method: :put, data: { controller: 'settings' } }) do |f| %>
+  <div class="form-group">
+    <%= f.input :username, autofocus: true, input_html: { class: 'form-control', id: 'usename', 'data-action': "input->settings#fix_username", 'data-settings-target': 'username' } %>
+  </div>
+  <%= f.button :submit, t('update'), class: 'btn_1 rounded' %>
+<% end %>

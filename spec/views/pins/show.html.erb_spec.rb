@@ -17,8 +17,8 @@ RSpec.describe 'pins/show', type: :view do
       expect(rendered).to match(/#{pin.name}/)
     end
 
-    it '#user.email' do
-      expect(rendered).to match(/#{pin.user.email}/)
+    it '#user.username' do
+      expect(rendered).to match(/#{pin.user.username}/)
     end
 
     it '#tag_list.first' do

@@ -1,0 +1,26 @@
+<%= simple_form_for(current_user.profile, url: settings_profiles_update_path, html: { method: :put }) do |f| %>
+  <div class="form-group rounded-cropper"
+      data-controller='instant-upload cropper'
+      data-cropper-model-value='profile'
+      data-cropper-crop-model-value='avatar_crop'
+      data-cropper-cropper-type-value='rounded'>
+      <%= f.input :avatar, as: :file, input_html: { 'data-instant-upload-target': 'input',
+            'data-action': 'instant-upload#changed' } %>
+      <p>
+        <%= image_tag current_user.profile.avatar.variant(current_user.profile.avatar_crop_constraints),
+              width: 400, height: 400, class: 'rounded-circle user-avatar',
+              'data-instant-upload-target': 'image',
+              'data-cropper-target': 'image',
+              'data-action': 'instant-uploaded->cropper#changed' if current_user.profile.avatar.attached? %>
+
+        <%= content_tag :img, nil, src: nil, width: 400, height: 400,
+              'data-instant-upload-target': 'image',
+              'data-cropper-target': 'image',
+              'data-action': 'instant-uploaded->cropper#changed' unless current_user.profile.avatar.attached? %>
+      </p>
+  </div>
+  <div class="form-group">
+    <%= f.input :bio, input_html: { rows: 3 } %>
+  </div>
+  <%= f.button :submit, t('update'), class: 'btn_1 rounded' %>
+<% end %>

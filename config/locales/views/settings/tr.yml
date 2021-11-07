@@ -1,0 +1,8 @@
+tr:
+  settings:
+    settings: Ayarlar
+    edit_profile: Profili Düzenle
+    change_password: Parolayı Değiştir
+    change_username: Kullanıcı Adını Değiştir
+    change_email: E-postayı Değiştir
+    current_password_hint: Değişikliklerinizi onaylamak için mevcut parolanıza ihtiyacımız var

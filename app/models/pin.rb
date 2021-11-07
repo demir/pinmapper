@@ -30,7 +30,9 @@ class Pin < ApplicationRecord
   has_many :boards, through: :pin_boards, dependent: :destroy
 
   # validations
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 128 }
+  validates :cover_image_description, length: { maximum: 500 }
+  validates :description, length: { maximum: 5000 }
   validates :address, presence: true
   validate :found_address_presence?, if: ->(obj) { obj.address.present? && obj.address_changed? }
   validate :max_tag_count, if: :tag_list_changed?
