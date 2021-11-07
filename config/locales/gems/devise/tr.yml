@@ -11,6 +11,9 @@ tr:
       confirmed: "Eposta adresiniz başırılı bir şekilde onaylandı."
       send_instructions: "Bir kaç dakika içerisinde eposta adresinizi nasıl onaylayacağınız hakkında bir eposta alacaksınız."
       send_paranoid_instructions: "Eğer eposta adresinizi veritabanımızda kayıtlı ise bir kaç dakika içerisinde eposta adresinizi nasıl onaylayacağınız hakkında bir eposta alacaksınız."
+      did_not_receive_confirmation_instructions: 'Onaylama talimatları almadınız mı?'
+      new:
+        resend_confirmation_instructions: 'Onaylama talimatlarını yeniden gönder'
     failure:
       already_authenticated: "Zaten giriş yaptınız."
       inactive: "Hesabınız henüz aktif edilmedi."
@@ -54,7 +57,7 @@ tr:
       signed_up_but_inactive: "Başarılı bir şekilde kayıt oldunuz. Ancak henüz hesabınızı doğrulamadığınız için giriş yapamasınız."
       signed_up_but_locked: "Başarılı bir şekilde kayıt oldunuz. Ancak hesabınız kilitli olduğu için giriş yapamazsınız."
       signed_up_but_unconfirmed: "Eposta adresinize onaylama linkli bir mesaj gönderildi. Lütfen hesabınızı aktif etmek için linke tıklayın."
-      update_needs_confirmation: "Hesabınız başarılı bir şekilde güncellendi. Fakar eposta adresinizi onaylamanız gerekmekteir. Lütfen eposta kutunuzu kontrol ediniz ve yeni eposta adresinizi onaylama linkine tıklayınız."
+      update_needs_confirmation: "Hesabınız başarılı bir şekilde güncellendi. Fakat eposta adresinizi onaylamanız gerekmekteir. Lütfen eposta kutunuzu kontrol ediniz ve yeni eposta adresinizi onaylama linkine tıklayınız."
       updated: "Hesabınız başarılı bir şekilde güncellendi."
     sessions:
       signed_in: "Başarılı giriş."
@@ -72,7 +75,7 @@ tr:
       unlocked: "Başarılı bir şekilde hesabınızın kilidi kaldırıldı. Devam etmek için lütfen giriş yapın."
   errors:
     messages:
-      already_confirmed: "zaten naylandı, lütfen giriş yapmayı deneyin."
+      already_confirmed: "zaten onaylandı, lütfen giriş yapmayı deneyin."
       confirmation_period_expired: "%{period} süresi içerisinde onaylanması gerekiyor. Lütfen yeni bir tane isteyin."
       expired: "sona erdi, lütfen yeni bir tane isteyin."
       not_found: "bulunamadı"

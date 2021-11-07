@@ -1,35 +1,7 @@
 <div class="container margin_100_55">
   <div class="row">
     <div class="col-lg-12 profile">
-      <div class="header">
-        <%= render(Profiles::AvatarComponent.new(src: asset_pack_path('media/images/avatar.jpg'), size: 140, klass: 'profile-user-avatar')) %>
-        <div class="information">
-          <div class="item">
-            <span><%= @user.email %></span>
-            <%= render(General::TwinButtonComponent.new(
-              display_block: -> {
-                return if current_user.blank?
-
-                current_user != @user
-              },
-              first_button: current_user&.following&.exclude?(@user),
-              record_dom_id: dom_id(@user),
-              first_button_path: follow_profile_path(@user),
-              second_button_path: unfollow_profile_path(@user)
-            )) %>
-          </div>
-          <div class="item">
-            <div>
-              <%= render(Profiles::PinsLinkComponent.new(user: @user)) %>
-              <%= render(Profiles::BoardsLinkComponent.new(user: @user)) %>
-            </div>
-            <div>
-              <%= render(Profiles::FollowersLinkComponent.new(user: @user)) %>
-              <%= render(Profiles::FollowingLinkComponent.new(user: @user)) %>
-            </div>
-          </div>
-        </div>
-      </div>
+      <%= render 'profiles/profile_header', user: @user %>
       <div class="body  px-tablet">
         <div id="following">
           <%= render(Profiles::FollowUserListItemComponent.with_collection(@following, current_user: current_user)) %>

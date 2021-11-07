@@ -4,20 +4,26 @@ import "cropperjs/dist/cropper.css"
 
 export default class extends Controller {
   static targets = ["image"]
-  static values = { model: String, cropModel: String }
+  static values = { model: String, cropModel: String, cropperType: String }
 
   changed() {
     let _this = this
-    new Cropper(this.imageTarget, {
+    var options = {
       minCropBoxWidth: 200,
       minCropBoxHeight: 50,
+      zoomOnWheel: false,
+      viewMode: 1,
       crop(event) {
         _this.crop_x().value = event.detail.x
         _this.crop_y().value = event.detail.y
         _this.crop_width().value = event.detail.width
         _this.crop_height().value = event.detail.height
       }
-    })
+    }
+    if (this.cropperTypeValue === 'rounded') {
+      options['aspectRatio'] = 1 / 1
+    }
+    new Cropper(this.imageTarget, options)
   }
 
   crop_x() {

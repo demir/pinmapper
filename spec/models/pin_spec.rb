@@ -20,6 +20,9 @@ RSpec.describe Pin, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_length_of(:name).is_at_most(128) }
+    it { is_expected.to validate_length_of(:cover_image_description).is_at_most(500) }
+    it { is_expected.to allow_value(pin.description.body.to_s).for(:description) }
     it { is_expected.to validate_presence_of(:address) }
 
     context 'adress presence' do

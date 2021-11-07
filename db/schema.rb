@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_31_234535) do
+ActiveRecord::Schema.define(version: 2021_11_05_235655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -108,6 +108,14 @@ ActiveRecord::Schema.define(version: 2021_10_31_234535) do
     t.index ["user_id"], name: "index_pins_on_user_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.text "bio"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -166,9 +174,11 @@ ActiveRecord::Schema.define(version: 2021_10_31_234535) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "username"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   create_table "votes", force: :cascade do |t|
@@ -193,6 +203,7 @@ ActiveRecord::Schema.define(version: 2021_10_31_234535) do
   add_foreign_key "pin_boards", "boards"
   add_foreign_key "pin_boards", "pins"
   add_foreign_key "pins", "users"
+  add_foreign_key "profiles", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_boards", "boards"
   add_foreign_key "user_boards", "users"

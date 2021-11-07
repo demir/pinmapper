@@ -7,7 +7,7 @@
   <div class="body">
     <div>
       <h6><%= link_to pin.name, pin, class: 'black-link' %></h6>
-      <small><%= link_to pin.user.email, profile_path(pin.user), class: 'black-link-555555' %></small>
+      <small><%= link_to pin.user.username, profile_path(pin.user), class: 'black-link-555555' %></small>
     </div>
     <div>
       <i class="icon_pin_alt"></i><small class="address"><%= pin.city_country %></small>
