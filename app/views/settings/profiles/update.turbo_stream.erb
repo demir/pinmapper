@@ -1,0 +1,5 @@
+<%= turbo_stream.update('edit_profile_form', partial: 'settings/edit_profile_form') %>
+<%= turbo_stream.update('toastr', partial: 'shared/toastr', formats: [:turbo_stream]) %>
+<%= turbo_stream.update "header-avatar" do %>
+  <%= render(Profiles::AvatarComponent.new(src: current_user.profile.avatar.variant(current_user.profile.avatar_crop_constraints), size: 32)) %>
+<% end %>

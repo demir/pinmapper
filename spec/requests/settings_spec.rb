@@ -30,6 +30,13 @@ RSpec.describe 'Settings', type: :request do
         expect(response).to have_http_status(:success)
       end
     end
+
+    describe 'GET /edit_profile' do
+      it 'returns http success' do
+        get settings_edit_profile_path
+        expect(response).to have_http_status(:success)
+      end
+    end
   end
 
   context 'without sign in' do
@@ -50,6 +57,13 @@ RSpec.describe 'Settings', type: :request do
     describe 'GET /change_email' do
       it 'returns http success' do
         get settings_change_email_path
+        expect(response).not_to have_http_status(:success)
+      end
+    end
+
+    describe 'GET /edit_profile' do
+      it 'returns http success' do
+        get settings_edit_profile_path
         expect(response).not_to have_http_status(:success)
       end
     end

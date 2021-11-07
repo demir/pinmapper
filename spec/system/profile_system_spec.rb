@@ -36,6 +36,18 @@ RSpec.describe 'Profiles', type: :system, js: true do
         find('.profile > .header > .information .item .btn_1').click
         expect(page).to have_css '.profile > .header > .information .item .btn_1', text: I18n.t('follow')
       end
+
+      it 'visits edit_profile' do
+        visit profile_path(id: current_user)
+        click_link I18n.t('settings.edit_profile')
+        expect(page).to have_current_path settings_edit_profile_path
+      end
+
+      it 'can not edit_profile other users' do
+        visit profile_path(id: user)
+        expect(page).not_to have_css '.profile > .header > .information .item .btn_1.soft-black-border',
+                                     text: I18n.t('settings.edit_profile')
+      end
     end
   end
 end

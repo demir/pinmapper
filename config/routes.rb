@@ -11,10 +11,12 @@ Rails.application.routes.draw do
       delete 'users' => 'devise/registrations#destroy'
       post 'users' => 'devise/registrations#create'
     end
+    get 'settings/edit_profile'
     get 'settings/change_password'
     get 'settings/change_username'
     get 'settings/change_email'
     namespace :settings do
+      put 'profiles/update'
       put 'users/change_password'
       put 'users/change_username'
       put 'users/change_email'

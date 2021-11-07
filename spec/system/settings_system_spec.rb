@@ -65,6 +65,24 @@ RSpec.describe 'Settings', type: :system, js: true do
       click_button I18n.t('update')
       expect(page).to have_content I18n.t('settings.users.change_email.email_changed')
     end
+
+    it 'visits edit_profile' do
+      visit root_path
+      find('.dropdown-user').click
+      click_link I18n.t('settings.settings')
+      click_link I18n.t('settings.edit_profile')
+      expect(page).to have_current_path settings_edit_profile_path
+    end
+
+    it 'edits profile' do
+      visit root_path
+      find('.dropdown-user').click
+      click_link I18n.t('settings.settings')
+      click_link I18n.t('settings.edit_profile')
+      fill_in Profile.human_attribute_name(:bio), with: Faker::Lorem.paragraph_by_chars(number: 160)
+      click_button I18n.t('update')
+      expect(page).to have_content I18n.t('settings.profiles.update.profile_updated')
+    end
   end
 
   context 'When not signed in' do
@@ -81,6 +99,11 @@ RSpec.describe 'Settings', type: :system, js: true do
     it 'not visits change_email' do
       visit settings_change_email_path
       expect(page).not_to have_current_path settings_change_email_path
+    end
+
+    it 'not visits edit_profile' do
+      visit settings_edit_profile_path
+      expect(page).not_to have_current_path settings_edit_profile_path
     end
   end
 end

@@ -8,4 +8,6 @@ class SettingsController < ApplicationController
   def change_username; end
 
   def change_email; end
+
+  def edit_profile; end
 end
