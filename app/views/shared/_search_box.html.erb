@@ -1,0 +1,8 @@
+<div class="search">
+  <%= form_with url: '#', method: :get do |form| %>
+    <%= form.text_field :q, class: 'form-control', placeholder: t('search'), autocomplete: 'off' %>
+    <%= form.button :submit do %>
+      <i class='icon_search'></i>
+    <% end %>
+  <% end %>
+</div>
