@@ -11,6 +11,11 @@ Rails.application.routes.draw do
       delete 'users' => 'devise/registrations#destroy'
       post 'users' => 'devise/registrations#create'
     end
+    # search
+    get 'search/pins'
+    get 'search/boards'
+    get 'search/users'
+    # settings
     get 'settings/edit_profile'
     get 'settings/change_password'
     get 'settings/change_username'
