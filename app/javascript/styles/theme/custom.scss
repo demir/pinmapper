@@ -43,7 +43,7 @@ header > .container {
   .search {
     border: 1px solid $border-color-3;
     @include border-radius(3px);
-    width: 350px;
+    width: 400px;
     @include tablet {
       max-width: 250px;
     }
