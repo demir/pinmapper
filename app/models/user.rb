@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include PgSearch::Model
+
   acts_as_voter
   attr_writer :login
 
@@ -34,6 +36,11 @@ class User < ApplicationRecord
                        if: proc { |u| u.username.blank? || u.username_changed? }
   validates :username, format: { with: /\A[a-z0-9_]*\z/, multiline: true }, if: :username_changed?
   validate :validate_username, if: :username_changed?
+
+  # scopes
+  pg_search_scope :search_users,
+                  against: :username,
+                  using:   { tsearch: { prefix: true } }
 
   def login
     @login || username || email
