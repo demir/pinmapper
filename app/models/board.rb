@@ -3,9 +3,10 @@
 class Board < ApplicationRecord
   include TranslateEnum
 
-  # search
-  include PgSearch::Model
-  pg_search_scope(:search_by_name,
+  # scopes
+  pg_search_scope :trigram_search_by_name,
+                  against: :name,
+                  using:   { trigram: { word_similarity: true, threshold: 0.5 } }
                   against: :name,
                   using:   { trigram: { word_similarity: true, threshold: 0.5 } })
 
