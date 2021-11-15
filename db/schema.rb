@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_05_235655) do
+ActiveRecord::Schema.define(version: 2021_11_15_193858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_235655) do
     t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "plain_text_body"
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 

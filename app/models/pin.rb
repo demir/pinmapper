@@ -21,6 +21,7 @@ class Pin < ApplicationRecord
   before_update :delete_user_tags, prepend: true
   before_destroy :delete_crops
   before_destroy :delete_user_tags, prepend: true
+  before_save { description.plain_text_body = description.body.to_plain_text }
 
   # relations
   has_one :cover_image_crop, as: :cropable, class_name: 'Crop', dependent: :destroy
