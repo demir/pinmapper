@@ -52,8 +52,7 @@ CREATE TABLE public.action_text_rich_texts (
     record_type character varying NOT NULL,
     record_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    plain_text_body text
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -1267,6 +1266,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211102193042'),
 ('20211105235655'),
 ('20211115193858'),
-('20211115222352');
+('20211115222352'),
+('20211118093627');
 
 
