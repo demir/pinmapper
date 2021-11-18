@@ -94,7 +94,7 @@ class Pin < ApplicationRecord
 
   def set_caches
     self.cached_tag_list = tag_list.to_s
-    self.cached_plain_text_description = description.body.to_plain_text
+    self.cached_plain_text_description = description&.body&.to_plain_text
     return if user.blank?
 
     self.cached_user_username = user_username
