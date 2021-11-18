@@ -21,7 +21,7 @@ class Pin < ApplicationRecord
   before_update :delete_user_tags, prepend: true
   before_destroy :delete_crops
   before_destroy :delete_user_tags, prepend: true
-  after_commit :update_tsv, on: :update, if: :saved_change_to_tag_list?
+  before_save :set_caches
 
   # relations
   has_one :cover_image_crop, as: :cropable, class_name: 'Crop', dependent: :destroy
@@ -95,5 +95,9 @@ class Pin < ApplicationRecord
 
   def delete_user_tags
     UserTag.where(tag: tags.where(taggings_count: 1)).destroy_all
+  end
+
+  def set_caches
+    self.cached_tag_list = tag_list.to_s
   end
 end
