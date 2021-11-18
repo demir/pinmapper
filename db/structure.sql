@@ -334,7 +334,8 @@ CREATE TABLE public.pins (
     updated_at timestamp(6) without time zone NOT NULL,
     user_id bigint NOT NULL,
     cached_tag_list character varying,
-    cached_plain_text_description text
+    cached_plain_text_description text,
+    cached_user_username character varying
 );
 
 
@@ -1271,6 +1272,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211115222352'),
 ('20211118093627'),
 ('20211118095606'),
-('20211118100732');
+('20211118100732'),
+('20211118101322');
 
 

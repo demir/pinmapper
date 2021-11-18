@@ -15,6 +15,9 @@ class Pin < ApplicationRecord
     end
   end
 
+  # delegates
+  delegate :username, to: :user, prefix: true
+
   # callbacks
   before_validation :geocode, if: ->(obj) { obj.address.present? && obj.address_changed? }
   before_validation :fix_tags, if: :tag_list_changed?
@@ -100,5 +103,8 @@ class Pin < ApplicationRecord
   def set_caches
     self.cached_tag_list = tag_list.to_s
     self.cached_plain_text_description = description.body.to_plain_text
+    return if user.blank?
+
+    self.cached_user_username = user_username
   end
 end
