@@ -4,7 +4,7 @@ class SearchController < ApplicationController
   include Pagy::Backend
 
   def pins
-    pins = Pin.search_pins(params[:q]).order(created_at: :desc)
+    pins = Pin.pg_search(params[:q]).order(created_at: :desc)
     @pagy, @pins = pagy pins
   end
 

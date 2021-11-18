@@ -74,7 +74,7 @@ RSpec.describe Pin, type: :model do
     it 'search_pins' do
       random_name = SecureRandom.hex(15)
       pin = create(:pin, name: random_name)
-      expect(described_class.search_pins(random_name)).to include(pin)
+      expect(described_class.pg_search(random_name)).to include(pin)
     end
   end
 end

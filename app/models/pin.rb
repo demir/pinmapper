@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pin < ApplicationRecord
-  include PgSearch::Model
+  include ActiveRecord::Searchable
 
   acts_as_taggable_on :tags
   acts_as_votable
@@ -43,14 +43,6 @@ class Pin < ApplicationRecord
   validate :found_address_presence?, if: ->(obj) { obj.address.present? && obj.address_changed? }
   validate :max_tag_count, if: :tag_list_changed?
   validate :max_tag_length, if: :tag_list_changed?
-
-  # scopes
-  pg_search_scope :search_pins,
-                  against:            { name: 'A', cover_image_description: 'B', address: 'D' },
-                  associated_against: { tags:                  { name: 'C' },
-                                        rich_text_description: { body: 'C' },
-                                        user:                  { username: 'C' } },
-                  using:              { tsearch: { prefix: true } }
 
   def cover_image_crop_constraints
     return {} if cover_image_crop.blank?
