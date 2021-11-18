@@ -37,6 +37,26 @@ CREATE EXTENSION IF NOT EXISTS unaccent WITH SCHEMA public;
 COMMENT ON EXTENSION unaccent IS 'text search dictionary that removes accents';
 
 
+--
+-- Name: update_pins_tsv(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.update_pins_tsv() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+        NEW.tsv := (
+          setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.name,'')), 'A') ||
+          setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.cover_image_description,'')), 'B') ||
+          setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.cached_user_username,'')), 'D') ||
+          setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.cached_tag_list,'')), 'B') ||
+          setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.cached_plain_text_description,'')), 'C')
+        );
+        RETURN NEW;
+      END
+      $$;
+
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -335,7 +355,8 @@ CREATE TABLE public.pins (
     user_id bigint NOT NULL,
     cached_tag_list character varying,
     cached_plain_text_description text,
-    cached_user_username character varying
+    cached_user_username character varying,
+    tsv tsvector
 );
 
 
@@ -964,6 +985,13 @@ CREATE INDEX index_pins_on_latitude_and_longitude ON public.pins USING btree (la
 
 
 --
+-- Name: index_pins_on_tsv; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_pins_on_tsv ON public.pins USING gin (tsv);
+
+
+--
 -- Name: index_pins_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1139,6 +1167,13 @@ CREATE INDEX taggings_taggable_context_idx ON public.taggings USING btree (tagga
 
 
 --
+-- Name: pins tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.pins FOR EACH ROW EXECUTE FUNCTION public.update_pins_tsv();
+
+
+--
 -- Name: boards fk_rails_0732f8ef3d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1273,6 +1308,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211118093627'),
 ('20211118095606'),
 ('20211118100732'),
-('20211118101322');
+('20211118101322'),
+('20211118102222');
 
 
