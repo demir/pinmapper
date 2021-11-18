@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   #  callbacks
   after_create :create_profile_record
+  after_update :update_pins_cached_user_username, if: :saved_change_to_username?
 
   #  relations
   has_many :pins, dependent: :destroy
@@ -65,5 +66,9 @@ class User < ApplicationRecord
 
   def create_profile_record
     create_profile(bio: nil)
+  end
+
+  def update_pins_cached_user_username
+    pins.update_all(cached_user_username: username)
   end
 end
