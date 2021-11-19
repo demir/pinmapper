@@ -21,7 +21,7 @@ class SearchController < ApplicationController
   end
 
   def users
-    users = User.search_users(params[:q]).order(created_at: :desc)
+    users = User.pg_search(params[:q]).order(created_at: :desc)
     @pagy, @users = pagy users
   end
 end

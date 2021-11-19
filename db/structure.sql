@@ -57,6 +57,22 @@ CREATE FUNCTION public.update_pins_tsv() RETURNS trigger
       $$;
 
 
+--
+-- Name: update_users_tsv(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.update_users_tsv() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+        NEW.tsv := (
+          setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.username,'')), 'A')
+        );
+        RETURN NEW;
+      END
+      $$;
+
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -570,7 +586,8 @@ CREATE TABLE public.users (
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
     unconfirmed_email character varying,
-    username character varying
+    username character varying,
+    tsv tsvector
 );
 
 
@@ -1111,6 +1128,13 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: index_users_on_tsv; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_tsv ON public.users USING gin (tsv);
+
+
+--
 -- Name: index_users_on_username; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1171,6 +1195,13 @@ CREATE INDEX taggings_taggable_context_idx ON public.taggings USING btree (tagga
 --
 
 CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.pins FOR EACH ROW EXECUTE FUNCTION public.update_pins_tsv();
+
+
+--
+-- Name: users tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.users FOR EACH ROW EXECUTE FUNCTION public.update_users_tsv();
 
 
 --
@@ -1309,6 +1340,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211118095606'),
 ('20211118100732'),
 ('20211118101322'),
-('20211118102222');
+('20211118102222'),
+('20211119000327');
 
 

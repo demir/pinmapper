@@ -34,10 +34,10 @@ RSpec.describe User, type: :model do
   end
 
   describe 'scopes' do
-    it 'search_users' do
+    it 'search users' do
       random_name = SecureRandom.hex(15)
       user = create(:user, username: random_name)
-      expect(described_class.search_users(random_name)).to include(user)
+      expect(described_class.pg_search(random_name)).to include(user)
     end
   end
 end
