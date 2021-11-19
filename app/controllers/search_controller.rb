@@ -9,7 +9,7 @@ class SearchController < ApplicationController
   end
 
   def boards
-    boards = Board.search_boards(params[:q])
+    boards = Board.pg_search(params[:q])
     boards = if current_user.present?
                boards.where('user_id != ? AND privacy = 0 OR user_id = ?',
                             current_user.id,

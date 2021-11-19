@@ -35,10 +35,10 @@ RSpec.describe Board, type: :model do
       expect(described_class.trigram_search_by_name(random_name)).to include(board)
     end
 
-    it 'search_boards' do
+    it 'search boards' do
       random_name = SecureRandom.hex(15)
       board = create(:board, name: random_name)
-      expect(described_class.search_boards(random_name)).to include(board)
+      expect(described_class.pg_search(random_name)).to include(board)
     end
   end
 end

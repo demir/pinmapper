@@ -38,6 +38,22 @@ COMMENT ON EXTENSION unaccent IS 'text search dictionary that removes accents';
 
 
 --
+-- Name: update_boards_tsv(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.update_boards_tsv() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+        NEW.tsv := (
+          setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.name,'')), 'A')
+        );
+        RETURN NEW;
+      END
+      $$;
+
+
+--
 -- Name: update_pins_tsv(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -232,7 +248,8 @@ CREATE TABLE public.boards (
     privacy integer,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    user_id bigint NOT NULL
+    user_id bigint NOT NULL,
+    tsv tsvector
 );
 
 
@@ -939,6 +956,13 @@ CREATE UNIQUE INDEX index_active_storage_variant_records_uniqueness ON public.ac
 
 
 --
+-- Name: index_boards_on_tsv; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_boards_on_tsv ON public.boards USING gin (tsv);
+
+
+--
 -- Name: index_boards_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1191,6 +1215,13 @@ CREATE INDEX taggings_taggable_context_idx ON public.taggings USING btree (tagga
 
 
 --
+-- Name: boards tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.boards FOR EACH ROW EXECUTE FUNCTION public.update_boards_tsv();
+
+
+--
 -- Name: pins tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -1341,6 +1372,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211118100732'),
 ('20211118101322'),
 ('20211118102222'),
-('20211119000327');
+('20211119000327'),
+('20211119001301');
 
 

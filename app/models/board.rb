@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
 class Board < ApplicationRecord
-  include PgSearch::Model
+  include ActiveRecord::Searchable
   include TranslateEnum
 
   # scopes
   pg_search_scope :trigram_search_by_name,
                   against: :name,
                   using:   { trigram: { word_similarity: true, threshold: 0.5 } }
-
-  pg_search_scope :search_boards,
-                  against: :name,
-                  using:   { tsearch: { prefix: true } }
 
   # relations
   belongs_to :user
