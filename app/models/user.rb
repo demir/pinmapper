@@ -64,6 +64,8 @@ class User < ApplicationRecord
   end
 
   def update_pins_cached_user_username
+    # rubocop:disable Rails/SkipsModelValidations
     pins.update_all(cached_user_username: username)
+    # rubocop:enable Rails/SkipsModelValidations
   end
 end
