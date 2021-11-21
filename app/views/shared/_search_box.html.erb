@@ -1,0 +1,11 @@
+<div class="search">
+  <% path = search_pins_path %>
+  <% path = search_boards_path if params[:controller].eql?('search') && params[:action].eql?('boards') %>
+  <% path = search_users_path if params[:controller].eql?('search') && params[:action].eql?('users') %>
+  <%= form_with url: path, method: :get do |form| %>
+    <%= form.text_field :q, class: 'form-control', placeholder: t('search.search'), autocomplete: 'off', value: params[:q] %>
+    <%= form.button :submit do %>
+      <i class='icon_search'></i>
+    <% end %>
+  <% end %>
+</div>

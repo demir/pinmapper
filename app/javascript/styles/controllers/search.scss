@@ -1,4 +1,4 @@
-.settings.container {
+.search.container {
   min-height: 600px;
   .row {
     @include tablet {
@@ -8,7 +8,7 @@
   }
 }
 
-.settings .title {
+.search .title {
   padding-left: 0;
   .main_title_3 {
     margin-left: -10px;
@@ -18,8 +18,9 @@
   }
 }
 
-.settings-sidemenu {
+.search-sidemenu {
   margin-bottom: 16px;
+  max-width: 600px;
   @include tablet {
     padding-left: 0;
     padding-right: 0;
@@ -55,18 +56,18 @@
     }
   }
 }
-.settings-main {
-  background-color: #fff;
-  @include border-radius(3px);
-  @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
-  padding: 30px 20px;
-  .header {
-    margin-bottom: 30px;
+.search-main {
+  @include tablet {
+    padding-left: 0;
+    padding-right: 0;
   }
   .body {
-    form {
-      padding: 0;
-      box-shadow: none;
+    width: 600px;
+    .no-results-found {
+      @include fontSize(18px);
+    }
+    #boards, #users {
+      @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
     }
   }
 }

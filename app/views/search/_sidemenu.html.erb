@@ -1,0 +1,5 @@
+<ul class="list-group">
+  <%= link_to t('search.pins'), search_pins_path(q: params[:q]), title: t('search.pins'), class: "black-link list-group-item list-group-item-action #{:pins == page ? 'active' : ''}" %>
+  <%= link_to t('search.boards'), search_boards_path(q: params[:q]), title: t('search.boards'), class: "black-link list-group-item list-group-item-action #{:boards == page ? 'active' : ''}" %>
+  <%= link_to t('search.users'), search_users_path(q: params[:q]), title: t('search.users'), class: "black-link list-group-item list-group-item-action #{:users == page ? 'active' : ''}" %>
+</ul>

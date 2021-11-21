@@ -1,52 +1,55 @@
 <header class="header sticky menu_fixed">
-  <%= link_to root_path do %>
-    <%= image_pack_tag 'media/images/logo-sticky.png', size: '150x36', class: 'logo_sticky' %>
-  <% end %>
-  <div class="btn_mobile">
-    <div class="hamburger hamburger--spin-r" id="hamburger">
-      <div class="hamburger-box">
-        <div class="hamburger-inner"></div>
+  <div class="container">
+    <%= link_to root_path do %>
+      <%= image_pack_tag 'media/images/logo-sticky.png', size: '150x36', class: 'logo_sticky' %>
+    <% end %>
+    <%= render 'shared/search_box' %>
+    <div class="btn_mobile">
+      <div class="hamburger hamburger--spin-r" id="hamburger">
+        <div class="hamburger-box">
+          <div class="hamburger-inner"></div>
+        </div>
       </div>
     </div>
-  </div>
-  <nav class="main-menu">
-    <ul class="nav-menu">
-      <% if user_signed_in? %>
+    <nav class="main-menu">
+      <ul class="nav-menu">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to t('.new_pin'), new_pin_path, class: 'btn_1' %>
+          </li>
+        <% end %>
         <li>
-          <%= link_to t('.new_pin'), new_pin_path, class: 'btn_1' %>
+          <span><%= link_to t('pins.pins'), pins_path, title: t('pins.pins') %></span>
         </li>
-      <% end %>
-      <li>
-        <span><%= link_to t('pins.pins'), pins_path, title: t('pins.pins') %></span>
-      </li>
-      <% if user_signed_in? %>
-        <li>
-          <div class="dropdown dropdown-user">
-            <%= link_to '#0', class: 'logged', 'data-toggle': 'dropdown', title: current_user.username do %>
-              <div id="header-avatar">
-                <%= render(Profiles::AvatarComponent.new(src: current_user.profile.avatar.variant(current_user.profile.avatar_crop_constraints), size: 32)) %>
+        <% if user_signed_in? %>
+          <li>
+            <div class="dropdown dropdown-user">
+              <%= link_to '#0', class: 'logged', 'data-toggle': 'dropdown', title: current_user.username do %>
+                <div id="header-avatar">
+                  <%= render(Profiles::AvatarComponent.new(src: current_user.profile.avatar.variant(current_user.profile.avatar_crop_constraints), size: 32)) %>
+                </div>
+              <% end %>
+              <div class="dropdown-menu">
+                <%= link_to t('profile'), profile_path(current_user), title: t('profile'), class: 'dropdown-item' %>
+                <%= link_to t('liked_pins'), liked_pins_pins_path, title: t('liked_pins'), class: 'dropdown-item' %>
+                <%= link_to t('following_tags'), following_tags_tags_path, title: t('following_tags'), class: 'dropdown-item' %>
+                <%= link_to t('boards.boards'), boards_path, title: t('boards.boards'), class: 'dropdown-item' %>
+                <%= link_to t('boards.following_boards'), following_boards_boards_path, title: t('boards.following_boards'), class: 'dropdown-item' %>
+                <%= link_to t('settings.settings'), settings_edit_profile_path, title: t('settings.settings'), class: 'dropdown-item' %>
+                <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out'), class: 'dropdown-item' %>
               </div>
-            <% end %>
-            <div class="dropdown-menu">
-              <%= link_to t('profile'), profile_path(current_user), title: t('profile'), class: 'dropdown-item' %>
-              <%= link_to t('liked_pins'), liked_pins_pins_path, title: t('liked_pins'), class: 'dropdown-item' %>
-              <%= link_to t('following_tags'), following_tags_tags_path, title: t('following_tags'), class: 'dropdown-item' %>
-              <%= link_to t('boards.boards'), boards_path, title: t('boards.boards'), class: 'dropdown-item' %>
-              <%= link_to t('boards.following_boards'), following_boards_boards_path, title: t('boards.following_boards'), class: 'dropdown-item' %>
-              <%= link_to t('settings.settings'), settings_edit_profile_path, title: t('settings.settings'), class: 'dropdown-item' %>
-              <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out'), class: 'dropdown-item' %>
             </div>
-          </div>
-        </li>
-      <% else %>
-        <li><span>
-          <%= link_to t('devise.sign_in'), new_user_session_path, id: 'sign-in', class: 'login', title: t('devise.sign_in') %>
-        </span></li>
-        <li><span>
-          <%= link_to t('devise.sign_up'), new_user_registration_path, class: 'login', title: t('devise.sign_up') %>
-        </span></li>
-      <% end %>
-    </ul>
-  </nav>
+          </li>
+        <% else %>
+          <li><span>
+            <%= link_to t('devise.sign_in'), new_user_session_path, id: 'sign-in', class: 'login', title: t('devise.sign_in') %>
+          </span></li>
+          <li><span>
+            <%= link_to t('devise.sign_up'), new_user_registration_path, class: 'login', title: t('devise.sign_up') %>
+          </span></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
 </header>
 <!-- /header -->

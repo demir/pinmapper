@@ -27,4 +27,18 @@ RSpec.describe Board, type: :model do
       expect(described_class.respond_to?(:translated_privacies)).to be true
     end
   end
+
+  describe 'scopes' do
+    it 'trigram_search_by_name' do
+      random_name = SecureRandom.hex(15)
+      board = create(:board, name: random_name)
+      expect(described_class.trigram_search_by_name(random_name)).to include(board)
+    end
+
+    it 'search boards' do
+      random_name = SecureRandom.hex(15)
+      board = create(:board, name: random_name)
+      expect(described_class.pg_search(random_name)).to include(board)
+    end
+  end
 end

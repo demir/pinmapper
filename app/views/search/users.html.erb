@@ -1,0 +1,27 @@
+<div class="container margin_100_35 search">
+  <div class="row col-lg-9 offset-lg-3 title">
+    <div class="main_title_3">
+      <span><em></em></span>
+      <h2><%= t('search.results') %></h2>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col-lg-3 search-sidemenu">
+      <%= render 'search/sidemenu', page: :users %>
+    </div>
+    <div class="col-lg-9 search-main">
+      <div class="body">
+        <% if @users.present? %>
+          <div id="users" class="row">
+            <%= render(Profiles::FollowUserListItemComponent.with_collection(@users, current_user: current_user)) %>
+          </div>
+          <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+        <% else %>
+          <div class="row">
+            <p class="no-results-found"><%= t('search.no_results_found') %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
