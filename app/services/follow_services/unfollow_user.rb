@@ -12,9 +12,9 @@ module FollowServices
     def call
       relationship = follower.following_relationships.find_by(following: following).destroy!
     rescue StandardError => e
-      OpenStruct.new({ success?: false, error: e })
+      { success: false, error: e }
     else
-      OpenStruct.new({ success?: true, payload: relationship })
+      { success: true, payload: relationship }
     end
   end
 end
