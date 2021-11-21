@@ -25,29 +25,29 @@ require 'pagy/extras/i18n'
 # Items: Handle the page :items passed with the params
 # See https://ddnexus.github.io/pagy/extras/items
 require 'pagy/extras/items'
-Pagy::VARS[:max_items] = nil # default
-# Pagy::VARS[:items_param] = :items    # default
+Pagy::DEFAULT[:max_items] = nil # default
+# Pagy::DEFAULT[:items_param] = :items    # default
 
 # Responsive: On resize, the number of page links will adapt in real-time to the available window or container width
 # See https://ddnexus.github.io/pagy/extras/responsive
 # require 'pagy/extras/responsive'
 # See https://ddnexus.github.io/pagy/extras/responsive#breakpoints
-# Pagy::VARS[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
+# Pagy::DEFAULT[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
 
 # Pagy Variables
-# All the Pagy::VARS here are set for all the Pagy instances but can be
+# All the Pagy::DEFAULT here are set for all the Pagy instances but can be
 # overridden by just passing them to Pagy.new or the #pagy controller method
 
 # Instance variables (See https://ddnexus.github.io/pagy/api/pagy#instance-variables)
-# Pagy::VARS[:items] = 20                                   # default
+# Pagy::DEFAULT[:items] = 20                                   # default
 
 # Other Variables (See https://ddnexus.github.io/pagy/api/pagy#other-variables)
-# Pagy::VARS[:size]       = [1,4,4,1]                       # default
-# Pagy::VARS[:page_param] = :page                           # default
-# Pagy::VARS[:params]     = {}                              # default
-# Pagy::VARS[:anchor]     = '#anchor'                       # example
-# Pagy::VARS[:link_extra] = 'data-remote="true"'            # example
-# Pagy::VARS[:item_path]  = 'activerecord.models.product'   # example
+# Pagy::DEFAULT[:size]       = [1,4,4,1]                       # default
+# Pagy::DEFAULT[:page_param] = :page                           # default
+# Pagy::DEFAULT[:params]     = {}                              # default
+# Pagy::DEFAULT[:anchor]     = '#anchor'                       # example
+# Pagy::DEFAULT[:link_extra] = 'data-remote="true"'            # example
+# Pagy::DEFAULT[:item_path]  = 'activerecord.models.product'   # example
 
 # Pagy::Frontend::I18N Constant
 # See https://ddnexus.github.io/pagy/api/frontend#i18n
