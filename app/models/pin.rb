@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Pin < ApplicationRecord
+  include ActiveRecord::Searchable
+
   acts_as_taggable_on :tags
   acts_as_votable
   geocoded_by :address do |obj, results|
@@ -13,9 +15,13 @@ class Pin < ApplicationRecord
     end
   end
 
+  # delegates
+  delegate :username, to: :user, prefix: true
+
   # callbacks
   before_validation :geocode, if: ->(obj) { obj.address.present? && obj.address_changed? }
   before_validation :fix_tags, if: :tag_list_changed?
+  before_save :set_caches
   before_update :delete_user_tags, prepend: true
   before_destroy :delete_crops
   before_destroy :delete_user_tags, prepend: true
@@ -84,5 +90,13 @@ class Pin < ApplicationRecord
 
   def delete_user_tags
     UserTag.where(tag: tags.where(taggings_count: 1)).destroy_all
+  end
+
+  def set_caches
+    self.cached_tag_list = tag_list.to_s
+    self.cached_plain_text_description = description&.body&.to_plain_text
+    return if user.blank?
+
+    self.cached_user_username = user_username
   end
 end

@@ -136,7 +136,7 @@ class BoardsController < ApplicationController
   end
 
   def search(boards, attr, attr_value)
-    boards.send("search_by_#{attr}", attr_value)
+    boards.send("trigram_search_by_#{attr}", attr_value)
   end
 
   def get_boards(pin)

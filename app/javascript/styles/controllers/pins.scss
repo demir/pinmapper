@@ -6,8 +6,6 @@
   @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
   max-width: 600px;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
@@ -228,4 +226,10 @@ aside.blog {
   aside.blog {
     padding-left: 15px;
   }
+}
+
+//-------------------- Pins#index -------------------//
+.pins-index .pin, .liked-pins .pin{
+  margin-left: auto;
+  margin-right: auto;
 }
