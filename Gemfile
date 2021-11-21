@@ -26,6 +26,7 @@ gem 'redis', '~> 4.5.1'
 gem 'sass-rails', '~> 6.0'
 gem 'simple_form', '~> 5.1'
 gem 'translate_enum', '~> 0.1.3'
+gem 'turbo-rails', '~> 0.8'
 gem 'view_component', '~> 2.44', require: 'view_component/engine'
 gem 'webpacker', '~> 5.4.3'
 
