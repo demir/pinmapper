@@ -8,7 +8,7 @@ class PinsController < ApplicationController
 
   # GET /pins or /pins.json
   def index
-    @pagy, @pins = pagy policy_scope(Pin)
+    @pagy, @pins = pagy Pin, items: 10
     respond_to do |f|
       f.html
       f.turbo_stream
@@ -97,5 +97,13 @@ class PinsController < ApplicationController
 
   def authorize_pin
     authorize @pin || Pin.new
+  end
+
+  def pagy_get_items(collection, pagy)
+    if params[:controller].eql?('pins') && params[:action].eql?('index')
+      Pins::Latest.call(user: current_user, pagy: pagy)
+    else
+      collection.offset(pagy.offset).limit(pagy.items)
+    end
   end
 end
