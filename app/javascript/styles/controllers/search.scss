@@ -62,7 +62,7 @@
     padding-right: 0;
   }
   .body {
-    width: 600px;
+    max-width: 600px;
     .no-results-found {
       @include fontSize(18px);
     }
