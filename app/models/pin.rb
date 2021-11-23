@@ -44,6 +44,9 @@ class Pin < ApplicationRecord
   validate :max_tag_count, if: :tag_list_changed?
   validate :max_tag_length, if: :tag_list_changed?
 
+  # counter_cultures
+  counter_culture :user
+
   def cover_image_crop_constraints
     return {} if cover_image_crop.blank?
 
