@@ -17,12 +17,38 @@
           <div class="header-avatar not-clickable">
             <%= render(Profiles::AvatarComponent.new(src: current_user.profile.avatar.variant(current_user.profile.avatar_crop_constraints), size: 32)) %>
           </div>
+          <li class="visible-menu-item">
             <%= link_to t('.new_pin'), new_pin_path, class: 'btn_1' %>
           </li>
         <% end %>
-        <li>
+        <li class="visible-menu-item">
           <span><%= link_to t('pins.pins'), pins_path, title: t('pins.pins') %></span>
         </li>
+        <% if user_signed_in? %>
+          <div class="user-menu">
+            <li>
+              <%= link_to t('profile'), profile_path(current_user), title: t('profile') %>
+            </li>
+            <li>
+              <%= link_to t('liked_pins'), liked_pins_pins_path, title: t('liked_pins') %>
+            </li>
+            <li>
+              <%= link_to t('following_tags'), following_tags_tags_path, title: t('following_tags') %>
+            </li>
+            <li>
+              <%= link_to t('boards.boards'), boards_path, title: t('boards.boards') %>
+            </li>
+            <li>
+              <%= link_to t('boards.following_boards'), following_boards_boards_path, title: t('boards.following_boards') %>
+            </li>
+            <li>
+              <%= link_to t('settings.settings'), settings_edit_profile_path, title: t('settings.settings') %>
+            </li>
+            <li>
+              <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out') %>
+            </li>
+          </div>
+        <% end %>
         <% if user_signed_in? %>
           <li>
             <div class="dropdown dropdown-user">
@@ -43,10 +69,10 @@
             </div>
           </li>
         <% else %>
-          <li><span>
+          <li class="visible-menu-item"><span>
             <%= link_to t('devise.sign_in'), new_user_session_path, id: 'sign-in', class: 'login', title: t('devise.sign_in') %>
           </span></li>
-          <li><span>
+          <li class="visible-menu-item"><span>
             <%= link_to t('devise.sign_up'), new_user_registration_path, class: 'login', title: t('devise.sign_up') %>
           </span></li>
         <% end %>
