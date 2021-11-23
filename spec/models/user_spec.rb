@@ -26,6 +26,14 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_length_of(:username).is_at_most(30) }
     it { is_expected.to validate_presence_of(:password) }
     it { is_expected.to validate_confirmation_of(:password) }
+    it { is_expected.to validate_presence_of(:pins_count) }
+    it { is_expected.to validate_presence_of(:boards_count) }
+    it { is_expected.to validate_presence_of(:public_boards_count) }
+    it { is_expected.to validate_presence_of(:secret_boards_count) }
+    it { is_expected.to validate_presence_of(:following_count) }
+    it { is_expected.to validate_presence_of(:followers_count) }
+    it { is_expected.to validate_presence_of(:tags_count) }
+    it { is_expected.to validate_presence_of(:following_boards_count) }
 
     it do
       expect(user).to validate_length_of(:password).is_at_least(6)

@@ -19,6 +19,7 @@ class Board < ApplicationRecord
   # validations
   validates :name, presence: true, length: { maximum: 50 }
   validates :privacy, presence: true
+  validates :pins_count, presence: true
 
   # counter_cultures
   counter_culture :user

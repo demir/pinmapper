@@ -37,6 +37,14 @@ class User < ApplicationRecord
                        if: proc { |u| u.username.blank? || u.username_changed? }
   validates :username, format: { with: /\A[a-z0-9_]*\z/, multiline: true }, if: :username_changed?
   validate :validate_username, if: :username_changed?
+  validates :pins_count, presence: true
+  validates :boards_count, presence: true
+  validates :public_boards_count, presence: true
+  validates :secret_boards_count, presence: true
+  validates :following_count, presence: true
+  validates :followers_count, presence: true
+  validates :tags_count, presence: true
+  validates :following_boards_count, presence: true
 
   def login
     @login || username || email
