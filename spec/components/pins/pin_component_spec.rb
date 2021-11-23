@@ -48,6 +48,10 @@ RSpec.describe Pins::PinComponent, type: :component do
     it 'add to board button' do
       expect(rendered_component).to have_css '.footer .add_to_board_btn'
     end
+
+    it 'location information' do
+      expect(rendered_component).to have_css '.pin .body .address.soft-black-text', text: pin.city_country
+    end
   end
 
   context 'without current_user' do

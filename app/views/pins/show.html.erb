@@ -22,6 +22,7 @@
           <div class="hrow negative-margin-top">
             <div>
               <%= render(Taggable::TagListComponent.new(tags: @pin.tags)) %>
+              <div class="address soft-black-text"><i class="icon_pin_alt"></i><small><%= @pin.city_country %></small></div>
             </div>
           </div>
         </div>
