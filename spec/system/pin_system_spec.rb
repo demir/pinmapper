@@ -118,7 +118,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           pin_element.find('#add-pin-to-board-menu').click
           scroll_to(pin_element.find(".body #add_to_board_list_pin_#{pin.id}"), align: :bottom)
           expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin",
-                                   minimum: user.boards.count
+                                   minimum: user.boards_count
         end
       end
     end

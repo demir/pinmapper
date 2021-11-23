@@ -2,7 +2,7 @@
 <%= turbo_stream.remove(@board) %>
 
 <%= turbo_stream.update "boards-count" do %>
-  <%= "#{t('boards.boards')} (#{current_user.boards.count})" %>
+  <%= "#{t('boards.boards')} (#{current_user.boards_count})" %>
 <% end %>
 
 <%= turbo_stream.replace "boards_link_#{dom_id(current_user)}" do %>
