@@ -249,7 +249,8 @@ CREATE TABLE public.boards (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     user_id bigint NOT NULL,
-    tsv tsvector
+    tsv tsvector,
+    pins_count integer DEFAULT 0 NOT NULL
 );
 
 
@@ -604,7 +605,15 @@ CREATE TABLE public.users (
     confirmation_sent_at timestamp without time zone,
     unconfirmed_email character varying,
     username character varying,
-    tsv tsvector
+    tsv tsvector,
+    pins_count integer DEFAULT 0 NOT NULL,
+    boards_count integer DEFAULT 0 NOT NULL,
+    public_boards_count integer DEFAULT 0 NOT NULL,
+    secret_boards_count integer DEFAULT 0 NOT NULL,
+    following_count integer DEFAULT 0 NOT NULL,
+    followers_count integer DEFAULT 0 NOT NULL,
+    tags_count integer DEFAULT 0 NOT NULL,
+    following_boards_count integer DEFAULT 0 NOT NULL
 );
 
 
@@ -1373,6 +1382,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211118101322'),
 ('20211118102222'),
 ('20211119000327'),
-('20211119001301');
+('20211119001301'),
+('20211122203947'),
+('20211123185445');
 
 
