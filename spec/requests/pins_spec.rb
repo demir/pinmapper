@@ -29,7 +29,7 @@ RSpec.describe '/pins', type: :request do
 
     describe 'GET /show' do
       it 'renders a successful response' do
-        get pin_url(pin)
+        get pin_url(id: pin)
         expect(response).to be_successful
       end
     end
@@ -71,7 +71,7 @@ RSpec.describe '/pins', type: :request do
 
     describe 'GET /edit' do
       it 'render a successful response' do
-        get edit_pin_url(pin)
+        get edit_pin_url(id: pin)
         expect(response).to be_successful
       end
     end
@@ -122,13 +122,13 @@ RSpec.describe '/pins', type: :request do
     describe 'PATCH /update' do
       context 'with valid parameters' do
         it 'updates the requested pin' do
-          patch pin_url(pin), params: { pin: attributes_for(:pin, name: 'OMÜ') }
+          patch pin_url(id: pin), params: { pin: attributes_for(:pin, name: 'OMÜ') }
           pin.reload
           expect(pin.name).to match('OMÜ')
         end
 
         it 'redirects to the pin' do
-          patch pin_url(pin), params: { pin: attributes_for(:pin, name: 'OMÜ') }
+          patch pin_url(id: pin), params: { pin: attributes_for(:pin, name: 'OMÜ') }
           pin.reload
           expect(response).to redirect_to(pin_url(pin))
         end
@@ -153,7 +153,7 @@ RSpec.describe '/pins', type: :request do
 
       it 'redirects to the pins list' do
         new_pin = create(:pin, user: user)
-        delete pin_url(new_pin)
+        delete pin_url(id: new_pin)
         expect(response).to redirect_to(pins_url)
       end
     end

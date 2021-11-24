@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include Pundit
-  before_action :set_locale
+  around_action :switch_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -17,14 +17,14 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def set_locale
-    I18n.locale = params[:locale] || cookies[:locale] || I18n.default_locale
-    Rails.application.routes.default_url_options[:locale] = I18n.locale
-    cookies[:locale] = I18n.locale
+  def switch_locale(&action)
+    locale = params[:locale] || cookies[:locale] || I18n.default_locale
+    cookies[:locale] = locale
+    I18n.with_locale(locale, &action)
   end
 
-  def default_url_options(options = {})
-    { locale: I18n.locale }.merge(options)
+  def default_url_options
+    { locale: I18n.locale }
   end
 
   def user_not_authorized

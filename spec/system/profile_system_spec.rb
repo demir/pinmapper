@@ -40,7 +40,7 @@ RSpec.describe 'Profiles', type: :system, js: true do
       it 'visits edit_profile' do
         visit profile_path(id: current_user)
         click_link I18n.t('settings.edit_profile')
-        expect(page).to have_current_path settings_edit_profile_path
+        expect(page).to have_current_path settings_edit_profile_path(locale: I18n.locale)
       end
 
       it 'can not edit_profile other users' do

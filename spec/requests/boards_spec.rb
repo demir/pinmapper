@@ -51,7 +51,7 @@ RSpec.describe '/boards', type: :request do
 
     describe 'GET /edit' do
       it 'render a successful response' do
-        get edit_board_url(board)
+        get edit_board_url(id: board)
         expect(response).to be_successful
       end
     end
@@ -200,7 +200,7 @@ RSpec.describe '/boards', type: :request do
 
     describe 'GET /edit' do
       it 'can not render a successful response' do
-        get edit_board_url(board)
+        get edit_board_url(id: board)
         expect(response).not_to be_successful
       end
     end
