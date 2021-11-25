@@ -80,4 +80,8 @@ class User < ApplicationRecord
     pins.update_all(cached_user_username: username)
     # rubocop:enable Rails/SkipsModelValidations
   end
+
+  def should_generate_new_friendly_id?
+    username_changed?
+  end
 end
