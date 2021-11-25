@@ -648,7 +648,8 @@ CREATE TABLE public.users (
     followers_count integer DEFAULT 0 NOT NULL,
     tags_count integer DEFAULT 0 NOT NULL,
     following_boards_count integer DEFAULT 0 NOT NULL,
-    locale character varying
+    locale character varying,
+    slug character varying
 );
 
 
@@ -1239,6 +1240,13 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: index_users_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_slug ON public.users USING btree (slug);
+
+
+--
 -- Name: index_users_on_tsv; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1465,6 +1473,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211123185445'),
 ('20211124204552'),
 ('20211125114201'),
-('20211125114430');
+('20211125114430'),
+('20211125115319');
 
 
