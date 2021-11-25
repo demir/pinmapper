@@ -423,7 +423,8 @@ CREATE TABLE public.pins (
     cached_tag_list character varying,
     cached_plain_text_description text,
     cached_user_username character varying,
-    tsv tsvector
+    tsv tsvector,
+    slug character varying
 );
 
 
@@ -1105,6 +1106,13 @@ CREATE INDEX index_pins_on_latitude_and_longitude ON public.pins USING btree (la
 
 
 --
+-- Name: index_pins_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_pins_on_slug ON public.pins USING btree (slug);
+
+
+--
 -- Name: index_pins_on_tsv; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1456,6 +1464,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211122203947'),
 ('20211123185445'),
 ('20211124204552'),
-('20211125114201');
+('20211125114201'),
+('20211125114430');
 
 

@@ -123,7 +123,7 @@ class BoardsController < ApplicationController
   end
 
   def set_pin
-    @pin = Pin.find(params[:pin_id])
+    @pin = Pin.friendly.find(params[:pin_id])
   end
 
   # Only allow a list of trusted parameters through.

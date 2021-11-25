@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Pin < ApplicationRecord
+  extend FriendlyId
   include ActiveRecord::Searchable
 
   acts_as_taggable_on :tags
@@ -14,6 +15,9 @@ class Pin < ApplicationRecord
       obj.longitude = nil
     end
   end
+
+  # friendly_id
+  friendly_id :name, use: :slugged
 
   # delegates
   delegate :username, to: :user, prefix: true
