@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  extend FriendlyId
   include ActiveRecord::Searchable
 
   acts_as_voter
@@ -10,6 +11,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :validatable, :confirmable
+
+  # friendly_id
+  friendly_id :username, use: :slugged
 
   #  callbacks
   after_create :create_profile_record
@@ -75,5 +79,9 @@ class User < ApplicationRecord
     # rubocop:disable Rails/SkipsModelValidations
     pins.update_all(cached_user_username: username)
     # rubocop:enable Rails/SkipsModelValidations
+  end
+
+  def should_generate_new_friendly_id?
+    username_changed?
   end
 end

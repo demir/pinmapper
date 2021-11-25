@@ -12,6 +12,7 @@ gem 'bootsnap', '~> 1.9', require: false
 gem 'counter_culture', '~> 2.0'
 gem 'devise', '~> 4.8.0'
 gem 'draper', '~> 4.0.2'
+gem 'friendly_id', '~> 5.4.0'
 gem 'geocoder', '~> 1.7.0'
 gem 'hotwire-rails', '~> 0.1.3'
 gem 'image_processing', '~> 1.0'

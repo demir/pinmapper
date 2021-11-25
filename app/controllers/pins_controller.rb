@@ -85,7 +85,7 @@ class PinsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_pin
-    @pin = Pin.find(params[:id])
+    @pin = Pin.friendly.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

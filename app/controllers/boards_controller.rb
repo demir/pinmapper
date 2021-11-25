@@ -119,11 +119,11 @@ class BoardsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_board
-    @board = Board.find(params[:id])
+    @board = Board.friendly.find(params[:id])
   end
 
   def set_pin
-    @pin = Pin.find(params[:pin_id])
+    @pin = Pin.friendly.find(params[:pin_id])
   end
 
   # Only allow a list of trusted parameters through.

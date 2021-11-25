@@ -250,7 +250,8 @@ CREATE TABLE public.boards (
     updated_at timestamp(6) without time zone NOT NULL,
     user_id bigint NOT NULL,
     tsv tsvector,
-    pins_count integer DEFAULT 0 NOT NULL
+    pins_count integer DEFAULT 0 NOT NULL,
+    slug character varying
 );
 
 
@@ -342,6 +343,39 @@ ALTER SEQUENCE public.follows_id_seq OWNED BY public.follows.id;
 
 
 --
+-- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.friendly_id_slugs (
+    id bigint NOT NULL,
+    slug character varying NOT NULL,
+    sluggable_id integer NOT NULL,
+    sluggable_type character varying(50),
+    scope character varying,
+    created_at timestamp without time zone
+);
+
+
+--
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.friendly_id_slugs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.friendly_id_slugs_id_seq OWNED BY public.friendly_id_slugs.id;
+
+
+--
 -- Name: pin_boards; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -390,7 +424,8 @@ CREATE TABLE public.pins (
     cached_tag_list character varying,
     cached_plain_text_description text,
     cached_user_username character varying,
-    tsv tsvector
+    tsv tsvector,
+    slug character varying
 );
 
 
@@ -499,7 +534,8 @@ CREATE TABLE public.tags (
     name character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    taggings_count integer DEFAULT 0
+    taggings_count integer DEFAULT 0,
+    slug character varying
 );
 
 
@@ -614,7 +650,8 @@ CREATE TABLE public.users (
     followers_count integer DEFAULT 0 NOT NULL,
     tags_count integer DEFAULT 0 NOT NULL,
     following_boards_count integer DEFAULT 0 NOT NULL,
-    locale character varying
+    locale character varying,
+    slug character varying
 );
 
 
@@ -721,6 +758,13 @@ ALTER TABLE ONLY public.crops ALTER COLUMN id SET DEFAULT nextval('public.crops_
 --
 
 ALTER TABLE ONLY public.follows ALTER COLUMN id SET DEFAULT nextval('public.follows_id_seq'::regclass);
+
+
+--
+-- Name: friendly_id_slugs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('public.friendly_id_slugs_id_seq'::regclass);
 
 
 --
@@ -851,6 +895,14 @@ ALTER TABLE ONLY public.follows
 
 
 --
+-- Name: friendly_id_slugs friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.friendly_id_slugs
+    ADD CONSTRAINT friendly_id_slugs_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pin_boards pin_boards_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -966,6 +1018,13 @@ CREATE UNIQUE INDEX index_active_storage_variant_records_uniqueness ON public.ac
 
 
 --
+-- Name: index_boards_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_boards_on_slug ON public.boards USING btree (slug);
+
+
+--
 -- Name: index_boards_on_tsv; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1008,6 +1067,27 @@ CREATE UNIQUE INDEX index_follows_on_following_id_and_follower_id ON public.foll
 
 
 --
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type ON public.friendly_id_slugs USING btree (slug, sluggable_type);
+
+
+--
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope ON public.friendly_id_slugs USING btree (slug, sluggable_type, scope);
+
+
+--
+-- Name: index_friendly_id_slugs_on_sluggable_type_and_sluggable_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_friendly_id_slugs_on_sluggable_type_and_sluggable_id ON public.friendly_id_slugs USING btree (sluggable_type, sluggable_id);
+
+
+--
 -- Name: index_pin_boards_on_board_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1033,6 +1113,13 @@ CREATE UNIQUE INDEX index_pin_boards_on_pin_id_and_board_id ON public.pin_boards
 --
 
 CREATE INDEX index_pins_on_latitude_and_longitude ON public.pins USING btree (latitude, longitude);
+
+
+--
+-- Name: index_pins_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_pins_on_slug ON public.pins USING btree (slug);
 
 
 --
@@ -1106,6 +1193,13 @@ CREATE UNIQUE INDEX index_tags_on_name ON public.tags USING btree (name);
 
 
 --
+-- Name: index_tags_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_tags_on_slug ON public.tags USING btree (slug);
+
+
+--
 -- Name: index_user_boards_on_board_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1159,6 +1253,13 @@ CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
+
+
+--
+-- Name: index_users_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_slug ON public.users USING btree (slug);
 
 
 --
@@ -1386,6 +1487,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211119001301'),
 ('20211122203947'),
 ('20211123185445'),
-('20211124204552');
+('20211124204552'),
+('20211125114201'),
+('20211125114430'),
+('20211125115319'),
+('20211125115945'),
+('20211125120253');
 
 
