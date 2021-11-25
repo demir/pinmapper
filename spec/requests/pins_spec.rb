@@ -17,37 +17,38 @@ require 'rails_helper'
 RSpec.describe '/pins', type: :request do
   let(:user) { create(:user, :confirmed) }
   let(:pin) { create(:pin, user: user) }
+  let(:headers) { { 'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9' } }
 
   context 'specs without sign in' do
     describe 'GET /index' do
       it 'renders a successful response' do
         create(:pin)
-        get pins_url
+        get pins_url, headers: headers
         expect(response).to be_successful
       end
     end
 
     describe 'GET /show' do
       it 'renders a successful response' do
-        get pin_url(pin)
+        get pin_url(id: pin), headers: headers
         expect(response).to be_successful
       end
     end
 
     it 'can not likes a pin' do
       pin = create(:pin)
-      get like_pin_path(id: pin)
+      get like_pin_path(id: pin), headers: headers
       expect(response).not_to be_successful
     end
 
     it 'can not unlikes a pin' do
       pin = create(:pin)
-      get unlike_pin_path(id: pin)
+      get unlike_pin_path(id: pin), headers: headers
       expect(response).not_to be_successful
     end
 
     it 'can not GET /liked_pins' do
-      get liked_pins_pins_path
+      get liked_pins_pins_path, headers: headers
       expect(response).not_to be_successful
     end
   end
@@ -58,33 +59,33 @@ RSpec.describe '/pins', type: :request do
     end
 
     it 'GET /liked_pins' do
-      get liked_pins_pins_path
+      get liked_pins_pins_path, headers: headers
       expect(response).to be_successful
     end
 
     describe 'GET /new' do
       it 'renders a successful response' do
-        get new_pin_url
+        get new_pin_url, headers: headers
         expect(response).to be_successful
       end
     end
 
     describe 'GET /edit' do
       it 'render a successful response' do
-        get edit_pin_url(pin)
+        get edit_pin_url(id: pin), headers: headers
         expect(response).to be_successful
       end
     end
 
     describe 'GET /like' do
       it 'likes a pin' do
-        get like_pin_path(id: pin)
+        get like_pin_path(id: pin), headers: headers
         expect(response).to be_successful
       end
 
       it 'unlikes a pin' do
         pin.liked_by user
-        get unlike_pin_path(id: pin)
+        get unlike_pin_path(id: pin), headers: headers
         expect(response).to be_successful
       end
     end
@@ -93,12 +94,12 @@ RSpec.describe '/pins', type: :request do
       context 'with valid parameters' do
         it 'creates a new Pin' do
           expect do
-            post pins_url, params: { pin: attributes_for(:pin) }
+            post pins_url, params: { pin: attributes_for(:pin) }, headers: headers
           end.to change(Pin, :count).by(1)
         end
 
         it 'redirects to the created pin' do
-          post pins_url, params: { pin: attributes_for(:pin) }
+          post pins_url, params: { pin: attributes_for(:pin) }, headers: headers
           expect(response).to redirect_to(pin_url(Pin.last))
         end
       end
@@ -106,12 +107,12 @@ RSpec.describe '/pins', type: :request do
       context 'with invalid parameters' do
         it 'does not create a new Pin' do
           expect do
-            post pins_url, params: { pin: attributes_for(:pin, :invalid) }
+            post pins_url, params: { pin: attributes_for(:pin, :invalid) }, headers: headers
           end.to change(Pin, :count).by(0)
         end
 
         it 'renders new template' do
-          post pins_url, params: { pin: attributes_for(:pin, :invalid) }
+          post pins_url, params: { pin: attributes_for(:pin, :invalid) }, headers: headers
           expect(response).to have_http_status(:unprocessable_entity)
           assert_select 'div[class="alert alert-danger"]',
                         text: I18n.t('simple_form.error_notification.default_message')
@@ -122,13 +123,13 @@ RSpec.describe '/pins', type: :request do
     describe 'PATCH /update' do
       context 'with valid parameters' do
         it 'updates the requested pin' do
-          patch pin_url(pin), params: { pin: attributes_for(:pin, name: 'OMÜ') }
+          patch pin_url(id: pin), params: { pin: attributes_for(:pin, name: 'OMÜ') }, headers: headers
           pin.reload
           expect(pin.name).to match('OMÜ')
         end
 
         it 'redirects to the pin' do
-          patch pin_url(pin), params: { pin: attributes_for(:pin, name: 'OMÜ') }
+          patch pin_url(id: pin), params: { pin: attributes_for(:pin, name: 'OMÜ') }, headers: headers
           pin.reload
           expect(response).to redirect_to(pin_url(pin))
         end
@@ -136,7 +137,7 @@ RSpec.describe '/pins', type: :request do
 
       context 'with invalid parameters' do
         it 'renders a successful response' do
-          patch pin_url(id: pin), params: { pin: attributes_for(:pin, :invalid) }
+          patch pin_url(id: pin), params: { pin: attributes_for(:pin, :invalid) }, headers: headers
           assert_select 'div[class="alert alert-danger"]',
                         text: I18n.t('simple_form.error_notification.default_message')
         end
@@ -147,13 +148,13 @@ RSpec.describe '/pins', type: :request do
       it 'destroys the requested pin' do
         new_pin = create(:pin, user: user)
         expect do
-          delete pin_url(id: new_pin)
+          delete pin_url(id: new_pin), headers: headers
         end.to change(Pin, :count).by(-1)
       end
 
       it 'redirects to the pins list' do
         new_pin = create(:pin, user: user)
-        delete pin_url(new_pin)
+        delete pin_url(id: new_pin), headers: headers
         expect(response).to redirect_to(pins_url)
       end
     end

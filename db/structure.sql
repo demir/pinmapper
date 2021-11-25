@@ -613,7 +613,8 @@ CREATE TABLE public.users (
     following_count integer DEFAULT 0 NOT NULL,
     followers_count integer DEFAULT 0 NOT NULL,
     tags_count integer DEFAULT 0 NOT NULL,
-    following_boards_count integer DEFAULT 0 NOT NULL
+    following_boards_count integer DEFAULT 0 NOT NULL,
+    locale character varying
 );
 
 
@@ -1384,6 +1385,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211119000327'),
 ('20211119001301'),
 ('20211122203947'),
-('20211123185445');
+('20211123185445'),
+('20211124204552');
 
 

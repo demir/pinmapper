@@ -46,7 +46,7 @@ RSpec.describe 'Boards', type: :system, js: true do
     it 'visits board#new' do
       visit boards_path
       click_link I18n.t('boards.index.create_new_board')
-      expect(page).to have_current_path new_board_path
+      expect(page).to have_current_path new_board_path(locale: I18n.locale)
     end
 
     it 'creates a new board' do

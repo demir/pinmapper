@@ -15,7 +15,7 @@ RSpec.describe 'Settings', type: :system, js: true do
       find('.dropdown-user').click
       click_link I18n.t('settings.settings')
       click_link I18n.t('settings.change_password')
-      expect(page).to have_current_path settings_change_password_path
+      expect(page).to have_current_path settings_change_password_path(locale: I18n.locale)
     end
 
     it 'changes password' do
@@ -35,7 +35,7 @@ RSpec.describe 'Settings', type: :system, js: true do
       find('.dropdown-user').click
       click_link I18n.t('settings.settings')
       click_link I18n.t('settings.change_username')
-      expect(page).to have_current_path settings_change_username_path
+      expect(page).to have_current_path settings_change_username_path(locale: I18n.locale)
     end
 
     it 'changes username' do
@@ -53,7 +53,7 @@ RSpec.describe 'Settings', type: :system, js: true do
       find('.dropdown-user').click
       click_link I18n.t('settings.settings')
       click_link I18n.t('settings.change_email')
-      expect(page).to have_current_path settings_change_email_path
+      expect(page).to have_current_path settings_change_email_path(locale: I18n.locale)
     end
 
     it 'changes email' do
@@ -71,7 +71,7 @@ RSpec.describe 'Settings', type: :system, js: true do
       find('.dropdown-user').click
       click_link I18n.t('settings.settings')
       click_link I18n.t('settings.edit_profile')
-      expect(page).to have_current_path settings_edit_profile_path
+      expect(page).to have_current_path settings_edit_profile_path(locale: I18n.locale)
     end
 
     it 'edits profile' do

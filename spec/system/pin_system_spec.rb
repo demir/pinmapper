@@ -138,7 +138,7 @@ RSpec.describe 'Pins', type: :system, js: true do
     it 'visits pin#new' do
       visit pins_path
       click_link I18n.t('shared.header.new_pin')
-      expect(page).to have_current_path new_pin_path
+      expect(page).to have_current_path new_pin_path(locale: I18n.locale)
     end
 
     it 'creates a new pin' do
@@ -236,7 +236,7 @@ RSpec.describe 'Pins', type: :system, js: true do
                                                       form.button_to .dropdown-item[value='#{I18n.t('destroy')}']")
           delete_pin_link_element.click
           page.accept_alert
-          expect(page).to have_current_path pins_path
+          expect(page).to have_current_path pins_path(locale: I18n.locale)
           expect(page).to have_content I18n.t('pins.destroy.success')
         end
       end
@@ -271,7 +271,7 @@ RSpec.describe 'Pins', type: :system, js: true do
       describe '#new' do
         it 'redirects to sign in page' do
           visit new_pin_path
-          expect(page).to have_current_path new_user_session_path
+          expect(page).to have_current_path new_user_session_path(locale: I18n.locale)
           expect(page).to have_content I18n.t('devise.failure.unauthenticated')
         end
       end
@@ -280,7 +280,7 @@ RSpec.describe 'Pins', type: :system, js: true do
         it 'redirects to sign in page' do
           pin = pins.last
           visit edit_pin_path(id: pin)
-          expect(page).to have_current_path new_user_session_path
+          expect(page).to have_current_path new_user_session_path(locale: I18n.locale)
           expect(page).to have_content I18n.t('devise.failure.unauthenticated')
         end
       end
