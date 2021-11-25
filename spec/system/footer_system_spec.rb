@@ -14,9 +14,10 @@ RSpec.describe 'Footer', type: :system, js: true do
     it 'switch language' do
       pin = pins.first
       visit pin_path(id: pin)
-      I18n.locale = :en
-      find('.dropdown-lang').click
-      click_link 'Türkçe'
+      I18n.with_locale(:en) do
+        find('.dropdown-lang').click
+        click_link 'Türkçe'
+      end
       expect(page).to have_current_path pin_path(pin, locale: :tr)
     end
   end
@@ -25,9 +26,10 @@ RSpec.describe 'Footer', type: :system, js: true do
     it 'switch language' do
       pin = pins.first
       visit pin_path(id: pin)
-      I18n.locale = :en
-      find('.dropdown-lang').click
-      click_link 'Türkçe'
+      I18n.with_locale(:en) do
+        find('.dropdown-lang').click
+        click_link 'Türkçe'
+      end
       expect(page).to have_current_path pin_path(pin, locale: :tr)
     end
   end
