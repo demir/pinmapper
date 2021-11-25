@@ -534,7 +534,8 @@ CREATE TABLE public.tags (
     name character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    taggings_count integer DEFAULT 0
+    taggings_count integer DEFAULT 0,
+    slug character varying
 );
 
 
@@ -1192,6 +1193,13 @@ CREATE UNIQUE INDEX index_tags_on_name ON public.tags USING btree (name);
 
 
 --
+-- Name: index_tags_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_tags_on_slug ON public.tags USING btree (slug);
+
+
+--
 -- Name: index_user_boards_on_board_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1483,6 +1491,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211125114201'),
 ('20211125114430'),
 ('20211125115319'),
-('20211125115945');
+('20211125115945'),
+('20211125120253');
 
 

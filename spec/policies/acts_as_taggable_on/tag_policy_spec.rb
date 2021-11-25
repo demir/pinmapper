@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TagPolicy, type: :policy do
+RSpec.describe ActsAsTaggableOn::TagPolicy, type: :policy do
   subject(:tag_policy) { described_class }
 
   let(:current_user) { create(:user, :confirmed) }

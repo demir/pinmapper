@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Tag, type: :model do
+RSpec.describe ActsAsTaggableOn::Tag, type: :model do
   subject(:tag) { build(:tag) }
 
   it 'has a valid factory' do
