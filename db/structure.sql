@@ -250,7 +250,8 @@ CREATE TABLE public.boards (
     updated_at timestamp(6) without time zone NOT NULL,
     user_id bigint NOT NULL,
     tsv tsvector,
-    pins_count integer DEFAULT 0 NOT NULL
+    pins_count integer DEFAULT 0 NOT NULL,
+    slug character varying
 );
 
 
@@ -1016,6 +1017,13 @@ CREATE UNIQUE INDEX index_active_storage_variant_records_uniqueness ON public.ac
 
 
 --
+-- Name: index_boards_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_boards_on_slug ON public.boards USING btree (slug);
+
+
+--
 -- Name: index_boards_on_tsv; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1474,6 +1482,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211124204552'),
 ('20211125114201'),
 ('20211125114430'),
-('20211125115319');
+('20211125115319'),
+('20211125115945');
 
 
