@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     get 'settings/change_password'
     get 'settings/change_username'
     get 'settings/change_email'
+    get 'settings/switch_locale'
     namespace :settings do
       put 'profiles/update'
       put 'users/change_password'

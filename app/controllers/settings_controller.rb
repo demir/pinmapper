@@ -10,4 +10,12 @@ class SettingsController < ApplicationController
   def change_email; end
 
   def edit_profile; end
+
+  def switch_locale
+    current_user.update(locale: params[:locale])
+    I18n.locale = params[:locale]
+    url = URI(request&.referer || '').path
+    url_params = Rails.application.routes.recognize_path(url)
+    redirect_to url_params.merge({ locale: params[:locale] })
+  end
 end
