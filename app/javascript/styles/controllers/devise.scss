@@ -1,0 +1,53 @@
+form button.social_bt {
+  border: 0;
+  width: 100%;
+	@include border-radius(3px);
+	text-align: center;
+	color: #fff;
+	min-width: 200px;
+	margin-bottom: 10px;
+	display: block;
+	padding: 12px;
+	line-height: $line-height-none;
+	position: relative;
+	@include transition-default;
+	cursor: pointer;
+	&:hover {
+		-webkit-filter: brightness(115%);
+		filter: brightness(115%);
+	}
+	&.facebook,
+	&.google,
+	&.twitter {
+		&:before {
+			font-family: 'Font Awesome 5 Brands';
+			position: absolute;
+			left: 12px;
+			top: 10px;
+			@include fontSize(16px);
+			color: #fff;
+		}
+	}
+	&.facebook {
+		background-color: #3B5998;
+		&:before {
+			content: "\f39e";
+		}
+	}
+	&.google {
+		background-color: #4285F4;
+		&:before {
+			content: "\f1a0";
+		}
+	}
+	&.twitter {
+		background-color: #1da1f2;
+		&:before {
+			content: "\f099";
+		}
+	}
+}
+
+.access_social form {
+  margin-bottom: 0 !important;
+}
