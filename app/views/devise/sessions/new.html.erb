@@ -8,13 +8,15 @@
           <%= image_pack_tag 'media/images/logo-sticky.png', size: '155x36', class: 'logo_sticky', 'data-retina': true, alt: '' %>
         <% end %>
 			</figure>
+      <div class="access_social" data-turbo="false">
+        <%= button_to user_google_oauth2_omniauth_authorize_path, class: 'social_bt google', method: :post do %>
+          <%= t('devise.sign_in_with_google') %>
+        <% end %>
+        <a href="#0" class="social_bt facebook"><%= t('devise.sign_in_with_facebook') %></a>
+        <a href="#0" class="social_bt twitter"><%= t('devise.sign_in_with_twitter') %></a>
+      </div>
+      <div class="divider"><span><%= t('or') %></span></div>
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { 'data-turbo' => 'false' }) do |f| %>
-        <div class="access_social">
-          <a href="#0" class="social_bt google"><%= t('.sign_in_with_google') %></a>
-          <a href="#0" class="social_bt facebook"><%= t('.sign_in_with_facebook') %></a>
-          <a href="#0" class="social_bt twitter"><%= t('.sign_in_with_twitter') %></a>
-        </div>
-        <div class="divider"><span><%= t('or') %></span></div>
         <div class="form-group">
           <%= f.input :login, input_html: { class: 'form-control' } %>
         </div>

@@ -10,7 +10,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
-         :rememberable, :validatable, :confirmable
+         :rememberable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: %i[google_oauth2]
 
   # friendly_id
   friendly_id :username, use: :slugged
@@ -65,7 +66,37 @@ class User < ApplicationRecord
     end
   end
 
+  def self.from_omniauth(access_token)
+    data = access_token.info
+    user = User.find_by(email: data['email'])
+
+    if user.blank?
+      user = User.create(
+        email:        data['email'],
+        password:     Devise.friendly_token[0, 20],
+        username:     temp_username(data['name']),
+        confirmed_at: DateTime.now
+      )
+      downloaded_image = Down.download(data['image']) if data['image'].present?
+      user.profile.avatar.attach(io: downloaded_image, filename: user.username) if downloaded_image.present?
+    end
+    user
+  end
+
   private
+
+  def self.temp_username(name)
+    raw_username = name&.parameterize(separator: ' ')&.gsub(/[^a-z0-9_]/i, '')&.delete(' ')
+    return if raw_username.blank?
+
+    generate_username(raw_username)
+  end
+
+  def self.generate_username(raw_username)
+    return raw_username.last(30) unless User.exists?(username: raw_username)
+
+    generate_username(raw_username + rand(1000).to_s)
+  end
 
   def validate_username
     errors.add(:username, :invalid) if User.exists?(email: username)

@@ -651,7 +651,9 @@ CREATE TABLE public.users (
     tags_count integer DEFAULT 0 NOT NULL,
     following_boards_count integer DEFAULT 0 NOT NULL,
     locale character varying,
-    slug character varying
+    slug character varying,
+    provider character varying,
+    uid character varying
 );
 
 
@@ -1492,6 +1494,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211125114430'),
 ('20211125115319'),
 ('20211125115945'),
-('20211125120253');
+('20211125120253'),
+('20211126204311');
 
 
