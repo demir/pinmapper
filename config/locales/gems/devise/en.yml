@@ -7,6 +7,9 @@ en:
     already_have_an_account: Already have an account?
     do_not_have_an_account: Don't have an account?
     minimum_characters: '%{count} characters minimum'
+    sign_in_with_google: Sign in with Google
+    sign_in_with_facebook: Sign in with Facebook
+    sign_in_with_twitter: Sign in with Twitter
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
@@ -65,9 +68,6 @@ en:
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
       new:
-        sign_in_with_google: Sign in with Google
-        sign_in_with_facebook: Sign in with Facebook
-        sign_in_with_twitter: Sign in with Twitter
         remember_me: Remember me
         forgot_password: Forgot your password?
     unlocks:
