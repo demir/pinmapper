@@ -9,6 +9,8 @@ module OmniauthServices
     end
 
     def call
+      raise ArgumentError if auth.blank?
+
       user = find_or_create_user
     rescue StandardError => e
       { success: false, error: e }
@@ -19,7 +21,7 @@ module OmniauthServices
     private
 
     def find_or_create_user
-      data = auth.info
+      data = auth['info']
       user = User.find_by(email: data['email'])
       return user if user.present?
 
@@ -27,7 +29,7 @@ module OmniauthServices
     end
 
     def create_user
-      data = auth.info
+      data = auth['info']
       user = User.create(
         email:        data['email'],
         password:     Devise.friendly_token[0, 20],

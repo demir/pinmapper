@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FollowServices::UnfollowUser do
+RSpec.describe FollowServices::UnfollowUser, type: :service do
   describe '#call' do
     subject(:unfollowed) do
       FollowServices::FollowUser.call(follower, following)
