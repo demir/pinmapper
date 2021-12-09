@@ -490,6 +490,38 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sessions (
+    id bigint NOT NULL,
+    session_id character varying NOT NULL,
+    data text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
+
+
+--
 -- Name: taggings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -791,6 +823,13 @@ ALTER TABLE ONLY public.profiles ALTER COLUMN id SET DEFAULT nextval('public.pro
 
 
 --
+-- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions ALTER COLUMN id SET DEFAULT nextval('public.sessions_id_seq'::regclass);
+
+
+--
 -- Name: taggings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -934,6 +973,14 @@ ALTER TABLE ONLY public.profiles
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -1143,6 +1190,20 @@ CREATE INDEX index_pins_on_user_id ON public.pins USING btree (user_id);
 --
 
 CREATE INDEX index_profiles_on_user_id ON public.profiles USING btree (user_id);
+
+
+--
+-- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_sessions_on_session_id ON public.sessions USING btree (session_id);
+
+
+--
+-- Name: index_sessions_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_updated_at ON public.sessions USING btree (updated_at);
 
 
 --
@@ -1495,6 +1556,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211125115319'),
 ('20211125115945'),
 ('20211125120253'),
-('20211126204311');
+('20211126204311'),
+('20211209212617');
 
 
