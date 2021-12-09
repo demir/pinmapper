@@ -12,7 +12,9 @@
         <%= button_to user_google_oauth2_omniauth_authorize_path, class: 'social_bt google', method: :post do %>
           <%= t('devise.sign_in_with_google') %>
         <% end %>
-        <a href="#0" class="social_bt facebook"><%= t('devise.sign_in_with_facebook') %></a>
+        <%= button_to user_facebook_omniauth_authorize_path, class: 'social_bt facebook', method: :post do %>
+          <%= t('devise.sign_in_with_facebook') %>
+        <% end %>
         <a href="#0" class="social_bt twitter"><%= t('devise.sign_in_with_twitter') %></a>
       </div>
       <div class="divider"><span><%= t('or') %></span></div>

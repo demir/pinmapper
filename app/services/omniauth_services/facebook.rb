@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module OmniauthServices
-  class Google < ApplicationService
+  class Facebook < ApplicationService
     include Common
     attr_reader :auth
 

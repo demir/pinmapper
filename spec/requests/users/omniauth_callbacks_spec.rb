@@ -45,4 +45,41 @@ RSpec.describe 'Users::OmniauthCallbacks', type: :request do
       end
     end
   end
+
+  describe 'Facebook' do
+    context 'Success handling' do
+      before do
+        OmniAuth.config.test_mode = true
+        OmniAuth.config.mock_auth[:default] = create(:auth_hash, :facebook)
+      end
+
+      context "when facebook email doesn't exist in the system" do
+        before do
+          post user_facebook_omniauth_callback_path, headers: headers
+        end
+
+        let(:user) { User.find_by(email: 'testuser@facebook.com') }
+
+        it 'creates user with info in facebook' do
+          expect(user).to be_present
+        end
+
+        it 'redirects to root' do
+          expect(response).to redirect_to root_path
+        end
+      end
+
+      context 'when facebook email already exists in the system' do
+        before do
+          User.where(email: 'testuser@facebook.com').destroy_all
+        end
+
+        it 'signs in and redirects to root' do
+          create(:user, :confirmed, email: 'testuser@facebook.com')
+          post user_facebook_omniauth_callback_path, headers: headers
+          expect(response).to redirect_to root_path
+        end
+      end
+    end
+  end
 end
