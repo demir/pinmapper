@@ -12,14 +12,16 @@
       });
     }
 
-    document.addEventListener('click', ({ target }) => {
-      if (!target.closest('.nav-menu') && !target.closest('#hamburger')) {
-        if (hamburger.classList.contains('is-active')) {
-          document.querySelector(".nav-menu").classList.remove("active");
-          hamburger.classList.toggle("is-active")
+    if (hamburger) {
+      document.addEventListener('click', ({ target }) => {
+        if (!target.closest('.nav-menu') && !target.closest('#hamburger')) {
+          if (hamburger.classList.contains('is-active')) {
+            document.querySelector(".nav-menu").classList.remove("active");
+            hamburger.classList.toggle("is-active")
+          }
         }
-      }
-    })
+      })
+    }
 
     //Scroll to top
     $(window).on('scroll', function () {

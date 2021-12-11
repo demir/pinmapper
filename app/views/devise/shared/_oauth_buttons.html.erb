@@ -1,0 +1,8 @@
+<div class="access_social" data-turbo="false">
+  <%= button_to user_google_oauth2_omniauth_authorize_path, class: 'social_bt google', method: :post do %>
+    <%= t('devise.sign_in_with_google') %>
+  <% end %>
+  <%= button_to user_facebook_omniauth_authorize_path, class: 'social_bt facebook', method: :post do %>
+    <%= t('devise.sign_in_with_facebook') %>
+  <% end %>
+</div>

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FollowServices::FollowUser do
+RSpec.describe FollowServices::FollowUser, type: :service do
   describe '#call' do
     subject(:followed) { described_class.call(follower, following) }
 
