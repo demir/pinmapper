@@ -14,6 +14,7 @@
     <h3><%= link_to @pin.name, pin_path(@pin) %></h3>
     <p class="cover-image-description"><%= @pin.cover_image_description %></p>
     <%= render(Taggable::TagListComponent.new(tags: @pin.tags)) %>
+    <div class="address soft-black-text"><i class="icon_pin_alt"></i><small><%= @pin.city_country %></small></div>
     <small class="time-ago"><%= "#{time_ago_in_words(@pin.created_at)} #{t('ago')}" %></small>
   </div>
   <div class="footer">

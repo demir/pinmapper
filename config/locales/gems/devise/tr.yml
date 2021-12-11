@@ -7,6 +7,9 @@ tr:
     already_have_an_account: Hesabınız var mı?
     do_not_have_an_account: Hesabınız yok mu?
     minimum_characters: 'Minimum %{count} karakter'
+    sign_in_with_google: Google ile Giriş Yap
+    sign_in_with_facebook: Facebook ile Giriş Yap
+    sign_in_with_twitter: Twitter ile Giriş Yap
     confirmations:
       confirmed: "Eposta adresiniz başırılı bir şekilde onaylandı."
       send_instructions: "Bir kaç dakika içerisinde eposta adresinizi nasıl onaylayacağınız hakkında bir eposta alacaksınız."
@@ -64,9 +67,6 @@ tr:
       signed_out: "Başarılı çıkış."
       already_signed_out: "Başarılı çıkış."
       new:
-        sign_in_with_google: Google ile Giriş Yap
-        sign_in_with_facebook: Facebook ile Giriş Yap
-        sign_in_with_twitter: Twitter ile Giriş Yap
         remember_me: Beni hatırla
         forgot_password: Parolanı mı unuttun?
     unlocks:

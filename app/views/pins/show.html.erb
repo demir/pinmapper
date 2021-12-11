@@ -1,4 +1,4 @@
-<div class="container margin_100_35 reset-ol-ul">
+<div class="container margin_100_55 reset-ol-ul">
   <div class="row">
     <div class="col-lg-9">
       <div class="bloglist pin-show">
@@ -22,6 +22,7 @@
           <div class="hrow negative-margin-top">
             <div>
               <%= render(Taggable::TagListComponent.new(tags: @pin.tags)) %>
+              <div class="address soft-black-text"><i class="icon_pin_alt"></i><small><%= @pin.city_country %></small></div>
             </div>
           </div>
         </div>

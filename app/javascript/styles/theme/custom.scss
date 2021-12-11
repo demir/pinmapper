@@ -88,6 +88,12 @@ header > .container {
       display: flex;
       align-items: center;
       gap: 20px;
+      .user-menu {
+        display: none;
+      }
+      .not-clickable {
+        display: none;
+      }
     }
   }
 
@@ -102,6 +108,48 @@ header > .container {
 
 /* All styles for screen size under 767px */
 @media only screen and (max-width: 767px) {
+
+  header .main-menu .nav-menu{
+    .dropdown.dropdown-user  {
+      display: none;
+    }
+
+    .not-clickable {
+      margin: 15px 0;
+    }
+
+    .visible-menu-item {
+      padding-top: 0;
+      padding-bottom: 0;
+      a:not(.btn_1){
+        display: block;
+        padding-top: 7.5px;
+        padding-bottom: 7.5px;
+        &:hover {
+          background-color: #e4e4e4;
+        }
+      }
+      .btn_1 {
+        display: block;
+        margin-bottom: 7.5px;
+      }
+    }
+
+    .user-menu {
+      li {
+        padding-top: 0;
+        padding-bottom: 0;
+        a{
+          display: block;
+          padding-top: 7.5px;
+          padding-bottom: 7.5px;
+          &:hover {
+            background-color: #e4e4e4;
+          }
+        }
+      }
+    }
+  }
 
   header .nav-menu .btn_1,
   header .nav-menu .btn_1:hover {
@@ -349,4 +397,8 @@ main .container form {
 .responsive {
   width: 100%;
   height: auto;
+}
+
+.container.margin_100_55 {
+  min-height: 600px;
 }

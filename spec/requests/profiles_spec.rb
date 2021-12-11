@@ -4,18 +4,19 @@ require 'rails_helper'
 
 RSpec.describe 'Profiles', type: :request do
   let(:current_user) { create(:user, :confirmed) }
+  let(:headers) { { 'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9' } }
 
   describe 'specs without sign in' do
     context 'GET /show' do
       it 'returns http success' do
-        get profile_path(id: current_user)
+        get profile_path(id: current_user), headers: headers
         expect(response).to have_http_status(:success)
       end
     end
 
     context 'GET /follow' do
       it 'returns http fail' do
-        get follow_profile_path(id: current_user, format: :turbo_stream)
+        get follow_profile_path(id: current_user, format: :turbo_stream), headers: headers
         expect(response).not_to have_http_status(:success)
       end
     end
@@ -24,28 +25,28 @@ RSpec.describe 'Profiles', type: :request do
       it 'returns http fail' do
         user = create(:user, :confirmed)
         FollowServices::FollowUser.call(current_user, user)
-        get unfollow_profile_path(id: user, format: :turbo_stream)
+        get unfollow_profile_path(id: user, format: :turbo_stream), headers: headers
         expect(response).not_to have_http_status(:success)
       end
     end
 
     context 'GET /followers' do
       it 'returns http success' do
-        get followers_profile_path(id: current_user)
+        get followers_profile_path(id: current_user), headers: headers
         expect(response).to have_http_status(:success)
       end
     end
 
     context 'GET /following' do
       it 'returns http success' do
-        get following_profile_path(id: current_user)
+        get following_profile_path(id: current_user), headers: headers
         expect(response).to have_http_status(:success)
       end
     end
 
     context 'GET /boards' do
       it 'returns http success' do
-        get boards_profile_path(id: current_user)
+        get boards_profile_path(id: current_user), headers: headers
         expect(response).to have_http_status(:success)
       end
     end
@@ -58,14 +59,14 @@ RSpec.describe 'Profiles', type: :request do
 
     context 'GET /show' do
       it 'returns http success' do
-        get profile_path(id: current_user)
+        get profile_path(id: current_user), headers: headers
         expect(response).to have_http_status(:success)
       end
     end
 
     context 'GET /follow' do
       it 'returns http success' do
-        get follow_profile_path(id: current_user, format: :turbo_stream)
+        get follow_profile_path(id: current_user, format: :turbo_stream), headers: headers
         expect(response).to have_http_status(:success)
       end
     end
@@ -74,28 +75,28 @@ RSpec.describe 'Profiles', type: :request do
       it 'returns http success' do
         user = create(:user, :confirmed)
         FollowServices::FollowUser.call(current_user, user)
-        get unfollow_profile_path(id: user, format: :turbo_stream)
+        get unfollow_profile_path(id: user, format: :turbo_stream), headers: headers
         expect(response).to have_http_status(:success)
       end
     end
 
     context 'GET /followers' do
       it 'returns http success' do
-        get followers_profile_path(id: current_user)
+        get followers_profile_path(id: current_user), headers: headers
         expect(response).to have_http_status(:success)
       end
     end
 
     context 'GET /following' do
       it 'returns http success' do
-        get following_profile_path(id: current_user)
+        get following_profile_path(id: current_user), headers: headers
         expect(response).to have_http_status(:success)
       end
     end
 
     context 'GET /boards' do
       it 'returns http success' do
-        get boards_profile_path(id: current_user)
+        get boards_profile_path(id: current_user), headers: headers
         expect(response).to have_http_status(:success)
       end
     end

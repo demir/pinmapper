@@ -11,7 +11,7 @@
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- GOOGLE MAPS -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials[:google_maps_api_key] %>&libraries=places&callback=initMap" async defer data-turbo-eval="false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.dig(:google, :maps, :api_key) %>&libraries=places&callback=initMap" async defer data-turbo-eval="false"></script>
   </head>
 
   <body>

@@ -35,14 +35,14 @@
       <div class="col-lg-6">
         <ul id="footer-selector">
           <li>
-            <div class="dropdown show">
+            <div class="dropdown show dropdown-lang">
               <a class="btn btn-secondary btn-sm dropdown-footer" href="#" role="button" id="dropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= I18n.locale == :tr ? "Türkçe" : "English" %>
                 <i class="fa fa-globe"></i>
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownLang">
-                <%= link_to "Türkçe", { locale: :tr }, class: 'dropdown-item' %>
-                <%= link_to "English", { locale: :en }, class: 'dropdown-item' %>
+                <%= link_to "Türkçe", current_user.present? ? settings_switch_locale_path(locale: :tr) : { locale: :tr }, class: 'dropdown-item' %>
+                <%= link_to "English", current_user.present? ? settings_switch_locale_path(locale: :en) : { locale: :en }, class: 'dropdown-item' %>
               </div>
             </div>
           </li>

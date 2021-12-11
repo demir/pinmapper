@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  extend FriendlyId
   include ActiveRecord::Searchable
 
   acts_as_voter
@@ -9,7 +10,11 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
-         :rememberable, :validatable, :confirmable
+         :rememberable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: %i[google_oauth2 facebook]
+
+  # friendly_id
+  friendly_id :username, use: :slugged
 
   #  callbacks
   after_create :create_profile_record
@@ -37,6 +42,14 @@ class User < ApplicationRecord
                        if: proc { |u| u.username.blank? || u.username_changed? }
   validates :username, format: { with: /\A[a-z0-9_]*\z/, multiline: true }, if: :username_changed?
   validate :validate_username, if: :username_changed?
+  validates :pins_count, presence: true
+  validates :boards_count, presence: true
+  validates :public_boards_count, presence: true
+  validates :secret_boards_count, presence: true
+  validates :following_count, presence: true
+  validates :followers_count, presence: true
+  validates :tags_count, presence: true
+  validates :following_boards_count, presence: true
 
   def login
     @login || username || email
@@ -67,5 +80,9 @@ class User < ApplicationRecord
     # rubocop:disable Rails/SkipsModelValidations
     pins.update_all(cached_user_username: username)
     # rubocop:enable Rails/SkipsModelValidations
+  end
+
+  def should_generate_new_friendly_id?
+    username_changed?
   end
 end

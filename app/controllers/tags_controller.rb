@@ -39,10 +39,10 @@ class TagsController < ApplicationController
   private
 
   def set_tag
-    @tag = Tag.find(params[:id])
+    @tag = ActsAsTaggableOn::Tag.friendly.find(params[:id])
   end
 
   def authorize_tag
-    authorize @tag || Tag
+    authorize @tag || ActsAsTaggableOn::Tag
   end
 end

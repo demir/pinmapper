@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 class Board < ApplicationRecord
+  extend FriendlyId
   include ActiveRecord::Searchable
   include TranslateEnum
+
+  # friendly_id
+  friendly_id :name, use: :slugged
 
   # scopes
   pg_search_scope :trigram_search_by_name,
@@ -19,6 +23,16 @@ class Board < ApplicationRecord
   # validations
   validates :name, presence: true, length: { maximum: 50 }
   validates :privacy, presence: true
+  validates :pins_count, presence: true
+
+  # counter_cultures
+  counter_culture :user
+  counter_culture :user,
+                  column_name:  proc { |model| "#{model.privacy}_boards_count" },
+                  column_names: {
+                    ['boards.privacy = ?', 0] => 'public_boards_count',
+                    ['boards.privacy = ?', 1] => 'secret_boards_count'
+                  }
 
   # enums
   enum privacy: { public: 0, secret: 1 }, _suffix: true

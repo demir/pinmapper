@@ -249,7 +249,9 @@ CREATE TABLE public.boards (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     user_id bigint NOT NULL,
-    tsv tsvector
+    tsv tsvector,
+    pins_count integer DEFAULT 0 NOT NULL,
+    slug character varying
 );
 
 
@@ -341,6 +343,39 @@ ALTER SEQUENCE public.follows_id_seq OWNED BY public.follows.id;
 
 
 --
+-- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.friendly_id_slugs (
+    id bigint NOT NULL,
+    slug character varying NOT NULL,
+    sluggable_id integer NOT NULL,
+    sluggable_type character varying(50),
+    scope character varying,
+    created_at timestamp without time zone
+);
+
+
+--
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.friendly_id_slugs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: friendly_id_slugs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.friendly_id_slugs_id_seq OWNED BY public.friendly_id_slugs.id;
+
+
+--
 -- Name: pin_boards; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -389,7 +424,8 @@ CREATE TABLE public.pins (
     cached_tag_list character varying,
     cached_plain_text_description text,
     cached_user_username character varying,
-    tsv tsvector
+    tsv tsvector,
+    slug character varying
 );
 
 
@@ -454,6 +490,38 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sessions (
+    id bigint NOT NULL,
+    session_id character varying NOT NULL,
+    data text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
+
+
+--
 -- Name: taggings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -498,7 +566,8 @@ CREATE TABLE public.tags (
     name character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    taggings_count integer DEFAULT 0
+    taggings_count integer DEFAULT 0,
+    slug character varying
 );
 
 
@@ -604,7 +673,19 @@ CREATE TABLE public.users (
     confirmation_sent_at timestamp without time zone,
     unconfirmed_email character varying,
     username character varying,
-    tsv tsvector
+    tsv tsvector,
+    pins_count integer DEFAULT 0 NOT NULL,
+    boards_count integer DEFAULT 0 NOT NULL,
+    public_boards_count integer DEFAULT 0 NOT NULL,
+    secret_boards_count integer DEFAULT 0 NOT NULL,
+    following_count integer DEFAULT 0 NOT NULL,
+    followers_count integer DEFAULT 0 NOT NULL,
+    tags_count integer DEFAULT 0 NOT NULL,
+    following_boards_count integer DEFAULT 0 NOT NULL,
+    locale character varying,
+    slug character varying,
+    provider character varying,
+    uid character varying
 );
 
 
@@ -714,6 +795,13 @@ ALTER TABLE ONLY public.follows ALTER COLUMN id SET DEFAULT nextval('public.foll
 
 
 --
+-- Name: friendly_id_slugs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('public.friendly_id_slugs_id_seq'::regclass);
+
+
+--
 -- Name: pin_boards id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -732,6 +820,13 @@ ALTER TABLE ONLY public.pins ALTER COLUMN id SET DEFAULT nextval('public.pins_id
 --
 
 ALTER TABLE ONLY public.profiles ALTER COLUMN id SET DEFAULT nextval('public.profiles_id_seq'::regclass);
+
+
+--
+-- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions ALTER COLUMN id SET DEFAULT nextval('public.sessions_id_seq'::regclass);
 
 
 --
@@ -841,6 +936,14 @@ ALTER TABLE ONLY public.follows
 
 
 --
+-- Name: friendly_id_slugs friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.friendly_id_slugs
+    ADD CONSTRAINT friendly_id_slugs_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: pin_boards pin_boards_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -870,6 +973,14 @@ ALTER TABLE ONLY public.profiles
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -956,6 +1067,13 @@ CREATE UNIQUE INDEX index_active_storage_variant_records_uniqueness ON public.ac
 
 
 --
+-- Name: index_boards_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_boards_on_slug ON public.boards USING btree (slug);
+
+
+--
 -- Name: index_boards_on_tsv; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -998,6 +1116,27 @@ CREATE UNIQUE INDEX index_follows_on_following_id_and_follower_id ON public.foll
 
 
 --
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type ON public.friendly_id_slugs USING btree (slug, sluggable_type);
+
+
+--
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope ON public.friendly_id_slugs USING btree (slug, sluggable_type, scope);
+
+
+--
+-- Name: index_friendly_id_slugs_on_sluggable_type_and_sluggable_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_friendly_id_slugs_on_sluggable_type_and_sluggable_id ON public.friendly_id_slugs USING btree (sluggable_type, sluggable_id);
+
+
+--
 -- Name: index_pin_boards_on_board_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1026,6 +1165,13 @@ CREATE INDEX index_pins_on_latitude_and_longitude ON public.pins USING btree (la
 
 
 --
+-- Name: index_pins_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_pins_on_slug ON public.pins USING btree (slug);
+
+
+--
 -- Name: index_pins_on_tsv; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1044,6 +1190,20 @@ CREATE INDEX index_pins_on_user_id ON public.pins USING btree (user_id);
 --
 
 CREATE INDEX index_profiles_on_user_id ON public.profiles USING btree (user_id);
+
+
+--
+-- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_sessions_on_session_id ON public.sessions USING btree (session_id);
+
+
+--
+-- Name: index_sessions_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_updated_at ON public.sessions USING btree (updated_at);
 
 
 --
@@ -1093,6 +1253,13 @@ CREATE INDEX index_taggings_on_tagger_id_and_tagger_type ON public.taggings USIN
 --
 
 CREATE UNIQUE INDEX index_tags_on_name ON public.tags USING btree (name);
+
+
+--
+-- Name: index_tags_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_tags_on_slug ON public.tags USING btree (slug);
 
 
 --
@@ -1149,6 +1316,13 @@ CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
+
+
+--
+-- Name: index_users_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_slug ON public.users USING btree (slug);
 
 
 --
@@ -1373,6 +1547,16 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211118101322'),
 ('20211118102222'),
 ('20211119000327'),
-('20211119001301');
+('20211119001301'),
+('20211122203947'),
+('20211123185445'),
+('20211124204552'),
+('20211125114201'),
+('20211125114430'),
+('20211125115319'),
+('20211125115945'),
+('20211125120253'),
+('20211126204311'),
+('20211209212617');
 
 

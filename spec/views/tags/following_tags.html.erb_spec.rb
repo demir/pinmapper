@@ -7,7 +7,7 @@ RSpec.describe 'tags/following_tags', type: :view do
   let(:current_user) { create(:user, :confirmed) }
   let(:tags) { create_list(:tag, 2) }
   let(:pagy_obj) do
-    ar_tags = Tag.where(id: tags.pluck(:id))
+    ar_tags = ActsAsTaggableOn::Tag.where(id: tags.pluck(:id))
     pagy(ar_tags).first
   end
 
