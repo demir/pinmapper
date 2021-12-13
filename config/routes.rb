@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
+    authenticated :user do
+      root to: 'pins#index', as: 'authenticated_root'
+    end
     root to: 'pages#index'
     devise_for :users, skip: %i[registrations omniauth_callbacks]
     # devise/registrations#edit route'unu iptal etmek için aşağıdaki block eklendi
