@@ -1438,9 +1438,14 @@ video {
 	&.short{height: 600px;}
 	&.version_2 {
 		height: 620px;
-    &:before {background: url("../images/theme/balloons.jpg") center center no-repeat; @include background-size(cover);}
+    &:before {background: url("../images/theme/home_bg.jpg") center center no-repeat; @include background-size(cover);}
 		.wrapper {
-			@include rgba(bg, #000, 0.45);
+      .container {
+        display: flex;
+        align-content: center;
+        justify-content: flex-end;
+      }
+			@include rgba(bg, #000, 0.35);
 			h3 {
 			@include fontSize(42px);
 			text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
@@ -1454,14 +1459,14 @@ video {
 		}
 		p {
 			font-weight: 400;
-			margin:5px 0 0 0;
+			margin:5px 0 15px 0;
 			padding: 0;
-			@include fontSize(21px);
+			@include fontSize(30px);
 			strong {font-weight: 600;}
 			text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
 			@include mobile {
 				padding: 0;
-				@include fontSize(14px);
+				@include fontSize(24px);
 			}
 		}
 		}
@@ -3212,13 +3217,13 @@ ul.hotel_facilities {
 
 /*-------- 2.5 Login/register --------*/
 #login_bg, #register_bg {
-	background: url(../images/theme/balloons.jpg) center center no-repeat fixed;
+	background: url(../images/theme/istanbul.jpg) left bottom no-repeat fixed;
 	@include background-size(cover);
 	min-height: 100vh;
 	width: 100%;
 }
 #register_bg {
-	background: url(../images/theme/balloons.jpg) center center no-repeat fixed;
+	background: url(../images/theme/istanbul.jpg) center bottom no-repeat fixed;
 	@include background-size(cover);
 }
 
