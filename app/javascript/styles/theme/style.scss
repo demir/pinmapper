@@ -1437,7 +1437,10 @@ video {
 	}
 	&.short{height: 600px;}
 	&.version_2 {
-		height: 620px;
+		height: 670px;
+    @include mobile {
+      height: 490px;
+    }
     &:before {background: url("../images/theme/home_bg.jpg") center center no-repeat; @include background-size(cover);}
 		.wrapper {
       .container {
