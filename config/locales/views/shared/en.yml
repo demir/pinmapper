@@ -2,3 +2,9 @@ en:
   shared:
     header:
       new_pin: New Pin
+    footer:
+      follow_us: Follow us
+      contant_with_us: Contact with us
+      about_us: About us
+      terms_of_service: Terms of Service
+      privacy_policy: Privacy Policy
