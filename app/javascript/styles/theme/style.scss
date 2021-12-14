@@ -1431,9 +1431,6 @@ video {
 	&.short{height: 600px;}
 	&.version_2 {
 		height: 680px;
-    @include mobile {
-      height: 490px;
-    }
     &:before {background: url("../images/theme/home_bg.jpg") center center no-repeat; @include background-size(cover);}
 		.wrapper {
       .container {

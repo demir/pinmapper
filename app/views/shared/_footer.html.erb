@@ -1,7 +1,7 @@
 <footer>
   <div class="container margin_60_35">
-    <div class="row links">
-      <div class="col-lg-5 col-md-12 p-r-5">
+    <div class="row columns">
+      <div>
         <%= link_to root_path do %>
           <%= inline_svg_pack_tag 'media/images/logo.svg', width: '150px', height: '36px', class: 'logo' %>
         <% end %>
@@ -9,7 +9,7 @@
           <li><a href="#"><%= t('.about_us') %></a></li>
         </ul>
       </div>
-      <div class="col-lg-3 col-md-6 ml-lg-auto">
+      <div>
         <h5><%= t('.follow_us') %></h5>
         <div class="follow_us">
           <ul>
@@ -17,12 +17,6 @@
             <li><a href="https://www.instagram.com/pinmapper"><i class="ti-instagram"></i></a></li>
           </ul>
         </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <h5><%= t('.contant_with_us') %></h5>
-        <ul class="contacts">
-          <li><a href="mailto:hello@pinmapper.com"><i class="ti-email"></i> hello@pinmapper.com</a></li>
-        </ul>
       </div>
     </div>
     <!--/row-->
