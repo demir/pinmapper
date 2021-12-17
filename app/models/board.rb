@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
 class Board < ApplicationRecord
-  extend FriendlyId
   include ActiveRecord::Searchable
   include TranslateEnum
-
-  # friendly_id
-  friendly_id :name, use: :slugged
 
   # scopes
   pg_search_scope :trigram_search_by_name,
