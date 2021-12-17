@@ -17,7 +17,9 @@ class Board < ApplicationRecord
   has_many :followers, through: :user_boards, source: :user, dependent: :destroy
 
   # validations
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence:  true,
+                   length:    { maximum: 50 },
+                   exclusion: { in: ReservedWords.all }
   validates :privacy, presence: true
   validates :pins_count, presence: true
 
