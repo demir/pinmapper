@@ -51,7 +51,7 @@ RSpec.describe 'Devise', type: :system, js: true do
   context 'registration' do
     it 'signs up without confirmation' do
       visit root_path
-      click_link I18n.t('devise.sign_up')
+      click_link I18n.t('devise.sign_up'), match: :first
       sign_up
       expect(page).to have_content I18n.t('devise.registrations.signed_up_but_unconfirmed')
     end
