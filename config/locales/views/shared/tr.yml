@@ -9,3 +9,4 @@ tr:
       terms_of_use: Kullanım Koşulları
       privacy_policy: Gizlilik Politikası
       cookie_policy: Çerez Politikası
+      accept_policies_message: Hesap oluşturarak, %{privacy_policy}, %{terms_of_use} ve %{cookie_policy} kabul etmiş sayılırsınız.
