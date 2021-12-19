@@ -1,8 +1,10 @@
 <section class="hero_single start_bg_zoom version_2">
   <div class="wrapper">
     <div class="container">
-      <h3>Hey traveller!</h3>
-      <p>Expolore top rated pins around the world</p>
+      <div>
+        <p><%= t('pinmapper_slogan') %></p>
+        <%= link_to t('devise.sign_up'), new_user_registration_path, class: 'btn_1', title: t('devise.sign_up') %>
+      <div>
     </div>
   </div>
 </section>

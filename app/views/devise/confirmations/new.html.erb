@@ -5,7 +5,7 @@
 		<aside>
 			<figure>
         <%= link_to root_path do %>
-          <%= image_pack_tag 'media/images/logo-sticky.png', size: '155x36', class: 'logo_sticky', 'data-retina': true, alt: '' %>
+          <%= inline_svg_pack_tag 'media/images/logo-sticky.svg', class: 'logo_sticky', width: '150px', height: '36px', 'data-retina': true, alt: '' %>
         <% end %>
 			</figure>
       <p><%= t('.resend_confirmation_instructions') %></p>

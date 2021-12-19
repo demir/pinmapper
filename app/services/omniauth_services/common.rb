@@ -27,7 +27,7 @@ module OmniauthServices
     end
 
     def generate_username(raw_username)
-      return raw_username.last(30) unless User.exists?(username: raw_username)
+      return raw_username.last(30) if !User.exists?(username: raw_username) && ReservedWords.all.exclude?(raw_username)
 
       generate_username(raw_username + rand(1000).to_s)
     end

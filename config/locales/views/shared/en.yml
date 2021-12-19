@@ -2,3 +2,11 @@ en:
   shared:
     header:
       new_pin: New Pin
+    footer:
+      follow_us: Follow us
+      contant_with_us: Contact with us
+      about_us: About Us
+      terms_of_use: Terms of Use
+      privacy_policy: Privacy Policy
+      cookie_policy: Cookie Policy
+      accept_policies_message: By registering an account, you are agreeing to our %{privacy_policy}, %{terms_of_use} and %{cookie_policy}.

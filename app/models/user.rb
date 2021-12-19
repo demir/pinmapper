@@ -38,9 +38,13 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
 
   # validations
-  validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 30 },
-                       if: proc { |u| u.username.blank? || u.username_changed? }
+  validates :username, presence:   true,
+                       uniqueness: { case_sensitive: false },
+                       length:     { maximum: 30 },
+                       exclusion:  { in: ReservedWords.all },
+                       if:         proc { |u| u.username.blank? || u.username_changed? }
   validates :username, format: { with: /\A[a-z0-9_]*\z/, multiline: true }, if: :username_changed?
+
   validate :validate_username, if: :username_changed?
   validates :pins_count, presence: true
   validates :boards_count, presence: true
