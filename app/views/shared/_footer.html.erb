@@ -6,7 +6,7 @@
           <%= inline_svg_pack_tag 'media/images/logo.svg', width: '150px', height: '36px', class: 'logo' %>
         <% end %>
         <ul class="links">
-          <li><a href="#"><%= t('.about_us') %></a></li>
+          <li><%= link_to t('.about_us'), about_us_path %></li>
         </ul>
       </div>
       <div>
@@ -46,8 +46,8 @@
       </div>
       <div class="col-lg-6">
         <ul id="additional_links">
-          <li><a href="#"><%= t('.terms_of_service') %></a></li>
-          <li><a href="#"><%= t('.privacy_policy') %></a></li>
+          <li><%= link_to t('.terms_of_use'), terms_of_use_path %></li>
+          <li><%= link_to t('.privacy_policy'), privacy_policy_path %></li>
           <li><span><%= render 'shared/copy' %></span></li>
         </ul>
       </div>
