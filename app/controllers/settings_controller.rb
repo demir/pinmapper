@@ -13,8 +13,25 @@ class SettingsController < ApplicationController
 
   def switch_locale
     current_user.update(locale: params[:locale])
+    I18n.locale = params[:locale]
+    redirect_to handle_url
+  end
+
+  private
+
+  def start_with_available_locales_regex(available_locales)
+    locales = available_locales.join('|')
+    Regexp.new("\\A#{locales}")
+  end
+
+  def handle_url
     url = URI(request&.referer || '').path
-    url_params = Rails.application.routes.recognize_path(url)
-    redirect_to url_params.merge({ locale: params[:locale] })
+    only_locales = I18n.available_locales.map { |l| "/#{l}" }
+    url = "#{url}/" if only_locales.include?(url)
+    available_locales = I18n.available_locales.map { |l| "/#{l}/" }
+    if url.start_with?(*available_locales)
+      url = url.sub(start_with_available_locales_regex(available_locales), "/#{params[:locale]}/")
+    end
+    url
   end
 end
