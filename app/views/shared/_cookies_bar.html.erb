@@ -1,0 +1,10 @@
+<div id="cookies-bar" class="cookies-bar" data-controller="cookie-bar">
+  <p>
+    <%= sanitize t('shared.footer.cookies_bar_message',
+                          privacy_policy: link_to(t('shared.footer.privacy_policy'), privacy_policy_path),
+                          terms_of_use: link_to(t('shared.footer.terms_of_use'), terms_of_use_path),
+                          cookie_policy: link_to(t('shared.footer.cookie_policy'), cookie_policy_path)) %>
+  </p>
+
+  <%= link_to t('done'), request.original_url, class: 'btn_1', data: { action: 'click->cookie-bar#allowCookies' } %>
+</div>
