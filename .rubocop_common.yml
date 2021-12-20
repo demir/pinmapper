@@ -1,6 +1,6 @@
 require: rubocop-performance
 
-Documentation:
+Style/Documentation:
   Enabled: false
 
 Layout/HashAlignment:
