@@ -30,3 +30,6 @@ window.initMap = function (...args) {
 }
 require("trix")
 require("@rails/actiontext")
+
+import Cookies from 'js-cookie';
+window.Cookies = Cookies;

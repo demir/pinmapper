@@ -5,7 +5,7 @@
 		<aside>
 			<figure>
         <%= link_to root_path do %>
-          <%= image_pack_tag 'media/images/logo-sticky.png', size: '155x36', class: 'logo_sticky', 'data-retina': true, alt: '' %>
+          <%= inline_svg_pack_tag 'media/images/logo-sticky.svg', class: 'logo_sticky', width: '150px', height: '36px', 'data-retina': true, alt: '' %>
         <% end %>
 			</figure>
       <%= render 'devise/shared/oauth_buttons' %>
@@ -24,7 +24,11 @@
           <%= f.input :password_confirmation, input_html: { class: 'form-control', id: 'password2' } %>
         </div>
         <%= f.button :submit, t('devise.register'), class: 'btn_1 rounded full-width add_top_30' %>
-        <div class="text-center add_top_10">
+        <div class="text-center add_top_20">
+          <%= sanitize t('shared.footer.accept_policies_message',
+                          privacy_policy: link_to(t('shared.footer.privacy_policy'), privacy_policy_path),
+                          terms_of_use: link_to(t('shared.footer.terms_of_use'), terms_of_use_path),
+                          cookie_policy: link_to(t('shared.footer.cookie_policy'), cookie_policy_path)) %><br><br>
           <%= t('devise.already_have_an_account') %>
           <strong>
             <%= link_to t('devise.sign_in'), new_user_session_path %>

@@ -400,5 +400,51 @@ main .container form {
 }
 
 .container.margin_100_55 {
-  min-height: 600px;
+  min-height: 680px;
+}
+
+footer {
+  .logo {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .follow-us-container {
+    text-align: right;
+  }
+  .row.columns {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.cookies-bar {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: auto;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 1000px;
+  background-color: #F3F4F6;
+  @include border-radius(3px);
+  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.40));
+  z-index: 999999;
+
+  p {
+    margin: 0;
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 10px;
+    .btn_1 {
+      width: 100%;
+    }
+  }
 }

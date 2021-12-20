@@ -60,6 +60,8 @@ class ProfilesController < ApplicationController
   end
 
   def set_current_profile
+    return if request.referer.blank?
+
     referer_params = Rails.application.routes.recognize_path(request.referer)
     user_id = referer_params.fetch(:id, nil)
     @current_profile = user_id.blank? ? nil : User.friendly.find(user_id)

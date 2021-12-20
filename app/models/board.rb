@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
 class Board < ApplicationRecord
-  extend FriendlyId
   include ActiveRecord::Searchable
   include TranslateEnum
-
-  # friendly_id
-  friendly_id :name, use: :slugged
 
   # scopes
   pg_search_scope :trigram_search_by_name,
@@ -21,7 +17,9 @@ class Board < ApplicationRecord
   has_many :followers, through: :user_boards, source: :user, dependent: :destroy
 
   # validations
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence:  true,
+                   length:    { maximum: 50 },
+                   exclusion: { in: ReservedWords.all }
   validates :privacy, presence: true
   validates :pins_count, presence: true
 
