@@ -233,3 +233,17 @@ aside.blog {
   margin-left: auto;
   margin-right: auto;
 }
+
+.pins-index {
+  .empty-message {
+    text-align: center;
+    img {
+      margin-top: 50px;
+      max-width: 300px;
+      width: fit-content;
+    }
+    p {
+      margin-top: 15px;
+    }
+  }
+}

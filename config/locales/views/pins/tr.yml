@@ -13,3 +13,5 @@ tr:
       tag_list:
         placeholder: En fazla beş etiket ekleyin (virgülle ayrılmış)
         hint: Etiketler, kullanıcıların Pin'inizi bulmasına yardımcı olur. Etiketleri, Pin'inizi en iyi tanımlayan kategoriler olarak düşünün.
+    index:
+      empty_message: Anasayfanızda gösterilecek Pin henüz yok. Yukarıdaki arama kutusundan Pin, Kullanıcı ya da Pano arayabilirsiniz.
