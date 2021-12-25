@@ -1,7 +1,7 @@
 <%= simple_form_for(pin, data: { controller: 'pin', action: 'google-maps-callback@window->pin#initMap', 'pin-latitude-value': pin.latitude, 'pin-longitude-value': pin.longitude }) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
+  <%= request.referer %>
   <div class="form-inputs">
     <div class="form-horizontal-map">
       <div class="form-horizontal-map-left">
