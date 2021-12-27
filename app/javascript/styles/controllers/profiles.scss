@@ -57,8 +57,10 @@
         padding-right: 10px;
       }
     }
-    &:not(#infinite-pins) {
-      @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
+    .with-shadow {
+      &:not(#infinite-pins) {
+        @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
+      }
     }
     .no-data {
       text-align: center;

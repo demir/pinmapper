@@ -2,3 +2,9 @@ tr:
   profiles:
     show:
       no_data: Oluşturduğun bir Pin henüz yok. Hemen oluşturabilirsin.
+    followers:
+      no_data: Henüz takipçiniz yok.
+    following:
+      no_data: Henüz takip ettiğiniz bir kullanıcı yok.
+    boards:
+      no_data: Oluşturduğun bir Pano henüz yok. Hemen oluşturabilirsin.
