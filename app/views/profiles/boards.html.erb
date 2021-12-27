@@ -3,14 +3,17 @@
     <div class="col-lg-12 profile">
       <%= render 'profiles/profile_header', user: @user %>
       <div class="body px-tablet">
-        <div id="boards" class="with-shadow">
-          <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user })) %>
-        </div>
-        <div class="no-data">
-          <p><%= t('boards.index.no_data') %></p>
-          <%= link_to t('.create_new_board'), new_board_path, class: 'btn_1 outline' %>
-        </div>
-        <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+        <% if @boards.any? %>
+          <div id="boards" class="with-shadow">
+            <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user })) %>
+          </div>
+          <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+        <% else %>
+          <div class="no-data">
+            <p><%= t('boards.index.no_data') %></p>
+            <%= link_to t('.create_new_board'), new_board_path, class: 'btn_1 outline' %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

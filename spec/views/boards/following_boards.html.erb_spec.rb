@@ -22,7 +22,7 @@ RSpec.describe 'boards/following_boards', type: :view do
   end
 
   it 'renders header' do
-    assert_select '.boards > .header #boards-count', text: "#{t('boards.following_boards')} (#{boards.count})"
+    assert_select '.boards > .header #boards-count', text: "#{t('boards.following_boards.title')} (#{boards.count})"
   end
 
   it 'renders a list of boards' do

@@ -3,13 +3,16 @@
     <div class="col-lg-12 profile">
       <%= render 'profiles/profile_header', user: @user %>
       <div class="body  px-tablet">
-        <div id="followers" class="with-shadow">
-          <%= render(Profiles::FollowUserListItemComponent.with_collection(@followers, current_user: current_user)) %>
-        </div>
-        <div class="no-data">
-          <p><%= t('.no_data') %></p>
-        </div>
-        <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+        <% if @followers.any? %>
+          <div id="followers" class="with-shadow">
+            <%= render(Profiles::FollowUserListItemComponent.with_collection(@followers, current_user: current_user)) %>
+          </div>
+          <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+        <% else %>
+          <div class="no-data">
+            <p><%= t('.no_data') %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
