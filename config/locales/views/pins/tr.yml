@@ -4,7 +4,7 @@ tr:
     pins: Pinler
     pins_tr: Pin
     new:
-      create_new_pin: Yeni Pin Oluştur
+      create_pin: Pin Oluştur
     edit:
       edit_pin: Pin'i Düzenle
     show:

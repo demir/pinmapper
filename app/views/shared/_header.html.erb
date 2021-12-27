@@ -18,7 +18,7 @@
             <%= render(Profiles::AvatarComponent.new(src: current_user.profile.avatar.variant(current_user.profile.avatar_crop_constraints), size: 32)) %>
           </div>
           <li class="visible-menu-item">
-            <%= link_to t('.new_pin'), new_pin_path, class: 'btn_1' %>
+            <%= link_to t('pins.new.create_pin'), new_pin_path, class: 'btn_1' %>
           </li>
         <% end %>
         <li class="visible-menu-item">
