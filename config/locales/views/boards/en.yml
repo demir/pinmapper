@@ -8,5 +8,6 @@ en:
     there_is_no_boards: There is no Board you can add yet.
     index:
       create_new_board: Create Board
+      no_data: There is no Board which is you have created yet. You can create now.
     edit:
       edit_board: Edit Board

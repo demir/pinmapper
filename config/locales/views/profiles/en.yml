@@ -6,5 +6,3 @@ en:
       no_data: You have no followers yet.
     following:
       no_data: There is no user that you are following yet.
-    boards:
-      no_data: There is no Board which is you have created yet. You can create now.

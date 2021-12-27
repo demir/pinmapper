@@ -7,7 +7,7 @@
           <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user })) %>
         </div>
         <div class="no-data">
-          <p><%= t('.no_data') %></p>
+          <p><%= t('boards.index.no_data') %></p>
           <%= link_to t('.create_new_board'), new_board_path, class: 'btn_1 outline' %>
         </div>
         <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>

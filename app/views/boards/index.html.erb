@@ -9,10 +9,16 @@
         <%= link_to t('.create_new_board'), new_board_path, class: 'btn_1 outline' %>
       </div>
       <div class="body">
-        <div id="infinite-boards">
-          <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user, show_privacy_badge: true, name_class: 'black-link' })) %>
-        </div>
-        <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+        <% if @boards.any? %>
+          <div id="infinite-boards">
+            <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user, show_privacy_badge: true, name_class: 'black-link' })) %>
+          </div>
+          <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+        <% else %>
+          <div class="no-data">
+            <p><%= t('.no_data') %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

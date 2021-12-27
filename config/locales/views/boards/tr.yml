@@ -8,5 +8,6 @@ tr:
     there_is_no_boards: Henüz ekleyebileceğiniz bir Pano yok.
     index:
       create_new_board: Pano Oluştur
+      no_data: Oluşturduğun bir Pano henüz yok. Hemen oluşturabilirsin.
     edit:
       edit_board: Panoyu Düzenle
