@@ -15,3 +15,5 @@ en:
         hint: Tags help people find your pin. Think of tags as the categories that best describe your pin.
     index:
       empty_message: There are no Pins yet in your homepage. You can search the Pin, User or Board from the search box above.
+    liked_pins:
+      no_data: There is no Pin that you have liked yet.

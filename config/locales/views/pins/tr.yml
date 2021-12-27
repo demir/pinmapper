@@ -15,3 +15,5 @@ tr:
         hint: Etiketler, kullanıcıların Pin'inizi bulmasına yardımcı olur. Etiketleri, Pin'inizi en iyi tanımlayan kategoriler olarak düşünün.
     index:
       empty_message: Anasayfanızda gösterilecek Pin henüz yok. Yukarıdaki arama kutusundan Pin, Kullanıcı ya da Pano arayabilirsiniz.
+    liked_pins:
+      no_data: Henüz beğendiğiniz bir Pin yok.
