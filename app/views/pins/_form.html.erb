@@ -1,4 +1,4 @@
-<%= simple_form_for(pin, data: { controller: 'pin', action: 'google-maps-callback@window->pin#initMap', 'pin-latitude-value': pin.latitude, 'pin-longitude-value': pin.longitude }) do |f| %>
+<%= simple_form_for(pin, data: { controller: 'pin', action: 'google-maps-callback@window->pin#initMap', 'pin-latitude-value': pin.latitude, 'pin-longitude-value': pin.longitude }, html: { class: 'pin-form' }) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -18,12 +18,12 @@
             'data-action': 'instant-upload#changed' } %>
       <p>
         <%= image_tag pin.cover_image.variant(resize_to_limit: [400, 400]),
-              width: 400, height: '100%', class: 'responsive',
+              class: 'cover-image responsive',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
               'data-action': 'instant-uploaded->cropper#changed' if pin.cover_image.attached? %>
 
-        <%= content_tag :img, nil, src: nil, width: 400, height: 400,
+        <%= content_tag :img, nil, src: nil, class: 'cover-image responsive',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
               'data-action': 'instant-uploaded->cropper#changed' unless pin.cover_image.attached? %>

@@ -62,7 +62,20 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "pinmapper_production"
 
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: 'pinmapper.com' }
+  config.action_mailer.default_options = { from: "'Pinmapper' <#{Rails.application.credentials.noreply_mail.dig(:username)}>" }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name:            Rails.application.credentials.noreply_mail[:username],
+    password:             Rails.application.credentials.noreply_mail[:password],
+    address:              Rails.application.credentials.noreply_mail[:smtp_address],
+    port:                 '587',
+    authentication:       :plain,
+    enable_starttls_auto: true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

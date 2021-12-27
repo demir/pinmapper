@@ -123,10 +123,10 @@ RSpec.describe 'Pins', type: :system, js: true do
       end
     end
 
-    it 'visits pin#show via pin name link' do
+    it 'visits pin#show via pin name link', :focus do
       visit pins_path
       pin = pins.last
-      click_link pin.name
+      click_link pin.name, match: :first
       expect(page).to have_css '.pin-show .header h1', text: pin.name
     end
 
