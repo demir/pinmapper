@@ -237,6 +237,7 @@ aside.blog {
 .pins-index {
   .empty-message {
     text-align: center;
+    @include fontSize(16px)
     img {
       margin-top: 50px;
       max-width: 300px;

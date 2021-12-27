@@ -451,4 +451,6 @@ footer {
 
 .no-data {
   text-align: center;
+  @include fontSize(16px);
+  margin-top: 50px;
 }
