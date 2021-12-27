@@ -237,7 +237,7 @@ aside.blog {
 .pins-index {
   .empty-message {
     text-align: center;
-    @include fontSize(16px)
+    @include fontSize(16px);
     img {
       margin-top: 50px;
       max-width: 300px;
@@ -246,5 +246,12 @@ aside.blog {
     p {
       margin-top: 15px;
     }
+  }
+}
+
+//-------------------- Pins#form -------------------//
+.pin-form {
+  .cover-image.responsive {
+    max-width: 400px;
   }
 }
