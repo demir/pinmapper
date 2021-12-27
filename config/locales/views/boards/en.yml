@@ -4,10 +4,12 @@ en:
     boards: Boards
     boards_tr: Boards
     add_to_board: Add to board
-    following_boards: Following Boards
     there_is_no_boards: There is no Board you can add yet.
     index:
       create_new_board: Create Board
       no_data: There is no Board which is you have created yet. You can create now.
     edit:
       edit_board: Edit Board
+    following_boards:
+      title: Following Boards
+      no_data: There is no Board that you have following yet.

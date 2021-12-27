@@ -39,7 +39,7 @@
               <%= link_to t('boards.boards'), boards_path, title: t('boards.boards') %>
             </li>
             <li>
-              <%= link_to t('boards.following_boards'), following_boards_boards_path, title: t('boards.following_boards') %>
+              <%= link_to t('boards.following_boards.title'), following_boards_boards_path, title: t('boards.following_boards.title') %>
             </li>
             <li>
               <%= link_to t('settings.settings'), settings_edit_profile_path, title: t('settings.settings') %>
@@ -62,7 +62,7 @@
                 <%= link_to t('liked_pins'), liked_pins_pins_path, title: t('liked_pins'), class: 'dropdown-item' %>
                 <%= link_to t('following_tags'), following_tags_tags_path, title: t('following_tags'), class: 'dropdown-item' %>
                 <%= link_to t('boards.boards'), boards_path, title: t('boards.boards'), class: 'dropdown-item' %>
-                <%= link_to t('boards.following_boards'), following_boards_boards_path, title: t('boards.following_boards'), class: 'dropdown-item' %>
+                <%= link_to t('boards.following_boards.title'), following_boards_boards_path, title: t('boards.following_boards.title'), class: 'dropdown-item' %>
                 <%= link_to t('settings.settings'), settings_edit_profile_path, title: t('settings.settings'), class: 'dropdown-item' %>
                 <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out'), class: 'dropdown-item' %>
               </div>
