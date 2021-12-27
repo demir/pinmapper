@@ -64,7 +64,7 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'pinmapper.com' }
+  config.action_mailer.default_url_options = { host: 'www.pinmapper.com' }
   config.action_mailer.default_options = { from: "'Pinmapper' <#{Rails.application.credentials.noreply_mail.dig(:username)}>" }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
