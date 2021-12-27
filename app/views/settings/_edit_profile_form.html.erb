@@ -8,7 +8,7 @@
             'data-action': 'instant-upload#changed' } %>
       <p>
         <%= image_tag current_user.profile.avatar.variant(current_user.profile.avatar_crop_constraints),
-              width: 400, height: 400, class: 'rounded-circle user-avatar',
+              class: 'rounded-circle user-avatar responsive', style: 'max-width: 400px; max-height: 400px',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
               'data-action': 'instant-uploaded->cropper#changed' if current_user.profile.avatar.attached? %>

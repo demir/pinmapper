@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :pin do
-    name { Faker::Lorem.paragraph_by_chars(number: 128) }
+    name { Faker::Lorem.word }
     address { 'Samsun, Türkiye' }
     cover_image_description { Faker::Lorem.paragraph_by_chars(number: 500) }
     association :user, :confirmed

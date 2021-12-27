@@ -7,11 +7,17 @@
           <h2><%= "#{t('liked_pins')} (#{@pagy.count})" %></h2>
         </div>
       </div>
-      <div id="infinite-pins">
-        <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
-        <!-- /pin_lists -->
-      </div>
-      <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+      <% if @pins.any? %>
+        <div id="infinite-pins">
+          <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
+          <!-- /pin_lists -->
+        </div>
+        <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+      <% else %>
+        <div class="no-data">
+          <p><%= t('.no_data') %></p>
+        <div>
+      <% end %>
     </div>
   </div>
 </div>

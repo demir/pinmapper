@@ -1,9 +1,16 @@
 <div class="container margin_100_55 pins-index">
-  <div id="infinite-pins" class="row">
-    <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
-    <!-- /pin_lists -->
-  </div>
-  <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
-  <!-- /row -->
+  <% if @pins.any? %>
+    <div id="infinite-pins" class="row">
+      <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
+      <!-- /pin_lists -->
+    </div>
+    <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+    <!-- /row -->
+  <% else %>
+    <div class="empty-message responsive">
+      <%= image_pack_tag 'media/images/theme/pins-empty-image.png', class: "responsive", alt: '' %>
+      <p><%= t('.empty_message') %></p>
+    </div>
+  <% end %>
 </div>
 <!-- /container -->

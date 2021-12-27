@@ -45,4 +45,13 @@ RSpec.describe 'pins/index', type: :view do
       assert_select 'a[class=?]', 'like_btn disabled'
     end
   end
+
+  context 'without any pin' do
+    it 'shows no data message' do
+      assign(:pins, [])
+      render
+      assert_select '.pin .body h3', count: 0
+      assert_select '.empty-message p', text: I18n.t('pins.index.empty_message'), count: 1
+    end
+  end
 end
