@@ -18,16 +18,30 @@ RSpec.describe 'boards/following_boards', type: :view do
     assign(:current_user, current_user)
     assign(:boards, boards)
     assign(:pagy, pagy_obj)
-    render
   end
 
-  it 'renders header' do
-    assert_select '.boards > .header #boards-count', text: "#{t('boards.following_boards.title')} (#{boards.count})"
+  context 'with any board' do
+    before do
+      render
+    end
+
+    it 'renders header' do
+      assert_select '.boards > .header #boards-count', text: "#{t('boards.following_boards.title')} (#{boards.count})"
+    end
+
+    it 'renders a list of boards' do
+      assert_select '.board .board-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 0
+      assert_select '.board span > a.black-link', count: 2
+      assert_select '.board .item a.btn_1', count: 2
+    end
   end
 
-  it 'renders a list of boards' do
-    assert_select '.board .board-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 0
-    assert_select '.board span > a.black-link', count: 2
-    assert_select '.board .item a.btn_1', count: 2
+  context 'without any board' do
+    it 'shows no data message' do
+      assign(:boards, [])
+      render
+      assert_select '.board span > a.black-link', count: 0
+      assert_select '.no-data p', text: I18n.t('boards.following_boards.no_data'), count: 1
+    end
   end
 end

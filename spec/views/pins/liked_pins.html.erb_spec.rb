@@ -18,14 +18,28 @@ RSpec.describe 'pins/liked_pins', type: :view do
     assign(:current_user, current_user)
     assign(:pins, pins)
     assign(:pagy, pagy_obj)
-    render
   end
 
-  it 'renders header' do
-    assert_select '.liked-pins > .header', text: "#{t('liked_pins')} (#{pins.count})"
+  context 'with any pin' do
+    before do
+      render
+    end
+
+    it 'renders header' do
+      assert_select '.liked-pins > .header', text: "#{t('liked_pins')} (#{pins.count})"
+    end
+
+    it 'renders a list of pins' do
+      expect(rendered).to have_css '.pin > .header > .user', count: 2
+    end
   end
 
-  it 'renders a list of pins' do
-    expect(rendered).to have_css '.pin > .header > .user', count: 2
+  context 'without any pin' do
+    it 'shows no data message' do
+      assign(:pins, [])
+      render
+      assert_select '.pin .body h3', count: 0
+      assert_select '.no-data p', text: I18n.t('pins.liked_pins.no_data'), count: 1
+    end
   end
 end
