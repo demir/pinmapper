@@ -23,7 +23,7 @@
               'data-cropper-target': 'image',
               'data-action': 'instant-uploaded->cropper#changed' if pin.cover_image.attached? %>
 
-        <%= content_tag :img, nil, src: nil, width: 400, height: 400,
+        <%= content_tag :img, nil, src: nil, width: 400, height: '100%', class: 'responsive',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
               'data-action': 'instant-uploaded->cropper#changed' unless pin.cover_image.attached? %>
