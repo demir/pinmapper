@@ -1,0 +1,4 @@
+tr:
+  profiles:
+    show:
+      no_data: Oluşturduğun bir Pin henüz yok. Hemen oluşturabilirsin.

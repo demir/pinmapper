@@ -1,0 +1,4 @@
+en:
+  profiles:
+    show:
+      no_data: There is no Pin which is you have created yet. You can create now.
