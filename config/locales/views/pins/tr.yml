@@ -4,7 +4,7 @@ tr:
     pins: Pinler
     pins_tr: Pin
     new:
-      create_new_pin: Yeni Pin Oluştur
+      create_pin: Pin Oluştur
     edit:
       edit_pin: Pin'i Düzenle
     show:
@@ -13,3 +13,7 @@ tr:
       tag_list:
         placeholder: En fazla beş etiket ekleyin (virgülle ayrılmış)
         hint: Etiketler, kullanıcıların Pin'inizi bulmasına yardımcı olur. Etiketleri, Pin'inizi en iyi tanımlayan kategoriler olarak düşünün.
+    index:
+      empty_message: Anasayfanızda gösterilecek Pin henüz yok. Yukarıdaki arama kutusundan Pin, Kullanıcı ya da Pano arayabilirsiniz.
+    liked_pins:
+      no_data: Henüz beğendiğiniz bir Pin yok.

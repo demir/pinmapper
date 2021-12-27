@@ -9,7 +9,9 @@
     align-items: center;
   }
   >.body {
-    @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
+    &#infinite-boards {
+      @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
+    }
   }
 }
 

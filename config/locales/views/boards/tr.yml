@@ -4,9 +4,12 @@ tr:
     boards: Panolar
     boards_tr: Pano
     add_to_board: Panoya ekle
-    following_boards: Takip edilen Panolar
     there_is_no_boards: Henüz ekleyebileceğiniz bir Pano yok.
     index:
       create_new_board: Pano Oluştur
+      no_data: Oluşturduğun bir Pano henüz yok. Hemen oluşturabilirsin.
     edit:
       edit_board: Panoyu Düzenle
+    following_boards:
+      title: Takip edilen Panolar
+      no_data: Henüz takip ettiğiniz bir Pano yok.

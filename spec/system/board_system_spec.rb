@@ -21,8 +21,8 @@ RSpec.describe 'Boards', type: :system, js: true do
     it '#following_boards' do
       visit root_path
       find('.dropdown-user').click
-      click_link I18n.t('boards.following_boards')
-      expect(page).to have_css '.boards > .header h2', text: I18n.t('boards.following_boards')
+      click_link I18n.t('boards.following_boards.title')
+      expect(page).to have_css '.boards > .header h2', text: I18n.t('boards.following_boards.title')
     end
 
     it 'renders more button' do

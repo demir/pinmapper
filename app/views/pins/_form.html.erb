@@ -18,7 +18,7 @@
             'data-action': 'instant-upload#changed' } %>
       <p>
         <%= image_tag pin.cover_image.variant(resize_to_limit: [400, 400]),
-              width: 400, height: '100%',
+              width: 400, height: '100%', class: 'responsive',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
               'data-action': 'instant-uploaded->cropper#changed' if pin.cover_image.attached? %>

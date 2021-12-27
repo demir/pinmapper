@@ -4,14 +4,20 @@
       <div class="header">
         <div class="main_title_3">
           <span><em></em></span>
-          <h2 id="boards-count"><%= "#{t('boards.following_boards')} (#{current_user.following_boards_count})" %></h2>
+          <h2 id="boards-count"><%= "#{t('.title')} (#{current_user.following_boards_count})" %></h2>
         </div>
       </div>
       <div class="body">
-        <div id="infinite-boards">
-          <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user, name_class: 'black-link' })) %>
-        </div>
-        <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+        <% if @boards.any? %>
+          <div id="infinite-boards">
+            <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user, name_class: 'black-link' })) %>
+          </div>
+          <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+        <% else %>
+          <div class="no-data">
+            <p><%= t('.no_data') %></p>
+          <div>
+        <% end %>
       </div>
     </div>
   </div>

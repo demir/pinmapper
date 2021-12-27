@@ -88,4 +88,12 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
       assert_select '.profile .pin', count: 2
     end
   end
+
+  context 'without any data' do
+    it 'no data for pin' do
+      assign(:user_pins, [])
+      render
+      expect(rendered).to match(/#{t('profiles.show.no_data')}/)
+    end
+  end
 end

@@ -18,14 +18,28 @@ RSpec.describe 'tags/following_tags', type: :view do
     assign(:current_user, current_user)
     assign(:tags, tags)
     assign(:pagy, pagy_obj)
-    render
   end
 
-  it 'renders header' do
-    assert_select '.following-tags > .header', text: "#{t('following_tags')} (#{tags.count})"
+  context 'with any tag' do
+    before do
+      render
+    end
+
+    it 'renders header' do
+      assert_select '.following-tags > .header', text: "#{t('following_tags')} (#{tags.count})"
+    end
+
+    it 'renders a list of tags' do
+      expect(rendered).to have_css '.following-tags > .body .tag-list-item', count: 2
+    end
   end
 
-  it 'renders a list of tags' do
-    expect(rendered).to have_css '.following-tags > .body .tag-list-item', count: 2
+  context 'without any tag' do
+    it 'shows no data message' do
+      assign(:tags, [])
+      render
+      expect(rendered).to have_css '.following-tags > .body .tag-list-item', count: 0
+      assert_select '.no-data p', text: I18n.t('tags.following_tags.no_data'), count: 1
+    end
   end
 end

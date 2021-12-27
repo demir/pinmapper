@@ -1,7 +1,5 @@
 tr:
   shared:
-    header:
-      new_pin: Yeni Pin
     footer:
       follow_us: Bizi takip edin
       contant_with_us: Bizimle iletişime geçin

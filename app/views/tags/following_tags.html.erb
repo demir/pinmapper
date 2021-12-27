@@ -8,11 +8,17 @@
         </div>
       </div>
       <div class="body">
-        <div id="infinite-tags">
-          <%= render(Taggable::ListItemComponent.with_collection(@tags, current_user: current_user)) %>
-          <!-- /pin_lists -->
-        </div>
-        <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+        <% if @tags.any? %>
+          <div id="infinite-tags">
+            <%= render(Taggable::ListItemComponent.with_collection(@tags, current_user: current_user)) %>
+            <!-- /pin_lists -->
+          </div>
+          <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+        <% else %>
+          <div class="no-data">
+            <p><%= t('.no_data') %></p>
+          <div>
+        <% end %>
       </div>
     </div>
   </div>

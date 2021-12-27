@@ -4,7 +4,7 @@ en:
     pins: Pins
     pins_tr: Pins
     new:
-      create_new_pin: Create New Pin
+      create_pin: Create Pin
     edit:
       edit_pin: Edit Pin
     show:
@@ -13,3 +13,7 @@ en:
       tag_list:
         placeholder: Add up to five tags (comma separated)
         hint: Tags help people find your pin. Think of tags as the categories that best describe your pin.
+    index:
+      empty_message: There are no Pins yet in your homepage. You can search the Pin, User or Board from the search box above.
+    liked_pins:
+      no_data: There is no Pin that you have liked yet.
