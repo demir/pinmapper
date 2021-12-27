@@ -8,11 +8,30 @@ export default class extends Controller {
 
   changed() {
     let _this = this
+    var minAspectRatio = 0.8;
+    var maxAspectRatio = 1.91;
     var options = {
       minCropBoxWidth: 200,
       minCropBoxHeight: 50,
       zoomOnWheel: false,
       viewMode: 1,
+      responsive: true,
+      initialAspectRatio: 0.8,
+      cropmove: function (e) {
+        var cropBoxData = e.target.cropper.getCropBoxData();
+        var cropBoxWidth = cropBoxData.width;
+        var aspectRatio = cropBoxWidth / cropBoxData.height;
+
+        if (aspectRatio < minAspectRatio) {
+          e.target.cropper.setCropBoxData({
+            height: cropBoxWidth / minAspectRatio
+          });
+        } else if (aspectRatio > maxAspectRatio) {
+          e.target.cropper.setCropBoxData({
+            height: cropBoxWidth / maxAspectRatio
+          });
+        }
+      },
       crop(event) {
         _this.crop_x().value = event.detail.x
         _this.crop_y().value = event.detail.y
