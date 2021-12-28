@@ -41,7 +41,7 @@ RSpec.describe 'boards/index', type: :view do
       assign(:boards, [])
       render
       assert_select '.board span > a.black-link', count: 0
-      assert_select '.no-data p', text: I18n.t('boards.index.no_data'), count: 1
+      assert_select '.no-data p', text: I18n.t('boards.index.no_data_for_current_user'), count: 1
     end
   end
 end
