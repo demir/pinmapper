@@ -123,7 +123,7 @@ RSpec.describe 'Pins', type: :system, js: true do
       end
     end
 
-    it 'visits pin#show via pin name link', :focus do
+    it 'visits pin#show via pin name link' do
       visit pins_path
       pin = pins.last
       click_link pin.name, match: :first
