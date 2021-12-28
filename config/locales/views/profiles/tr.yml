@@ -1,8 +1,11 @@
 tr:
   profiles:
     show:
-      no_data: Oluşturduğun bir Pin henüz yok. Hemen oluşturabilirsin.
+      no_data: Henüz hiç Pin yok.
+      no_data_for_current_user: Oluşturduğun bir Pin henüz yok. Hemen oluşturabilirsin.
     followers:
-      no_data: Henüz takipçiniz yok.
+      no_data: Henüz hiç takipçi yok.
+      no_data_for_current_user: Henüz takipçiniz yok.
     following:
-      no_data: Henüz takip ettiğiniz bir kullanıcı yok.
+      no_data: Henüz hiç takip edilen yok.
+      no_data_for_current_user: Henüz takip ettiğiniz bir kullanıcı yok.

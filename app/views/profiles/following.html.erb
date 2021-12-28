@@ -10,7 +10,11 @@
           <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
         <% else %>
           <div class="no-data">
-            <p><%= t('.no_data') %></p>
+            <% if @user == current_user %>
+              <p><%= t('.no_data_for_current_user') %></p>
+            <% else %>
+              <p><%= t('.no_data') %></p>
+            <% end %>
           </div>
         <% end %>
       </div>

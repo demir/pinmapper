@@ -1,8 +1,11 @@
 en:
   profiles:
     show:
-      no_data: There is no Pin which is you have created yet. You can create now.
+      no_data: There is no Pin yet.
+      no_data_for_current_user: There is no Pin which is you have created yet. You can create now.
     followers:
-      no_data: You have no followers yet.
+      no_data: There are no followers yet.
+      no_data_for_current_user: You have no followers yet.
     following:
-      no_data: There is no user that you are following yet.
+      no_data: There are no following yet.
+      no_data_for_current_user: There is no user that you are following yet.

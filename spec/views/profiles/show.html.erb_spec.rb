@@ -90,10 +90,21 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
   end
 
   context 'without any data' do
-    it 'no data for pin' do
-      assign(:user_pins, [])
-      render
-      expect(rendered).to match(/#{t('profiles.show.no_data')}/)
+    context "current user's profile" do
+      it 'no data for pin' do
+        sign_in(user)
+        assign(:user_pins, [])
+        render
+        expect(rendered).to match(/#{t('profiles.show.no_data_for_current_user')}/)
+      end
+    end
+
+    context 'others profile' do
+      it 'no data for pin' do
+        assign(:user_pins, [])
+        render
+        expect(rendered).to match(/#{t('profiles.show.no_data')}/)
+      end
     end
   end
 end

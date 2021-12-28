@@ -7,8 +7,12 @@
           <%= render(Pins::PinComponent.with_collection(@user_pins, current_user: current_user)) %>
         <% else %>
           <div class="no-data">
-            <p><%= t('.no_data') %></p>
-            <%= link_to t('pins.new.create_pin'), new_pin_path, class: 'btn_1 outline' %>
+            <% if @user == current_user %>
+              <p><%= t('.no_data_for_current_user') %></p>
+              <%= link_to t('pins.new.create_pin'), new_pin_path, class: 'btn_1 outline' %>
+            <% else %>
+              <p><%= t('.no_data') %></p>
+            <% end %>
           </div>
         <% end %>
       </div>
