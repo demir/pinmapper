@@ -11,9 +11,19 @@ RSpec.describe 'profiles/followers.html.erb', type: :view do
   end
 
   context 'without any data' do
-    it 'no data for followers' do
-      render
-      expect(rendered).to match(/#{t('profiles.followers.no_data')}/)
+    context "current user's profile" do
+      it 'no data for followers' do
+        sign_in(user)
+        render
+        expect(rendered).to match(/#{t('profiles.followers.no_data_for_current_user')}/)
+      end
+    end
+
+    context 'others profile' do
+      it 'no data for followers' do
+        render
+        expect(rendered).to match(/#{t('profiles.followers.no_data')}/)
+      end
     end
   end
 end
