@@ -7,7 +7,9 @@
     const hamburger = document.getElementById("hamburger");
     if (hamburger) {
       hamburger.addEventListener("click", function (event) {
-        document.querySelector(".nav-menu").classList.toggle("active");
+        if (document.querySelector(".nav-menu")) {
+          document.querySelector(".nav-menu").classList.toggle("active");
+        }
         hamburger.classList.toggle("is-active")
       });
     }
@@ -16,7 +18,9 @@
       document.addEventListener('click', ({ target }) => {
         if (!target.closest('.nav-menu') && !target.closest('#hamburger')) {
           if (hamburger.classList.contains('is-active')) {
-            document.querySelector(".nav-menu").classList.remove("active");
+            if (document.querySelector(".nav-menu")) {
+              document.querySelector(".nav-menu").classList.remove("active");
+            }
             hamburger.classList.toggle("is-active")
           }
         }

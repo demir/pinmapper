@@ -45,7 +45,7 @@
               <%= link_to t('settings.settings'), settings_edit_profile_path, title: t('settings.settings') %>
             </li>
             <li>
-              <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out') %>
+              <%= button_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out'), class: 'dropdown-item', data: { turbo: false } %>
             </li>
           </div>
         <% end %>
@@ -64,7 +64,7 @@
                 <%= link_to t('boards.boards'), boards_path, title: t('boards.boards'), class: 'dropdown-item' %>
                 <%= link_to t('boards.following_boards.title'), following_boards_boards_path, title: t('boards.following_boards.title'), class: 'dropdown-item' %>
                 <%= link_to t('settings.settings'), settings_edit_profile_path, title: t('settings.settings'), class: 'dropdown-item' %>
-                <%= link_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out'), class: 'dropdown-item' %>
+                <%= button_to t('devise.sign_out'), destroy_user_session_path, method: :delete, title: t('devise.sign_out'), class: 'dropdown-item', data: { turbo: false } %>
               </div>
             </div>
           </li>

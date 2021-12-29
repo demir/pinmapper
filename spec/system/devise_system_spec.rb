@@ -23,7 +23,7 @@ RSpec.describe 'Devise', type: :system, js: true do
       sign_in user
       visit root_path
       find('.dropdown-user').click
-      click_link I18n.t('devise.sign_out')
+      click_button I18n.t('devise.sign_out')
       expect(page).to have_content I18n.t('devise.sign_in')
     end
 
