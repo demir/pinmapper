@@ -79,7 +79,7 @@ RSpec.describe 'Settings', type: :system, js: true do
       find('.dropdown-user').click
       click_link I18n.t('settings.settings')
       click_link I18n.t('settings.edit_profile')
-      fill_in Profile.human_attribute_name(:bio), with: Faker::Lorem.paragraph_by_chars(number: 160)
+      fill_in Profile.human_attribute_name(:bio), with: 'Pinmapper!'
       click_button I18n.t('update')
       expect(page).to have_content I18n.t('settings.profiles.update.profile_updated')
     end
