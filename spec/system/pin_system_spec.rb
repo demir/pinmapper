@@ -125,9 +125,9 @@ RSpec.describe 'Pins', type: :system, js: true do
 
     it 'visits pin#show via pin name link' do
       visit pins_path
-      pin = pins.last
+      pin = pins.first
       click_link pin.name, match: :first
-      expect(page).to have_css '.pin-show .header h1', text: pin.name
+      expect(page).to have_css '.pin-show', text: pin.name
     end
 
     it 'renders a new pin button' do
