@@ -6,11 +6,11 @@
   </div>
   <div class="body">
     <div>
-      <h6><%= link_to pin.name, pin, class: 'black-link' %></h6>
+      <h6><%= link_to truncate(pin.name, length: 40), pin, class: 'black-link', title: pin.name %></h6>
       <small><%= link_to pin.user.username, profile_path(pin.user), class: 'black-link-555555' %></small>
     </div>
     <div>
-      <i class="icon_pin_alt"></i><small class="address"><%= pin.city_country %></small>
+      <i class="icon_pin_alt"></i><small class="address" title="<%= pin.city_country %>"><%= truncate(pin.city_country, length: 30) %></small>
     </div>
   </div>
 </div>
