@@ -3,13 +3,9 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <div class="form-horizontal-map">
-      <div class="form-horizontal-map-left">
-        <%= f.input :name %>
-        <%= f.input :address, as: :search, input_html: { data: { 'pin-target': 'field' , action: 'keydown->pin#keydown' }} %>
-      </div>
-      <div class="map" data-pin-target="map"></div>
-    </div>
+    <%= f.input :name %>
+    <%= f.input :address, as: :search, input_html: { data: { 'pin-target': 'field' , action: 'keydown->pin#keydown' }} %>
+    <div class="map" data-pin-target="map"></div>
     <div class="field"
       data-controller='instant-upload cropper'
       data-cropper-model-value='pin'
