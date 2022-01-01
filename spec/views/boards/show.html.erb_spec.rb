@@ -67,7 +67,7 @@ RSpec.describe 'boards/show', type: :view do
     it 'renders a list of small pins' do
       assert_select '.small-pin .image', count: 2
       assert_select '.small-pin .body h6 a.black-link', count: 2
-      assert_select '.small-pin .body small .black-link-555555', count: 2
+      assert_select '.small-pin .body small .small-username', count: 2
       assert_select '.small-pin .body small.address', count: 2
       assert_select '.small-pin .body i.icon_pin_alt', count: 2
       assert_select '#infinite-pins.body'

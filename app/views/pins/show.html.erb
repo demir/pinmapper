@@ -8,6 +8,7 @@
               <% user_profile = @pin.user.profile %>
               <%= render(Profiles::AvatarComponent.new(src: user_profile.avatar.variant(user_profile.avatar_crop_constraints))) %>
               <%= link_to @pin.user.username, profile_path(@pin.user) %>
+                <%= link_to @pin.user.username, profile_path(@pin.user), class: 'username' %>
               <div class="soft-black-text"><i class="icon_clock_alt"></i> <%= l(@pin.created_at) %></div>
             </div>
             <div class="hrow">
