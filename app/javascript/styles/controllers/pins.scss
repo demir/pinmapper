@@ -16,8 +16,10 @@
     height: 60px;
     padding: 16px;
     border-bottom: 1px solid $border-color-2;
-    .user > *:not(:last-child) {
-      margin-right: 5px;
+    .user {
+      &> *:not(:last-child) {
+        margin-right: 5px;
+      }
     }
   }
   img {
@@ -135,11 +137,8 @@
       &.negative-margin-top {
         margin-top: -15px;
       }
-      >a {
-        color: #999;
-        &:hover {
-          color: $color-1;
-        }
+      &.nowrap {
+        flex-wrap: nowrap;
       }
     }
     h1 {
