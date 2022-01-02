@@ -15,6 +15,6 @@ RSpec.describe Profiles::FollowUserListItemComponent, type: :component do
   end
 
   it 'user#username link' do
-    expect(rendered_component).to have_css '.user > span > a.soft-black-link'
+    expect(rendered_component).to have_css '.user > span > a.username'
   end
 end

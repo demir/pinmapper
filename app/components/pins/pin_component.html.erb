@@ -3,7 +3,7 @@
     <div class="user">
       <% user_profile = @pin.user.profile %>
       <%= render(Profiles::AvatarComponent.new(src: user_profile.avatar.variant(user_profile.avatar_crop_constraints))) %>
-      <span><%= link_to @pin.user.username, profile_path(@pin.user), class: 'soft-black-link' %></span>
+      <span><%= link_to @pin.user.username, profile_path(@pin.user), class: 'username' %></span>
     </div>
     <%= render(Pins::MoreButtonComponent.new(pin: @pin, current_user: @current_user )) %>
   </div>

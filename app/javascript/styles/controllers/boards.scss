@@ -58,6 +58,11 @@
 
 .dropdown-menu.add-pin-to-board{
   min-width: 340px;
+  width: 100%;
+  @media screen and (max-width: 375px) {
+    min-width: 250px;
+  }
+  padding-bottom: 15px;
   @include border-radius(3px);
   .header {
     display: flex;
@@ -86,14 +91,19 @@
 }
 
 .board-list-item-for-pin {
+  min-width: 300px;
   width: 100%;
+  gap: 50px;
+  @media screen and (max-width: 375px) {
+    max-width: 290px;
+    min-width: 200px;
+    gap: 5px;
+  }
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 50px;
   padding: 10px 5px;
-  min-width: 300px;
   @include border-radius(3px);
   &:hover {
     background-color: $border-color-2;

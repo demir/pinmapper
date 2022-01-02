@@ -16,8 +16,10 @@
     height: 60px;
     padding: 16px;
     border-bottom: 1px solid $border-color-2;
-    .user > *:not(:last-child) {
-      margin-right: 5px;
+    .user {
+      &> *:not(:last-child) {
+        margin-right: 5px;
+      }
     }
   }
   img {
@@ -30,7 +32,7 @@
     }
     .time-ago {
       display: block;
-      color: #999;
+      color: #777777;
     }
   }
   .footer {
@@ -99,7 +101,7 @@
 //-------------------- Pin tags --------------------//
 
 .pin-tag {
-  color: #999;
+  color: #555555;
   &:hover {
     color: #fc5b62;
   }
@@ -135,11 +137,8 @@
       &.negative-margin-top {
         margin-top: -15px;
       }
-      >a {
-        color: #999;
-        &:hover {
-          color: $color-1;
-        }
+      &.nowrap {
+        flex-wrap: nowrap;
       }
     }
     h1 {
@@ -249,9 +248,17 @@ aside.blog {
   }
 }
 
+.infinite-pins {
+  overflow: auto;
+}
+
 //-------------------- Pins#form -------------------//
 .pin-form {
   .cover-image.responsive {
     max-width: 400px;
+  }
+  .map {
+    max-height: 300px;
+    margin-bottom: 15px;
   }
 }

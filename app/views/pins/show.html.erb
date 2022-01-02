@@ -6,8 +6,10 @@
           <div class="hrow">
             <div class="hrow">
               <% user_profile = @pin.user.profile %>
-              <%= render(Profiles::AvatarComponent.new(src: user_profile.avatar.variant(user_profile.avatar_crop_constraints))) %>
-              <%= link_to @pin.user.username, profile_path(@pin.user) %>
+              <div>
+                <%= render(Profiles::AvatarComponent.new(src: user_profile.avatar.variant(user_profile.avatar_crop_constraints))) %>
+                <%= link_to @pin.user.username, profile_path(@pin.user), class: 'username' %>
+              </div>
               <div class="soft-black-text"><i class="icon_clock_alt"></i> <%= l(@pin.created_at) %></div>
             </div>
             <div class="hrow">
@@ -15,7 +17,7 @@
               <%= render Pins::LikeButtonComponent.new(pin: @pin, current_user: current_user) %>
             </div>
           </div>
-          <div class="hrow">
+          <div class="hrow nowrap">
             <h1><%= @pin.name %></h1>
             <%= render(Pins::MoreButtonComponent.new(pin: @pin, current_user: current_user, turbo: false)) %>
           </div>

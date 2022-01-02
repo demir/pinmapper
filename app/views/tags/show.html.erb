@@ -13,7 +13,7 @@
           second_button_path: unfollow_tag_path(@tag)
         )) %>
       </div>
-      <div id="infinite-pins" class="body">
+      <div id="infinite-pins" class="body infinite-pins">
         <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
       </div>
       <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
