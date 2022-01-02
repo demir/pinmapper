@@ -1,6 +1,6 @@
 <div class="container margin_100_55 pins-index">
   <% if @pins.any? %>
-    <div id="infinite-pins" class="row">
+    <div id="infinite-pins" class="row infinite-pins">
       <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
       <!-- /pin_lists -->
     </div>

@@ -235,15 +235,8 @@ header > .container {
   }
 }
 
-.black-link-555555 {
-  color: #555555;
-  &:hover {
-    color: #fc5b62;
-  }
-}
-
 .soft-black-text {
-  color: #999;
+  color: #777777;
 }
 
 header {
@@ -453,4 +446,20 @@ footer {
   text-align: center;
   @include fontSize(16px);
   margin-top: 50px;
+}
+
+.username {
+  color: #000;
+  @include fontSize(16px);
+  &:hover {
+    color: #fc5b62;
+  }
+}
+
+.small-username {
+  color: #000;
+  @include fontSize(12px);
+  &:hover {
+    color: #fc5b62;
+  }
 }

@@ -4,7 +4,7 @@ module Profiles
   class AvatarComponent < ViewComponent::Base
     attr_reader :src, :alt, :size, :klass, :display
 
-    def initialize(src:, alt: 'avatar', size: 32, klass: '', display: true)
+    def initialize(src:, alt: 'avatar', size: 40, klass: '', display: true)
       @src = src
       @alt = alt
       @size = size

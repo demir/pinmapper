@@ -12,7 +12,7 @@
     <div class="col-lg-9 search-main">
       <div class="body">
         <% if @pins.present? %>
-          <div id="infinite-pins" class="row">
+          <div id="infinite-pins" class="row infinite-pins">
             <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
           </div>
           <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>

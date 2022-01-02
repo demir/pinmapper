@@ -11,7 +11,10 @@ export default class extends Controller {
   }
 
   initMap() {
-    var latLng = new google.maps.LatLng(this.latitudeValue || 39.5, this.longitudeValue || -98.35)
+    var latLng = new google.maps.LatLng(
+      this.latitudeValue || 41.33243830142252,
+      this.longitudeValue || 36.288131427151704
+    )
     this.map = new google.maps.Map(this.mapTarget, {
       center: latLng,
       zoom: (this.latitudeValue == null ? 4 : 15)

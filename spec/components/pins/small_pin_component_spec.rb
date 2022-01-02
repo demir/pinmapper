@@ -16,7 +16,7 @@ RSpec.describe Pins::SmallPinComponent, type: :component do
     end
 
     it 'user#username' do
-      expect(rendered_component).to have_css '.small-pin .body small .black-link-555555', text: pin.user.username
+      expect(rendered_component).to have_css '.small-pin .body small .small-username', text: pin.user.username
     end
 
     it 'pin#name' do

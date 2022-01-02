@@ -19,7 +19,7 @@ RSpec.describe 'Search', type: :system, js: true do
     fill_in 'q', with: keyword
     find('header .search .icon_search').click
     click_link I18n.t('search.users')
-    expect(page).to have_css '.search .col-lg-9.search-main .body .follow-user-list-item .user .soft-black-link',
+    expect(page).to have_css '.search .col-lg-9.search-main .body .follow-user-list-item .user .username',
                              text: keyword, exact_text: true
   end
 

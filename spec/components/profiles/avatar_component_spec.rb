@@ -19,11 +19,11 @@ RSpec.describe Profiles::AvatarComponent, type: :component do
     expect(rendered_component).to have_css '.user-avatar'
   end
 
-  it 'default width 32px' do
-    expect(page).to have_css('img[width="32"]')
+  it 'default width 40px' do
+    expect(page).to have_css('img[width="40"]')
   end
 
-  it 'default height 32px' do
-    expect(page).to have_css('img[height="32"]')
+  it 'default height 40px' do
+    expect(page).to have_css('img[height="40"]')
   end
 end
