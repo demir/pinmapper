@@ -7,7 +7,7 @@
             <div class="hrow">
               <% user_profile = @pin.user.profile %>
               <div>
-                <%= render(Profiles::AvatarComponent.new(src: user_profile.avatar.variant(user_profile.avatar_crop_constraints))) %>
+                <%= render(Profiles::AvatarComponent.new(src: cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(user_profile.avatar_crop_constraints), image_key: user_profile.avatar.key ))) %>
                 <%= link_to @pin.user.username, profile_path(@pin.user), class: 'username' %>
               </div>
               <div class="soft-black-text"><i class="icon_clock_alt"></i> <%= l(@pin.created_at) %></div>

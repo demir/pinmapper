@@ -35,8 +35,8 @@ export default class extends Controller {
       crop(event) {
         _this.crop_x().value = event.detail.x
         _this.crop_y().value = event.detail.y
-        _this.crop_width().value = event.detail.width
-        _this.crop_height().value = event.detail.height
+        _this.crop_width().value = event.detail.width + event.detail.x
+        _this.crop_height().value = event.detail.height + event.detail.y
       }
     }
     if (this.cropperTypeValue === 'rounded') {

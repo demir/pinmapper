@@ -13,7 +13,7 @@
       <%= f.input :cover_image, as: :file, input_html: { 'data-instant-upload-target': 'input',
             'data-action': 'instant-upload#changed' } %>
       <p>
-        <%= image_tag pin.cover_image.variant(resize_to_limit: [400, 400]),
+        <%= image_tag cloudfront_src(filters: '400x400/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(pin.cover_image_crop_constraints), image_key: pin.cover_image.key ),
               class: 'cover-image responsive',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',

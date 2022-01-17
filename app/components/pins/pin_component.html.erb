@@ -2,13 +2,13 @@
   <div class="header">
     <div class="user">
       <% user_profile = @pin.user.profile %>
-      <%= render(Profiles::AvatarComponent.new(src: user_profile.avatar.variant(user_profile.avatar_crop_constraints))) %>
+      <%= render(Profiles::AvatarComponent.new(src: helpers.cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: helpers.thumbor_crop(user_profile.avatar_crop_constraints), image_key: user_profile.avatar.key ))) %>
       <span><%= link_to @pin.user.username, profile_path(@pin.user), class: 'username' %></span>
     </div>
     <%= render(Pins::MoreButtonComponent.new(pin: @pin, current_user: @current_user )) %>
   </div>
   <% if @pin.cover_image.attached? %>
-    <%= image_tag @pin.cover_image.variant(@pin.cover_image_crop_constraints), class: 'responsive', alt: '' %>
+    <%= image_tag helpers.cloudfront_src(filters: 'filters:format(jpeg)/filters:quality(40)', thumbor_crop: helpers.thumbor_crop(@pin.cover_image_crop_constraints), image_key: @pin.cover_image.key ), class: 'responsive', alt: '' %>
   <% end %>
   <div class="body">
     <h3><%= link_to @pin.name, pin_path(@pin) %></h3>
