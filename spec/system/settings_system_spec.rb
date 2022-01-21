@@ -77,6 +77,7 @@ RSpec.describe 'Settings', type: :system, js: true do
     it 'edits profile' do
       visit root_path
       click_link I18n.t('done')
+      visit root_path
       find('.dropdown-user').click
       click_link I18n.t('settings.settings')
       click_link I18n.t('settings.edit_profile')
