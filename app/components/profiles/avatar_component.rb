@@ -16,10 +16,8 @@ module Profiles
       display
     end
 
-    # rubocop:disable Naming/MemoizedInstanceVariableName
     def before_render
-      @src ||= helpers.asset_pack_path('media/images/avatar.jpg')
+      @src = helpers.asset_pack_path('media/images/avatar.jpg') if @src.blank?
     end
-    # rubocop:enable Naming/MemoizedInstanceVariableName
   end
 end
