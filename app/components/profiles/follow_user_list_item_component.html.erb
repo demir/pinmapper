@@ -1,6 +1,6 @@
 <div class="follow-user-list-item">
   <div class="user">
-    <%= render(Profiles::AvatarComponent.new(src: @user.profile.avatar.variant(@user.profile.avatar_crop_constraints), size: 50)) %>
+    <%= render(Profiles::AvatarComponent.new(src: helpers.cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: helpers.thumbor_crop(@user.profile.avatar_crop_constraints), image_key: @user.profile.avatar.key ), size: 50)) %>
     <span><%= link_to user.username, profile_path(user), class: 'username', target: '_top' %></span>
   </div>
   <%= render(General::TwinButtonComponent.new(

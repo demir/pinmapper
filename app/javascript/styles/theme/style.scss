@@ -1434,7 +1434,7 @@ video {
     @include tablet {
       height: 640px;
     }
-    &:before {background: url("../images/theme/home_bg.jpg") center center no-repeat; @include background-size(cover);}
+    &:before {background: url("https://d3upp0w924wblq.cloudfront.net/balloons.jpg") center center no-repeat; @include background-size(cover);}
 		.wrapper {
       .container {
         display: flex;
@@ -3213,13 +3213,13 @@ ul.hotel_facilities {
 
 /*-------- 2.5 Login/register --------*/
 #login_bg, #register_bg {
-	background: url(../images/theme/istanbul.jpg) left bottom no-repeat fixed;
+	background: url(https://d3upp0w924wblq.cloudfront.net/istanbul.jpg) left bottom no-repeat fixed;
 	@include background-size(cover);
 	min-height: 100vh;
 	width: 100%;
 }
 #register_bg {
-	background: url(../images/theme/balloons.jpg) center bottom no-repeat fixed;
+	background: url(https://d3upp0w924wblq.cloudfront.net/balloons.jpg) center bottom no-repeat fixed;
 	@include background-size(cover);
 }
 
