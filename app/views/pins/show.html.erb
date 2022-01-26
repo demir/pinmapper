@@ -6,7 +6,7 @@
           <div class="hrow">
             <div class="hrow">
               <% user_profile = @pin.user.profile %>
-              <%= render(Profiles::AvatarComponent.new(src: cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(user_profile.avatar_crop_constraints), image_key: user_profile.avatar.key ))) %>
+              <%= render(Profiles::AvatarComponent.new(src: cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(user_profile.avatar_crop_constraints, user_profile.avatar&.metadata), image_key: user_profile.avatar.key ))) %>
               <div class="vcolumn">
                 <%= link_to @pin.user.username, profile_path(@pin.user), class: 'username' %>
                 <small class="creation-time"><%= l(@pin.created_at) %></small>
