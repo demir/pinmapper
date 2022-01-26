@@ -1,5 +1,5 @@
 <%= turbo_stream.update('edit_profile_form', partial: 'settings/edit_profile_form') %>
 <%= turbo_stream.update('toastr', partial: 'shared/toastr', formats: [:turbo_stream]) %>
 <%= turbo_stream.update_all '.header-avatar' do %>
-  <%= render(Profiles::AvatarComponent.new(src: cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(current_user.profile.avatar_crop_constraints), image_key: current_user.profile.avatar.key ), size: 32)) %>
+  <%= render(Profiles::AvatarComponent.new(src: cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(current_user.profile.avatar_crop_constraints, current_user.profile.avatar&.metadata), image_key: current_user.profile.avatar.key ), size: 32)) %>
 <% end %>
