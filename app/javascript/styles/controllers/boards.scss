@@ -42,12 +42,12 @@
     @include fontSize(20px);
   }
   &:first-child {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
   }
   &:last-child {
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
   }
   >.item {
     display: flex;
@@ -63,7 +63,7 @@
     min-width: 250px;
   }
   padding-bottom: 15px;
-  @include border-radius(3px);
+  @include border-radius(9px);
   .header {
     display: flex;
     flex-direction: column;
@@ -104,7 +104,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 5px;
-  @include border-radius(3px);
+  @include border-radius(9px);
   &:hover {
     background-color: $border-color-2;
   }

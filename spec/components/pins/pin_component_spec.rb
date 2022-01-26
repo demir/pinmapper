@@ -37,7 +37,7 @@ RSpec.describe Pins::PinComponent, type: :component do
     end
 
     it 'time ago' do
-      expect(rendered_component).to have_css '.body .time-ago',
+      expect(rendered_component).to have_css '.header .time-ago',
                                              text: "#{time_ago_in_words(pin.created_at)} #{I18n.t('ago')}"
     end
 
@@ -50,7 +50,7 @@ RSpec.describe Pins::PinComponent, type: :component do
     end
 
     it 'location information' do
-      expect(rendered_component).to have_css '.pin .body .address.soft-black-text', text: pin.city_country
+      expect(rendered_component).to have_css '.pin .body .address', text: pin.city_country
     end
   end
 
