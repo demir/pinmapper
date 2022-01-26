@@ -9,7 +9,7 @@ RSpec.describe 'Profiles', type: :system, js: true do
 
   it 'visits profiles#show from pins#index' do
     visit pins_path
-    first('.pin > .header > .user > span > a').click
+    first('.pin > .header > .user .username').click
     expect(page).to have_css '.profile .header .information .item span', text: user.username
   end
 

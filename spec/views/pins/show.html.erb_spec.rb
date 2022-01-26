@@ -30,7 +30,7 @@ RSpec.describe 'pins/show', type: :view do
     end
 
     it 'location information' do
-      expect(rendered).to have_css '.pin-show .header .address.soft-black-text', text: pin.city_country
+      expect(rendered).to have_css '.pin-show .header .address', text: pin.city_country
     end
 
     it '#description' do
