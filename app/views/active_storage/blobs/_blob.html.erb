@@ -1,6 +1,6 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
-    <%= image_tag cloudfront_src(filters: "#{local_assigns[:in_gallery] ? '800x600' : '1024x768'}/filters:format(jpeg)/filters:quality(40)", image_key: blob.key) %>
+    <%= image_tag cloudfront_src(filters: "#{local_assigns[:in_gallery] ? '800x600' : '1024x768'}/filters:format(jpeg)/filters:quality(40)", image_key: blob.key), class: 'blob-image' %>
   <% end %>
 
   <figcaption class="attachment__caption">
