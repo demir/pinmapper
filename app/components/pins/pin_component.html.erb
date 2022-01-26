@@ -3,19 +3,21 @@
     <div class="user">
       <% user_profile = @pin.user.profile %>
       <%= render(Profiles::AvatarComponent.new(src: helpers.cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: helpers.thumbor_crop(user_profile.avatar_crop_constraints), image_key: user_profile.avatar.key ))) %>
-      <span><%= link_to @pin.user.username, profile_path(@pin.user), class: 'username' %></span>
+      <div class="username-timeago">
+        <span><%= link_to @pin.user.username, profile_path(@pin.user), class: 'username' %></span>
+        <small class="time-ago"><%= "#{time_ago_in_words(@pin.created_at)} #{t('ago')}" %></small>
+      </div>
     </div>
     <%= render(Pins::MoreButtonComponent.new(pin: @pin, current_user: @current_user )) %>
   </div>
-  <% if @pin.cover_image.attached? %>
-    <%= image_tag helpers.cloudfront_src(filters: 'filters:format(jpeg)/filters:quality(40)', thumbor_crop: helpers.thumbor_crop(@pin.cover_image_crop_constraints), image_key: @pin.cover_image.key ), class: 'responsive', alt: '' %>
-  <% end %>
   <div class="body">
-    <h3><%= link_to @pin.name, pin_path(@pin) %></h3>
+    <div class="address"><i class="icon_pin_alt"></i><span><%= @pin.city_country %></span></div>
+    <% if @pin.cover_image.attached? %>
+      <%= image_tag helpers.cloudfront_src(filters: 'filters:format(jpeg)/filters:quality(40)', thumbor_crop: helpers.thumbor_crop(@pin.cover_image_crop_constraints), image_key: @pin.cover_image.key ), class: 'responsive cover-image', alt: '' %>
+    <% end %>
+    <div class="tags"><%= render(Taggable::TagListComponent.new(tags: @pin.tags)) %></div>
+    <h3 class="name-h3"><%= link_to @pin.name, pin_path(@pin), class: 'name-link' %></h3>
     <p class="cover-image-description"><%= @pin.cover_image_description %></p>
-    <%= render(Taggable::TagListComponent.new(tags: @pin.tags)) %>
-    <div class="address soft-black-text"><i class="icon_pin_alt"></i><small><%= @pin.city_country %></small></div>
-    <small class="time-ago"><%= "#{time_ago_in_words(@pin.created_at)} #{t('ago')}" %></small>
   </div>
   <div class="footer">
     <%= render Pins::LikeButtonComponent.new(pin: @pin, current_user: @current_user) %>

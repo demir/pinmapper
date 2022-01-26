@@ -9,7 +9,7 @@ RSpec.describe 'Pins', type: :system, js: true do
   context 'signed in or not signed in' do
     it 'visits tags/show' do
       visit pins_path
-      first_tag_element = find('.pin > .body > .pin-tag', match: :first)
+      first_tag_element = find('.pin > .body > .tags .pin-tag', match: :first)
       first_tag_element.click
       expect(page).to have_css '.tag > .header > .tag-name', text: first_tag_element.text
     end
