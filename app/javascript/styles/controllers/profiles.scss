@@ -57,11 +57,12 @@
         padding-right: 10px;
       }
     }
-    .with-shadow {
-      &:not(#infinite-pins) {
-        @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
-      }
-    }
+  }
+  .with-shadow {
+    @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
+  }
+  .infinite-pins.with-shadow {
+    @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
   }
 }
 
