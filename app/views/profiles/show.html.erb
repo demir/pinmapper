@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-12 profile">
       <%= render 'profiles/profile_header', user: @user %>
-      <div id="infinite-pins" class="body infinite-pins">
+      <div id="infinite-pins" class="body infinite-pins with-shadow">
         <% if @user_pins.any? %>
           <%= render(Pins::PinComponent.with_collection(@user_pins, current_user: current_user)) %>
         <% else %>
