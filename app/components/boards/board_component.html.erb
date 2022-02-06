@@ -1,6 +1,6 @@
 <div id="<%= dom_id(board) %>" class="board">
   <div>
-    <span><%= link_to "#{board.name}", board_path(board), class: "#{name_class} board-name" %></span>
+    <span><%= link_to "#{board.name}", board_path(board), class: "#{name_class} board-name", target: :_top %></span>
     <span class="soft-black-text">(<%= board.pins_count %>)</span>
     <% if show_privacy_badge %>
       <br>
@@ -16,8 +16,14 @@
       },
       first_button: current_user&.following_boards&.exclude?(@board),
       record_dom_id: dom_id(@board),
-      first_button_path: follow_board_path(@board),
-      second_button_path: unfollow_board_path(@board)
+      first_button_path: follow_board_path(@board,
+                                           first_button_class: first_twin_button_class,
+                                           second_button_class: second_twin_button_class),
+      second_button_path: unfollow_board_path(@board,
+                                           first_button_class: first_twin_button_class,
+                                           second_button_class: second_twin_button_class),
+      first_button_class: first_twin_button_class,
+      second_button_class: second_twin_button_class
     )) %>
     <%= render(Boards::MoreButtonComponent.new(board: board, current_user: current_user )) %>
   </div>

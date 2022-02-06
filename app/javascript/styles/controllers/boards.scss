@@ -36,10 +36,12 @@
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  border-bottom: 1px solid $border-color-2;
   padding: 16px;
   span > a.board-name {
     @include fontSize(20px);
+  }
+  &:not(:last-child) {
+    border-bottom: 1px solid $border-color-2;
   }
   &:first-child {
     border-top-left-radius: 9px;

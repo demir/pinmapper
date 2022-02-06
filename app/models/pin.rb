@@ -64,6 +64,10 @@ class Pin < ApplicationRecord
     address.split(',').last(2).join(',').strip
   end
 
+  def owner_public_boards
+    boards.where(user: user, privacy: 'public').order('pin_boards.created_at ASC')
+  end
+
   private
 
   def delete_crops

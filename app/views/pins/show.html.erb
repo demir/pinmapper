@@ -30,6 +30,7 @@
         <div class="post-content">
           <%= @pin.description %>
         </div>
+        <div><%= render Pins::Boards::AddedByOwnerComponent.new(pin: @pin, current_user: @current_user) %></div>
         <!-- /post -->
       </div>
       <!-- /single-post -->

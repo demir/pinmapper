@@ -74,6 +74,14 @@
   }
 }
 
+.board-link {
+  color: #555555;
+  font-weight: bold;
+  &:hover {
+    color: $color-1;
+  }
+}
+
 //-------------------- Small Pin -------------------//
 
 .small-pin {
@@ -178,6 +186,9 @@
   }
   .address {
     margin-top: -10px;
+  }
+  .pin-added-by-owner {
+    margin-top: 50px;
   }
 }
 
@@ -294,5 +305,21 @@ aside.blog {
   .map {
     max-height: 300px;
     margin-bottom: 15px;
+  }
+}
+
+.pin-boards-added-by-owner-modal {
+  .modal-title {
+    color: #000000;
+    @include fontSize(16px);
+    .username {
+      font-weight: 500;
+    }
+  }
+  .board {
+    padding: 10px;
+    span > a.board-name {
+      @include fontSize(16px);
+    }
   }
 }
