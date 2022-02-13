@@ -1,3 +1,5 @@
+<% first_button_class = params.fetch(:first_button_class, nil) || 'btn_1 rounded small outline' %>
+<% second_button_class = params.fetch(:second_button_class, nil) || 'btn_1 rounded small' %>
 <%= turbo_stream.replace "twin_button_#{dom_id(@board)}" do %>
   <%= render(General::TwinButtonComponent.new(
     display_block: -> {
@@ -7,7 +9,13 @@
     },
     first_button: current_user&.following_boards&.exclude?(@board),
     record_dom_id: dom_id(@board),
-    first_button_path: follow_board_path(@board),
-    second_button_path: unfollow_board_path(@board)
+    first_button_path: follow_board_path(@board,
+                                         first_button_class: first_button_class,
+                                         second_button_class: second_button_class),
+    second_button_path: unfollow_board_path(@board,
+                                            first_button_class: first_button_class,
+                                            second_button_class: second_button_class),
+    first_button_class: first_button_class,
+    second_button_class: second_button_class
   )) %>
 <% end %>

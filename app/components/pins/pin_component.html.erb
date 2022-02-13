@@ -18,6 +18,7 @@
     <div class="tags"><%= render(Taggable::TagListComponent.new(tags: @pin.tags)) %></div>
     <h3 class="name-h3"><%= link_to @pin.name, pin_path(@pin), class: 'name-link' %></h3>
     <p class="cover-image-description"><%= @pin.cover_image_description %></p>
+    <%= render Pins::Boards::AddedByOwnerComponent.new(pin: @pin, current_user: @current_user) %>
   </div>
   <div class="footer">
     <%= render Pins::LikeButtonComponent.new(pin: @pin, current_user: @current_user) %>

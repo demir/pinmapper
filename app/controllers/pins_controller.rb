@@ -2,9 +2,9 @@
 
 class PinsController < ApplicationController
   include Pagy::Backend
-  before_action :set_pin, only: %i[show edit update destroy like unlike]
-  before_action :authenticate_user!, except: %i[index show]
-  before_action :authorize_pin, except: %i[index show]
+  before_action :set_pin, only: %i[show edit update destroy like unlike boards_added_by_owner]
+  before_action :authenticate_user!, except: %i[index show boards_added_by_owner]
+  before_action :authorize_pin, except: %i[index show boards_added_by_owner]
 
   # GET /pins or /pins.json
   def index
@@ -75,6 +75,15 @@ class PinsController < ApplicationController
   def liked_pins
     pin_ids = current_user.votes.where(votable_type: 'Pin').pluck(:votable_id)
     @pagy, @pins = pagy Pin.where(id: pin_ids).order(created_at: :desc)
+    respond_to do |f|
+      f.html
+      f.turbo_stream
+    end
+  end
+
+  def boards_added_by_owner
+    boards = @pin.owner_public_boards
+    @pagy, @boards = pagy(boards)
     respond_to do |f|
       f.html
       f.turbo_stream

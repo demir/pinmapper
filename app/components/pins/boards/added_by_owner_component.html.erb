@@ -1,0 +1,32 @@
+<% single_board = link_to owner_boards.first.name, owner_boards.first, class: 'board-link' %>
+<div class="pin-added-by-owner">
+  <% if single? %>
+    <%= sanitize t('pins.boards.added_by_owner.single', username: pin.user.username, board: single_board) %>
+  <% elsif plural? %>
+    <% boards_link_text = t("pins.boards.added_by_owner.to_board.#{plural_one_or_other}") %>
+    <% boards_link = link_to "#{owner_boards.count - 1} #{boards_link_text}", "#", class: 'board-link', data: { toggle: 'modal', target: "#pin_boards_added_by_owner_#{dom_id(pin)}" } %>
+    <%= t('pins.boards.added_by_owner.plural', username: pin.user.username, board: single_board, boards_link: boards_link).html_safe %>
+    <div class="modal fade pin-boards-added-by-owner-modal" id="pin_boards_added_by_owner_<%= dom_id(pin) %>">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-title">
+              <span class="username"><%= pin.user.username %></span>
+              <%= t('pins.boards.added_by_owner.modal_title') %>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= turbo_frame_tag "tf_pin_boards_added_by_owner_#{dom_id(pin)}", src: boards_added_by_owner_pin_path(pin), loading: :lazy do %>
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border pinmapper m-4"></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
