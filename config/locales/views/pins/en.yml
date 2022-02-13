@@ -17,3 +17,11 @@ en:
       empty_message: There are no Pins yet in your homepage. You can search the Pin, User or Board from the search box above.
     liked_pins:
       no_data: There is no Pin that you have liked yet.
+    boards:
+      added_by_owner:
+        to_board:
+          one: board
+          other: boards
+        single: '%{username}, added to %{board} board'
+        plural: '%{username}, added to %{board} board and other %{boards_link}'
+        modal_title: ", Added Pin to the following Boards"

@@ -70,6 +70,7 @@ Rails.application.routes.draw do
       member do
         get 'like'
         get 'unlike'
+        get 'boards_added_by_owner'
       end
       collection do
         get 'liked_pins'

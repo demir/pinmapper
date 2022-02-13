@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'webdrivers/chromedriver'
+Webdrivers::Chromedriver.required_version = '97.0.4692.71'
+
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Capybara::DSL

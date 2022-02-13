@@ -89,19 +89,23 @@ RSpec.describe 'Boards', type: :system, js: true do
 
     context 'more button' do
       context 'from the index page' do
+        # rubocop:disable RSpec/ExampleLength
         it 'visits the edit page' do
           visit boards_path
           more_button = find('.board > .item .board-more > svg', match: :first)
           board_element = more_button.ancestor('.board')
+          board_element_text = board_element.find('span > a.black-link').text
           more_button.click
           edit_board_link_element = board_element.find('.dropdown.board-more .dropdown-menu a',
                                                        text:       I18n.t('edit'),
                                                        exact_text: true)
+          edit_board_link_element_href = edit_board_link_element[:href]
           edit_board_link_element.click
-          expect(page).to have_current_path edit_board_link_element[:href]
+          expect(page).to have_current_path edit_board_link_element_href
           expect(page).to have_field(Board.human_attribute_name(:name),
-                                     with: board_element.find('span > a.black-link').text)
+                                     with: board_element_text)
         end
+        # rubocop:enable RSpec/ExampleLength
 
         it 'deletes a board' do
           visit boards_path

@@ -17,3 +17,11 @@ tr:
       empty_message: Anasayfanızda gösterilecek Pin henüz yok. Yukarıdaki arama kutusundan Pin, Kullanıcı ya da Pano arayabilirsiniz.
     liked_pins:
       no_data: Henüz beğendiğiniz bir Pin yok.
+    boards:
+      added_by_owner:
+        to_board:
+          one: panoya
+          other: panoya
+        single: '%{username}, %{board} panosuna ekledi'
+        plural: '%{username}, %{board} panosuna ve diğer %{boards_link} ekledi'
+        modal_title: ", Pin'i aşağıdaki Panolara ekledi"

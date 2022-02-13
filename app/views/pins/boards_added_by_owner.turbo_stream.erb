@@ -1,0 +1,9 @@
+<%= turbo_stream.append "pin_boards_added_by_owner_body_#{dom_id(@pin)}" do %>
+  <%= render(Boards::BoardComponent.with_collection(@boards, options: {
+                                                                current_user: current_user,
+                                                                name_class: 'black-link',
+                                                                first_twin_button_class: 'btn_1 rounded xsmall outline',
+                                                                second_twin_button_class: 'btn_1 rounded xsmall'
+                                                              })) %>
+<% end %>
+<%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy, record: @pin, format: :turbo_stream)) %>
