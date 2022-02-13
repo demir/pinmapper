@@ -286,4 +286,106 @@ RSpec.describe 'Pins', type: :system, js: true do
       end
     end
   end
+
+  # rubocop:disable RSpec/NestedGroups
+  describe 'pin added to boards by owner' do
+    let(:pin) { pins.first }
+    let(:board1) { create(:board, user: pin.user) }
+    let(:board2) { create(:board, user: pin.user) }
+
+    context 'when not added to any board' do
+      it 'do not show any message' do
+        visit pins_path
+        expect(page).not_to have_css "#pin_#{pin.id} .pin-added-by-owner"
+      end
+    end
+
+    context 'when added to single board' do
+      before do
+        board1.pins << pin
+      end
+
+      it 'show message for single board' do
+        visit pins_path
+        find("#pin_#{pin.id} .pin-added-by-owner a.board-link", text:  pin.owner_public_boards.first.name,
+                                                                match: :first).click
+        expect(page).to have_css '.board-show'
+      end
+    end
+
+    context 'when added to one more boards' do
+      before do
+        board1.pins << pin
+        board2.pins << pin
+      end
+
+      it 'first board' do
+        visit pins_path
+        find("#pin_#{pin.id} .pin-added-by-owner a.board-link", text:  pin.owner_public_boards.first.name,
+                                                                match: :first).click
+        expect(page).to have_css '.board-show'
+      end
+
+      context 'modal' do
+        it 'show modal' do
+          visit pins_path
+          find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
+            '#pin_boards_added_by_owner_pin_#{pin.id}']").click
+          expect(page).to have_css '.pin-boards-added-by-owner-modal.show'
+        end
+
+        context 'when boards owner is current_user' do
+          before do
+            sign_in(pin.user)
+          end
+          # rubocop:disable RSpec/ExampleLength
+
+          it 'visits the edit page from modal' do
+            visit pins_path
+            find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
+              '#pin_boards_added_by_owner_pin_#{pin.id}']").click
+            modal = find('.pin-boards-added-by-owner-modal.show')
+            more_button = modal.find('.board .board-more svg', match: :first)
+            board_element = more_button.ancestor('.board')
+            board_element_text = board_element.find('.board .board-name').text
+            more_button.click
+            edit_board_link_element = board_element.find('.item .dropdown.board-more .dropdown-menu a',
+                                                         text:       I18n.t('edit'),
+                                                         exact_text: true)
+            edit_board_link_element_href = edit_board_link_element[:href]
+            edit_board_link_element.click
+            expect(page).to have_current_path edit_board_link_element_href
+            expect(page).to have_field(Board.human_attribute_name(:name), with: board_element_text)
+          end
+
+          it 'delete board from modal' do
+            visit pins_path
+            find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
+              '#pin_boards_added_by_owner_pin_#{pin.id}']").click
+            modal = find('.pin-boards-added-by-owner-modal.show')
+            more_button = modal.find('.board .board-more svg', match: :first)
+            board_element = more_button.ancestor('.board')
+            more_button.click
+            board_element.find('.item .dropdown.board-more .dropdown-menu a',
+                               text:       I18n.t('destroy'),
+                               exact_text: true)
+                         .click
+            page.accept_alert
+            expect(page).to have_content I18n.t('boards.destroy.success')
+          end
+          # rubocop:enable RSpec/ExampleLength
+        end
+
+        context 'when boards owner is not current_user' do
+          it 'not show board more button' do
+            visit pins_path
+            find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
+              '#pin_boards_added_by_owner_pin_#{pin.id}']").click
+            expect(page).not_to have_css '.pin-boards-added-by-owner-modal.show .board .board-more svg'
+          end
+        end
+      end
+    end
+  end
+  # rubocop:enable RSpec/NestedGroups
 end
