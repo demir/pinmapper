@@ -1,22 +1,18 @@
-<div class="container margin_100_55">
-  <div class="row">
-    <div class="col-lg-12 profile">
-      <%= render 'profiles/profile_header', user: @user %>
-      <div id="infinite-pins" class="body infinite-pins with-shadow">
-        <% if @user_pins.any? %>
-          <%= render(Pins::PinComponent.with_collection(@user_pins, current_user: current_user)) %>
+<div class="container margin_100_55 profile">
+  <%= render 'profiles/profile_header', user: @user %>
+  <div id="infinite-pins" class="body infinite-pins">
+    <% if @user_pins.any? %>
+      <%= render(Pins::PinComponent.with_collection(@user_pins, current_user: current_user)) %>
+    <% else %>
+      <div class="no-data">
+        <% if @user == current_user %>
+          <p><%= t('.no_data_for_current_user') %></p>
+          <%= link_to t('pins.new.create_pin'), new_pin_path, class: 'btn_1 outline' %>
         <% else %>
-          <div class="no-data">
-            <% if @user == current_user %>
-              <p><%= t('.no_data_for_current_user') %></p>
-              <%= link_to t('pins.new.create_pin'), new_pin_path, class: 'btn_1 outline' %>
-            <% else %>
-              <p><%= t('.no_data') %></p>
-            <% end %>
-          </div>
+          <p><%= t('.no_data') %></p>
         <% end %>
       </div>
-      <%= render(General::InfiniteScrollPagyComponent.new(pagy: @user_pins_pagy)) %>
-    </div>
+    <% end %>
   </div>
+  <%= render(General::InfiniteScrollPagyComponent.new(pagy: @user_pins_pagy)) %>
 </div>
