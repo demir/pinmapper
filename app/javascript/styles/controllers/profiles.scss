@@ -1,6 +1,4 @@
 .profile {
-  padding-left: 0;
-  padding-right: 0;
   >.header {
     display: flex;
     flex-direction: row;
@@ -13,6 +11,7 @@
     border-bottom: 2px solid $border-color-2;
     margin-bottom: 30px;
     max-width: 600px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     @include tablet {
@@ -21,7 +20,10 @@
       height: 230px;
     }
     >.profile-user-avatar {
-      @include tablet {height: 80px; width: 80px;}
+      @include tablet {
+        height: 80px;
+        width: 80px;
+      }
     }
     .information {
       width: 100%;
@@ -47,7 +49,6 @@
     }
   }
   >.body {
-    max-width:600px;
     margin-left:auto;
     margin-right: auto;
     width: 100%;
@@ -58,11 +59,11 @@
       }
     }
   }
-  .with-shadow {
-    @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
-  }
-  .infinite-pins.with-shadow {
-    @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
+  .pin, .follow-user-list-item, .board{
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+    width: 100%;
   }
 }
 
@@ -73,7 +74,9 @@
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  border-bottom: 1px solid $border-color-2;
+  &:not(:last-child) {
+    border-bottom: 1px solid $border-color-2;
+  }
   padding: 16px;
   .user > *:not(:last-child) {
     margin-right: 5px;

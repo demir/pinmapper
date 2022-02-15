@@ -1,9 +1,10 @@
 //----------------------- Pin ----------------------//
 
 .pin {
+  border: 1px solid $border-color-2;
   @include border-radius(9px);
   background-color: #fff;
-  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
+  // @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
   max-width: 600px;
   width: 100%;
   margin-bottom: 30px;
@@ -114,15 +115,10 @@
 }
 
 .liked-pins {
-  padding-left: 0;
-  padding-right: 0;
   > .header {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    @include mobile {
-      padding: 0 15px;
-    }
   }
 }
 
@@ -279,6 +275,10 @@ aside.blog {
 }
 
 .pins-index {
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
   .empty-message {
     text-align: center;
     @include fontSize(16px);
