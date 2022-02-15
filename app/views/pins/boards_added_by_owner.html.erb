@@ -2,7 +2,6 @@
   <div id="pin_boards_added_by_owner_body_<%= dom_id(@pin) %>">
     <%= render(Boards::BoardComponent.with_collection(@boards, options: {
                                                                   current_user: current_user,
-                                                                  name_class: 'black-link',
                                                                   first_twin_button_class: 'btn_1 rounded xsmall outline',
                                                                   second_twin_button_class: 'btn_1 rounded xsmall'
                                                                 })) %>

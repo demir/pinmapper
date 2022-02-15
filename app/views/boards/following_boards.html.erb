@@ -10,7 +10,7 @@
       <div class="body">
         <% if @boards.any? %>
           <div id="infinite-boards">
-            <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user, name_class: 'black-link' })) %>
+            <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user })) %>
           </div>
           <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
         <% else %>

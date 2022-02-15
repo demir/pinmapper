@@ -38,7 +38,7 @@
   background-color: #fff;
   padding: 16px;
   span > a.board-name {
-    @include fontSize(20px);
+    @include fontSize(18px);
   }
   &:not(:last-child) {
     border-bottom: 1px solid $border-color-2;
