@@ -10,7 +10,7 @@ module Boards
       o = {
         current_user:             nil,
         show_privacy_badge:       false,
-        name_class:               'soft-black-link',
+        name_class:               'black-link',
         first_twin_button_class:  'btn_1 rounded small outline',
         second_twin_button_class: 'btn_1 rounded small'
       }.merge(options)
