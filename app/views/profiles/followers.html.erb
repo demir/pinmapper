@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-12 profile">
       <%= render 'profiles/profile_header', user: @user %>
-      <div class="body  px-tablet">
+      <div class="body">
         <% if @followers.any? %>
           <div id="followers" class="with-shadow">
             <%= render(Profiles::FollowUserListItemComponent.with_collection(@followers, current_user: current_user)) %>
