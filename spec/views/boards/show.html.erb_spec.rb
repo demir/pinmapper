@@ -10,7 +10,8 @@ RSpec.describe 'boards/show', type: :view do
     pagy(ar_pins).first
   end
   let(:board) { create(:board, user: current_user) }
-  let(:pins) { create_list(:pin, 2) }
+  let(:pins_array) { create_list(:pin, 2) }
+  let(:pins) { Pin.where(id: pins_array.pluck(:id)) }
 
   before do
     board.pins << pins
