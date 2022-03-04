@@ -7,7 +7,7 @@ import 'leaflet.markercluster';
 
 export default class extends Controller {
   static targets = ["container"]
-  static values = { markers: String }
+  static values = { markers: String, accessToken: String }
 
   connect() {
     this.map = L.map(this.containerTarget, {
@@ -21,7 +21,7 @@ export default class extends Controller {
       id: 'mapbox/streets-v11',
       tileSize: 512,
       zoomOffset: -1,
-      accessToken: 'pk.eyJ1IjoicGlubWFwcGVyIiwiYSI6ImNrem4zc25rcjA0bTkyb3F1aWJ3b2lpaW4ifQ.Iov1BT5eiryI0cU8uTGKQQ'
+      accessToken: this.accessTokenValue
     }).addTo(this.map);
 
     var markerClusters = L.markerClusterGroup({
