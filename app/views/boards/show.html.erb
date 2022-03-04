@@ -18,6 +18,11 @@
             second_button_path: unfollow_board_path(@board)
           )) %>
       </div>
+      <% marker_service = MapServices::GenerateMarkers::Pin.call(@pins) %>
+      <% if marker_service[:success] %>
+        <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>
+      <% end %>
+      <br>
       <div id="infinite-pins" class="body">
         <%= render Pins::SmallPinComponent.with_collection(@pins, current_user: @current_user) %>
         <!-- /pin_lists -->
