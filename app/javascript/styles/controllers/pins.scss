@@ -323,3 +323,25 @@ aside.blog {
     }
   }
 }
+
+//---------------- Map#Leaflet Popup ---------------//
+
+.leaflet-popup-content-wrapper {
+  padding: 10px;
+  .title {
+    @include fontSize(16px);
+  }
+  .black-link {
+    color: #000;
+    &:hover {
+      color: #fc5b62;
+    }
+  }
+  .direction-form {
+    box-shadow: none;
+    padding: 0;
+    button[type='submit'] {
+      margin: 0;
+    }
+  }
+}

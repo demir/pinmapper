@@ -10,7 +10,8 @@ RSpec.describe 'boards/show', type: :view do
     pagy(ar_pins).first
   end
   let(:board) { create(:board, user: current_user) }
-  let(:pins) { create_list(:pin, 2) }
+  let(:pins_array) { create_list(:pin, 2) }
+  let(:pins) { Pin.where(id: pins_array.pluck(:id)) }
 
   before do
     board.pins << pins
@@ -29,6 +30,7 @@ RSpec.describe 'boards/show', type: :view do
     end
   end
 
+  # rubocop:disable RSpec/MultipleMemoizedHelpers
   context 'renders board header when user signed in' do
     let(:new_board) { create(:board) }
 
@@ -54,6 +56,7 @@ RSpec.describe 'boards/show', type: :view do
       assert_select '.board-show > .header a.btn_1', text: I18n.t('follow'), count: 1
     end
   end
+  # rubocop:enable RSpec/MultipleMemoizedHelpers
 
   context 'renders attributes of board (sign in not required)' do
     before do
@@ -62,6 +65,10 @@ RSpec.describe 'boards/show', type: :view do
 
     it '#name' do
       expect(rendered).to match(/#{board.name}/)
+    end
+
+    it 'map' do
+      assert_select '.map[data-target="map.container"]'
     end
 
     it 'renders a list of small pins' do

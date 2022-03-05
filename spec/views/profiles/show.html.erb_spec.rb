@@ -80,6 +80,10 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
     it 'bio' do
       expect(rendered).to match(/#{user.profile.bio}/)
     end
+
+    it 'map' do
+      assert_select '.map[data-target="map.container"]'
+    end
   end
 
   context 'renders body' do
