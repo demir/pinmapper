@@ -21,6 +21,8 @@ module MapServices
       private
 
       def select_pins(raw_pins)
+        return unless raw_pins&.is_a?(ActiveRecord::Relation)
+
         raw_pins.select(:id, :latitude, :longitude, :name, :cover_image_description)
       end
 
@@ -43,7 +45,7 @@ module MapServices
                   class: 'black-link',
                   title: pin.name
         end)
-        html << (content_tag :p, title: pin.cover_image_description do
+        html << (content_tag :p, title: pin.cover_image_description, class: 'cover-image-description' do
           truncate pin.cover_image_description, length: 300
         end)
         html << (
