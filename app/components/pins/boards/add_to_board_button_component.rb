@@ -4,15 +4,16 @@ module Pins
   module Boards
     class AddToBoardButtonComponent < ViewComponent::Base
       include Turbo::FramesHelper
-      attr_reader :pin, :current_user
+      attr_reader :pin, :current_user, :klass
 
-      def initialize(pin:, current_user:)
+      def initialize(pin:, current_user:, klass: '')
         @pin = pin
         @current_user = current_user
+        @klass = "add_to_board_btn #{klass}".strip
       end
 
-      def klass
-        pin.boards.where(user: current_user).any? ? 'add_to_board_btn added' : 'add_to_board_btn'
+      def klass_handled
+        pin.boards.where(user: current_user).any? ? "#{klass} added" : klass
       end
 
       def boards?

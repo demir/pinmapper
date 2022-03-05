@@ -4,7 +4,6 @@
   border: 1px solid $border-color-2;
   @include border-radius(9px);
   background-color: #fff;
-  // @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
   max-width: 600px;
   width: 100%;
   margin-bottom: 30px;
@@ -57,7 +56,7 @@
     .cover-image {
       @include border-radius(9px);
       margin-top: 16px;
-      @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.20));
+      @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.05));
     }
   }
   .footer {
@@ -100,8 +99,13 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
+    width: 100%;
     h6 {
       margin-bottom: 0;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
     }
   }
 }

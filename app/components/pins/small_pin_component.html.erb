@@ -7,8 +7,9 @@
       <h6><%= link_to truncate(pin.name, length: 40), pin, class: 'black-link', title: pin.name %></h6>
       <small><%= link_to pin.user.username, profile_path(pin.user), class: 'small-username' %></small>
     </div>
-    <div>
-      <i class="icon_pin_alt"></i><small class="address" title="<%= pin.city_country %>"><%= truncate(pin.city_country, length: 30) %></small>
+    <div class="item">
+      <div><i class="icon_pin_alt"></i><small class="address" title="<%= pin.city_country %>"><%= truncate(pin.city_country, length: 30) %></small></div>
+      <%= render Pins::Boards::AddToBoardButtonComponent.new(pin: pin, current_user: current_user, klass: 'small') %>
     </div>
   </div>
 </div>

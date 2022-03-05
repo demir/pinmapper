@@ -4,7 +4,7 @@
       <div class="header">
         <div class="main_title_3">
           <span><em></em></span>
-          <h2><%= @board.name %></h2>
+          <h2><%= "#{@board.name} (#{@board.pins_count})" %></h2>
         </div>
         <%= render(General::TwinButtonComponent.new(
             display_block: -> {
