@@ -402,7 +402,6 @@
 	margin: 18px 0;
 	}
 .leaflet-popup-tip-container {
-	margin: 0 auto;
 	width: 40px;
 	height: 20px;
 	position: relative;
@@ -540,7 +539,7 @@
 //* leaflet CUSTOM styles ===================== */
 .leaflet-popup-content-wrapper {
     width: 240px;
-    height: 270px;
+    max-height: 270px;
     padding: 0;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.12);
     @include border-radius(5px !important);
@@ -605,7 +604,7 @@
 
 .leaflet-container a.leaflet-popup-close-button {
     z-index: 9999;
-    background-color:#fff;
+    background-color:#eee;
     @include border-radius(50%);
     width: 20px;
     height: 20px;

@@ -1,5 +1,10 @@
 <div class="container margin_100_55 profile">
   <%= render 'profiles/profile_header', user: @user %>
+  <% marker_service = MapServices::GenerateMarkers::Pin.call(@user.pins) %>
+  <% if marker_service[:success] %>
+    <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>
+  <% end %>
+  <br>
   <div id="infinite-pins" class="body infinite-pins">
     <% if @user_pins.any? %>
       <%= render(Pins::PinComponent.with_collection(@user_pins, current_user: current_user)) %>
