@@ -11,7 +11,7 @@ RSpec.describe Profiles::PinsLinkComponent, type: :component do
     end
 
     it 'shows link' do
-      expect(rendered_component).to have_css '.soft-black-link', text: /#{I18n.t('activerecord.models.pin')}/
+      expect(rendered_component).to have_css '.black-link-555', text: /#{I18n.t('activerecord.models.pin')}/
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.describe Profiles::PinsLinkComponent, type: :component do
     end
 
     it 'do not show link' do
-      expect(rendered_component).not_to have_css '.soft-black-link'
+      expect(rendered_component).not_to have_css '.black-link-555'
     end
   end
 end

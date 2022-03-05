@@ -235,6 +235,13 @@ header > .container {
   }
 }
 
+.black-link-555 {
+  color: #555;
+  &:hover {
+    color: #fc5b62;
+  }
+}
+
 .soft-black-text {
   color: #777777;
 }
@@ -374,7 +381,7 @@ main .container form {
 
 .btn_1.soft-black-border {
   border: 1px solid#999 !important;
-  color: #888 !important;
+  color: #555 !important;
   padding: 10px 15px !important;
   font-weight: 500 !important;
   &:hover {
