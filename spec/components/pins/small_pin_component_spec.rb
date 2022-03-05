@@ -30,5 +30,9 @@ RSpec.describe Pins::SmallPinComponent, type: :component do
     it 'location information' do
       expect(rendered_component).to have_css '.small-pin .body small.address', text: pin.city_country
     end
+
+    it 'add to board button' do
+      expect(rendered_component).to have_css '.small-pin .body a.add_to_board_btn'
+    end
   end
 end

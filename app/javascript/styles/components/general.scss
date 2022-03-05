@@ -62,3 +62,8 @@ a.add_to_board_btn {
     color: #555;
   }
 }
+
+a.add_to_board_btn.small {
+  padding: 0;
+  background-color: transparent;
+}

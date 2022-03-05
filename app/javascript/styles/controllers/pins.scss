@@ -99,8 +99,13 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
+    width: 100%;
     h6 {
       margin-bottom: 0;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
     }
   }
 }
