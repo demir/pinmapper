@@ -65,6 +65,10 @@ RSpec.describe 'boards/show', type: :view do
       expect(rendered).to match(/#{board.name}/)
     end
 
+    it 'map' do
+      assert_select '.map[data-target="map.container"]'
+    end
+
     it 'renders a list of small pins' do
       assert_select '.small-pin .image', count: 2
       assert_select '.small-pin .body h6 a.black-link', count: 2
