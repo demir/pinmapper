@@ -9,7 +9,7 @@ module Pins
       def initialize(pin:, current_user:, klass: '')
         @pin = pin
         @current_user = current_user
-        @klass = "add_to_board_btn #{klass}"
+        @klass = "add_to_board_btn #{klass}".strip
       end
 
       def klass_handled
