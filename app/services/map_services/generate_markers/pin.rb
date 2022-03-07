@@ -48,15 +48,13 @@ module MapServices
         html << (content_tag :p, title: pin.cover_image_description, class: 'cover-image-description' do
           truncate pin.cover_image_description, length: 300
         end)
+        direction_url = "https://www.google.com/maps/dir//#{pin.latitude},#{pin.longitude}"
         html << (
-          content_tag :form, action: 'http://maps.google.com/maps', method: :get, target: :_blank,
-class: 'direction-form' do
-            tag.input(name: :daddr, value: "#{pin.latitude},#{pin.longitude}", type: :hidden) +
-            (content_tag :button, type: :submit, value: I18n.t('get_directions'),
-                                  class: 'btn_infobox_get_directions' do
-               I18n.t('get_directions')
-             end)
-          end
+          link_to I18n.t('get_directions'),
+                  direction_url,
+                  class:  'btn_infobox_get_directions',
+                  target: :_blank,
+                  rel:    :noopener
         )
       end
     end
