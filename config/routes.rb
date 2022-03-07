@@ -5,7 +5,13 @@ Rails.application.routes.draw do
   end
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
-    root to: 'pins#index'
+    unauthenticated do
+      root 'explore#index'
+    end
+
+    authenticated :user do
+      root 'pins#index', as: :authenticated_root
+    end
     get 'terms_of_use' => 'pages#terms_of_use'
     get 'privacy_policy' => 'pages#privacy_policy'
     get 'about_us' => 'pages#about_us'
@@ -24,6 +30,8 @@ Rails.application.routes.draw do
     get 'search/pins'
     get 'search/boards'
     get 'search/users'
+    # explore
+    get 'explore/index'
     # settings
     get 'settings/edit_profile'
     get 'settings/change_password'

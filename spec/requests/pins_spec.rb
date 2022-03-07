@@ -20,12 +20,9 @@ RSpec.describe '/pins', type: :request do
   let(:headers) { { 'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9' } }
 
   context 'specs without sign in' do
-    describe 'GET /index' do
-      it 'renders a successful response' do
-        create(:pin)
-        get pins_url, headers: headers
-        expect(response).to be_successful
-      end
+    it 'can not render index (home)' do
+      get pins_url, headers: headers
+      expect(response).not_to be_successful
     end
 
     describe 'GET /show' do
@@ -56,6 +53,11 @@ RSpec.describe '/pins', type: :request do
   context 'specs with sign in' do
     before do
       sign_in(user)
+    end
+
+    it 'renders index (home)' do
+      get pins_url, headers: headers
+      expect(response).to be_successful
     end
 
     it 'GET /liked_pins' do

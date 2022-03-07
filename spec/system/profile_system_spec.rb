@@ -7,12 +7,6 @@ RSpec.describe 'Profiles', type: :system, js: true do
   let!(:user) { create(:user, :confirmed) }
   let!(:pins) { create_list(:pin, 2, user: user) }
 
-  it 'visits profiles#show from pins#index' do
-    visit pins_path
-    first('.pin > .header > .user .username').click
-    expect(page).to have_css '.profile .header .information .item span', text: user.username
-  end
-
   it 'visits profiles#show from pins#show' do
     visit pin_path(id: pins.first)
     expect(page).to have_css '.pin-show > .header .hrow div .username', text: user.username
@@ -21,6 +15,13 @@ RSpec.describe 'Profiles', type: :system, js: true do
   context 'when signed in' do
     before do
       sign_in(current_user)
+    end
+
+    it 'visits profiles#show from pins#index' do
+      create_list(:pin, 2, user: current_user)
+      visit pins_path
+      first('.pin > .header > .user .username').click
+      expect(page).to have_css '.profile .header .information .item span', text: current_user.username
     end
 
     context 'profiles#show' do

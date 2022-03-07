@@ -3,7 +3,7 @@
 class PinsController < ApplicationController
   include Pagy::Backend
   before_action :set_pin, only: %i[show edit update destroy like unlike boards_added_by_owner]
-  before_action :authenticate_user!, except: %i[index show boards_added_by_owner]
+  before_action :authenticate_user!, except: %i[show boards_added_by_owner]
   before_action :authorize_pin, except: %i[index show boards_added_by_owner]
 
   # GET /pins or /pins.json
