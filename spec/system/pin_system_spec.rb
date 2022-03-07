@@ -8,7 +8,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
   context 'signed in or not signed in' do
     it 'visits tags/show' do
-      visit pins_path
+      visit explore_index_path
       first_tag_element = find('.pin > .body > .tags .pin-tag', match: :first)
       first_tag_element.click
       expect(page).to have_css '.tag > .header > .tag-name', text: first_tag_element.text
@@ -29,7 +29,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
     it 'visits pins' do
       visit root_path
-      click_link I18n.t('pins.pins')
+      click_link I18n.t('home')
       expect(page).to have_css '.row .pin', count: 2
     end
 
@@ -244,10 +244,9 @@ RSpec.describe 'Pins', type: :system, js: true do
   end
 
   context 'When not signed in' do
-    it 'visits pins' do
+    it 'can not visits pins' do
       visit root_path
-      click_link I18n.t('pins.pins')
-      expect(page).to have_css '.row .pin', count: 2
+      expect(page).not_to have_css '.visible-menu-item span', text: I18n.t('home')
     end
 
     it 'does not render more button' do
@@ -256,7 +255,7 @@ RSpec.describe 'Pins', type: :system, js: true do
     end
 
     it 'visits pin#show' do
-      visit pins_path
+      visit explore_index_path
       pin = pins.last
       click_link pin.name
       expect(page).to have_css '.pin-show .header h1', text: pin.name
@@ -295,7 +294,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
     context 'when not added to any board' do
       it 'do not show any message' do
-        visit pins_path
+        visit explore_index_path
         expect(page).not_to have_css "#pin_#{pin.id} .pin-added-by-owner"
       end
     end
@@ -306,7 +305,7 @@ RSpec.describe 'Pins', type: :system, js: true do
       end
 
       it 'show message for single board' do
-        visit pins_path
+        visit explore_index_path
         find("#pin_#{pin.id} .pin-added-by-owner a.board-link", text:  pin.owner_public_boards.first.name,
                                                                 match: :first).click
         expect(page).to have_css '.board-show'
@@ -320,7 +319,7 @@ RSpec.describe 'Pins', type: :system, js: true do
       end
 
       it 'first board' do
-        visit pins_path
+        visit explore_index_path
         find("#pin_#{pin.id} .pin-added-by-owner a.board-link", text:  pin.owner_public_boards.first.name,
                                                                 match: :first).click
         expect(page).to have_css '.board-show'
@@ -328,7 +327,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
       context 'modal' do
         it 'show modal' do
-          visit pins_path
+          visit explore_index_path
           find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
             '#pin_boards_added_by_owner_pin_#{pin.id}']").click
           expect(page).to have_css '.pin-boards-added-by-owner-modal.show'
@@ -341,7 +340,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           # rubocop:disable RSpec/ExampleLength
 
           it 'visits the edit page from modal' do
-            visit pins_path
+            visit explore_index_path
             find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
             modal = find('.pin-boards-added-by-owner-modal.show')
@@ -359,7 +358,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           end
 
           it 'delete board from modal' do
-            visit pins_path
+            visit explore_index_path
             find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
             modal = find('.pin-boards-added-by-owner-modal.show')
@@ -378,7 +377,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
         context 'when boards owner is not current_user' do
           it 'not show board more button' do
-            visit pins_path
+            visit explore_index_path
             find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
             expect(page).not_to have_css '.pin-boards-added-by-owner-modal.show .board .board-more svg'
