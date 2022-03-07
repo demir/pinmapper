@@ -22,7 +22,9 @@
           </li>
         <% end %>
         <li class="visible-menu-item">
-          <span><%= link_to t('pins.pins'), pins_path, title: t('pins.pins') %></span>
+          <% if current_user.present? %>
+            <span class="item"><%= link_to t('home'), pins_path, title: t('home') %></span>
+          <% end %>
           <span class="item"><%= link_to t('explore'), explore_index_path, title: t('explore') %></span>
         </li>
         <% if user_signed_in? %>

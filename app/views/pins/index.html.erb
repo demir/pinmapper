@@ -9,7 +9,7 @@
   <% else %>
     <div class="empty-message responsive">
       <%= image_tag 'https://d3upp0w924wblq.cloudfront.net/pins-empty-image.png', class: "responsive", alt: '' %>
-      <p><%= t('.empty_message') %></p>
+      <p><%= sanitize t('.empty_message', explore_link: link_to(t('explore'), explore_index_path, class: 'black-link')) %></p>
     </div>
   <% end %>
 </div>
