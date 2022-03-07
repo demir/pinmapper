@@ -29,8 +29,8 @@ RSpec.describe 'Leaflet', type: :system, js: true do
         expect(page).to have_css '.leaflet-popup p.cover-image-description'
       end
 
-      it '#direction-form' do
-        expect(page).to have_css '.leaflet-popup form.direction-form'
+      it '#direction-link' do
+        expect(page).to have_css '.leaflet-popup a.btn_infobox_get_directions'
       end
     end
   end
