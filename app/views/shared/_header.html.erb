@@ -23,6 +23,7 @@
         <% end %>
         <li class="visible-menu-item">
           <span><%= link_to t('pins.pins'), pins_path, title: t('pins.pins') %></span>
+          <span class="item"><%= link_to t('explore'), explore_index_path, title: t('explore') %></span>
         </li>
         <% if user_signed_in? %>
           <div class="user-menu">

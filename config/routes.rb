@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     get 'search/pins'
     get 'search/boards'
     get 'search/users'
+    # explore
+    get 'explore/index'
     # settings
     get 'settings/edit_profile'
     get 'settings/change_password'
