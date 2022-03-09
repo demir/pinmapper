@@ -13,7 +13,6 @@ gem 'bootsnap', '~> 1.9', require: false
 gem 'cloudfront-signer'
 gem 'counter_culture', '~> 2.0'
 gem 'devise', '~> 4.8.0'
-gem 'down', '~> 5.0'
 gem 'draper', '~> 4.0.2'
 gem 'friendly_id', '~> 5.4.0'
 gem 'geocoder', '~> 1.7.0'
