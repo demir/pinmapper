@@ -20,18 +20,31 @@ export default class extends Controller {
       zoom: (this.latitudeValue == null ? 4 : 15)
     })
     this.geocoder = new google.maps.Geocoder();
-
     this.autocomplete = new google.maps.places.Autocomplete(this.fieldTarget)
     this.autocomplete.bindTo('bounds', this.map)
     this.autocomplete.setFields(['address_components', 'geometry', 'icon', 'name'])
     this.autocomplete.addListener("place_changed", this.placeChanged.bind(this));
-
     this.marker = new google.maps.Marker({
       map: this.map,
       anchorPoint: new google.maps.Point(0, -29)
     })
     this.marker.setPosition(latLng)
     this.marker.setVisible(true)
+
+    // marker'ı current locaction'a kaydırır
+    if (this.latitudeValue == '' && this.longitudeValue == '' && this.fieldTarget.value == '' && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        if (this.fieldTarget.value == '') {
+          var currentLatLng = new google.maps.LatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          )
+          this.map.setCenter(currentLatLng)
+          this.marker.setPosition(currentLatLng)
+          this.geocode({ location: currentLatLng })
+        }
+      })
+    }
 
     this.map.addListener("click", (mapsMouseEvent) => {
       let latLng = mapsMouseEvent.latLng
@@ -44,7 +57,7 @@ export default class extends Controller {
     let place = this.autocomplete.getPlace()
 
     if (!place.geometry) {
-      window.alert("No details available for input: ${place.name}")
+      console.log("No details available for input: ${place.name}")
       return
     }
 
