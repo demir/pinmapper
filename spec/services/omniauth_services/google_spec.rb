@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe OmniauthServices::Google, type: :service do
+  let(:auth) { create(:auth_hash, :google) }
+
   describe '#call' do
     subject(:response) { described_class.call(auth) }
-
-    let(:auth) { create(:auth_hash, :google) }
 
     context 'response' do
       it { is_expected.to be_instance_of(Hash) }
@@ -53,11 +53,6 @@ RSpec.describe OmniauthServices::Google, type: :service do
       it 'return user' do
         user = response[:payload]
         expect(user&.email).to eq('testuser@gmail.com')
-      end
-
-      it 'attach avatar' do
-        user = response[:payload]
-        expect(user.profile.avatar.attached?).to be true
       end
     end
   end
