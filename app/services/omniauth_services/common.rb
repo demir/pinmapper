@@ -8,15 +8,12 @@ module OmniauthServices
     end
 
     def create_user(data)
-      user = User.create(
+      User.create(
         email:        data['email'],
         password:     Devise.friendly_token[0, 20],
         username:     temp_username(data['name']),
         confirmed_at: DateTime.now
       )
-      downloaded_image = Down.download(data['image']) if data['image'].present?
-      user.profile.avatar.attach(io: downloaded_image, filename: user.username) if downloaded_image.present?
-      user
     end
 
     def temp_username(name)
