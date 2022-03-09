@@ -82,7 +82,7 @@ RSpec.describe 'profiles/show.html.erb', type: :view do
     end
 
     it 'map' do
-      assert_select '.map[data-target="map.container"]'
+      assert_select '.map[data-map-target="container"]'
     end
   end
 
