@@ -28,7 +28,7 @@ RSpec.describe General::MapComponent, type: :component do
 
     it 'data-target-map-container' do
       expect(rendered_component).to(
-        have_css('div[data-target="map.container"]')
+        have_css('div[data-map-target="container"]')
       )
     end
   end
