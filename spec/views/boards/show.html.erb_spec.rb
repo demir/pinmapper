@@ -68,7 +68,7 @@ RSpec.describe 'boards/show', type: :view do
     end
 
     it 'map' do
-      assert_select '.map[data-target="map.container"]'
+      assert_select '.map[data-map-target="container"]'
     end
 
     it 'renders a list of small pins' do
