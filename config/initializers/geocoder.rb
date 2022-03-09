@@ -8,7 +8,8 @@ Geocoder.configure(
   # http_proxy: nil,            # HTTP proxy server (user:pass@host:port)
   # https_proxy: nil,           # HTTPS proxy server (user:pass@host:port)
   api_key:   Rails.application.credentials.dig(:geocoder, :google, :api_key), # API key for geocoding service
-  cache:     nil, # cache object (must respond to #[], #[]=, and #del)
+  # cache:     nil, # cache object (must respond to #[], #[]=, and #del)
+  cache:     Redis.new,
   # cache_prefix: 'geocoder:', # prefix (string) to use for all cache keys
 
   # Exceptions that should not be rescued by default
