@@ -7,5 +7,9 @@ module General
     def initialize(markers:)
       @markers = markers
     end
+
+    def render?
+      markers.present?
+    end
   end
 end
