@@ -4,9 +4,10 @@ module MapServices
       include ActionView::Helpers::TextHelper
       include ActionView::Helpers::UrlHelper
       include ActionView::Context
-      attr_reader :pins
+      attr_reader :pins, :pin
 
       def initialize(raw_pins)
+        @pin = raw_pins if raw_pins&.class&.name.eql?('Pin')
         @pins = select_pins(raw_pins)
       end
 
@@ -27,14 +28,20 @@ module MapServices
       end
 
       def generate_markers
-        pins.each_with_object([]) do |pin, markers|
-          markers << {
-            id:        pin.id,
-            latitude:  pin.latitude,
-            longitude: pin.longitude,
-            popup:     popup(pin)
-          }
+        return [pin_to_hash(pin)] if pin.present?
+
+        pins.each_with_object([]) do |pin_item, markers|
+          markers << pin_to_hash(pin_item)
         end
+      end
+
+      def pin_to_hash(pin_item)
+        {
+          id:        pin_item.id,
+          latitude:  pin_item.latitude,
+          longitude: pin_item.longitude,
+          popup:     popup(pin_item)
+        }
       end
 
       def popup(pin)

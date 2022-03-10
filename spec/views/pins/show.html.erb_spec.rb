@@ -30,7 +30,7 @@ RSpec.describe 'pins/show', type: :view do
     end
 
     it 'location information' do
-      expect(rendered).to have_css '.pin-show .header .address', text: pin.city_country
+      expect(rendered).to have_css '.pin-show-main .header .address', text: pin.city_country
     end
 
     it '#description' do
@@ -75,6 +75,13 @@ RSpec.describe 'pins/show', type: :view do
     it 'does not render nearby pins' do
       render
       expect(rendered).not_to match(/#{t('pins.show.nearby_pins')}/)
+    end
+  end
+
+  context 'map widget' do
+    it 'renders map' do
+      render
+      expect(rendered).to have_css '.map-widget'
     end
   end
 

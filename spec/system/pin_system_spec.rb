@@ -127,7 +127,7 @@ RSpec.describe 'Pins', type: :system, js: true do
       visit pins_path
       pin = pins.first
       click_link pin.name, match: :first
-      expect(page).to have_css '.pin-show', text: pin.name
+      expect(page).to have_css '.pin-show-main', text: pin.name
     end
 
     it 'renders a new pin button' do
@@ -171,7 +171,7 @@ RSpec.describe 'Pins', type: :system, js: true do
       fill_in User.human_attribute_name(:name), with: new_name
       click_button I18n.t('helpers.submit.update')
       expect(page).to have_content I18n.t('pins.update.success')
-      expect(page).to have_css '.pin-show .header h1', text: new_name
+      expect(page).to have_css '.pin-show-main .header h1', text: new_name
     end
 
     it 'renders edit template after validation errors' do
@@ -216,7 +216,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           pin = pins.last
           visit pin_path(id: pin)
           more_button = find('.container .header .pin-more svg', match: :first)
-          pin_element = more_button.ancestor('.pin-show')
+          pin_element = more_button.ancestor('.pin-show-main')
           more_button.click
           edit_pin_link_element = pin_element.find('.header .dropdown.pin-more .dropdown-menu a',
                                                    text:       I18n.t('edit'),
@@ -230,7 +230,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           pin = pins.last
           visit pin_path(id: pin)
           more_button = find('.container .header .pin-more svg', match: :first)
-          pin_element = more_button.ancestor('.pin-show')
+          pin_element = more_button.ancestor('.pin-show-main')
           more_button.click
           delete_pin_link_element = pin_element.find(".header .dropdown.pin-more .dropdown-menu
                                                       form.button_to .dropdown-item[value='#{I18n.t('destroy')}']")
@@ -258,7 +258,7 @@ RSpec.describe 'Pins', type: :system, js: true do
       visit explore_index_path
       pin = pins.last
       click_link pin.name
-      expect(page).to have_css '.pin-show .header h1', text: pin.name
+      expect(page).to have_css '.pin-show-main .header h1', text: pin.name
     end
 
     it 'does not render new pin button' do
