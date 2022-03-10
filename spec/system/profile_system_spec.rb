@@ -9,7 +9,7 @@ RSpec.describe 'Profiles', type: :system, js: true do
 
   it 'visits profiles#show from pins#show' do
     visit pin_path(id: pins.first)
-    expect(page).to have_css '.pin-show > .header .hrow div .username', text: user.username
+    expect(page).to have_css '.pin-show-main > .header .hrow div .username', text: user.username
   end
 
   context 'when signed in' do

@@ -1,7 +1,7 @@
-<div class="container margin_100_55 reset-ol-ul">
+<div class="container margin_100_55 reset-ol-ul pin-show">
   <div class="row">
     <div class="col-lg-9">
-      <div class="bloglist pin-show">
+      <div class="pin-show-main">
         <div class="header">
           <div class="hrow">
             <div class="hrow">
@@ -26,18 +26,18 @@
             <div class="tags"><%= render(Taggable::TagListComponent.new(tags: @pin.tags)) %></div>
           </div>
         </div>
-        <!-- /post meta -->
-        <div class="post-content">
-          <%= @pin.description %>
-        </div>
+        <%= @pin.description %>
         <div><%= render Pins::Boards::AddedByOwnerComponent.new(pin: @pin, current_user: @current_user) %></div>
-        <!-- /post -->
       </div>
-      <!-- /single-post -->
     </div>
-    <!-- /col -->
 
-    <aside class="col-lg-3 blog">
+    <aside class="col-lg-3 widgets">
+      <% marker_service = MapServices::GenerateMarkers::Pin.call(@pin) %>
+      <% if marker_service[:success] && marker_service[:payload].present? %>
+        <div class="map-widget widget">
+          <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>
+        </div>
+      <% end %>
       <% nearby_pins = @pin.geocode.present? && @pin.nearbys(1).limit(3) %>
       <% if nearby_pins.present? %>
         <div class="widget">
@@ -49,10 +49,6 @@
           </ul>
         </div>
       <% end %>
-      <!-- /widget -->
     </aside>
-    <!-- /aside -->
   </div>
-  <!-- /row -->
 </div>
-<!-- /container -->
