@@ -137,12 +137,12 @@
 
 //-------------------- Pins#show -------------------//
 
-.pin-show{
+.pin-show-main{
   background-color: #fff;
 	padding: 30px;
 	margin-bottom: 25px;
   @include border-radius(9px);
-	@include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
+	border: 1px solid $border-color-2;
 	h1 {
 		@include fontSize(32px);
 		@include mobile {@include fontSize(21px);}
@@ -192,82 +192,76 @@
   }
 }
 
-.widget-title {
-	padding: 15px;
-	border-bottom: 1px solid $border-color-2;
-	 h4 {
-		padding: 0;
-		margin: 0;
-		font-weight: 500;
-		line-height:$line-height-none;
-		@include fontSize(15px);
-	}
-}
-.widget {
-	position: relative;
-	display: block;
-	margin-bottom: 15px;
-  background-color: #fff;
-  @include border-radius(9px);
+.pin-show {
+  .widgets {
+    .map-widget .map {
+      height: 300px;
+      @include border-radius(9px);
+    }
 
-  .pins-list {
-    padding: 0;
-    list-style: none;
-    h3 {
-      font-size: 14px;
-      padding: 0 0 0;
-      margin-bottom: 0;
-      margin-top: 5px;
-      text-transform: capitalize;
-      letter-spacing: 0;
-      a {
-        color: #333;
-        &:hover {
-          color: $color-1;
+    .widget-title {
+      padding: 15px;
+      border-bottom: 1px solid $border-color-2;
+       h4 {
+        padding: 0;
+        margin: 0;
+        font-weight: 500;
+        line-height:$line-height-none;
+        @include fontSize(15px);
+      }
+    }
+
+    .widget {
+      position: relative;
+      display: block;
+      background-color: #fff;
+      @include border-radius(9px);
+      border: 1px solid $border-color-2;
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+
+      .pins-list {
+        padding: 0;
+        list-style: none;
+        margin-bottom: 0;
+        h3 {
+          font-size: 14px;
+          padding: 0 0 0;
+          margin-bottom: 0;
+          margin-top: 5px;
+          text-transform: capitalize;
+          letter-spacing: 0;
+          a {
+            color: #333;
+            &:hover {
+              color: $color-1;
+            }
+          }
+        }
+        li {
+          padding: 15px;
+          display: table;
+          width: 100%;
+          &:not(:last-child) {
+            border-bottom: 1px solid $border-color-2;
+          }
+        }
+        small {
+          color: #999999;
         }
       }
-    }
-    li {
-      padding: 15px;
-      display: table;
-      width: 100%;
-      border-bottom: 1px solid $border-color-2;
-      &:last-child {
-        border-bottom: none;
-      }
-    }
-    small {
-      color: #999999;
     }
   }
 }
 
-/*Blog Post*/
-.postmeta {
-  margin-top: 15px;
-	padding-bottom: 10px;
-	ul {
-		margin-bottom: 10px;
-		li {
-			display: inline-block;
-			margin:0 15px 5px 0;
-			a {
-				color: #999;
-				&:hover {
-					color: $color-1;
-				}
-			}
-		}
-	}
-}
-
-aside.blog {
+aside.widgets {
   padding-left: 0;
 }
 
 // tablet ve altındaki cihazlar için
 @media only screen and (max-width: 991px) {
-  aside.blog {
+  aside.widgets {
     padding-left: 15px;
   }
 }
