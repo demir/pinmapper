@@ -19,7 +19,7 @@
           )) %>
       </div>
       <% marker_service = MapServices::GenerateMarkers::Pin.call(@pins) %>
-      <% if marker_service[:success] %>
+      <% if marker_service[:success] && marker_service[:payload].present? %>
         <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>
       <% end %>
       <br>

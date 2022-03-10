@@ -27,6 +27,10 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 16px;
   }
+  .map {
+    @include border-radius(9px);
+    border: 1px solid $border-color-2;
+  }
 }
 
 .board {
