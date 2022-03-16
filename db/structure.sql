@@ -251,7 +251,8 @@ CREATE TABLE public.boards (
     user_id bigint NOT NULL,
     tsv tsvector,
     pins_count integer DEFAULT 0 NOT NULL,
-    slug character varying
+    slug character varying,
+    description text
 );
 
 
@@ -1566,6 +1567,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211125120253'),
 ('20211126204311'),
 ('20211209212617'),
-('20220313205357');
+('20220313205357'),
+('20220316211421');
 
 

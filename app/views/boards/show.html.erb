@@ -18,6 +18,11 @@
             second_button_path: unfollow_board_path(@board)
           )) %>
       </div>
+      <% if @board.description.present? %>
+        <p class="description">
+          <%= @board.description %>
+        </p>
+      <% end %>
       <% marker_service = MapServices::GenerateMarkers::Pin.call(@pins) %>
       <% if marker_service[:success] && marker_service[:payload].present? %>
         <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>

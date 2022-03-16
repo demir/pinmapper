@@ -14,6 +14,8 @@ RSpec.describe 'boards/new', type: :view do
     assert_select 'form[action=?][method=?]', boards_path, 'post' do
       assert_select 'input[name=?]', 'board[name]'
 
+      assert_select 'textarea[name=?]', 'board[description]'
+
       assert_select 'select[name=?]', 'board[privacy]'
     end
   end

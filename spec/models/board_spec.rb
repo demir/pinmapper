@@ -17,6 +17,7 @@ RSpec.describe Board, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_length_of(:description).is_at_most(500) }
     it { is_expected.to validate_presence_of(:privacy) }
     it { is_expected.to validate_presence_of(:pins_count) }
   end

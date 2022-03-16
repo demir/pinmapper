@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :board do
     name { SecureRandom.hex(15) }
+    description { Faker::Lorem.paragraph_by_chars(number: 250, supplemental: false) }
     privacy { 'public' }
     association :user, :confirmed
 
