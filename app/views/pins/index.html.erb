@@ -4,7 +4,7 @@
       <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
       <!-- /pin_lists -->
     </div>
-    <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+    <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy, records: @pins)) %>
     <!-- /row -->
   <% else %>
     <div class="empty-message responsive">

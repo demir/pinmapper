@@ -8,7 +8,7 @@ class PinsController < ApplicationController
 
   # GET /pins or /pins.json
   def index
-    @pagy, @pins = pagy_pins_latest Pin, items: 10
+    @pagy, @pins = pagy_pins_latest(items: 10)
     respond_to do |f|
       f.html
       f.turbo_stream
@@ -108,8 +108,8 @@ class PinsController < ApplicationController
     authorize @pin || Pin.new
   end
 
-  def pagy_pins_latest(collection, vars = {})
-    pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
+  def pagy_pins_latest(vars = {})
+    pagy = Pagy::Countless.new(page: params[:page], countless_minimal: true, **vars)
     [pagy, Pins::Latest.call(user: current_user, pagy: pagy)]
   end
 end

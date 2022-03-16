@@ -6,6 +6,8 @@
 # Extras
 # See https://ddnexus.github.io/pagy/extras
 
+require 'pagy/extras/countless'
+
 # Array: Paginate arrays efficiently avoiding expensive array-wrapping and without overriding
 # See https://ddnexus.github.io/pagy/extras/array
 # require 'pagy/extras/array'
