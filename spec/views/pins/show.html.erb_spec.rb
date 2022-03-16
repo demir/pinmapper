@@ -29,8 +29,8 @@ RSpec.describe 'pins/show', type: :view do
       expect(rendered).to match(/#{l(pin.created_at)}/)
     end
 
-    it 'location information' do
-      expect(rendered).to have_css '.pin-show-main .header .address', text: pin.city_country
+    it 'location link' do
+      expect(rendered).to have_css '.pin-show-main .header .address a', text: pin.city_country
     end
 
     it '#description' do

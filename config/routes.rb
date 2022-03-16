@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     get 'search/users'
     # explore
     get 'explore/index'
+    get 'explore/locations/:token' => 'explore#location', as: :explore_location
     # settings
     get 'settings/edit_profile'
     get 'settings/change_password'

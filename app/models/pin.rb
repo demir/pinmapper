@@ -16,6 +16,9 @@ class Pin < ApplicationRecord
     end
   end
 
+  # secure_token
+  has_secure_token
+
   # friendly_id
   friendly_id :name, use: :history
 
