@@ -11,6 +11,7 @@
 .settings .title {
   padding-left: 0;
   .main_title_3 {
+    margin-left: -8px;
     @include tablet {
       margin-left: 0;
     }

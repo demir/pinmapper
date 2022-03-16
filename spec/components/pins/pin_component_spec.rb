@@ -49,8 +49,8 @@ RSpec.describe Pins::PinComponent, type: :component do
       expect(rendered_component).to have_css '.footer .add_to_board_btn'
     end
 
-    it 'location information' do
-      expect(rendered_component).to have_css '.pin .body .address', text: pin.city_country
+    it 'location link' do
+      expect(rendered_component).to have_css '.pin .body .address a', text: pin.city_country
     end
   end
 

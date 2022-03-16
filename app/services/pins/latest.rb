@@ -27,5 +27,13 @@ module Pins
          .order(created_at: :desc)
          .offset(pagy.offset).limit(pagy.items)
     end
+
+    def self.nearby_pins(pin, pagy)
+      return Pin.none if pin.geocode.blank?
+
+      Pin.where(latitude: pin.latitude, longitude: pin.longitude)
+         .order(created_at: :desc)
+         .offset(pagy.offset).limit(pagy.items)
+    end
   end
 end

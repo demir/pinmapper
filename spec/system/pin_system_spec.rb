@@ -52,6 +52,16 @@ RSpec.describe 'Pins', type: :system, js: true do
       expect(page).not_to have_css '.pin-likes-count .like_btn.liked'
     end
 
+    describe 'explore/location' do
+      it 'visits location page from pin' do
+        visit pins_path
+        address_link = find('.pin .address span > a', match: :first)
+        address_link_text = address_link.text
+        address_link.click
+        expect(page).to have_css '.location .title', text: address_link_text
+      end
+    end
+
     describe 'add to board' do
       context 'when there is no board' do
         it 'shows there is no board message' do

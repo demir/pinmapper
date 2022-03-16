@@ -2,5 +2,5 @@
   <div id="infinite-pins" class="row infinite-pins">
     <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
   </div>
-  <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+  <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy, records: @pins)) %>
 </div>

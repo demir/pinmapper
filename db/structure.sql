@@ -425,7 +425,8 @@ CREATE TABLE public.pins (
     cached_plain_text_description text,
     cached_user_username character varying,
     tsv tsvector,
-    slug character varying
+    slug character varying,
+    token character varying
 );
 
 
@@ -1172,6 +1173,13 @@ CREATE UNIQUE INDEX index_pins_on_slug ON public.pins USING btree (slug);
 
 
 --
+-- Name: index_pins_on_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_pins_on_token ON public.pins USING btree (token);
+
+
+--
 -- Name: index_pins_on_tsv; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1557,6 +1565,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211125115945'),
 ('20211125120253'),
 ('20211126204311'),
-('20211209212617');
+('20211209212617'),
+('20220313205357');
 
 

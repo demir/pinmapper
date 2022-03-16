@@ -20,6 +20,27 @@ RSpec.describe Pins::Latest, type: :service do
         expect(latest_pins.last).to eq(pins.min { |p| p[:created_at] })
       end
       # rubocop:enable Lint/UnexpectedBlockArity
+
+      context 'class methods' do
+        it '#tag_pins' do
+          current_user.tags << pins.first&.tags&.first
+          described_class.tag_pins(current_user, pagy).any?
+        end
+
+        it '#board_pins' do
+          board = create(:board)
+          board.followers << current_user
+          described_class.board_pins(current_user, pagy).any?
+        end
+
+        it '#own_and_following_pins' do
+          described_class.own_and_following_pins(current_user, pagy).any?
+        end
+
+        it '#nearby_pins' do
+          described_class.nearby_pins(pins.first, pagy).any?
+        end
+      end
     end
   end
 end
