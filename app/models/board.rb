@@ -20,6 +20,7 @@ class Board < ApplicationRecord
   validates :name, presence:  true,
                    length:    { maximum: 50 },
                    exclusion: { in: ReservedWords.all }
+  validates :description, length: { maximum: 500 }
   validates :privacy, presence: true
   validates :pins_count, presence: true
 

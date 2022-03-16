@@ -4,6 +4,7 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
+    <%= f.input :description, input_html: { rows: 7 } %>
     <%= f.input :privacy, collection: f.object.class.translated_privacies, default: 0 %>
   </div>
 

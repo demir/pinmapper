@@ -52,6 +52,8 @@ RSpec.describe 'Boards', type: :system, js: true do
     it 'creates a new board' do
       visit new_board_path
       fill_in Board.human_attribute_name(:name), with: Faker::Space.star
+      fill_in Board.human_attribute_name(:description),
+              with: Faker::Lorem.paragraph_by_chars(number: 250, supplemental: false)
       find(:css, 'select#board_privacy').find(:option, Board.translated_privacy(:public)).select_option
       click_button I18n.t('helpers.submit.create')
       expect(page).to have_content I18n.t('boards.create.success')

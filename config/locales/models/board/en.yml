@@ -5,6 +5,7 @@ en:
     attributes:
       board: &board_attributes
         name: Board Name
+        description: Description
         privacy: Privacy
         privacy_list:
           public: Public
