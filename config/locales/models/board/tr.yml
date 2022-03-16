@@ -5,6 +5,7 @@ tr:
     attributes:
       board: &board_attributes
         name: Pano Adı
+        description: Açıklama
         privacy: Gizlilik
         privacy_list:
           public: Herkese açık

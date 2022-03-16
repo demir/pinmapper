@@ -67,6 +67,10 @@ RSpec.describe 'boards/show', type: :view do
       expect(rendered).to match(/#{board.name}/)
     end
 
+    it '#description' do
+      expect(rendered).to match(/#{board.description}/)
+    end
+
     it 'map' do
       assert_select '.map[data-map-target="container"]'
     end
