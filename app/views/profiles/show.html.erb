@@ -1,3 +1,5 @@
+<% set_meta_tags alternate: { "en" => profile_url(@user, locale: :en),
+                              "tr" => profile_url(@user, locale: :tr) } %>
 <div class="container margin_100_55 profile">
   <%= render 'profiles/profile_header', user: @user %>
   <% marker_service = MapServices::GenerateMarkers::Pin.call(@user.pins) %>

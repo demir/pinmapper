@@ -1,4 +1,6 @@
 <% title t('.title') %>
+<% set_meta_tags alternate: { "en" => explore_index_url(locale: :en),
+                              "tr" => explore_index_url(locale: :tr) } %>
 <div class="container margin_100_55 pins-index">
   <div id="infinite-pins" class="row infinite-pins">
     <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
