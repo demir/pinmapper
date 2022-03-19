@@ -25,8 +25,12 @@ RSpec.describe 'pins/liked_pins', type: :view do
       render
     end
 
-    it 'renders header' do
-      assert_select '.liked-pins > .header', text: "#{t('liked_pins')} (#{pins.count})"
+    it 'renders title' do
+      assert_select '.liked-pins > .header .title h1', text: t('liked_pins')
+    end
+
+    it 'renders pins count' do
+      assert_select '.liked-pins > .header .title .count', text: "(#{pins.count})"
     end
 
     it 'renders a list of pins' do

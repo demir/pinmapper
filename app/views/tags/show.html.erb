@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-12 tag">
       <div class="header">
-        <h2 class="tag-name"><%= "##{@tag.name}" %></h2>
+        <h1 class="tag-name"><%= title "##{@tag.name}" %></h1>
         <%= render(General::TwinButtonComponent.new(
           display_block: -> {
             current_user.present?

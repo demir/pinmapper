@@ -11,6 +11,35 @@ RSpec.describe 'Boards', type: :system, js: true do
       sign_in(current_user)
     end
 
+    context 'page titles' do
+      it '#index' do
+        visit boards_path
+        expect(page.title).to include I18n.t('boards.boards')
+      end
+
+      it '#following_boards' do
+        visit following_boards_boards_path
+        expect(page.title).to include I18n.t('boards.following_boards.title')
+      end
+
+      it '#edit' do
+        board = boards.first
+        visit edit_board_path(id: board)
+        expect(page.title).to include I18n.t('boards.edit.title')
+      end
+
+      it '#new' do
+        visit new_board_path
+        expect(page.title).to include I18n.t('boards.new.title')
+      end
+
+      it '#show' do
+        board = boards.first
+        visit board_path(id: board)
+        expect(page.title).to include board.name
+      end
+    end
+
     it 'visits boards' do
       visit root_path
       find('.dropdown-user').click
@@ -22,7 +51,7 @@ RSpec.describe 'Boards', type: :system, js: true do
       visit root_path
       find('.dropdown-user').click
       click_link I18n.t('boards.following_boards.title')
-      expect(page).to have_css '.boards > .header h2', text: I18n.t('boards.following_boards.title')
+      expect(page).to have_css '.boards > .header h1', text: I18n.t('boards.following_boards.title')
     end
 
     it 'renders more button' do
@@ -34,7 +63,7 @@ RSpec.describe 'Boards', type: :system, js: true do
       visit boards_path
       board = boards.first
       click_link board.name
-      expect(page).to have_css '.board-show > .header > .main_title_3 > h2', text: board.name
+      expect(page).to have_css '.board-show > .header > .main_title_3 h1', text: board.name
     end
 
     it 'renders a new board button' do

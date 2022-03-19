@@ -1,5 +1,6 @@
 tr:
   search:
+    title: '%{keyword} | Arama Sonuçları'
     search: Ara
     results: Arama sonuçları
     no_results_found: Sonuç bulunamadı

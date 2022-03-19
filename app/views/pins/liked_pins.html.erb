@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-lg-12 liked-pins">
       <div class="header">
-        <div class="main_title_3">
+        <div class="main_title_3 small-h1">
           <span><em></em></span>
-          <h2><%= "#{t('liked_pins')} (#{@pagy.count})" %></h2>
+          <div class="title"><h1><%= title t('liked_pins') %></h1><div class="count"><%= "(#{@pagy.count})" %></div></div>
         </div>
       </div>
       <% if @pins.any? %>

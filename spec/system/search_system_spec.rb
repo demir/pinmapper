@@ -3,6 +3,25 @@
 require 'rails_helper'
 
 RSpec.describe 'Search', type: :system, js: true do
+  context 'page titles' do
+    let(:keyword) { 'keyword' }
+
+    it '#boards' do
+      visit search_boards_path(q: keyword)
+      expect(page.title).to include I18n.t('search.title', keyword: keyword)
+    end
+
+    it '#pins' do
+      visit search_pins_path(q: keyword)
+      expect(page.title).to include I18n.t('search.title', keyword: keyword)
+    end
+
+    it '#users' do
+      visit search_users_path(q: keyword)
+      expect(page.title).to include I18n.t('search.title', keyword: keyword)
+    end
+  end
+
   it 'search pins' do
     pins = create_list(:pin, 3)
     visit root_path

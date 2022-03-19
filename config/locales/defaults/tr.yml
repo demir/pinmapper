@@ -14,7 +14,7 @@ tr:
   following_tr: Takip edilen
   follows_you: Seni takip ediyor
   liked_pins: Beğenilen Pinler
-  following_tags: Takip edilen Etiketler
+  following_tags: Takip Edilen Etiketler
   user_not_authorized: Bu eylemi gerçekleştirme yetkiniz yok.
   add: Ekle
   added: Eklendi
@@ -25,6 +25,5 @@ tr:
   pinmapper_slogan: Dünyadaki Pinleri keşfet
   done: Tamam
   get_directions: Yol tarifi al
-  explore: Keşfet
   home: Anasayfa
   top_pins: Başlıca Pinler

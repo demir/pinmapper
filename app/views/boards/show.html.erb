@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-lg-12 board-show">
       <div class="header">
-        <div class="main_title_3">
+        <div class="main_title_3 small-h1">
           <span><em></em></span>
-          <h2><%= "#{@board.name} (#{@board.pins_count})" %></h2>
+          <div class="title"><h1><%= title @board.name %></h1><div class="count"><%= "(#{@board.pins_count})" %></div></div>
         </div>
         <%= render(General::TwinButtonComponent.new(
             display_block: -> {

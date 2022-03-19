@@ -476,3 +476,22 @@ footer {
     color: #fc5b62;
   }
 }
+
+.small-h1 {
+  .title {
+    display: flex;
+    gap: 5px;
+    .count {
+      margin:25px 0 0 0;
+      @include fontSize(18px);
+      @include mobile {@include fontSize(16px);}
+      color: #333333;
+      font-weight: 500;
+    }
+  }
+	h1 {
+		@include fontSize(23px);
+		margin:25px 0 0 0;
+		@include mobile {@include fontSize(21px);}
+	}
+}

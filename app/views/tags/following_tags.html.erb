@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-lg-12 following-tags">
       <div class="header">
-        <div class="main_title_3">
+        <div class="main_title_3 small-h1">
           <span><em></em></span>
-          <h2><%= "#{t('following_tags')} (#{@pagy.count})" %></h2>
+          <div class="title"><h1><%= title t('following_tags') %></h1><div class="count"><%= "(#{@pagy.count})" %></div></div>
         </div>
       </div>
       <div class="body">
