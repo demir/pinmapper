@@ -18,8 +18,6 @@ module ImageHelper
   def cloudfront_src(thumbor_crop: '', filters: '', image_key: '')
     return '' if image_key.blank?
 
-    Aws::CF::Signer.sign_url(
-      "#{Rails.application.credentials.dig(:aws, :cloud_front, :api_endpoint)}/#{thumbor_crop}/#{filters}/#{image_key}"
-    )
+    "#{Rails.application.credentials.dig(:aws, :cloud_front, :api_endpoint)}/#{thumbor_crop}/#{filters}/#{image_key}"
   end
 end
