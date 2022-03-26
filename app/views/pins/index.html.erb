@@ -1,6 +1,11 @@
 <% title t('home') %>
 <% set_meta_tags alternate: { "en" => pins_url(locale: :en),
                               "tr" => pins_url(locale: :tr) } %>
+<% set_meta_tags og: {
+      title:    'pinmapper.com',
+      type:     'website',
+      url:      pins_url
+    } %>
 <div class="container margin_100_55 pins-index">
   <% if @pins.any? %>
     <div id="infinite-pins" class="row infinite-pins">
