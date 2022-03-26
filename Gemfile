@@ -10,7 +10,6 @@ gem 'acts-as-taggable-on', '~> 8.1'
 gem 'acts_as_votable', '~> 0.13.2'
 gem 'aws-sdk-s3', '~> 1', require: false
 gem 'bootsnap', '~> 1.9', require: false
-gem 'cloudfront-signer'
 gem 'counter_culture', '~> 2.0'
 gem 'devise', '~> 4.8.0'
 gem 'draper', '~> 4.0.2'
