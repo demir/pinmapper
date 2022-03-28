@@ -1,5 +1,14 @@
 <% set_meta_tags alternate: { "en" => pin_url(@pin, locale: :en),
                               "tr" => pin_url(@pin, locale: :tr) } %>
+<% first_image = @pin&.description&.embeds&.find { |embeds| embeds.image? } if @pin.cover_image.blank? %>
+<% og = {
+     description: @pin.cover_image_description.presence || @pin.description,
+     url: pin_url(@pin)
+   } %>
+<% og[:image] = cloudfront_src(filters: 'filters:format(jpeg)/filters:quality(50)', thumbor_crop: thumbor_crop(@pin.cover_image_crop_constraints, @pin.cover_image&.metadata), image_key: @pin.cover_image.key ) if @pin.cover_image.present? %>
+<% og[:image] = cloudfront_src(image_key: first_image.blob.key) if first_image.present? %>
+<% set_meta_tags og: og %>
+<% set_meta_tags twitter: og %>
 <div class="container margin_100_55 reset-ol-ul pin-show">
   <div class="row">
     <div class="col-lg-9">

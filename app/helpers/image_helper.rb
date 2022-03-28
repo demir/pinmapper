@@ -19,7 +19,7 @@ module ImageHelper
     return '' if image_key.blank?
 
     api_endpoint = Rails.application.credentials.dig(:aws, :cloud_front, :api_endpoint)
-    path = "/#{thumbor_crop}/#{filters}/#{image_key}"
+    path = "/#{thumbor_crop}/#{filters}/#{image_key}".squeeze('/')
     "#{api_endpoint}#{path}?signature=#{signature(path)}"
   end
 

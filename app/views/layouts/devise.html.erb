@@ -2,6 +2,18 @@
 <html>
   <head>
     <%= display_meta_tags site: 'Pinmapper', separator: "&#45;".html_safe, reverse: true %>
+    <%= display_meta_tags og: {
+          type:     'website',
+          title: :site,
+          site_name: :site,
+          image:    "https://d3upp0w924wblq.cloudfront.net/og_card_#{locale}.png"
+        } %>
+    <%= display_meta_tags twitter: {
+          card: "summary_large_image",
+          title: :site,
+          site_name: :site,
+          image:    "https://d3upp0w924wblq.cloudfront.net/og_card_#{locale}.png"
+        } %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

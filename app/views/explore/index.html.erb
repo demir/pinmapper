@@ -1,20 +1,12 @@
 <% title t('.title') %>
 <% set_meta_tags alternate: { "en" => explore_index_url(locale: :en),
                               "tr" => explore_index_url(locale: :tr) } %>
-<% set_meta_tags og: {
-      title:    'pinmapper.com',
-      type:     'website',
-      description: t('pinmapper_slogan'),
-      url:      'http://localhost:3000/tr/explore/index',
-      image:    'https://d3upp0w924wblq.cloudfront.net/og_card_3_tr.png'
-    } %>
-<% set_meta_tags twitter: {
-      card: "summary_large_image",
-      title: 'pinmapper.com',
-      description: t('pinmapper_slogan'),
-      url: 'http://localhost:3000/tr/explore/index',
-      image:  'https://d3upp0w924wblq.cloudfront.net/og_card_3.png'
-    } %>
+<% og = {
+     description: t('pinmapper_slogan'),
+     url: explore_index_url
+   } %>
+<% set_meta_tags og: og %>
+<% set_meta_tags twitter: og %>
 <div class="container margin_100_55 pins-index">
   <div id="infinite-pins" class="row infinite-pins">
     <%= render(Pins::PinComponent.with_collection(@pins, current_user: current_user)) %>
