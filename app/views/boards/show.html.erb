@@ -1,11 +1,22 @@
 <% set_meta_tags alternate: { "en" => board_url(@board, locale: :en),
                               "tr" => board_url(@board, locale: :tr) } %>
-<% og = {
-     description: @board.description,
-     url: board_url(@board)
-   } %>
-<% set_meta_tags og: og %>
-<% set_meta_tags twitter: og %>
+<% set_meta_tags og: {
+      type:     'website',
+      title: "#{@board.name} - Pinmapper",
+      description: @board.description,
+      site: :site,
+      image:    "https://d3upp0w924wblq.cloudfront.net/og_card_#{locale}.png",
+      url: board_url(@board)
+    } %>
+<% set_meta_tags twitter: {
+      card: "summary_large_image",
+      title: "#{@board.name} - Pinmapper",
+      description: @board.description,
+      site: :site,
+      image:    "https://d3upp0w924wblq.cloudfront.net/og_card_#{locale}.png",
+      url: board_url(@board)
+    } %>
+
 <div class="container margin_100_55">
   <div class="row">
     <div class="col-lg-12 board-show">
