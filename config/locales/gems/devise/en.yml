@@ -16,6 +16,7 @@ en:
       send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
       did_not_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
       new:
+        title: Resend Confirmation Instructions
         resend_confirmation_instructions: 'Resend confirmation instructions'
     failure:
       already_authenticated: "You are already signed in."
@@ -48,6 +49,7 @@ en:
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
       new:
+        title: Reset Password
         send_reset_link: Send reset link
         send_reset_link_message: We'll send a reset link to your e-mail. Please type your e-mail address below.
       edit:
@@ -63,11 +65,14 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirmation link to confirm your new email address."
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again"
+      new:
+        title: Sign Up
     sessions:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
       new:
+        title: Sign In
         remember_me: Remember me
         forgot_password: Forgot your password?
     unlocks:

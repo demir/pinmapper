@@ -18,7 +18,7 @@ RSpec.describe ImageHelper, type: :helper do
     cloud_front_url = Rails.application.credentials.dig(:aws, :cloud_front, :api_endpoint)
     expect(helper.cloudfront_src(filters: '400x400/filters:quality(40)',
                                  thumbor_crop: helper.thumbor_crop(crop_constraints, metadata), image_key: '18493')).to(
-                                   include("#{cloud_front_url}/3x55:19x24/400x400/filters:quality(40)/18493?Expires=")
+                                   include("#{cloud_front_url}/3x55:19x24/400x400/filters:quality(40)/18493?signature=")
                                  )
   end
 end

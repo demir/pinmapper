@@ -15,6 +15,18 @@ RSpec.describe 'Tags', type: :system, js: true do
       sign_in(current_user)
     end
 
+    context 'page titles' do
+      it '#following_tags' do
+        visit following_tags_tags_path
+        expect(page.title).to include I18n.t('following_tags')
+      end
+
+      it '#show' do
+        visit tag_path(id: tag)
+        expect(page.title).to include tag.name
+      end
+    end
+
     it '#following_tags' do
       visit root_path
       find('.dropdown-user').click

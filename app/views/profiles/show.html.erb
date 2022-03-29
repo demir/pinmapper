@@ -1,3 +1,12 @@
+<% set_meta_tags alternate: { "en" => profile_url(@user, locale: :en),
+                              "tr" => profile_url(@user, locale: :tr) } %>
+<% og = {
+     description: @user&.profile&.bio,
+     url: profile_url(@user),
+     image:       cloudfront_src(filters: '200x200/filters:format(jpeg)', thumbor_crop: thumbor_crop(@user.profile.avatar_crop_constraints, @user.profile.avatar&.metadata), image_key: @user.profile.avatar.key )
+   } %>
+<% set_meta_tags og: og %>
+<% set_meta_tags twitter: og %>
 <div class="container margin_100_55 profile">
   <%= render 'profiles/profile_header', user: @user %>
   <% marker_service = MapServices::GenerateMarkers::Pin.call(@user.pins) %>

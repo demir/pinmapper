@@ -9,6 +9,28 @@ RSpec.describe 'Devise', type: :system, js: true do
            password_confirmation: 'password')
   end
 
+  context 'page titles' do
+    it 'confirmations#new' do
+      visit new_user_confirmation_path
+      expect(page.title).to include I18n.t('devise.confirmations.new.title')
+    end
+
+    it 'passwords#new' do
+      visit new_user_password_path
+      expect(page.title).to include I18n.t('devise.passwords.new.title')
+    end
+
+    it 'registrations#new' do
+      visit new_user_registration_path
+      expect(page.title).to include I18n.t('devise.registrations.new.title')
+    end
+
+    it 'sessions#new' do
+      visit new_user_session_path
+      expect(page.title).to include I18n.t('devise.sessions.new.title')
+    end
+  end
+
   context 'session' do
     it 'signs in' do
       visit root_path

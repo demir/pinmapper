@@ -16,6 +16,7 @@ tr:
       send_paranoid_instructions: "Eğer eposta adresinizi veritabanımızda kayıtlı ise bir kaç dakika içerisinde eposta adresinizi nasıl onaylayacağınız hakkında bir eposta alacaksınız."
       did_not_receive_confirmation_instructions: 'Onaylama talimatları almadınız mı?'
       new:
+        title: Onaylama Talimatlarını Yeniden Gönder
         resend_confirmation_instructions: 'Onaylama talimatlarını yeniden gönder'
     failure:
       already_authenticated: "Zaten giriş yaptınız."
@@ -48,6 +49,7 @@ tr:
       updated: "Parolanız başarılı bir şekilde değiştirildi. Şimdi giriş yapabilirsiniz."
       updated_not_active: "Parolanız başarılı bir şekilde değiştirildi."
       new:
+        title: Parolayı Sıfırla
         send_reset_link: Gönder
         send_reset_link_message: E-posta adresinize bir sıfırlama bağlantısı göndereceğiz. Lütfen e-posta adresinizi giriniz.
       edit:
@@ -62,11 +64,14 @@ tr:
       signed_up_but_unconfirmed: "Eposta adresinize onaylama linkli bir mesaj gönderildi. Lütfen hesabınızı aktif etmek için linke tıklayın."
       update_needs_confirmation: "Hesabınız başarılı bir şekilde güncellendi. Fakat eposta adresinizi onaylamanız gerekmekteir. Lütfen eposta kutunuzu kontrol ediniz ve yeni eposta adresinizi onaylama linkine tıklayınız."
       updated: "Hesabınız başarılı bir şekilde güncellendi."
+      new:
+        title: Kayıt Ol
     sessions:
       signed_in: "Başarılı giriş."
       signed_out: "Başarılı çıkış."
       already_signed_out: "Başarılı çıkış."
       new:
+        title: Giriş Yap
         remember_me: Beni hatırla
         forgot_password: Parolanı mı unuttun?
     unlocks:

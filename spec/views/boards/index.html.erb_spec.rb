@@ -25,8 +25,12 @@ RSpec.describe 'boards/index', type: :view do
       render
     end
 
-    it 'renders header' do
-      assert_select '.boards > .header #boards-count', text: "#{t('boards.boards')} (#{boards.count})"
+    it 'renders title' do
+      assert_select '.boards > .header .title h1', text: t('boards.boards')
+    end
+
+    it 'renders boards count' do
+      assert_select '.boards > .header .title .count', text: "(#{boards.count})"
     end
 
     it 'renders a list of boards' do
