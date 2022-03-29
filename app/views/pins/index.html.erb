@@ -1,12 +1,23 @@
 <% title t('home') %>
 <% set_meta_tags alternate: { "en" => pins_url(locale: :en),
                               "tr" => pins_url(locale: :tr) } %>
-<% og = {
-     description: t('pinmapper_slogan'),
-     url: pins_url
-   } %>
-<% set_meta_tags og: og %>
-<% set_meta_tags twitter: og %>
+<% set_meta_tags og: {
+      type:     'website',
+      title: "#{t('home')} - Pinmapper",
+      description: t('pinmapper_slogan'),
+      site: :site,
+      image:    "https://d3upp0w924wblq.cloudfront.net/og_card_#{locale}.png",
+      url: pins_url
+    } %>
+<% set_meta_tags twitter: {
+      card: "summary_large_image",
+      title: "#{t('home')} - Pinmapper",
+      description: t('pinmapper_slogan'),
+      site: :site,
+      image:    "https://d3upp0w924wblq.cloudfront.net/og_card_#{locale}.png",
+      url: pins_url
+    } %>
+
 <div class="container margin_100_55 pins-index">
   <% if @pins.any? %>
     <div id="infinite-pins" class="row infinite-pins">
