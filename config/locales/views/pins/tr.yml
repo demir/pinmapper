@@ -4,8 +4,10 @@ tr:
     pins: Pinler
     pins_tr: Pin
     new:
+      title: Yeni Pin Oluştur
       create_pin: Pin Oluştur
     edit:
+      title: Pin'i Düzenle
       edit_pin: Pin'i Düzenle
     show:
       nearby_pins: Yakındaki Pinler

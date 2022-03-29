@@ -20,6 +20,35 @@ RSpec.describe 'Pins', type: :system, js: true do
       sign_in(user)
     end
 
+    context 'page titles' do
+      it '#index' do
+        visit pins_path
+        expect(page.title).to include I18n.t('home')
+      end
+
+      it '#liked_pins' do
+        visit liked_pins_pins_path
+        expect(page.title).to include I18n.t('liked_pins')
+      end
+
+      it '#edit' do
+        pin = pins.first
+        visit edit_pin_path(id: pin)
+        expect(page.title).to include I18n.t('pins.edit.title')
+      end
+
+      it '#new' do
+        visit new_pin_path
+        expect(page.title).to include I18n.t('pins.new.title')
+      end
+
+      it '#show' do
+        pin = pins.first
+        visit pin_path(id: pin)
+        expect(page.title).to include pin.name
+      end
+    end
+
     it '#liked_pins' do
       visit root_path
       find('.dropdown-user').click

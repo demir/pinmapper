@@ -52,7 +52,7 @@ RSpec.describe 'pins/index', type: :view do
       render
       assert_select '.pin .body h3', count: 0
       assert_select('.empty-message p',
-                    text:  I18n.t('pins.index.empty_message', explore_link: I18n.t('explore')),
+                    text:  I18n.t('pins.index.empty_message', explore_link: I18n.t('explore.explore')),
                     count: 1)
     end
   end

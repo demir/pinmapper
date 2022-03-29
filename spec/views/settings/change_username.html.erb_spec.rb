@@ -29,7 +29,7 @@ RSpec.describe 'settings/change_username.html.erb', type: :view do
     end
 
     it 'settings title' do
-      assert_select '.settings .col-lg-9.settings-main .header h5', text: I18n.t('settings.change_username'), count: 1
+      assert_select '.settings .col-lg-9.settings-main .header h1', text: I18n.t('settings.change_username'), count: 1
     end
 
     it 'settings body' do

@@ -17,6 +17,28 @@ RSpec.describe 'Profiles', type: :system, js: true do
       sign_in(current_user)
     end
 
+    context 'page titles' do
+      it '#show' do
+        visit profile_path(id: user)
+        expect(page.title).to include "@#{user.username}"
+      end
+
+      it '#boards' do
+        visit boards_profile_path(id: user)
+        expect(page.title).to include "@#{user.username}"
+      end
+
+      it '#followers' do
+        visit followers_profile_path(id: user)
+        expect(page.title).to include "@#{user.username}"
+      end
+
+      it '#following' do
+        visit following_profile_path(id: user)
+        expect(page.title).to include "@#{user.username}"
+      end
+    end
+
     it 'visits profiles#show from pins#index' do
       create_list(:pin, 2, user: current_user)
       visit pins_path

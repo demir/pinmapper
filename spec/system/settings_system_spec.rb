@@ -10,6 +10,28 @@ RSpec.describe 'Settings', type: :system, js: true do
       sign_in(current_user)
     end
 
+    context 'page titles' do
+      it '#change_email' do
+        visit settings_change_email_path
+        expect(page.title).to include I18n.t('settings.change_email')
+      end
+
+      it '#change_password' do
+        visit settings_change_password_path
+        expect(page.title).to include I18n.t('settings.change_password')
+      end
+
+      it '#change_username' do
+        visit settings_change_username_path
+        expect(page.title).to include I18n.t('settings.change_username')
+      end
+
+      it '#edit_profile' do
+        visit settings_edit_profile_path
+        expect(page.title).to include I18n.t('settings.edit_profile')
+      end
+    end
+
     it 'visits change_password' do
       visit root_path
       find('.dropdown-user').click

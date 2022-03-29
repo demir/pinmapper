@@ -1,3 +1,12 @@
+<% title t('home') %>
+<% set_meta_tags alternate: { "en" => pins_url(locale: :en),
+                              "tr" => pins_url(locale: :tr) } %>
+<% og = {
+     description: t('pinmapper_slogan'),
+     url: pins_url
+   } %>
+<% set_meta_tags og: og %>
+<% set_meta_tags twitter: og %>
 <div class="container margin_100_55 pins-index">
   <% if @pins.any? %>
     <div id="infinite-pins" class="row infinite-pins">
@@ -9,7 +18,7 @@
   <% else %>
     <div class="empty-message responsive">
       <%= image_tag 'https://d3upp0w924wblq.cloudfront.net/pins-empty-image.png', class: "responsive", alt: '' %>
-      <p><%= sanitize t('.empty_message', explore_link: link_to(t('explore'), explore_index_path, class: 'black-link')) %></p>
+      <p><%= sanitize t('.empty_message', explore_link: link_to(t('explore.explore'), explore_index_path, class: 'black-link')) %></p>
     </div>
   <% end %>
 </div>

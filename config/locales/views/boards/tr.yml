@@ -9,8 +9,11 @@ tr:
       create_new_board: Pano Oluştur
       no_data: Henüz hiç Pano yok.
       no_data_for_current_user: Oluşturduğun bir Pano henüz yok. Hemen oluşturabilirsin.
+    new:
+      title: Yeni Pano Oluştur
     edit:
+      title: Panoyu Düzenle
       edit_board: Panoyu Düzenle
     following_boards:
-      title: Takip edilen Panolar
+      title: Takip Edilen Panolar
       no_data: Henüz takip ettiğiniz bir Pano yok.

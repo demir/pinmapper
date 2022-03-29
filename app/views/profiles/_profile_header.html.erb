@@ -1,3 +1,4 @@
+<% title "@#{@user.username}" %>
 <div class="header">
   <%= render(Profiles::AvatarComponent.new(src: cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(user.profile.avatar_crop_constraints, user.profile.avatar&.metadata), image_key: user.profile.avatar.key ), size: 140, klass: 'profile-user-avatar')) %>
   <div class="information">

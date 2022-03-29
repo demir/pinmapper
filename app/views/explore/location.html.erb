@@ -1,3 +1,6 @@
+<% title @pin.address %>
+<% set_meta_tags alternate: { "en" => explore_location_url(@pin.token, locale: :en),
+                              "tr" => explore_location_url(@pin.token, locale: :tr) } %>
 <div class="container margin_100_55 location">
   <% marker_service = MapServices::GenerateMarkers::Pin.call(@pin) %>
   <% if marker_service[:success] && marker_service[:payload].present? %>

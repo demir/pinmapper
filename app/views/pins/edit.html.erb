@@ -1,3 +1,6 @@
+<% title t('.title') %>
+<% set_meta_tags alternate: { "en" => edit_pin_url(@pin, locale: :en),
+                              "tr" => edit_pin_url(@pin, locale: :tr) } %>
 <div class="container margin_100_55 col-lg-5">
   <%= render 'form', pin: @pin %>
 </div>

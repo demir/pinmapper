@@ -4,8 +4,10 @@ en:
     pins: Pins
     pins_tr: Pins
     new:
+      title: Create New Pin
       create_pin: Create Pin
     edit:
+      title: Edit Pin
       edit_pin: Edit Pin
     show:
       nearby_pins: Nearby Pins

@@ -25,8 +25,12 @@ RSpec.describe 'tags/following_tags', type: :view do
       render
     end
 
-    it 'renders header' do
-      assert_select '.following-tags > .header', text: "#{t('following_tags')} (#{tags.count})"
+    it 'renders title' do
+      assert_select '.following-tags > .header .title h1', text: t('following_tags')
+    end
+
+    it 'renders tags count' do
+      assert_select '.following-tags > .header .title .count', text: "(#{tags.count})"
     end
 
     it 'renders a list of tags' do
