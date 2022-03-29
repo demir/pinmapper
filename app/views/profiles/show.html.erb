@@ -1,9 +1,11 @@
 <% set_meta_tags alternate: { "en" => profile_url(@user, locale: :en),
                               "tr" => profile_url(@user, locale: :tr) } %>
+<% page_title = "@#{@user.username} / #{ t('profile') }" %>
+<% title page_title %>
 <% image = cloudfront_src(filters: '200x200/filters:format(jpeg)', thumbor_crop: thumbor_crop(@user.profile.avatar_crop_constraints, @user.profile.avatar&.metadata), image_key: @user.profile.avatar.key) %>
 <% set_meta_tags og: {
       type:     'website',
-      title: "@#{@user.username} - Pinmapper",
+      title: "@#{ page_title } - Pinmapper",
       description: @user&.profile&.bio,
       site: :site,
       image:    image,
@@ -11,7 +13,7 @@
     } %>
 <% set_meta_tags twitter: {
       card: "summary_large_image",
-      title: "@#{@user.username} - Pinmapper",
+      title: "@#{ page_title } - Pinmapper",
       description: @user&.profile&.bio,
       site: :site,
       image:    image,
