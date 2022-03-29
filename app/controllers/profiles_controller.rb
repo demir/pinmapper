@@ -8,8 +8,8 @@ class ProfilesController < ApplicationController
   def show
     @user_pins_pagy, @user_pins = pagy @user.pins.order(created_at: :desc)
     respond_to do |f|
-      f.turbo_stream
       f.html
+      f.turbo_stream
     end
   end
 
@@ -32,24 +32,24 @@ class ProfilesController < ApplicationController
   def followers
     @pagy, @followers = pagy @user.followers.order(created_at: :desc)
     respond_to do |f|
-      f.turbo_stream
       f.html
+      f.turbo_stream
     end
   end
 
   def following
     @pagy, @following = pagy @user.following.order(created_at: :desc)
     respond_to do |f|
-      f.turbo_stream
       f.html
+      f.turbo_stream
     end
   end
 
   def boards
     @pagy, @boards = pagy @user.boards.public_privacy.order(created_at: :desc)
     respond_to do |f|
-      f.turbo_stream
       f.html
+      f.turbo_stream
     end
   end
 
