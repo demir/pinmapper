@@ -32,3 +32,18 @@ RSpec.describe 'Pages', type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'GET /robots.txt' do
+    before do
+      get '/robots.txt'
+    end
+
+    it 'has proper text' do
+      expect(response.body).to include('User-agent: *')
+    end
+
+    it 'has no sitemap text' do
+      expect(response.body).not_to include('Sitemap')
+    end
+  end
+end

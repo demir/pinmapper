@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
+  get '/robots.:format', to: 'pages#robots'
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end

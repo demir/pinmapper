@@ -8,4 +8,8 @@ class PagesController < ApplicationController
   def privacy_policy; end
 
   def cookie_policy; end
+
+  def robots
+    respond_to :text
+  end
 end
