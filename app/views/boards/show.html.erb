@@ -1,5 +1,8 @@
+<% keywords = @board.pins.pluck(:cached_tag_list) << t('pin_base_keywords') %>
 <% set_meta_tags alternate: { "en" => board_url(@board, locale: :en),
-                              "tr" => board_url(@board, locale: :tr) } %>
+                              "tr" => board_url(@board, locale: :tr) },
+                 description: @board.description,
+                 keywords: keywords.join(', ').split(', ').uniq.join(', ') %>
 <% set_meta_tags og: {
       type:     'website',
       title: "#{@board.name} - Pinmapper",

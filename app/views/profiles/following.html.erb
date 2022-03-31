@@ -1,5 +1,7 @@
 <% set_meta_tags alternate: { "en" => following_profile_url(@user, locale: :en),
-                              "tr" => following_profile_url(@user, locale: :tr) } %>
+                              "tr" => following_profile_url(@user, locale: :tr) },
+                 description: @user&.profile&.bio,
+                 keywords: t('pin_base_keywords') %>
 <% page_title = "@#{@user.username} / #{ t('following_tr') }" %>
 <% title page_title %>
 <% image = cloudfront_src(filters: '200x200/filters:format(jpeg)', thumbor_crop: thumbor_crop(@user.profile.avatar_crop_constraints, @user.profile.avatar&.metadata), image_key: @user.profile.avatar.key) %>
