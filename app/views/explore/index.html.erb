@@ -1,6 +1,8 @@
 <% title t('.title') %>
 <% set_meta_tags alternate: { "en" => explore_index_url(locale: :en),
-                              "tr" => explore_index_url(locale: :tr) } %>
+                              "tr" => explore_index_url(locale: :tr) },
+                 description: t('home_page_description'),
+                 keywords: t('home_page_keywords') %>
 <% set_meta_tags og: {
       type:     'website',
       title: "#{t('.title')} - Pinmapper",

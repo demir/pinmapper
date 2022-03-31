@@ -1,5 +1,8 @@
+<% keywords = "#{@pin.cached_tag_list}, #{t('pin_base_keywords')}" %>
 <% set_meta_tags alternate: { "en" => pin_url(@pin, locale: :en),
-                              "tr" => pin_url(@pin, locale: :tr) } %>
+                              "tr" => pin_url(@pin, locale: :tr) },
+                 description: @pin.cover_image_description.presence || @pin.description,
+                 keywords: keywords.split(', ').uniq.join(', ') %>
 <% first_image = @pin&.description&.embeds&.find { |embeds| embeds.image? } if @pin.cover_image.blank? %>
 <% og = {
       type:     'website',
