@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <% @tags.each do |slug, updated_at| %>
+    <url>
+      <loc><%= tag_url(slug, locale: nil) %></loc>
+      <lastmod><%= updated_at.strftime("%F") %></lastmod>
+    </url>
+  <% end %>
+</urlset>
