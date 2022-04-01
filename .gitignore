@@ -36,3 +36,7 @@
 yarn-debug.log*
 .yarn-integrity
 *.DS_Store
+
+#sitemap
+/public/sitemap.xml.gz
+/public/sitemaps/
