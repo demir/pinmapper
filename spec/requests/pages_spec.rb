@@ -42,8 +42,8 @@ RSpec.describe 'Pages', type: :request do
       expect(response.body).to include('User-agent: *')
     end
 
-    it 'has no sitemap text' do
-      expect(response.body).not_to include('Sitemap')
+    it 'has sitemap text' do
+      expect(response.body).to include("Sitemap: #{Rails.application.credentials.domain}/sitemap-index.xml")
     end
   end
 end

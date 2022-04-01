@@ -1,5 +1,22 @@
+<% keywords = "#{@tag.name}, #{t('pin_base_keywords')}" %>
 <% set_meta_tags alternate: { "en" => tag_url(@tag, locale: :en),
-                              "tr" => tag_url(@tag, locale: :tr) } %>
+                              "tr" => tag_url(@tag, locale: :tr) },
+                 keywords: keywords.split(', ').uniq.join(', ') %>
+<% set_meta_tags og: {
+      type:     'website',
+      title: "##{@tag.name} - Pinmapper",
+      site: :site,
+      image:    "https://d3upp0w924wblq.cloudfront.net/og_card_#{locale}.png",
+      url: tag_url(@tag)
+    } %>
+<% set_meta_tags twitter: {
+      card: "summary_large_image",
+      title: "##{@tag.name} - Pinmapper",
+      site: :site,
+      image:    "https://d3upp0w924wblq.cloudfront.net/og_card_#{locale}.png",
+      url: tag_url(@tag)
+    } %>
+
 <div class="container margin_100_55">
   <div class="row">
     <div class="col-lg-12 tag">
