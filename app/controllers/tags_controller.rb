@@ -9,8 +9,8 @@ class TagsController < ApplicationController
   def show
     @pagy, @pins = pagy @tag.pins.order(created_at: :desc)
     respond_to do |f|
-      f.turbo_stream
       f.html
+      f.turbo_stream
     end
   end
 
