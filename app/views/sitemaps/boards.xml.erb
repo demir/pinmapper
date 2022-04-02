@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <% @boards.each do |id, updated_at| %>
+  <% @boards.each do |slug, updated_at| %>
     <url>
-      <loc><%= board_url(id, locale: nil) %></loc>
+      <loc><%= board_url(slug, locale: nil) %></loc>
       <lastmod><%= updated_at.strftime("%F") %></lastmod>
     </url>
   <% end %>

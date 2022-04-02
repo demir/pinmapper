@@ -22,7 +22,7 @@ class SitemapsController < ApplicationController
     when 'pins'
       @pins = Pin.order(updated_at: :desc).pluck(:slug, :updated_at)
     when 'boards'
-      @boards = Board.public_privacy.order(updated_at: :desc).pluck(:id, :updated_at)
+      @boards = Board.public_privacy.order(updated_at: :desc).pluck(:slug, :updated_at)
     when 'users'
       @users = User.order(updated_at: :desc).pluck(:username, :updated_at)
     when 'tags'
