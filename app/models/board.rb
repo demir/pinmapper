@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Board < ApplicationRecord
+  extend FriendlyId
   include ActiveRecord::Searchable
   include TranslateEnum
 
@@ -23,6 +24,9 @@ class Board < ApplicationRecord
   validates :description, length: { maximum: 500 }
   validates :privacy, presence: true
   validates :pins_count, presence: true
+
+  # friendly_id
+  friendly_id :name, use: :history
 
   # counter_cultures
   counter_culture :user
