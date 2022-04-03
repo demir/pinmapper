@@ -39,6 +39,7 @@
             first_button_path: follow_board_path(@board),
             second_button_path: unfollow_board_path(@board)
           )) %>
+        <%= render(Boards::MoreButtonComponent.new(board: @board, current_user: current_user, turbo: false)) %>
       </div>
       <% if @board.description.present? %>
         <p class="description">
