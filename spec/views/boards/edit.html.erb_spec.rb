@@ -13,7 +13,8 @@ RSpec.describe 'boards/edit', type: :view do
   it 'renders the edit board form' do
     render
 
-    assert_select 'form[action=?][method=?]', board_path(board), 'post' do
+    assert_select 'form[action=?][method=?]', board.new_record? ? boards_path(pin_id: 1) : board_path(id: board),
+                  'post' do
       assert_select 'input[name=?]', 'board[name]'
 
       assert_select 'textarea[name=?]', 'board[description]'

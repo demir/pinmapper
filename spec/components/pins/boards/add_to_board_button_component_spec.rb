@@ -88,6 +88,17 @@ RSpec.describe Pins::Boards::AddToBoardButtonComponent, type: :component do
         expect(rendered_component).to have_css '.body span', text: I18n.t('boards.boards')
       end
 
+      context 'create new board button' do
+        it 'class' do
+          expect(rendered_component).to have_css '.btn_1.outline.full-width'
+        end
+
+        it 'link' do
+          expect(rendered_component).to have_css "a[href='#{new_board_path(locale: I18n.locale, pin_id: pin)}']",
+                                                 text: I18n.t('boards.index.create_new_board')
+        end
+      end
+
       context 'turbo frame' do
         it 'id' do
           expect(rendered_component).to have_css "turbo-frame[id='add_to_board_list_body_pin_#{pin.id}']"
@@ -105,31 +116,6 @@ RSpec.describe Pins::Boards::AddToBoardButtonComponent, type: :component do
 
         it 'spinner' do
           expect(rendered_component).to have_css '.body .justify-content-center .spinner-border.pinmapper.m-4'
-        end
-      end
-    end
-  end
-
-  context 'when there is no board' do
-    describe 'header' do
-      it 'not renders search form' do
-        expect(rendered_component).not_to have_css '.header .search-form'
-      end
-    end
-
-    describe 'body' do
-      it 'information message' do
-        expect(rendered_component).to have_css '.no-boards span', text: I18n.t('boards.there_is_no_boards')
-      end
-
-      context 'create new board button' do
-        it 'class' do
-          expect(rendered_component).to have_css '.no-boards .btn_1.outline.full-width'
-        end
-
-        it 'link' do
-          expect(rendered_component).to have_css ".no-boards a[href='#{new_board_path(locale: I18n.locale)}']",
-                                                 text: I18n.t('boards.index.create_new_board')
         end
       end
     end

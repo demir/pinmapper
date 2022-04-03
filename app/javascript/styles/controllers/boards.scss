@@ -85,11 +85,8 @@
     >span {
       padding: 0 5px;
     }
-    .no-boards {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 15px;
+    a.new_board {
+      margin-top: 10px;
     }
   }
   border: 0;
