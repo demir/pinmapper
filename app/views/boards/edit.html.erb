@@ -2,5 +2,5 @@
 <% set_meta_tags alternate: { "en" => edit_board_url(@board, locale: :en),
                               "tr" => edit_board_url(@board, locale: :tr) } %>
 <div class="container margin_100_55 col-lg-4">
-  <%= render 'form', pin: @board %>
+  <%= render 'form', board: @board %>
 <div>

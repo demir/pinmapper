@@ -1,0 +1,9 @@
+<% if @board.errors.any? %>
+  <%= turbo_stream.replace('new_board', partial: 'boards/form', locals: { board: @board, pin: @pin }) %>
+<% else %>
+  <%= turbo_stream.update('toastr', partial: 'shared/toastr', formats: [:turbo_stream]) %>
+  <%= turbo_stream.append "add_to_board_list_body_#{dom_id(@pin)}" do %>
+    <%= render(Boards::ListItemForPinComponent.new(board: @board, pin: @pin, current_user: current_user)) %>
+  <% end %>
+  <%= turbo_stream.replace('new_board', partial: 'boards/new_board_button', locals: { pin: @pin }) %>
+<% end %>
