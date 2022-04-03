@@ -28,6 +28,10 @@ RSpec.describe 'boards/show', type: :view do
     it 'without follow/unfollow buton' do
       assert_select '.board-show > .header a.btn_1', text: I18n.t('follow'), count: 0
     end
+
+    it 'not renders more button' do
+      assert_select '.board-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 0
+    end
   end
 
   # rubocop:disable RSpec/MultipleMemoizedHelpers
@@ -36,6 +40,11 @@ RSpec.describe 'boards/show', type: :view do
 
     before do
       sign_in(current_user)
+    end
+
+    it 'more button' do
+      render
+      assert_select '.board-more .dropdown-item:nth-of-type(1)', text: t('edit')
     end
 
     it 'do not show follow button when following board' do

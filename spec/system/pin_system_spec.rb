@@ -92,17 +92,6 @@ RSpec.describe 'Pins', type: :system, js: true do
     end
 
     describe 'add to board' do
-      context 'when there is no board' do
-        it 'shows there is no board message' do
-          visit pins_path
-          pin = pins.last
-          pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
-          pin_element.find('#add-pin-to-board-menu').click
-          expect(page).to have_css "#add-pin-to-board-dropdown_pin_#{pin.id} .body .no-boards > span",
-                                   text: I18n.t('boards.there_is_no_boards')
-        end
-      end
-
       context 'when there is board' do
         let!(:boards) { create_list(:board, 3, user: user) }
 

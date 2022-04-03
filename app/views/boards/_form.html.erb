@@ -1,10 +1,13 @@
-<%= simple_form_for(@board, data: { turbo: false }) do |f| %>
+<% boards_params = {} %>
+<% boards_params = boards_params.merge(pin_id: pin) if defined?(pin) && pin.present? %>
+<% data = { turbo: boards_params[:pin_id].present? } %>
+<%= simple_form_for(board, url: board.new_record? ? boards_path(boards_params) : board_path(id: board), data: data) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :description, input_html: { rows: 7 } %>
+    <%= f.input :description %>
     <%= f.input :privacy, collection: f.object.class.translated_privacies, default: 0 %>
   </div>
 

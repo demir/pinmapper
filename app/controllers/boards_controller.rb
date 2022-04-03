@@ -4,7 +4,7 @@ class BoardsController < ApplicationController
   include Pagy::Backend
   before_action :set_board, only: %i[show edit update destroy
                                      add_pin remove_pin follow unfollow]
-  before_action :set_pin, only: %i[add_pin remove_pin add_to_board_list]
+  before_action :set_pin, only: %i[add_pin remove_pin add_to_board_list new create]
   before_action :authorize_board
 
   # GET /boards or /boards.json
@@ -45,7 +45,7 @@ class BoardsController < ApplicationController
   # GET /boards/1/edit
   def edit; end
 
-  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   # POST /boards or /boards.json
   def create
     @board = current_user.boards.build(board_params)
@@ -53,13 +53,15 @@ class BoardsController < ApplicationController
       if @board.save
         format.html { redirect_to boards_url, notice: t('.success') }
         format.json { render :show, status: :created, location: @board }
+        flash.now[:notice] = t('.success')
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @board.errors, status: :unprocessable_entity }
       end
+      format.turbo_stream
     end
   end
-  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   # PATCH/PUT /boards/1 or /boards/1.json
   def update
@@ -123,6 +125,8 @@ class BoardsController < ApplicationController
   end
 
   def set_pin
+    return if params[:pin_id].blank?
+
     @pin = Pin.friendly.find(params[:pin_id])
   end
 

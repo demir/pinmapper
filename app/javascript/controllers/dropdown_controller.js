@@ -42,4 +42,11 @@ export default class extends Controller {
       }
     }
   }
+
+  scrollFormToUp(event) {
+    let frameElement = event.currentTarget
+    var parentElement = frameElement.closest('.add-pin-to-board .body')
+    let height = frameElement.offsetTop - parentElement.offsetTop - 35
+    parentElement.scrollTo({ top: height, behavior: 'smooth' })
+  }
 }
