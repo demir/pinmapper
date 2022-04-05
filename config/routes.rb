@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
     get 'terms_of_use' => 'pages#terms_of_use'
     get 'privacy_policy' => 'pages#privacy_policy'
-    get 'about_us' => 'pages#about_us'
+    get 'about' => 'pages#about'
     get 'cookie_policy' => 'pages#cookie_policy'
     devise_for :users, skip: %i[registrations omniauth_callbacks]
     # devise/registrations#edit route'unu iptal etmek için aşağıdaki block eklendi

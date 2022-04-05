@@ -19,9 +19,9 @@ RSpec.describe 'Pages', type: :request do
     end
   end
 
-  describe 'GET about_us' do
+  describe 'GET about' do
     it 'returns http success' do
-      get about_us_url, headers: headers
+      get about_url, headers: headers
       expect(response).to have_http_status(:success)
     end
   end
