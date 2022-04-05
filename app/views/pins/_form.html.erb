@@ -9,23 +9,23 @@
     <div class="field"
       data-controller='instant-upload cropper'
       data-cropper-model-value='pin'
-      data-cropper-crop-model-value='cover_image_crop'>
-      <%= f.input :cover_image, as: :file, input_html: { 'data-instant-upload-target': 'input',
+      data-cropper-crop-model-value='cover_photo_crop'>
+      <%= f.input :cover_photo, as: :file, input_html: { 'data-instant-upload-target': 'input',
             'data-action': 'instant-upload#changed' } %>
       <p>
-        <%= image_tag cloudfront_src(filters: '400x400/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(pin.cover_image_crop_constraints, pin.cover_image&.metadata), image_key: pin.cover_image.key ),
-              class: 'cover-image responsive',
+        <%= image_tag cloudfront_src(filters: '400x400/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(pin.cover_photo_crop_constraints, pin.cover_photo&.metadata), image_key: pin.cover_photo.key ),
+              class: 'cover-photo responsive',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
-              'data-action': 'instant-uploaded->cropper#changed' if pin.cover_image.attached? %>
+              'data-action': 'instant-uploaded->cropper#changed' if pin.cover_photo.attached? %>
 
-        <%= content_tag :img, nil, src: nil, class: 'cover-image responsive',
+        <%= content_tag :img, nil, src: nil, class: 'cover-photo responsive',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
-              'data-action': 'instant-uploaded->cropper#changed' unless pin.cover_image.attached? %>
+              'data-action': 'instant-uploaded->cropper#changed' unless pin.cover_photo.attached? %>
       </p>
     </div>
-    <%= f.input :cover_image_description, input_html: { rows: 5 } %>
+    <%= f.input :cover_photo_description, input_html: { rows: 5 } %>
     <%= f.input :tag_list, placeholder: t('.tag_list.placeholder'),
                            hint: t('.tag_list.hint'),
                            input_html: { value: f.object.tag_list.to_s } %>

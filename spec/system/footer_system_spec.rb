@@ -7,9 +7,9 @@ RSpec.describe 'Footer', type: :system, js: true do
   let!(:pins) { create_list(:pin, 2, user: current_user) }
 
   context 'page titles' do
-    it '#about_us' do
-      visit about_us_path
-      expect(page.title).to include I18n.t('shared.footer.about_us')
+    it '#about' do
+      visit about_path
+      expect(page.title).to include I18n.t('shared.footer.about')
     end
 
     it '#cookie_policy' do

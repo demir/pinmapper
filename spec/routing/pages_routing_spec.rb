@@ -12,8 +12,8 @@ RSpec.describe PagesController, type: :routing do
       expect(get: '/privacy_policy').to route_to('pages#privacy_policy')
     end
 
-    it 'routes to #about_us' do
-      expect(get: '/about_us').to route_to('pages#about_us')
+    it 'routes to #about' do
+      expect(get: '/about').to route_to('pages#about')
     end
 
     it 'routes to #cookie_policy' do

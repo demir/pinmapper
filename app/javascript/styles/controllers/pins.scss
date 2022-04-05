@@ -9,56 +9,70 @@
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
+
   >.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 60px;
     padding: 16px;
+
     .user {
       display: flex;
       align-items: center;
+
       .username-timeago {
         display: flex;
         flex-direction: column;
+
         .time-ago {
           margin-top: -2px;
         }
       }
-      &> *:not(:last-child) {
+
+      &>*:not(:last-child) {
         margin-right: 5px;
       }
     }
   }
+
   img {
     align-self: center;
   }
+
   .body {
     padding-top: 0;
     padding-left: 16px;
     padding-right: 16px;
     padding-bottom: 16px;
-    .cover-image-description {
+
+    .cover-photo-description {
       margin-bottom: 15px;
     }
+
     .name-h3 {
       padding-top: 10px;
     }
+
     .name-link {
       color: #000000;
+
       &:hover {
         color: $color-1;
       }
     }
+
     .tags {
       margin-top: 16px;
     }
-    .cover-image {
+
+    .cover-photo {
       @include border-radius(9px);
       margin-top: 16px;
       @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.05));
     }
   }
+
   .footer {
     display: flex;
     justify-content: space-between;
@@ -66,6 +80,7 @@
     height: 60px;
     padding: 16px;
   }
+
   &-more {
     svg {
       cursor: pointer;
@@ -77,6 +92,7 @@
 .board-link {
   color: #555555;
   font-weight: bold;
+
   &:hover {
     color: $color-1;
   }
@@ -91,18 +107,22 @@
   @include border-radius(9px);
   max-height: 100px;
   width: 100%;
+
   .image img {
     @include border-radius(9px 0 0 9px);
   }
+
   .body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
     width: 100%;
+
     h6 {
       margin-bottom: 0;
     }
+
     .item {
       display: flex;
       justify-content: space-between;
@@ -119,7 +139,7 @@
 }
 
 .liked-pins {
-  > .header {
+  >.header {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -130,6 +150,7 @@
 
 .pin-tag {
   color: #555555;
+
   &:hover {
     color: #fc5b62;
   }
@@ -137,56 +158,71 @@
 
 //-------------------- Pins#show -------------------//
 
-.pin-show-main{
+.pin-show-main {
   background-color: #fff;
-	padding: 30px;
-	margin-bottom: 25px;
+  padding: 30px;
+  margin-bottom: 25px;
   @include border-radius(9px);
-	border: 1px solid $border-color-2;
-	h1 {
-		@include fontSize(32px);
-		@include mobile {@include fontSize(21px);}
-	}
-	p {
-		line-height: $line-height-large;
-	}
+  border: 1px solid $border-color-2;
+
+  h1 {
+    @include fontSize(32px);
+
+    @include mobile {
+      @include fontSize(21px);
+    }
+  }
+
+  p {
+    line-height: $line-height-large;
+  }
+
   >.header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 25px;
     margin-bottom: 40px;
+
     .hrow {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
+
       &.negative-margin-top {
         margin-top: -15px;
       }
+
       &.nowrap {
         flex-wrap: nowrap;
       }
     }
+
     .vcolumn {
       display: flex;
       flex-direction: column;
     }
+
     h1 {
       margin: 0 !important;
     }
+
     .creation-time {
       margin-top: -2px;
     }
   }
+
   .blob-image {
     @include border-radius(9px);
     @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.20));
   }
+
   .address {
     margin-top: -10px;
   }
+
   .pin-added-by-owner {
     margin-top: 50px;
   }
@@ -202,11 +238,12 @@
     .widget-title {
       padding: 15px;
       border-bottom: 1px solid $border-color-2;
-       h4 {
+
+      h4 {
         padding: 0;
         margin: 0;
         font-weight: 500;
-        line-height:$line-height-none;
+        line-height: $line-height-none;
         @include fontSize(15px);
       }
     }
@@ -217,6 +254,7 @@
       background-color: #fff;
       @include border-radius(9px);
       border: 1px solid $border-color-2;
+
       &:not(:last-child) {
         margin-bottom: 15px;
       }
@@ -225,6 +263,7 @@
         padding: 0;
         list-style: none;
         margin-bottom: 0;
+
         h3 {
           font-size: 14px;
           padding: 0 0 0;
@@ -232,21 +271,26 @@
           margin-top: 5px;
           text-transform: capitalize;
           letter-spacing: 0;
+
           a {
             color: #333;
+
             &:hover {
               color: $color-1;
             }
           }
         }
+
         li {
           padding: 15px;
           display: table;
           width: 100%;
+
           &:not(:last-child) {
             border-bottom: 1px solid $border-color-2;
           }
         }
+
         small {
           color: #999999;
         }
@@ -267,7 +311,8 @@ aside.widgets {
 }
 
 //-------------------- Pins#index -------------------//
-.pins-index .pin, .liked-pins .pin{
+.pins-index .pin,
+.liked-pins .pin {
   margin-left: auto;
   margin-right: auto;
 }
@@ -277,14 +322,17 @@ aside.widgets {
     margin-left: 0;
     margin-right: 0;
   }
+
   .empty-message {
     text-align: center;
     @include fontSize(16px);
+
     img {
       margin-top: 50px;
       max-width: 300px;
       width: fit-content;
     }
+
     p {
       margin-top: 15px;
     }
@@ -297,9 +345,10 @@ aside.widgets {
 
 //-------------------- Pins#form -------------------//
 .pin-form {
-  .cover-image.responsive {
+  .cover-photo.responsive {
     max-width: 400px;
   }
+
   .map {
     max-height: 300px;
     margin-bottom: 15px;
@@ -310,13 +359,16 @@ aside.widgets {
   .modal-title {
     color: #000000;
     @include fontSize(16px);
+
     .username {
       font-weight: 500;
     }
   }
+
   .board {
     padding: 10px;
-    span > a.board-name {
+
+    span>a.board-name {
       @include fontSize(16px);
     }
   }
@@ -326,18 +378,23 @@ aside.widgets {
 
 .leaflet-popup-content-wrapper {
   padding: 10px;
+
   .title {
     @include fontSize(16px);
   }
+
   .black-link {
     color: #000;
+
     &:hover {
       color: #fc5b62;
     }
   }
+
   .direction-form {
     box-shadow: none;
     padding: 0;
+
     button[type='submit'] {
       margin: 0;
     }

@@ -16,9 +16,9 @@ RSpec.describe 'pins/new', type: :view do
 
       assert_select 'input[name=?]', 'pin[address]'
 
-      assert_select 'input[name=?]', 'pin[cover_image]'
+      assert_select 'input[name=?]', 'pin[cover_photo]'
 
-      assert_select 'textarea[name=?]', 'pin[cover_image_description]'
+      assert_select 'textarea[name=?]', 'pin[cover_photo_description]'
 
       assert_select 'input[name=?]', 'pin[tag_list]'
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-  def about_us; end
+  def about; end
 
   def terms_of_use; end
 

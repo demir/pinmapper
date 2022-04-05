@@ -25,8 +25,8 @@ RSpec.describe 'Leaflet', type: :system, js: true do
         expect(page).to have_css '.leaflet-popup h3.title a.black-link'
       end
 
-      it '#cover-image-description' do
-        expect(page).to have_css '.leaflet-popup p.cover-image-description'
+      it '#cover-photo-description' do
+        expect(page).to have_css '.leaflet-popup p.cover-photo-description'
       end
 
       it '#direction-link' do

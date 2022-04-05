@@ -15,8 +15,8 @@ tr:
         address: Adres
         latitude: Enlem
         longitude: Boylam
-        cover_image: Kapak Fotoğrafı
-        cover_image_description: Kapak Fotoğrafı Açıklaması
+        cover_photo: Kapak Fotoğrafı
+        cover_photo_description: Kapak Fotoğrafı Açıklaması
         description: Pin İçeriği
         tag_list: Etiketler
   simple_form:
