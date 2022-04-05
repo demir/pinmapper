@@ -24,7 +24,7 @@ module MapServices
       def select_pins(raw_pins)
         return unless raw_pins&.is_a?(ActiveRecord::Relation)
 
-        raw_pins.select(:id, :latitude, :longitude, :name, :cover_image_description)
+        raw_pins.select(:id, :latitude, :longitude, :name, :cover_photo_description)
       end
 
       def generate_markers
@@ -52,8 +52,8 @@ module MapServices
                   class: 'black-link',
                   title: pin.name
         end)
-        html << (content_tag :p, title: pin.cover_image_description, class: 'cover-image-description' do
-          truncate pin.cover_image_description, length: 300
+        html << (content_tag :p, title: pin.cover_photo_description, class: 'cover-photo-description' do
+          truncate pin.cover_photo_description, length: 300
         end)
         direction_url = "https://www.google.com/maps/dir//#{pin.latitude},#{pin.longitude}"
         html << (

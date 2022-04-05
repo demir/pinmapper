@@ -1,24 +1,24 @@
 <% keywords = "#{@pin.cached_tag_list}, #{t('pin_base_keywords')}" %>
 <% set_meta_tags alternate: { "en" => pin_url(@pin, locale: :en),
                               "tr" => pin_url(@pin, locale: :tr) },
-                 description: @pin.cover_image_description.presence || @pin.description,
+                 description: @pin.cover_photo_description.presence || @pin.description,
                  keywords: keywords.split(', ').uniq.join(', ') %>
-<% first_image = @pin&.description&.embeds&.find { |embeds| embeds.image? } if @pin.cover_image.blank? %>
+<% first_image = @pin&.description&.embeds&.find { |embeds| embeds.image? } if @pin.cover_photo.blank? %>
 <% og = {
       type:     'website',
       title: "#{@pin.name} - Pinmapper",
-      description: @pin.cover_image_description.presence || @pin.description,
+      description: @pin.cover_photo_description.presence || @pin.description,
       site: :site,
       url: pin_url(@pin)
    } %>
 <% twitter = {
       card: "summary_large_image",
       title: "#{@pin.name} - Pinmapper",
-      description: @pin.cover_image_description.presence || @pin.description,
+      description: @pin.cover_photo_description.presence || @pin.description,
       site: :site,
       url: pin_url(@pin)
    } %>
-<% image = cloudfront_src(filters: 'filters:format(jpeg)/filters:quality(50)', thumbor_crop: thumbor_crop(@pin.cover_image_crop_constraints, @pin.cover_image&.metadata), image_key: @pin.cover_image.key ) if @pin.cover_image.present? %>
+<% image = cloudfront_src(filters: 'filters:format(jpeg)/filters:quality(50)', thumbor_crop: thumbor_crop(@pin.cover_photo_crop_constraints, @pin.cover_photo&.metadata), image_key: @pin.cover_photo.key ) if @pin.cover_photo.present? %>
 <% image = cloudfront_src(image_key: first_image.blob.key) if first_image.present? %>
 <% if image.present? %>
   <% og[:image] = image %>

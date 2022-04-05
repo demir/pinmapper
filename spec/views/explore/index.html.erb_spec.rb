@@ -22,7 +22,7 @@ RSpec.describe 'explore/index.html.erb', type: :view do
       render
       assert_select '.pin .user .username', count: 2
       assert_select '.pin .body .name-h3', count: 2
-      assert_select '.pin .body .cover-image-description', count: 2
+      assert_select '.pin .body .cover-photo-description', count: 2
       assert_select '.pin .body .tags a.pin-tag:nth-of-type(1)', count: 2
       assert_select '.pin .header .username-timeago .time-ago', count: 2
       assert_select 'a[class=?]', 'like_btn'
@@ -35,7 +35,7 @@ RSpec.describe 'explore/index.html.erb', type: :view do
       assert_select '.pin .header .dropdown-item:nth-of-type(1)', count: 0
       assert_select '.pin .user .username', count: 2
       assert_select '.pin .body .name-h3', count: 2
-      assert_select '.pin .body .cover-image-description', count: 2
+      assert_select '.pin .body .cover-photo-description', count: 2
       assert_select '.pin .body .tags a.pin-tag:nth-of-type(1)', count: 2
       assert_select '.pin .header .username-timeago .time-ago', count: 2
       assert_select 'a[class=?]', 'like_btn disabled'

@@ -27,9 +27,9 @@ RSpec.describe Pins::PinComponent, type: :component do
       expect(rendered_component).to have_css '.body h3 a', text: pin.name
     end
 
-    it 'pin#cover_image_description' do
-      expect(rendered_component).to have_css '.body .cover-image-description',
-                                             text: pin.cover_image_description
+    it 'pin#cover_photo_description' do
+      expect(rendered_component).to have_css '.body .cover-photo-description',
+                                             text: pin.cover_photo_description
     end
 
     it 'pin#tag_list.first' do

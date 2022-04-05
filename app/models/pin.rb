@@ -34,9 +34,9 @@ class Pin < ApplicationRecord
   before_destroy :delete_user_tags, prepend: true
 
   # relations
-  has_one :cover_image_crop, as: :cropable, class_name: 'Crop', dependent: :destroy
-  accepts_nested_attributes_for :cover_image_crop, update_only: true
-  has_one_attached :cover_image
+  has_one :cover_photo_crop, as: :cropable, class_name: 'Crop', dependent: :destroy
+  accepts_nested_attributes_for :cover_photo_crop, update_only: true
+  has_one_attached :cover_photo
   has_rich_text :description
   belongs_to :user
   has_many :pin_boards, dependent: :destroy
@@ -44,7 +44,7 @@ class Pin < ApplicationRecord
 
   # validations
   validates :name, presence: true, length: { maximum: 128 }
-  validates :cover_image_description, length: { maximum: 500 }
+  validates :cover_photo_description, length: { maximum: 500 }
   validates :description, length: { maximum: 5000 }
   validates :address, presence: true
   validate :found_address_presence?, if: ->(obj) { obj.address.present? && obj.address_changed? }
@@ -54,11 +54,11 @@ class Pin < ApplicationRecord
   # counter_cultures
   counter_culture :user
 
-  def cover_image_crop_constraints
-    return {} if cover_image_crop.blank?
+  def cover_photo_crop_constraints
+    return {} if cover_photo_crop.blank?
 
-    crop = [cover_image_crop.crop_x.to_f, cover_image_crop.crop_y.to_f,
-            cover_image_crop.crop_width.to_f, cover_image_crop.crop_height.to_f]
+    crop = [cover_photo_crop.crop_x.to_f, cover_photo_crop.crop_y.to_f,
+            cover_photo_crop.crop_width.to_f, cover_photo_crop.crop_height.to_f]
 
     crop.compact.count == 4 ? { crop: crop } : {}
   end
@@ -74,9 +74,9 @@ class Pin < ApplicationRecord
   private
 
   def delete_crops
-    return if cover_image_crop.blank?
+    return if cover_photo_crop.blank?
 
-    cover_image_crop.destroy
+    cover_photo_crop.destroy
   end
 
   def found_address_presence?

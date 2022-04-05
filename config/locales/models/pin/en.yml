@@ -15,8 +15,8 @@ en:
         address: Address
         latitude: Latitude
         longitude: Longitude
-        cover_image: Cover Image
-        cover_image_description: Cover Image Description
+        cover_photo: Cover Photo
+        cover_photo_description: Cover Photo Description
         description: Pin Description
         tag_list: Tags
   simple_form:
