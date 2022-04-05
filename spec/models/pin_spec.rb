@@ -10,9 +10,9 @@ RSpec.describe Pin, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to have_one(:cover_image_crop) }
-    it { is_expected.to accept_nested_attributes_for(:cover_image_crop) }
-    it { is_expected.to have_one_attached(:cover_image) }
+    it { is_expected.to have_one(:cover_photo_crop) }
+    it { is_expected.to accept_nested_attributes_for(:cover_photo_crop) }
+    it { is_expected.to have_one_attached(:cover_photo) }
     it { is_expected.to have_rich_text(:description) }
     it { is_expected.to belong_to(:user) }
     it { is_expected.to have_many(:boards) }
@@ -25,7 +25,7 @@ RSpec.describe Pin, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_length_of(:name).is_at_most(128) }
-    it { is_expected.to validate_length_of(:cover_image_description).is_at_most(500) }
+    it { is_expected.to validate_length_of(:cover_photo_description).is_at_most(500) }
     it { is_expected.to allow_value(pin.description.body.to_s).for(:description) }
     it { is_expected.to validate_presence_of(:address) }
 

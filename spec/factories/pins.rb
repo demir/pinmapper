@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :pin do
     name { Faker::Lorem.word }
     address { 'Samsun, Türkiye' }
-    cover_image_description { Faker::Lorem.paragraph_by_chars(number: 500) }
+    cover_photo_description { Faker::Lorem.paragraph_by_chars(number: 500) }
     association :user, :confirmed
     # SecureRandom.hex(30).scan(/.{1,20}/) -> 3 words
     tag_list { SecureRandom.hex(30).scan(/.{1,20}/).join(',') }
@@ -16,8 +16,8 @@ FactoryBot.define do
       tag_list { SecureRandom.hex(45).scan(/.{1,15}/).join(',') }
     end
 
-    trait :cover_image_crop do
-      association :cover_image_crop, factory: :crop
+    trait :cover_photo_crop do
+      association :cover_photo_crop, factory: :crop
     end
   end
 end

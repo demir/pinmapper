@@ -1,6 +1,6 @@
 <div class="small-pin">
   <div class="image">
-    <%= image_tag helpers.cloudfront_src(filters: '100x100/filters:format(jpeg)/filters:quality(40)', thumbor_crop: helpers.thumbor_crop(pin.cover_image_crop_constraints, pin.cover_image&.metadata), image_key: pin.cover_image.key ), alt: '' if pin.cover_image.attached? %>
+    <%= image_tag helpers.cloudfront_src(filters: '100x100/filters:format(jpeg)/filters:quality(40)', thumbor_crop: helpers.thumbor_crop(pin.cover_photo_crop_constraints, pin.cover_photo&.metadata), image_key: pin.cover_photo.key ), alt: '' if pin.cover_photo.attached? %>
   </div>
   <div class="body">
     <div>
