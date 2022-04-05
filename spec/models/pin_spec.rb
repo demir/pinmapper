@@ -10,7 +10,7 @@ RSpec.describe Pin, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to have_ophoto_crop) }
+    it { is_expected.to have_one(:cover_photo_crop) }
     it { is_expected.to accept_nested_attributes_for(:cover_photo_crop) }
     it { is_expected.to have_one_attached(:cover_photo) }
     it { is_expected.to have_rich_text(:description) }
