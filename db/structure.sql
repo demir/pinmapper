@@ -63,7 +63,7 @@ CREATE FUNCTION public.update_pins_tsv() RETURNS trigger
       BEGIN
         NEW.tsv := (
           setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.name,'')), 'A') ||
-          setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.cover_image_description,'')), 'B') ||
+          setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.cover_photo_description,'')), 'B') ||
           setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.cached_user_username,'')), 'D') ||
           setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.cached_tag_list,'')), 'B') ||
           setweight(to_tsvector('pg_catalog.simple', coalesce(NEW.cached_plain_text_description,'')), 'C')
@@ -425,9 +425,9 @@ CREATE TABLE public.pins (
     cached_tag_list character varying,
     cached_plain_text_description text,
     cached_user_username character varying,
-    tsv tsvector,
     slug character varying,
-    token character varying
+    token character varying,
+    tsv tsvector
 );
 
 
@@ -1569,6 +1569,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211209212617'),
 ('20220313205357'),
 ('20220316211421'),
-('20220405080915');
+('20220405080915'),
+('20220405084634');
 
 
