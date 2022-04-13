@@ -1,20 +1,20 @@
 <% keywords = "#{@pin.cached_tag_list}, #{t('pin_base_keywords')}" %>
 <% set_meta_tags alternate: { "en" => pin_url(@pin, locale: :en),
                               "tr" => pin_url(@pin, locale: :tr) },
-                 description: @pin.cover_photo_description.presence || @pin.description,
+                 description: @pin.cover_photo_description.presence || @pin.description&.body&.to_plain_text,
                  keywords: keywords.split(', ').uniq.join(', ') %>
 <% first_image = @pin&.description&.embeds&.find { |embeds| embeds.image? } if @pin.cover_photo.blank? %>
 <% og = {
       type:     'website',
       title: "#{@pin.name} - Pinmapper",
-      description: @pin.cover_photo_description.presence || @pin.description,
+      description: @pin.cover_photo_description.presence || @pin.description&.body&.to_plain_text,
       site: :site,
       url: pin_url(@pin)
    } %>
 <% twitter = {
       card: "summary_large_image",
       title: "#{@pin.name} - Pinmapper",
-      description: @pin.cover_photo_description.presence || @pin.description,
+      description: @pin.cover_photo_description.presence || @pin.description&.body&.to_plain_text,
       site: :site,
       url: pin_url(@pin)
    } %>
