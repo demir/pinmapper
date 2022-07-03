@@ -115,6 +115,6 @@ class Pin < ApplicationRecord
   end
 
   def should_generate_new_friendly_id?
-    name_changed?
+    name.present? && name_changed?
   end
 end

@@ -17,7 +17,6 @@ export default class extends Controller {
       const upload = new DirectUpload(file, this.postURL())
       upload.create((error, blob) => {
         this.hiddenInput().value = blob.signed_id
-        this.inputTarget.type = "hidden"
         this.imageTarget.src = `${this.getURL()}/${blob.signed_id}/${blob.filename}`
         this.imageTarget.dispatchEvent(this.event())
       })
