@@ -42,6 +42,10 @@ export default class extends Controller {
     if (this.cropperTypeValue === 'rounded') {
       options['aspectRatio'] = 1 / 1
     }
+
+    if (this.imageTarget.cropper) {
+      this.imageTarget.cropper.destroy()
+    }
     new Cropper(this.imageTarget, options)
   }
 

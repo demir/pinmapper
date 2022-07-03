@@ -30,3 +30,6 @@ en:
   home_page_keywords: trip, travel, holiday, food, event, where to go, what to do, rota, map, place, explore
   pin_base_keywords: trip, travel, where to go, what to do, place, explore
   home_page_description: Create Pin. Share your Pins. Explore Pins around the world!
+  photo:
+    photo_name: Photo Name
+    change_photo_info: Choose different photo to change.
