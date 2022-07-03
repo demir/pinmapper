@@ -1,0 +1,8 @@
+tr:
+  errors:
+    not_found:
+      message_one: Üzgünüz, bu sayfayı bulamadık.
+      message_two: Aradığınız sayfa mevcut değil.
+    internal_server_error:
+      message_one: Bir sorun oluştu :(
+      message_two: Endişelenme, şimdi bunu kontrol ediyoruz.

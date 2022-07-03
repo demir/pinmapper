@@ -1,0 +1,8 @@
+en:
+  errors:
+    not_found:
+      message_one: Sorry, we couldn't find this page.
+      message_two: The page you are looking for does not exists.
+    internal_server_error:
+      message_one: Oh! Something went wrong :(
+      message_two: Don't worry, we're now checking this.

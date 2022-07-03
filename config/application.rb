@@ -11,6 +11,7 @@ module Pinmapper
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    config.exceptions_app = routes
     config.active_record.schema_format = :sql
     config.time_zone = 'Istanbul'
     config.i18n.available_locales = %i[en tr]
