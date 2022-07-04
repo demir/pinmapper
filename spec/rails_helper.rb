@@ -60,7 +60,7 @@ RSpec.configure do |config|
     driven_by :rack_test
   end
 
-  headless = ActiveRecord::Type::Boolean.new.cast(ENV['HEADLESS'])
+  headless = ActiveRecord::Type::Boolean.new.cast(ENV.fetch('HEADLESS', nil))
   driver = headless ? :headless_chrome : :chrome
 
   config.before(:each, type: :system, js: true) do

@@ -38,6 +38,9 @@ RSpec/RepeatedExample:
 Rails/InverseOf:
   Enabled: false
 
+Capybara/SpecificMatcher:
+  Enabled: false
+
 AllCops:
   NewCops: enable
   Exclude:
