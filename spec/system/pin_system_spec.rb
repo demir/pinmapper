@@ -111,6 +111,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
           pin_element.find('#add-pin-to-board-menu').click
           fill_in 'name', with: board.name
+          sleep(1)
           expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin",
                                    minimum: 1
         end

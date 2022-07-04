@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   end
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
+    match '/404', to: 'errors#not_found', via: :all
+    match '/500', to: 'errors#internal_server_error', via: :all
+
     unauthenticated do
       root 'explore#index'
     end

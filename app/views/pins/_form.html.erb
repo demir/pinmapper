@@ -10,19 +10,24 @@
       data-controller='instant-upload cropper'
       data-cropper-model-value='pin'
       data-cropper-crop-model-value='cover_photo_crop'>
+      <%= f.hidden_field :cover_photo, value: f.object.cover_photo.signed_id, src: url_for(f.object.cover_photo), input_html: { 'data-instant-upload-target': 'input', 'data-action': 'instant-upload#changed' } if f.object.cover_photo.attached? %>
       <%= f.input :cover_photo, as: :file, input_html: { 'data-instant-upload-target': 'input',
             'data-action': 'instant-upload#changed' } %>
       <p>
+        <% if f.object.cover_photo.attached? %>
+          <small><%= "#{t('photo.photo_name')}: " %> <%= f.object.cover_photo.blob.filename.to_s  %>. <%= t('photo.change_photo_info') %></small><br><br>
+        <% end %>
         <%= image_tag cloudfront_src(filters: '400x400/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(pin.cover_photo_crop_constraints, pin.cover_photo&.metadata), image_key: pin.cover_photo.key ),
               class: 'cover-photo responsive',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
-              'data-action': 'instant-uploaded->cropper#changed' if pin.cover_photo.attached? %>
+              'data-action': 'instant-uploaded->cropper#changed' if pin.cover_photo.attached? && (pin.errors.blank? || !pin.cover_photo.changed?) %>
 
         <%= content_tag :img, nil, src: nil, class: 'cover-photo responsive',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
-              'data-action': 'instant-uploaded->cropper#changed' unless pin.cover_photo.attached? %>
+              'data-action': 'instant-uploaded->cropper#changed load->cropper#changed',
+              src: url_for(pin.cover_photo.attached? ? f&.object&.cover_photo : '') if (!pin.cover_photo.attached? || pin.errors.present?) && (pin.cover_photo.changed? || pin.new_record?) %>
       </p>
     </div>
     <%= f.input :cover_photo_description, input_html: { rows: 5 } %>
