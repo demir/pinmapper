@@ -2,6 +2,7 @@
   "name": "pinmapper",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@fortawesome/fontawesome-free": "^5.15.2",
     "@hotwired/turbo-rails": "^7.1.3",
     "@rails/actioncable": "^6.0.0",
