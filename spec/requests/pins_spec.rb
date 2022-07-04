@@ -110,7 +110,7 @@ RSpec.describe '/pins', type: :request do
         it 'does not create a new Pin' do
           expect do
             post pins_url, params: { pin: attributes_for(:pin, :invalid) }, headers: headers
-          end.to change(Pin, :count).by(0)
+          end.not_to change(Pin, :count)
         end
 
         it 'renders new template' do

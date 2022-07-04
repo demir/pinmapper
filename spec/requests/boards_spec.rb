@@ -75,7 +75,7 @@ RSpec.describe '/boards', type: :request do
         it 'does not create a new Board' do
           expect do
             post boards_url, params: { board: attributes_for(:board, :invalid) }, headers: headers
-          end.to change(Board, :count).by(0)
+          end.not_to change(Board, :count)
         end
 
         it 'renders new template' do
@@ -209,7 +209,7 @@ RSpec.describe '/boards', type: :request do
     it 'can not POST /create' do
       expect do
         post boards_url, params: { board: attributes_for(:board) }, headers: headers
-      end.to change(Board, :count).by(0)
+      end.not_to change(Board, :count)
     end
 
     it 'can not PATCH /update' do
@@ -222,7 +222,7 @@ RSpec.describe '/boards', type: :request do
       new_board = create(:board, user: current_user)
       expect do
         delete board_url(id: new_board), headers: headers
-      end.to change(Board, :count).by(0)
+      end.not_to change(Board, :count)
     end
 
     describe 'add pin to board' do
