@@ -27,7 +27,7 @@
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
               'data-action': 'instant-uploaded->cropper#changed load->cropper#changed',
-              src: url_for(pin.cover_photo.attached? ? f&.object&.cover_photo : '') if (!pin.cover_photo.attached? || pin.errors.present?) && (pin.cover_photo.changed? || pin.new_record?) %>
+              src: url_for(pin.cover_photo.attached? ? f&.object&.cover_photo : '') if (!pin.cover_photo.attached? || pin.errors.present?) && (pin.cover_photo.changed? || pin.new_record? || pin.cover_photo&.url.blank?) %>
       </p>
     </div>
     <%= f.input :cover_photo_description, input_html: { rows: 5 } %>
