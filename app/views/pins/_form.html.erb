@@ -13,10 +13,10 @@
       <%= f.hidden_field :cover_photo, value: f.object.cover_photo.signed_id, src: url_for(f.object.cover_photo), input_html: { 'data-instant-upload-target': 'input', 'data-action': 'instant-upload#changed' } if f.object.cover_photo.attached? %>
       <%= f.input :cover_photo, as: :file, input_html: { 'data-instant-upload-target': 'input',
             'data-action': 'instant-upload#changed' } %>
-      <p>
-        <% if f.object.cover_photo.attached? %>
-          <small><%= "#{t('photo.photo_name')}: " %> <%= f.object.cover_photo.blob.filename.to_s  %>. <%= t('photo.change_photo_info') %></small><br><br>
+      <% if f.object.cover_photo.attached? %>
+          <small><%= "#{t('photo.photo_name')}: " %> <%= f.object.cover_photo.blob.filename.to_s  %>. <%= t('photo.change_photo_info') %></small>
         <% end %>
+      <p class="selected-image-area">
         <%= image_tag cloudfront_src(filters: '400x400/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(pin.cover_photo_crop_constraints, pin.cover_photo&.metadata), image_key: pin.cover_photo.key ),
               class: 'cover-photo responsive',
               'data-instant-upload-target': 'image',
