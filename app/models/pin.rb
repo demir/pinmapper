@@ -45,11 +45,11 @@ class Pin < ApplicationRecord
   # validations
   validates :name, presence: true, length: { maximum: 128 }
   validates :cover_photo_description, length: { maximum: 500 }
-  validates :description, length: { maximum: 5000 }
   validates :address, presence: true
   validate :found_address_presence?, if: ->(obj) { obj.address.present? && obj.address_changed? }
   validate :max_tag_count, if: :tag_list_changed?
   validate :max_tag_length, if: :tag_list_changed?
+  validate :description_length
 
   # counter_cultures
   counter_culture :user
@@ -116,5 +116,11 @@ class Pin < ApplicationRecord
 
   def should_generate_new_friendly_id?
     name.present? && name_changed?
+  end
+
+  def description_length
+    return if description.body.to_plain_text.length <= 5000
+
+    errors.add(:description, :too_long, { count: 5000 })
   end
 end
