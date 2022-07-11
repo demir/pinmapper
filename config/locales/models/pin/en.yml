@@ -7,6 +7,8 @@ en:
             tag_list:
               max_tag_count: can be add up to 5
               max_tag_length: can be max 30 characters
+            description:
+              max_number_of_description_attachments: should have maximum 6 photos
     models:
       pin: Pin
     attributes:

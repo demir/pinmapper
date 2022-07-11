@@ -50,6 +50,7 @@ class Pin < ApplicationRecord
   validate :max_tag_count, if: :tag_list_changed?
   validate :max_tag_length, if: :tag_list_changed?
   validate :description_length
+  validate :max_number_of_description_attachments
 
   # counter_cultures
   counter_culture :user
@@ -122,5 +123,11 @@ class Pin < ApplicationRecord
     return if description.body.to_plain_text.length <= 5000
 
     errors.add(:description, :too_long, { count: 5000 })
+  end
+
+  def max_number_of_description_attachments
+    return if description.body.attachments.count <= 6
+
+    errors.add(:description, :max_number_of_description_attachments)
   end
 end
