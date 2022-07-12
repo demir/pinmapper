@@ -7,6 +7,8 @@ tr:
             tag_list:
               max_tag_count: en fazla 5 tane olabilir
               max_tag_length: en fazla 30 karakter olabilir
+            description:
+              max_number_of_description_attachments: için en fazla 6 fotoğraf eklenebilir
     models:
       pin: Pin
     attributes:

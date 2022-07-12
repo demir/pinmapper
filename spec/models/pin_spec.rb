@@ -72,6 +72,46 @@ RSpec.describe Pin, type: :model do
         expect(pin.errors.full_messages).to include(error_message)
       end
     end
+
+    context 'description length' do
+      let!(:pin) { build(:pin, description: Faker::Lorem.characters(number: 5001, min_alpha: 5001)) }
+
+      it 'to be invalid' do
+        expect(pin).to be_invalid
+      end
+
+      it 'error message' do
+        pin.valid?
+        description_human_name = described_class.human_attribute_name(:description)
+        error_message = "#{description_human_name} #{pin.errors.generate_message(:description, :too_long,
+                                                                                 { count: 5000 })}"
+        expect(pin.errors.full_messages).to include(error_message)
+      end
+    end
+
+    context 'max number of description attachments' do
+      let!(:pin) { build(:pin) }
+
+      before do
+        attachment = ActionText::Attachment.from_attachable(create_file_blob)
+        7.times do
+          pin.description.body.attachments << attachment
+        end
+      end
+
+      it 'to be invalid' do
+        expect(pin).to be_invalid
+      end
+
+      it 'error message' do
+        pin.valid?
+        description_human_name = described_class.human_attribute_name(:description)
+        error_message = <<~MSG.chomp
+          #{description_human_name} #{pin.errors.generate_message(:description, :max_number_of_description_attachments)}
+        MSG
+        expect(pin.errors.full_messages).to include(error_message)
+      end
+    end
   end
 
   describe 'scopes' do
