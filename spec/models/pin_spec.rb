@@ -103,11 +103,12 @@ RSpec.describe Pin, type: :model do
         expect(pin).to be_invalid
       end
 
-      it 'error message', :focus do
+      it 'error message' do
         pin.valid?
         description_human_name = described_class.human_attribute_name(:description)
-        error_message = "#{description_human_name} #{pin.errors.generate_message(:description,
-                                                                                 :max_number_of_description_attachments)}"
+        error_message = <<~MSG.chomp
+          #{description_human_name} #{pin.errors.generate_message(:description, :max_number_of_description_attachments)}
+        MSG
         expect(pin.errors.full_messages).to include(error_message)
       end
     end
