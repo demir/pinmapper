@@ -57,7 +57,9 @@
             <div class="tags"><%= render(Taggable::TagListComponent.new(tags: @pin.tags)) %></div>
           </div>
         </div>
-        <%= @pin.description %>
+        <div data-controller="gallery">
+          <%= @pin.description %>
+        </div>
         <div><%= render Pins::Boards::AddedByOwnerComponent.new(pin: @pin, current_user: @current_user) %></div>
       </div>
     </div>

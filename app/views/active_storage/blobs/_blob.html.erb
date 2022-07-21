@@ -1,6 +1,8 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
-    <%= image_tag cloudfront_src(filters: "#{local_assigns[:in_gallery] ? '800x600' : '1024x768'}/filters:format(jpeg)/filters:quality(40)", image_key: blob.key), class: 'blob-image' %>
+    <%= link_to cloudfront_src(filters: "#{blob.metadata['width']}x#{blob.metadata['height']}/filters:format(jpeg)/filters:quality(40)", image_key: blob.key), title: (blob.try(:caption) || blob.filename), class: 'gallery-item', data: { 'pswp-width': blob.metadata['width'], 'pswp-height': blob.metadata['height'] } do %>
+      <%= image_tag cloudfront_src(filters: "#{local_assigns[:in_gallery] ? '800x600' : '1024x768'}/filters:format(jpeg)/filters:quality(40)", image_key: blob.key), class: 'blob-image' %>
+    <% end %>
   <% end %>
 
   <figcaption class="attachment__caption">
