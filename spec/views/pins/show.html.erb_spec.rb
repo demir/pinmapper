@@ -107,4 +107,10 @@ RSpec.describe 'pins/show', type: :view do
       end
     end
   end
+
+  context 'gallery' do
+    it 'data-controller' do
+      expect(rendered).to have_css 'div[data-controller="gallery"]'
+    end
+  end
 end
