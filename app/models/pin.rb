@@ -32,6 +32,7 @@ class Pin < ApplicationRecord
   before_update :delete_user_tags, prepend: true
   before_destroy :delete_crops
   before_destroy :delete_user_tags, prepend: true
+  after_commit :save_description_image_dimensions_now
 
   # relations
   has_one :cover_photo_crop, as: :cropable, class_name: 'Crop', dependent: :destroy
@@ -129,5 +130,11 @@ class Pin < ApplicationRecord
     return if description.body.attachments.count <= 6
 
     errors.add(:description, :max_number_of_description_attachments)
+  end
+
+  def save_description_image_dimensions_now
+    description.body.attachments.each do |attachment|
+      attachment.analyze_later unless attachment.analyzed?
+    end
   end
 end
