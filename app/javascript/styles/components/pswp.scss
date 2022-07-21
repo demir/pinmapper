@@ -1,0 +1,26 @@
+.pswp.pswp--open {
+  margin-top: 60px;
+}
+
+.pswp__custom-caption {
+  @include rgba(bg, $color-3, 0.8);
+  font-size: 16px;
+  color: #fff;
+  width: calc(100% - 32px);
+  max-width: 400px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  position: absolute;
+  left: 50%;
+  bottom: 100px;
+  transform: translateX(-50%);
+}
+
+.pswp__custom-caption a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.hidden-caption-content {
+  display: none;
+}
