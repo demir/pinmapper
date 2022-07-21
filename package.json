@@ -19,6 +19,7 @@
     "leaflet": "^1.7.1",
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "leaflet.markercluster": "^1.5.3",
+    "photoswipe": "^5.2.8",
     "popper.js": "^1.16.1",
     "sass": "^1.53.0",
     "stimulus": "^2.0.0",
