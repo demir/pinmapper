@@ -11,17 +11,18 @@ export default class extends Controller {
   }
 
   end(event) {
-    let pinId = event.item.dataset.id
     let data = new FormData()
     data.append('position', event.newIndex + 1)
 
-    let url = this.data.get('url') + pinId
-    fetch(url, {
-      method: 'PATCH',
-      body: data,
-      headers: {
-        'X-CSRF-Token': document.head.querySelector("[name='csrf-token']").content
-      }
-    })
+    let sortUrl = event.item.dataset.sortUrl
+    if (sortUrl) {
+      fetch(sortUrl, {
+        method: 'PATCH',
+        body: data,
+        headers: {
+          'X-CSRF-Token': document.head.querySelector("[name='csrf-token']").content
+        }
+      })
+    }
   }
 }

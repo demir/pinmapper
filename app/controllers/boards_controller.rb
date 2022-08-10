@@ -149,8 +149,7 @@ class BoardsController < ApplicationController
   end
 
   def get_boards(pin)
-    added_boards = current_user.boards.left_joins(:pins)
-                               .where(pins: { id: pin })
+    added_boards = current_user.boards.left_joins(:pins).where(pins: { id: pin })
                                .order('boards.created_at DESC')
     not_added_boards = current_user.boards.where.not(id: added_boards).order(created_at: :desc)
     Board.find_ordered(added_boards.ids | not_added_boards.ids)
