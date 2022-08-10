@@ -57,6 +57,7 @@ Rails.application.routes.draw do
         get 'remove_pin/:pin_id', action: 'remove_pin', as: 'remove_pin'
         get 'follow'
         get 'unfollow'
+        patch 'move/:pin_id', action: 'move', as: 'move_pin'
       end
       collection do
         get 'add_to_board_list/:pin_id', action: 'add_to_board_list', as: 'add_to_board_list'

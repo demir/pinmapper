@@ -3,7 +3,7 @@
 class BoardsController < ApplicationController
   include Pagy::Backend
   before_action :set_board, only: %i[show edit update destroy
-                                     add_pin remove_pin follow unfollow]
+                                     add_pin remove_pin follow unfollow move]
   before_action :set_pin, only: %i[add_pin remove_pin add_to_board_list new create]
   before_action :authorize_board
 
@@ -30,7 +30,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/1 or /boards/1.json
   def show
-    @pagy, @pins = pagy @board.pins.order(created_at: :desc)
+    @pagy, @pins = pagy @board.pins
     respond_to do |f|
       f.html
       f.turbo_stream
@@ -115,6 +115,11 @@ class BoardsController < ApplicationController
       f.html
       f.turbo_stream
     end
+  end
+
+  def move
+    @board.pin_boards.find_by(pin: params[:pin_id]).insert_at(params[:position].to_i)
+    head :ok
   end
 
   private

@@ -51,7 +51,7 @@
         <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>
       <% end %>
       <br>
-      <div id="infinite-pins" class="body">
+      <div id="infinite-pins" class="body" data-controller="drag" data-drag-url="<%= move_pin_board_path(@board, '') %>">
         <%= render Pins::SmallPinComponent.with_collection(@pins, current_user: @current_user) %>
         <!-- /pin_lists -->
       </div>

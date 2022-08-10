@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby File.read('.ruby-version')
 
 gem 'activerecord-session_store'
+gem "acts_as_list", "~> 1.0"
 gem 'acts-as-taggable-on', '~> 8.1'
 gem 'acts_as_votable', '~> 0.13.2'
 gem 'aws-sdk-s3', '~> 1', require: false
