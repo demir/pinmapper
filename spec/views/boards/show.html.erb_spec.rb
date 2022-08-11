@@ -93,4 +93,39 @@ RSpec.describe 'boards/show', type: :view do
       assert_select '#infinite-pins.body'
     end
   end
+
+  # rubocop:disable RSpec/MultipleMemoizedHelpers
+  context 'drag sort' do
+    it 'drag sort controller' do
+      render
+      assert_select '.body[data-controller="drag-sort"]'
+    end
+
+    context 'with current user' do
+      let(:new_board) { create(:board) }
+
+      before do
+        sign_in(current_user)
+      end
+
+      it 'active when owner of board' do
+        render
+        assert_select '.body[data-drag-sort-state-value="true"]'
+      end
+
+      it 'deactive when not owner of board' do
+        assign(:board, new_board)
+        render
+        assert_select '.body[data-drag-sort-state-value="false"]'
+      end
+    end
+
+    context 'without current user' do
+      it 'deactive' do
+        render
+        assert_select '.body[data-drag-sort-state-value="false"]'
+      end
+    end
+  end
+  # rubocop:enable RSpec/MultipleMemoizedHelpers
 end

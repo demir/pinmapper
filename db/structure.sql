@@ -385,7 +385,8 @@ CREATE TABLE public.pin_boards (
     pin_id bigint NOT NULL,
     board_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    "position" integer
 );
 
 
@@ -1570,6 +1571,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220313205357'),
 ('20220316211421'),
 ('20220405080915'),
-('20220405084634');
+('20220405084634'),
+('20220809231928');
 
 

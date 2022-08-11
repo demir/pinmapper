@@ -13,7 +13,7 @@ class Board < ApplicationRecord
   # relations
   belongs_to :user
   has_many :pin_boards, dependent: :destroy
-  has_many :pins, through: :pin_boards, dependent: :destroy
+  has_many :pins, -> { order 'pin_boards.position ASC' }, through: :pin_boards, dependent: :destroy
   has_many :user_boards, dependent: :destroy
   has_many :followers, through: :user_boards, source: :user, dependent: :destroy
 
