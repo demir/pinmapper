@@ -40,7 +40,7 @@ class Pin < ApplicationRecord
   has_rich_text :description
   belongs_to :user
   has_many :pin_boards, dependent: :destroy
-  has_many :boards, through: :pin_boards, dependent: :destroy
+  has_many :boards, -> { order 'pin_boards.position ASC' }, through: :pin_boards, dependent: :destroy
 
   # validations
   validates :name, presence: true, length: { maximum: 128 }

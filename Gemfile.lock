@@ -72,6 +72,8 @@ GEM
       zeitwerk (~> 2.3)
     acts-as-taggable-on (8.1.0)
       activerecord (>= 5.0, < 6.2)
+    acts_as_list (1.0.4)
+      activerecord (>= 4.2)
     acts_as_votable (0.13.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
@@ -407,6 +409,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-session_store
   acts-as-taggable-on (~> 8.1)
+  acts_as_list (~> 1.0)
   acts_as_votable (~> 0.13.2)
   aws-sdk-s3 (~> 1)
   better_errors (~> 2.9)
