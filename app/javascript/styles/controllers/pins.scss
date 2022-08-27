@@ -214,6 +214,15 @@
     }
   }
 
+  figure.attachment {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .attachment__caption {
+    margin-top: 5px;
+  }
+
   .blob-image {
     @include border-radius(9px);
     @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.20));

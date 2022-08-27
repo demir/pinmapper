@@ -16,10 +16,13 @@ class Profile < ApplicationRecord
   def avatar_crop_constraints
     return {} if avatar_crop.blank?
 
-    crop = [avatar_crop.crop_x.to_f, avatar_crop.crop_y.to_f,
-            avatar_crop.crop_width.to_f, avatar_crop.crop_height.to_f]
-
-    crop.compact.count == 4 ? { crop: crop } : {}
+    {
+      height: avatar_crop.crop_height.to_i,
+      width:  avatar_crop.crop_width.to_i,
+      x:      avatar_crop.crop_x.to_i,
+      y:      avatar_crop.crop_y.to_i,
+      crop:   'crop'
+    }
   end
 
   private

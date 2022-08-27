@@ -18,8 +18,8 @@
       site: :site,
       url: pin_url(@pin)
    } %>
-<% image = cloudfront_src(filters: 'filters:format(jpeg)/filters:quality(50)', thumbor_crop: thumbor_crop(@pin.cover_photo_crop_constraints, @pin.cover_photo&.metadata), image_key: @pin.cover_photo.key ) if @pin.cover_photo.present? %>
-<% image = cloudfront_src(image_key: first_image.blob.key) if first_image.present? %>
+<% image = cl_image_tag(@pin.cover_photo.key, transformation: [@pin.cover_photo_crop_constraints], quality: 'auto', flags: 'progressive') if @pin.cover_photo.present? %>
+<% image = cl_image_tag(first_image.blob.key) if first_image.present? %>
 <% if image.present? %>
   <% og[:image] = image %>
   <% twitter[:image] = image %>
@@ -35,7 +35,7 @@
           <div class="hrow">
             <div class="hrow">
               <% user_profile = @pin.user.profile %>
-              <%= render(Profiles::AvatarComponent.new(src: cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(user_profile.avatar_crop_constraints, user_profile.avatar&.metadata), image_key: user_profile.avatar.key ))) %>
+              <%= render(Profiles::AvatarComponent.new(src: cloudinary_url(user_profile.avatar.key, transformation: [user_profile.avatar_crop_constraints, { width: 200, height: 200, crop: 'fill' }], quality: 'auto', flags: 'progressive'))) %>
               <div class="vcolumn">
                 <%= link_to @pin.user.username, profile_path(@pin.user), class: 'username' %>
                 <small class="creation-time"><%= l(@pin.created_at) %></small>
