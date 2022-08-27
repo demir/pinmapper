@@ -1,5 +1,5 @@
 <div class="header">
-  <%= render(Profiles::AvatarComponent.new(src: cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(user.profile.avatar_crop_constraints, user.profile.avatar&.metadata), image_key: user.profile.avatar.key ), size: 140, klass: 'profile-user-avatar')) %>
+  <%= render(Profiles::AvatarComponent.new(src: cloudinary_url(user.profile.avatar.key, transformation: [user.profile.avatar_crop_constraints, { width: 200, height: 200, crop: 'fill' }], quality: 'auto', flags: 'progressive'), size: 140, klass: 'profile-user-avatar')) %>
   <div class="information">
     <div class="item">
       <span class="username"><%= user.username %></span>

@@ -2,7 +2,7 @@
   <div class="header">
     <div class="user">
       <% user_profile = @pin.user.profile %>
-      <%= render(Profiles::AvatarComponent.new(src: helpers.cloudfront_src(filters: '200x200/filters:format(jpeg)/filters:quality(40)', thumbor_crop: helpers.thumbor_crop(user_profile.avatar_crop_constraints, user_profile.avatar&.metadata), image_key: user_profile.avatar.key ))) %>
+      <%= render(Profiles::AvatarComponent.new(src: cloudinary_url(user_profile.avatar.key, transformation: [user_profile.avatar_crop_constraints, { width: 200, height: 200, crop: 'fill' }], quality: 'auto', flags: 'progressive'))) %>
       <div class="username-timeago">
         <span><%= link_to @pin.user.username, profile_path(@pin.user), class: 'username' %></span>
         <small class="time-ago"><%= "#{time_ago_in_words(@pin.created_at)} #{t('ago')}" %></small>
@@ -15,7 +15,7 @@
       <span><%= link_to @pin.city_country, explore_location_path(@pin.token), class: 'black-link-555' %></span>
     </div>
     <% if @pin.cover_photo.attached? %>
-      <%= image_tag helpers.cloudfront_src(filters: 'filters:format(jpeg)/filters:quality(40)', thumbor_crop: helpers.thumbor_crop(@pin.cover_photo_crop_constraints, @pin.cover_photo&.metadata), image_key: @pin.cover_photo.key ), class: 'responsive cover-photo', alt: '' %>
+      <%= cl_image_tag(@pin.cover_photo.key, transformation: [@pin.cover_photo_crop_constraints], quality: 'auto', flags: 'progressive', class: 'responsive cover-photo') %>
     <% end %>
     <div class="tags"><%= render(Taggable::TagListComponent.new(tags: @pin.tags)) %></div>
     <h3 class="name-h3"><%= link_to @pin.name, pin_path(@pin), class: 'name-link' %></h3>

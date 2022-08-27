@@ -17,11 +17,14 @@
           <small><%= "#{t('photo.photo_name')}: " %> <%= f.object.cover_photo.blob.filename.to_s  %>. <%= t('photo.change_photo_info') %></small>
         <% end %>
       <p class="selected-image-area">
-        <%= image_tag cloudfront_src(filters: '400x400/filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(pin.cover_photo_crop_constraints, pin.cover_photo&.metadata), image_key: pin.cover_photo.key ),
-              class: 'cover-photo responsive',
-              'data-instant-upload-target': 'image',
-              'data-cropper-target': 'image',
-              'data-action': 'instant-uploaded->cropper#changed' if pin.cover_photo.attached? && (pin.errors.blank? || !pin.cover_photo.changed?) %>
+        <%= cl_image_tag pin.cover_photo.key,
+                         transformation: [pin.cover_photo_crop_constraints],
+                         quality: 'auto',
+                         flags: 'progressive',
+                         class: 'cover-photo responsive',
+                        'data-instant-upload-target': 'image',
+                        'data-cropper-target': 'image',
+                        'data-action': 'instant-uploaded->cropper#changed' if pin.cover_photo.attached? && (pin.errors.blank? || !pin.cover_photo.changed?) %>
 
         <%= content_tag :img, nil, src: nil, class: 'cover-photo responsive',
               'data-instant-upload-target': 'image',

@@ -1753,7 +1753,7 @@ video {
     }
 
     &:before {
-      background: url("https://d3upp0w924wblq.cloudfront.net/balloons.jpg") center center no-repeat;
+      background: url("https://res.cloudinary.com/pinmapper/image/upload/balloons.jpg") center center no-repeat;
       @include background-size(cover);
     }
 
@@ -3852,14 +3852,14 @@ ul.hotel_facilities {
 /*-------- 2.5 Login/register --------*/
 #login_bg,
 #register_bg {
-  background: url(https://d3upp0w924wblq.cloudfront.net/istanbul.jpg) left bottom no-repeat fixed;
+  background: url(https://res.cloudinary.com/pinmapper/image/upload/istanbul.jpg) left bottom no-repeat fixed;
   @include background-size(cover);
   min-height: 100vh;
   width: 100%;
 }
 
 #register_bg {
-  background: url(https://d3upp0w924wblq.cloudfront.net/balloons.jpg) center bottom no-repeat fixed;
+  background: url(https://res.cloudinary.com/pinmapper/image/upload/balloons.jpg) center bottom no-repeat fixed;
   @include background-size(cover);
 }
 

@@ -58,10 +58,13 @@ class Pin < ApplicationRecord
   def cover_photo_crop_constraints
     return {} if cover_photo_crop.blank?
 
-    crop = [cover_photo_crop.crop_x.to_f, cover_photo_crop.crop_y.to_f,
-            cover_photo_crop.crop_width.to_f, cover_photo_crop.crop_height.to_f]
-
-    crop.compact.count == 4 ? { crop: crop } : {}
+    {
+      height: cover_photo_crop.crop_height.to_i,
+      width:  cover_photo_crop.crop_width.to_i,
+      x:      cover_photo_crop.crop_x.to_i,
+      y:      cover_photo_crop.crop_y.to_i,
+      crop:   'crop'
+    }
   end
 
   def city_country
