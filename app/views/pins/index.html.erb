@@ -8,7 +8,7 @@
       title: "#{t('home')} - Pinmapper",
       description: t('pinmapper_slogan'),
       site: :site,
-      image:    "https://d3upp0w924wblq.cloudfront.net/og_card_#{locale}.png",
+      image:    "https://res.cloudinary.com/pinmapper/image/upload/og_card_#{locale}.png",
       url: pins_url
     } %>
 <% set_meta_tags twitter: {
@@ -16,7 +16,7 @@
       title: "#{t('home')} - Pinmapper",
       description: t('pinmapper_slogan'),
       site: :site,
-      image:    "https://d3upp0w924wblq.cloudfront.net/og_card_#{locale}.png",
+      image:    "https://res.cloudinary.com/pinmapper/image/upload/og_card_#{locale}.png",
       url: pins_url
     } %>
 
@@ -30,7 +30,7 @@
     <!-- /row -->
   <% else %>
     <div class="empty-message responsive">
-      <%= image_tag 'https://d3upp0w924wblq.cloudfront.net/pins-empty-image.png', class: "responsive", alt: '' %>
+      <%= image_tag 'https://res.cloudinary.com/pinmapper/image/upload/pins-empty-image.png', class: "responsive", alt: '' %>
       <p><%= sanitize t('.empty_message', explore_link: link_to(t('explore.explore'), explore_index_path, class: 'black-link')) %></p>
     </div>
   <% end %>

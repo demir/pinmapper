@@ -1,6 +1,6 @@
 <div class="small-pin" data-sort-url="<%= move_pin_url %>">
   <div class="image">
-    <%= image_tag helpers.cloudfront_src(filters: '100x100/filters:format(jpeg)/filters:quality(40)', thumbor_crop: helpers.thumbor_crop(pin.cover_photo_crop_constraints, pin.cover_photo&.metadata), image_key: pin.cover_photo.key ), alt: '' if pin.cover_photo.attached? %>
+    <%= cl_image_tag(pin.cover_photo.key, transformation: [pin.cover_photo_crop_constraints, { width: 100, height: 100, crop: 'fill' }], quality: 'auto', flags: 'progressive', class: 'responsive cover-photo', alt: '') if pin.cover_photo.attached? %>
   </div>
   <div class="body">
     <div>

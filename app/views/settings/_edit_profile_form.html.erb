@@ -11,11 +11,15 @@
         <small><%= "#{t('photo.photo_name')}: " %> <%= f.object.avatar.blob.filename.to_s  %>. <%= t('photo.change_photo_info') %></small>
       <% end %>
       <p class="selected-image-area">
-        <%= image_tag cloudfront_src(filters: 'filters:format(jpeg)/filters:quality(40)', thumbor_crop: thumbor_crop(current_user.profile.avatar_crop_constraints, current_user.profile.avatar&.metadata), image_key: current_user.profile.avatar.key ),
-              class: 'rounded-circle user-avatar responsive', style: 'max-width: 400px; max-height: 400px',
-              'data-instant-upload-target': 'image',
-              'data-cropper-target': 'image',
-              'data-action': 'instant-uploaded->cropper#changed' if current_user.profile.avatar.attached? && (current_user.profile.errors.blank? || !current_user.profile.avatar.changed?) %>
+        <%= cl_image_tag current_user.profile.avatar.key,
+                         transformation: [current_user.profile.avatar_crop_constraints, { width: 400, height: 400, crop: 'fill' }],
+                         quality: 'auto',
+                         flags: 'progressive',
+                         class: 'rounded-circle user-avatar responsive',
+                         style: 'max-width: 400px; max-height: 400px',
+                         'data-instant-upload-target': 'image',
+                         'data-cropper-target': 'image',
+                         'data-action': 'instant-uploaded->cropper#changed' if current_user.profile.avatar.attached? && (current_user.profile.errors.blank? || !current_user.profile.avatar.changed?) %>
 
         <%= content_tag :img, nil, src: nil, width: 400, height: 400, style: 'visibility: hidden;',
               'data-instant-upload-target': 'image',
