@@ -1,0 +1,21 @@
+development:
+  cloud_name: <%= Rails.application.credentials.dig(:cloudinary, :cloud_name) %>
+  api_key: <%= Rails.application.credentials.dig(:cloudinary, :api_key) %>
+  api_secret: <%= Rails.application.credentials.dig(:cloudinary, :api_secret) %>
+  static_file_support: false
+  secure: true
+  sign_url: true
+production:
+  cloud_name: <%= Rails.application.credentials.dig(:cloudinary, :cloud_name) %>
+  api_key: <%= Rails.application.credentials.dig(:cloudinary, :api_key) %>
+  api_secret: <%= Rails.application.credentials.dig(:cloudinary, :api_secret) %>
+  static_file_support: true
+  secure: true
+  sign_url: true
+test:
+  cloud_name: <%= Rails.application.credentials.dig(:cloudinary, :cloud_name) %>
+  api_key: <%= Rails.application.credentials.dig(:cloudinary, :api_key) %>
+  api_secret: <%= Rails.application.credentials.dig(:cloudinary, :api_secret) %>
+  static_file_support: false
+  secure: true
+  sign_url: true

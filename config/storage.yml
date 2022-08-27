@@ -12,3 +12,6 @@ amazon:
   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
   region: eu-central-1
   bucket: <%= Rails.application.credentials.dig(:aws, :bucket) %>
+
+cloudinary:
+  service: Cloudinary
