@@ -110,6 +110,8 @@
 
   .image img {
     @include border-radius(9px 0 0 9px);
+    width: 90px;
+    height: 100%;
   }
 
   .body {
