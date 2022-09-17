@@ -7,10 +7,10 @@ RSpec.describe Taggable::ListItemComponent, type: :component do
   let(:tags) { create_list(:tag, 10) }
 
   before do
-    render_inline(described_class.with_collection(tags, current_user: current_user))
+    render_inline(described_class.with_collection(tags, current_user:))
   end
 
   it 'tag#name link' do
-    expect(rendered_component).to have_css '.tag > span > a.black-link'
+    expect(page).to have_css '.tag > span > a.black-link'
   end
 end

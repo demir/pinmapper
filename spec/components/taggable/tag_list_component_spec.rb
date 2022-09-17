@@ -10,14 +10,14 @@ RSpec.describe Taggable::TagListComponent, type: :component do
   end
 
   it 'renders first tag' do
-    expect(rendered_component).to have_css '.pin-tag', text: "##{pin.tags.first.name}"
+    expect(page).to have_css '.pin-tag', text: "##{pin.tags.first.name}"
   end
 
   it 'renders second tag' do
-    expect(rendered_component).to have_css '.pin-tag', text: "##{pin.tags.second.name}"
+    expect(page).to have_css '.pin-tag', text: "##{pin.tags.second.name}"
   end
 
   it 'renders third tag' do
-    expect(rendered_component).to have_css '.pin-tag', text: "##{pin.tags.third.name}"
+    expect(page).to have_css '.pin-tag', text: "##{pin.tags.third.name}"
   end
 end
