@@ -353,7 +353,7 @@ CREATE TABLE public.friendly_id_slugs (
     sluggable_id integer NOT NULL,
     sluggable_type character varying(50),
     scope character varying,
-    created_at timestamp without time zone
+    created_at timestamp(6) without time zone
 );
 
 

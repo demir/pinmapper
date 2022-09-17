@@ -72,7 +72,7 @@ class Pin < ApplicationRecord
   end
 
   def owner_public_boards
-    boards.where(user: user, privacy: 'public').order('pin_boards.created_at ASC')
+    boards.where(user:, privacy: 'public').order('pin_boards.created_at ASC')
   end
 
   private
@@ -125,7 +125,7 @@ class Pin < ApplicationRecord
   def description_length
     return if description.body.to_plain_text.length <= 5000
 
-    errors.add(:description, :too_long, { count: 5000 })
+    errors.add(:description, :too_long, **{ count: 5000 })
   end
 
   def max_number_of_description_attachments
