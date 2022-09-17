@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Pinmapper
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.0
 
     config.exceptions_app = routes
     config.active_record.schema_format = :sql
@@ -17,6 +17,7 @@ module Pinmapper
     config.i18n.available_locales = %i[en tr]
     config.i18n.default_locale = :en
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    config.active_support.cache_format_version = 7.0
 
     # After-initialize checker to add routes to reserved words
     config.after_initialize do

@@ -172,7 +172,7 @@ CREATE TABLE public.active_storage_blobs (
     metadata text,
     service_name character varying NOT NULL,
     byte_size bigint NOT NULL,
-    checksum character varying NOT NULL,
+    checksum character varying,
     created_at timestamp without time zone NOT NULL
 );
 
@@ -1572,6 +1572,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220316211421'),
 ('20220405080915'),
 ('20220405084634'),
-('20220809231928');
+('20220809231928'),
+('20220916225455'),
+('20220916225456'),
+('20220916225457');
 
 

@@ -7,7 +7,7 @@ ruby File.read('.ruby-version')
 
 gem 'activerecord-session_store'
 gem 'acts_as_list', '~> 1.0'
-gem 'acts-as-taggable-on', '~> 8.1'
+gem 'acts-as-taggable-on', '~> 9.0'
 gem 'acts_as_votable', '~> 0.13.2'
 gem 'aws-sdk-s3', '~> 1', require: false
 gem 'bootsnap', '~> 1.9', require: false
@@ -30,7 +30,7 @@ gem 'pg', '~> 1.2'
 gem 'pg_search', '~> 2.3.5'
 gem 'puma', '~> 5.5.2'
 gem 'pundit', '~> 2.1'
-gem 'rails', '~> 6.1.4'
+gem 'rails', '~> 7.0.4'
 gem 'redis', '~> 4.5.1'
 gem 'sass-rails', '~> 6.0'
 gem 'sidekiq'
@@ -45,7 +45,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 2.19'
   gem 'pry', '~> 0.14'
-  gem 'rspec-rails', '~> 5.0'
+  gem 'rspec-rails', '~> 6.0.0.rc1'
   gem 'rubocop', '~> 1.23', require: false
   gem 'rubocop-performance', '~> 1.12', require: false
   gem 'rubocop-rails', '~> 2.12', require: false
@@ -63,7 +63,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 3.36.0'
+  gem 'capybara', '~> 3.37', '>= 3.37.1'
   gem 'selenium-webdriver', '~> 4.0.3'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'webdrivers', '~> 5.0'
