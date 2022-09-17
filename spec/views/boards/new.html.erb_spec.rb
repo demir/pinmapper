@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'boards/new', type: :view do
   before do
     user = create(:user, :confirmed)
-    assign(:board, build(:board, user: user))
+    assign(:board, build(:board, user:))
   end
 
   it 'renders new board form' do

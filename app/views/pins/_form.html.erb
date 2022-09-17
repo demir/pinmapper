@@ -26,7 +26,7 @@
                         'data-cropper-target': 'image',
                         'data-action': 'instant-uploaded->cropper#changed' if pin.cover_photo.attached? && (pin.errors.blank? || !pin.cover_photo.changed?) %>
 
-        <%= content_tag :img, nil, src: nil, class: 'cover-photo responsive',
+        <%= content_tag :img, nil, class: 'cover-photo responsive',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
               'data-action': 'instant-uploaded->cropper#changed load->cropper#changed',

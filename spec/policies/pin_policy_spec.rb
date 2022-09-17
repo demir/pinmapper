@@ -6,7 +6,7 @@ RSpec.describe PinPolicy, type: :policy do
   subject(:pin_policy) { described_class }
 
   let(:user) { create(:user, :confirmed) }
-  let(:pin) { create(:pin, user: user) }
+  let(:pin) { create(:pin, user:) }
 
   permissions :create?, :new?, :liked_pins? do
     it 'denies access without current_user' do

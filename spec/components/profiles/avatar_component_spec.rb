@@ -8,15 +8,15 @@ RSpec.describe Profiles::AvatarComponent, type: :component do
   end
 
   it 'renders img tag' do
-    expect(rendered_component).to have_css 'img'
+    expect(page).to have_css 'img'
   end
 
   it 'rounded' do
-    expect(rendered_component).to have_css '.rounded-circle'
+    expect(page).to have_css '.rounded-circle'
   end
 
   it 'has user-avatar default class' do
-    expect(rendered_component).to have_css '.user-avatar'
+    expect(page).to have_css '.user-avatar'
   end
 
   it 'default width 40px' do

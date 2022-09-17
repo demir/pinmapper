@@ -8,17 +8,17 @@ RSpec.describe 'Search', type: :system, js: true do
 
     it '#boards' do
       visit search_boards_path(q: keyword)
-      expect(page.title).to include I18n.t('search.title', keyword: keyword)
+      expect(page.title).to include I18n.t('search.title', keyword:)
     end
 
     it '#pins' do
       visit search_pins_path(q: keyword)
-      expect(page.title).to include I18n.t('search.title', keyword: keyword)
+      expect(page.title).to include I18n.t('search.title', keyword:)
     end
 
     it '#users' do
       visit search_users_path(q: keyword)
-      expect(page.title).to include I18n.t('search.title', keyword: keyword)
+      expect(page.title).to include I18n.t('search.title', keyword:)
     end
   end
 
@@ -67,8 +67,8 @@ RSpec.describe 'Search', type: :system, js: true do
       let(:user) { create(:user, :confirmed) }
 
       it 'search boards' do
-        public_board = create(:board, name: 'pinmapper board', privacy: 'public', user: user)
-        create(:board, name: 'pinmapper board', privacy: 'secret', user: user)
+        public_board = create(:board, name: 'pinmapper board', privacy: 'public', user:)
+        create(:board, name: 'pinmapper board', privacy: 'secret', user:)
         visit root_path
         keyword = public_board.name
         fill_in 'q', with: keyword

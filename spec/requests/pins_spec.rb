@@ -16,7 +16,7 @@ require 'rails_helper'
 
 RSpec.describe '/pins', type: :request do
   let(:user) { create(:user, :confirmed) }
-  let(:pin) { create(:pin, user: user) }
+  let(:pin) { create(:pin, user:) }
   let(:headers) { { 'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9' } }
 
   context 'specs without sign in' do
@@ -96,7 +96,7 @@ RSpec.describe '/pins', type: :request do
       context 'with valid parameters' do
         it 'creates a new Pin' do
           expect do
-            post pins_url, params: { pin: attributes_for(:pin) }, headers: headers
+            post pins_url, params: { pin: attributes_for(:pin) }, headers:
           end.to change(Pin, :count).by(1)
         end
 
@@ -109,7 +109,7 @@ RSpec.describe '/pins', type: :request do
       context 'with invalid parameters' do
         it 'does not create a new Pin' do
           expect do
-            post pins_url, params: { pin: attributes_for(:pin, :invalid) }, headers: headers
+            post pins_url, params: { pin: attributes_for(:pin, :invalid) }, headers:
           end.not_to change(Pin, :count)
         end
 
@@ -148,14 +148,14 @@ RSpec.describe '/pins', type: :request do
 
     describe 'DELETE /destroy' do
       it 'destroys the requested pin' do
-        new_pin = create(:pin, user: user)
+        new_pin = create(:pin, user:)
         expect do
-          delete pin_url(id: new_pin), headers: headers
+          delete pin_url(id: new_pin), headers:
         end.to change(Pin, :count).by(-1)
       end
 
       it 'redirects to the pins list' do
-        new_pin = create(:pin, user: user)
+        new_pin = create(:pin, user:)
         delete pin_url(id: new_pin), headers: headers
         expect(response).to redirect_to(pins_url)
       end
