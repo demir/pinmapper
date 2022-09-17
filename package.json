@@ -22,7 +22,7 @@
     "popper.js": "^1.16.1",
     "sass": "^1.53.0",
     "sortablejs": "^1.15.0",
-    "stimulus": "^2.0.0",
+    "stimulus": "^3.1.0",
     "toastr": "^2.1.4",
     "trix": "^1.2.0"
   },
