@@ -7,11 +7,11 @@ module ActiveStorageHelpers
                        service_name: nil,
                        record: nil)
     ActiveStorage::Blob.create_and_upload! io:           file_fixture(filename).open,
-                                           filename:     filename,
-                                           content_type: content_type,
-                                           metadata:     metadata,
-                                           service_name: service_name,
-                                           record:       record
+                                           filename:,
+                                           content_type:,
+                                           metadata:,
+                                           service_name:,
+                                           record:
   end
 end
 

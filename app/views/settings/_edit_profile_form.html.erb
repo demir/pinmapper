@@ -21,7 +21,7 @@
                          'data-cropper-target': 'image',
                          'data-action': 'instant-uploaded->cropper#changed' if current_user.profile.avatar.attached? && (current_user.profile.errors.blank? || !current_user.profile.avatar.changed?) %>
 
-        <%= content_tag :img, nil, src: nil, width: 400, height: 400, style: 'visibility: hidden;',
+        <%= content_tag :img, nil, width: 400, height: 400, style: 'visibility: hidden;',
               'data-instant-upload-target': 'image',
               'data-cropper-target': 'image',
               'data-action': 'instant-uploaded->cropper#changed load->cropper#changed',

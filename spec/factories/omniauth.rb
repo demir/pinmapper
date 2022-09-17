@@ -3,9 +3,9 @@
 FactoryBot.define do
   factory :auth_hash, class: 'OmniAuth::AuthHash' do
     initialize_with do
-      OmniAuth::AuthHash.new({ provider: provider,
-                               uid:      uid,
-                               info:     { name: name, email: email, image: image } })
+      OmniAuth::AuthHash.new({ provider:,
+                               uid:,
+                               info:     { name:, email:, image: } })
     end
 
     trait :google do

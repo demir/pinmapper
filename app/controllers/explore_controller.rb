@@ -28,7 +28,7 @@ class ExploreController < ApplicationController
 
   def pagy_pins_latest(vars = {})
     pagy = Pagy::Countless.new(page: params[:page], countless_minimal: true, **vars)
-    [pagy, Pins::Latest.call(user: nil, pagy: pagy)]
+    [pagy, Pins::Latest.call(user: nil, pagy:)]
   end
 
   def pagy_nearby_pins(pin, vars = {})

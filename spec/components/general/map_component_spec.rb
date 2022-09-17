@@ -13,21 +13,21 @@ RSpec.describe General::MapComponent, type: :component do
 
   context 'div.map' do
     it 'data-controller' do
-      expect(rendered_component).to have_css 'div[data-controller="map"]'
+      expect(page).to have_css 'div[data-controller="map"]'
     end
 
     it 'data-makers-value' do
-      expect(rendered_component).to have_css 'div[data-map-markers-value]'
+      expect(page).to have_css 'div[data-map-markers-value]'
     end
 
     it 'data-access-token-value' do
-      expect(rendered_component).to(
+      expect(page).to(
         have_css("div[data-map-access-token-value='#{Rails.application.credentials.dig(:mapbox, :access_token)}']")
       )
     end
 
     it 'data-target-map-container' do
-      expect(rendered_component).to(
+      expect(page).to(
         have_css('div[data-map-target="container"]')
       )
     end

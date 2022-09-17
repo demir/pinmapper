@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Profiles', type: :system, js: true do
   let!(:current_user) { create(:user, :confirmed) }
   let!(:user) { create(:user, :confirmed) }
-  let!(:pins) { create_list(:pin, 2, user: user) }
+  let!(:pins) { create_list(:pin, 2, user:) }
 
   it 'visits profiles#show from pins#show' do
     visit pin_path(id: pins.first)

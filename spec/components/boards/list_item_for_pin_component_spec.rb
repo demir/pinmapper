@@ -8,14 +8,14 @@ RSpec.describe Boards::ListItemForPinComponent, type: :component do
   let(:pin) { create(:pin) }
 
   before do
-    render_inline(described_class.with_collection(boards, pin: pin, current_user: current_user))
+    render_inline(described_class.with_collection(boards, pin:, current_user:))
   end
 
   it 'board name' do
-    expect(rendered_component).to have_css '.board-name'
+    expect(page).to have_css '.board-name'
   end
 
   it 'add or remove button' do
-    expect(rendered_component).to have_css '.btn_1'
+    expect(page).to have_css '.btn_1'
   end
 end

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'pins/show', type: :view do
   Pin.destroy_all
   let(:user) { create(:user, :confirmed) }
-  let(:pin) { create(:pin, user: user) }
+  let(:pin) { create(:pin, user:) }
 
   before do
     assign(:pin, pin)
@@ -67,7 +67,7 @@ RSpec.describe 'pins/show', type: :view do
 
   context 'nearby pins' do
     it 'renders nearby pins' do
-      create_list(:pin, 3, user: user)
+      create_list(:pin, 3, user:)
       render
       expect(rendered).to match(/#{t('pins.show.nearby_pins')}/)
     end

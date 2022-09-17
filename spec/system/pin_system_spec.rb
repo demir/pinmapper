@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Pins', type: :system, js: true do
   let!(:user) { create(:user, :confirmed) }
-  let!(:pins) { create_list(:pin, 2, user: user) }
+  let!(:pins) { create_list(:pin, 2, user:) }
 
   context 'signed in or not signed in' do
     it 'visits tags/show' do
@@ -93,13 +93,13 @@ RSpec.describe 'Pins', type: :system, js: true do
 
     describe 'add to board' do
       context 'when there is board' do
-        let!(:boards) { create_list(:board, 3, user: user) }
+        let!(:boards) { create_list(:board, 3, user:) }
 
         it 'shows boards' do
           visit pins_path
           pin = pins.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
-          pin_element.find('#add-pin-to-board-menu').click
+          pin_element.find_by_id('add-pin-to-board-menu').click
           expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin",
                                    count: boards.count
         end
@@ -108,7 +108,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           visit pins_path
           pin = pins.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
-          pin_element.find('#add-pin-to-board-menu').click
+          pin_element.find_by_id('add-pin-to-board-menu').click
           find("#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin .add-button", match: :first).click
           expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin .remove-button",
                                    minimum: 1
@@ -121,18 +121,18 @@ RSpec.describe 'Pins', type: :system, js: true do
           board.pins.destroy_all
           board.pins << pin
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
-          pin_element.find('#add-pin-to-board-menu').click
+          pin_element.find_by_id('add-pin-to-board-menu').click
           pin_element.find("#board_#{board.id} .remove-button").click
           expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin .remove-button",
                                    count: 0
         end
 
         it 'can infinite scroll' do
-          create_list(:board, 30, user: user)
+          create_list(:board, 30, user:)
           visit pins_path
           pin = pins.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
-          pin_element.find('#add-pin-to-board-menu').click
+          pin_element.find_by_id('add-pin-to-board-menu').click
           scroll_to(pin_element.find(".body #add_to_board_list_pin_#{pin.id}"), align: :bottom)
           expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin",
                                    minimum: user.boards_count
@@ -250,7 +250,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           pin_element = more_button.ancestor('.pin-show-main')
           more_button.click
           delete_pin_link_element = pin_element.find(".header .dropdown.pin-more .dropdown-menu
-                                                      form.button_to .dropdown-item[value='#{I18n.t('destroy')}']")
+                                                      form.button_to .dropdown-item", text: I18n.t('destroy'))
           delete_pin_link_element.click
           page.accept_alert
           expect(page).to have_current_path pins_path(locale: I18n.locale)

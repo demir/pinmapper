@@ -9,32 +9,32 @@ RSpec.describe Pins::Boards::AddedByOwnerComponent, type: :component do
   let(:board2) { create(:board, user: current_user) }
 
   before do
-    render_inline(described_class.new(pin: pin, current_user: current_user))
+    render_inline(described_class.new(pin:, current_user:))
   end
 
   context 'when not added to any board' do
     before do
-      render_inline(described_class.new(pin: pin, current_user: current_user))
+      render_inline(described_class.new(pin:, current_user:))
     end
 
     it 'show added by owner message' do
-      expect(rendered_component).not_to have_css '.pin-added-by-owner'
+      expect(page).not_to have_css '.pin-added-by-owner'
     end
   end
 
   context 'when added to single board' do
     before do
       board1.pins << pin
-      render_inline(described_class.new(pin: pin, current_user: current_user))
+      render_inline(described_class.new(pin:, current_user:))
     end
 
     it 'show added by owner message' do
-      expect(rendered_component).to have_css '.pin-added-by-owner a.board-link',
-                                             text: pin.owner_public_boards.first.name
+      expect(page).to have_css '.pin-added-by-owner a.board-link',
+                               text: pin.owner_public_boards.first.name
     end
 
     it 'not show modal link' do
-      expect(rendered_component).not_to have_css '.pin-added-by-owner a.board-link[data-toggle=modal]'
+      expect(page).not_to have_css '.pin-added-by-owner a.board-link[data-toggle=modal]'
     end
   end
 
@@ -42,16 +42,16 @@ RSpec.describe Pins::Boards::AddedByOwnerComponent, type: :component do
     before do
       board1.pins << pin
       board2.pins << pin
-      render_inline(described_class.new(pin: pin, current_user: current_user))
+      render_inline(described_class.new(pin:, current_user:))
     end
 
     it 'first board' do
-      expect(rendered_component).to have_css '.pin-added-by-owner a.board-link',
-                                             text: pin.owner_public_boards.first.name
+      expect(page).to have_css '.pin-added-by-owner a.board-link',
+                               text: pin.owner_public_boards.first.name
     end
 
     it 'show modal link' do
-      expect(rendered_component).to(
+      expect(page).to(
         have_css(".pin-added-by-owner a.board-link[data-target='#pin_boards_added_by_owner_pin_#{pin.id}']")
       )
     end

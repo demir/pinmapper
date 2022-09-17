@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'pins/new', type: :view do
   before do
     user = create(:user, :confirmed)
-    assign(:pin, build(:pin, user: user))
+    assign(:pin, build(:pin, user:))
   end
 
   it 'renders new pin form' do
