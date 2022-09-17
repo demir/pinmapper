@@ -6,7 +6,7 @@ RSpec.describe BoardPolicy, type: :policy do
   subject(:board_policy) { described_class }
 
   let(:user) { create(:user, :confirmed) }
-  let(:board) { create(:board, user: user) }
+  let(:board) { create(:board, user:) }
 
   permissions :create?, :new?, :index?, :add_to_board_list?, :following_boards? do
     it 'denies access without current_user' do

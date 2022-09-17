@@ -61,7 +61,7 @@ RSpec.describe '/boards', type: :request do
       context 'with valid parameters' do
         it 'creates a new Board' do
           expect do
-            post boards_url, params: { board: attributes_for(:board) }, headers: headers
+            post boards_url, params: { board: attributes_for(:board) }, headers:
           end.to change(Board, :count).by(1)
         end
 
@@ -74,7 +74,7 @@ RSpec.describe '/boards', type: :request do
       context 'with invalid parameters' do
         it 'does not create a new Board' do
           expect do
-            post boards_url, params: { board: attributes_for(:board, :invalid) }, headers: headers
+            post boards_url, params: { board: attributes_for(:board, :invalid) }, headers:
           end.not_to change(Board, :count)
         end
 
@@ -115,7 +115,7 @@ RSpec.describe '/boards', type: :request do
       it 'destroys the requested board' do
         new_board = create(:board, user: current_user)
         expect do
-          delete board_url(id: new_board), headers: headers
+          delete board_url(id: new_board), headers:
         end.to change(Board, :count).by(-1)
       end
 
@@ -143,7 +143,7 @@ RSpec.describe '/boards', type: :request do
 
         it 'raises validation error #add_pin' do
           expect  do
-            get add_pin_board_path(id: board, pin_id: pin), headers: headers
+            get add_pin_board_path(id: board, pin_id: pin), headers:
           end.to raise_error(ActiveRecord::RecordInvalid)
         end
 
@@ -208,7 +208,7 @@ RSpec.describe '/boards', type: :request do
 
     it 'can not POST /create' do
       expect do
-        post boards_url, params: { board: attributes_for(:board) }, headers: headers
+        post boards_url, params: { board: attributes_for(:board) }, headers:
       end.not_to change(Board, :count)
     end
 
@@ -221,7 +221,7 @@ RSpec.describe '/boards', type: :request do
     it 'can not DELETE /destroy' do
       new_board = create(:board, user: current_user)
       expect do
-        delete board_url(id: new_board), headers: headers
+        delete board_url(id: new_board), headers:
       end.not_to change(Board, :count)
     end
 

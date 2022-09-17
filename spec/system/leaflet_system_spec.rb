@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Leaflet', type: :system, js: true do
   let!(:user) { create(:user, :confirmed) }
-  let!(:pins) { create_list(:pin, 2, user: user) }
+  let!(:pins) { create_list(:pin, 2, user:) }
 
   context 'pins map' do
     before do

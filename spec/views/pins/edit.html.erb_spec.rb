@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'pins/edit', type: :view do
   let!(:user) { create(:user, :confirmed) }
-  let!(:pin) { assign(:pin, create(:pin, user: user)) }
+  let!(:pin) { assign(:pin, create(:pin, user:)) }
 
   it 'renders the edit pin form' do
     render

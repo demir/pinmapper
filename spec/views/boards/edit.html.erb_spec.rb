@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'boards/edit', type: :view do
   let(:user) { create(:user, :confirmed) }
-  let(:board) { create(:board, user: user) }
+  let(:board) { create(:board, user:) }
 
   before do
     assign(:board, board)

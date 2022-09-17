@@ -18,7 +18,7 @@ RSpec.describe 'Users::OmniauthCallbacks', type: :request do
 
       context "when google_oauth2 email doesn't exist in the system" do
         before do
-          post user_google_oauth2_omniauth_callback_path, headers: headers
+          post user_google_oauth2_omniauth_callback_path, headers:
         end
 
         let(:user) { User.find_by(email: 'testuser@gmail.com') }
@@ -55,7 +55,7 @@ RSpec.describe 'Users::OmniauthCallbacks', type: :request do
 
       context "when facebook email doesn't exist in the system" do
         before do
-          post user_facebook_omniauth_callback_path, headers: headers
+          post user_facebook_omniauth_callback_path, headers:
         end
 
         let(:user) { User.find_by(email: 'testuser@facebook.com') }

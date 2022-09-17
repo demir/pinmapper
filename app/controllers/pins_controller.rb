@@ -110,6 +110,6 @@ class PinsController < ApplicationController
 
   def pagy_pins_latest(vars = {})
     pagy = Pagy::Countless.new(page: params[:page], countless_minimal: true, **vars)
-    [pagy, Pins::Latest.call(user: current_user, pagy: pagy)]
+    [pagy, Pins::Latest.call(user: current_user, pagy:)]
   end
 end

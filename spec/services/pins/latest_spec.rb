@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Pins::Latest, type: :service do
   describe '#call' do
-    subject(:latest_pins) { described_class.call(user: current_user, pagy: pagy) }
+    subject(:latest_pins) { described_class.call(user: current_user, pagy:) }
 
     let!(:current_user) { create(:user, :confirmed) }
     let!(:pins) { create_list(:pin, 5, user: current_user) }

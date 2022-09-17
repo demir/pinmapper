@@ -38,7 +38,10 @@ RSpec/RepeatedExample:
 Rails/InverseOf:
   Enabled: false
 
-Capybara/SpecificMatcher:
+RSpec/NoExpectationExample:
+  Enabled: false
+
+RSpec/Capybara/SpecificMatcher:
   Enabled: false
 
 AllCops:
