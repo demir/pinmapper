@@ -44,6 +44,9 @@ RSpec/NoExpectationExample:
 RSpec/Capybara/SpecificMatcher:
   Enabled: false
 
+Rails/DynamicFindBy:
+  Enabled: false
+
 AllCops:
   NewCops: enable
   Exclude:
