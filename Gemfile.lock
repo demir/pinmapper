@@ -498,6 +498,7 @@ DEPENDENCIES
   rubocop-performance (~> 1)
   rubocop-rails (~> 2)
   rubocop-rspec (~> 2)
+  ruby-vips
   sass-rails (~> 6.0)
   selenium-webdriver (~> 4.0.3)
   shoulda-matchers (~> 5.0)
