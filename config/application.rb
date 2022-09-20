@@ -18,6 +18,7 @@ module Pinmapper
     config.i18n.default_locale = :en
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.active_support.cache_format_version = 7.0
+    config.active_storage.variant_processor = :mini_magick
 
     # After-initialize checker to add routes to reserved words
     config.after_initialize do
