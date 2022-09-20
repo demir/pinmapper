@@ -1,5 +1,5 @@
-<div class="dropdown dropleft add-pin-to-board-dropdown" id="add-pin-to-board-dropdown_<%= dom_id(pin) %>" data-controller="dropdown"  data-dropdown-id-value="add-pin-to-board-dropdown_<%= dom_id(pin) %>" >
-  <%= link_to '#', class: "#{klass_handled}", id: 'add-pin-to-board-menu', data: { toggle: 'dropdown', 'aria-haspopup': true, 'aria-expanded': false } do %><% end %>
+<div class="dropdown dropstart add-pin-to-board-dropdown" id="add-pin-to-board-dropdown_<%= dom_id(pin) %>" data-controller="dropdown"  data-dropdown-id-value="add-pin-to-board-dropdown_<%= dom_id(pin) %>" >
+  <%= link_to '#', class: "#{klass_handled}", id: 'add-pin-to-board-menu', data: { 'bs-toggle': 'dropdown', 'aria-haspopup': true, 'aria-expanded': false } do %><% end %>
 
   <div class="dropdown-menu add-pin-to-board" aria-labelledby="add-pin-to-board-menu" data-action="click->dropdown#stopPropagation turbo:frame-load->dropdown#updateButton" >
     <div class="header">

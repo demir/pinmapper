@@ -32,7 +32,7 @@ RSpec.describe Boards::MoreButtonComponent, type: :component do
       end
 
       it 'does not render button' do
-        expect(page).not_to have_css '.dropdown .dropleft .pin-more'
+        expect(page).not_to have_css '.dropdown .dropstart .pin-more'
       end
 
       it 'does not render #edit' do

@@ -20,7 +20,7 @@ RSpec.describe Pins::Boards::AddToBoardButtonComponent, type: :component do
     end
 
     it 'classes' do
-      expect(page).to have_css 'div[class="dropdown dropleft add-pin-to-board-dropdown"]'
+      expect(page).to have_css 'div[class="dropdown dropstart add-pin-to-board-dropdown"]'
     end
 
     it 'controller id value' do

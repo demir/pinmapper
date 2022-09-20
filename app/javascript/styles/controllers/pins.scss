@@ -352,6 +352,7 @@ aside.widgets {
 
 .infinite-pins {
   overflow: auto;
+  flex-direction: column;
 }
 
 //-------------------- Pins#form -------------------//

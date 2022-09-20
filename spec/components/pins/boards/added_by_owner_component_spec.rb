@@ -34,7 +34,7 @@ RSpec.describe Pins::Boards::AddedByOwnerComponent, type: :component do
     end
 
     it 'not show modal link' do
-      expect(page).not_to have_css '.pin-added-by-owner a.board-link[data-toggle=modal]'
+      expect(page).not_to have_css '.pin-added-by-owner a.board-link[data-bs-toggle=modal]'
     end
   end
 
