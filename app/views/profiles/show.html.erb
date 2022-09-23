@@ -4,7 +4,7 @@
                  keywords: t('pin_base_keywords') %>
 <% page_title = "@#{@user.username} / #{ t('profile') }" %>
 <% title page_title %>
-<% image = cl_image_tag(@user.profile.avatar.key, transformation: [@user.profile.avatar_crop_constraints, { width: 200, height: 200, crop: 'fill' }], quality: 'auto', flags: 'progressive') %>
+<% image = cloudinary_url(@user.profile.avatar.key, transformation: [@user.profile.avatar_crop_constraints, { width: 200, height: 200, crop: 'fill' }], quality: 'auto', flags: 'progressive') %>
 <% set_meta_tags og: {
       type:     'website',
       title: "#{ page_title } - Pinmapper",
