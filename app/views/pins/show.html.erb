@@ -3,7 +3,6 @@
                               "tr" => pin_url(@pin, locale: :tr) },
                  description: @pin.cover_photo_description.presence || @pin.description&.body&.to_plain_text,
                  keywords: keywords.split(', ').uniq.join(', ') %>
-<% first_image = @pin&.description&.embeds&.find { |embeds| embeds.image? } if @pin.cover_photo.blank? %>
 <% og = {
       type:     'website',
       title: "#{@pin.name} - Pinmapper",
@@ -18,8 +17,11 @@
       site: :site,
       url: pin_url(@pin)
    } %>
-<% image = cl_image_tag(@pin.cover_photo.key, transformation: [@pin.cover_photo_crop_constraints], quality: 'auto', flags: 'progressive') if @pin.cover_photo.present? %>
-<% image = cl_image_tag(first_image.blob.key) if first_image.present? %>
+<% image = cloudinary_url(@pin.cover_photo.key, transformation: [@pin.cover_photo_crop_constraints], quality: 'auto', flags: 'progressive') if @pin.cover_photo.present? %>
+<% if image.blank? %>
+  <% first_image = @pin&.description&.embeds&.find { |embeds| embeds.image? } %>
+  <% image = cloudinary_url(first_image.blob.key) if first_image.present? %>
+<% end %>
 <% if image.present? %>
   <% og[:image] = image %>
   <% twitter[:image] = image %>
