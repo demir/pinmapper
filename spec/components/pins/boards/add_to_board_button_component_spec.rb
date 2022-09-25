@@ -60,7 +60,7 @@ RSpec.describe Pins::Boards::AddToBoardButtonComponent, type: :component do
 
     it 'data-action' do
       expect(page).to(
-        have_css('div[data-action="click->dropdown#stopPropagation turbo:frame-load->dropdown#updateButton"]')
+        have_css('div[data-action="turbo:frame-load->dropdown#updateButton"]')
       )
     end
   end
