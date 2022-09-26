@@ -52,7 +52,7 @@ RSpec.describe Pins::Boards::AddedByOwnerComponent, type: :component do
 
     it 'show modal link' do
       expect(page).to(
-        have_css(".pin-added-by-owner a.board-link[data-target='#pin_boards_added_by_owner_pin_#{pin.id}']")
+        have_css(".pin-added-by-owner a.board-link[data-bs-target='#pin_boards_added_by_owner_pin_#{pin.id}']")
       )
     end
   end
