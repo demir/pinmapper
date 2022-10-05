@@ -13,9 +13,7 @@
 			</figure>
       <p><%= t('.resend_confirmation_instructions') %></p>
       <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), method: :post, html: { 'data-turbo' => 'false' }) do |f| %>
-        <div class="form-group">
-          <%= f.input :email, autofocus: true, input_html: { class: 'form-control', id: 'email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) } %>
-        </div>
+        <%= f.input :email, autofocus: true, input_html: { class: 'form-control', id: 'email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) } %>
         <%= f.button :submit, t('send'), class: 'btn_1 rounded full-width' %>
         <div class="text-center add_top_10">
           <%= t('devise.already_have_an_account') %>

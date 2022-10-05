@@ -3,14 +3,6 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static values = { id: String }
 
-  stopPropagation(event) {
-    if (!event.target.classList.contains('btn_1')) {
-      event.stopPropagation();
-    } else {
-      this.element.classList.remove('show')
-    }
-  }
-
   hide() {
     let dropdowns = this.element.getElementsByClassName('add-pin-to-board-dropdown');
     for (let dropdownParent of dropdowns) {

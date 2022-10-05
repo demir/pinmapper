@@ -14,8 +14,8 @@
       <%= f.input :cover_photo, as: :file, input_html: { 'data-instant-upload-target': 'input',
             'data-action': 'instant-upload#changed' } %>
       <% if f.object.cover_photo.attached? %>
-          <small><%= "#{t('photo.photo_name')}: " %> <%= f.object.cover_photo.blob.filename.to_s  %>. <%= t('photo.change_photo_info') %></small>
-        <% end %>
+        <div class="form-text cover-photo-text"><%= "#{t('photo.photo_name')}: " %> <%= f.object.cover_photo.blob.filename.to_s  %>. <%= t('photo.change_photo_info') %></div>
+      <% end %>
       <p class="selected-image-area">
         <%= cl_image_tag pin.cover_photo.key,
                          transformation: [pin.cover_photo_crop_constraints],
@@ -33,7 +33,7 @@
               src: url_for(pin.cover_photo.attached? ? f&.object&.cover_photo : '') if (!pin.cover_photo.attached? || pin.errors.present?) && (pin.cover_photo.changed? || pin.new_record? || pin.cover_photo&.url.blank?) %>
       </p>
     </div>
-    <%= f.input :cover_photo_description, input_html: { rows: 5 } %>
+    <%= f.input :cover_photo_description, input_html: { style: 'height: 120px;' } %>
     <%= f.input :tag_list, placeholder: t('.tag_list.placeholder'),
                            hint: t('.tag_list.hint'),
                            input_html: { value: f.object.tag_list.to_s } %>
