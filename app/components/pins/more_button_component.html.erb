@@ -1,11 +1,11 @@
-<div class="dropdown dropleft pin-more">
+<div class="dropdown dropstart pin-more">
   <%= inline_svg_pack_tag 'media/images/theme/three-dots.svg', class: 'bi bi-three-dots dropdown-toggle',
                                                               width: '16px',
                                                               height: '16px',
                                                               fill: 'currentColor',
                                                               viewBox: '0 0 16 16',
                                                               id: 'pin-more',
-                                                              data: { toggle: 'dropdown' } %>
+                                                              data: { 'bs-toggle': 'dropdown' } %>
   <div class="dropdown-menu" aria-labelledby="pin-more">
     <% if pin.user == current_user %>
       <%= link_to t('edit'), edit_pin_path(pin), class: 'dropdown-item' %>

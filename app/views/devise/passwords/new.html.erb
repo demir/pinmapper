@@ -13,9 +13,7 @@
 			</figure>
       <p><%= t('.send_reset_link_message') %></p>
       <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), method: :post, html: { 'data-turbo' => 'false' }) do |f| %>
-        <div class="form-group">
-          <%= f.input :email, input_html: { class: 'form-control', id: 'email' } %>
-        </div>
+        <%= f.input :email, input_html: { class: 'form-control', id: 'email' } %>
         <%= f.button :submit, t('.send_reset_link'), class: 'btn_1 rounded full-width' %>
         <div class="text-center add_top_10">
           <%= t('devise.already_have_an_account') %>

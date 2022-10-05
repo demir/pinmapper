@@ -1,5 +1,5 @@
 <%= simple_form_for(current_user.profile, url: settings_profiles_update_path, html: { method: :put, class: 'edit-profile-form' }) do |f| %>
-  <div class="form-group rounded-cropper"
+  <div class="rounded-cropper"
       data-controller='instant-upload cropper'
       data-cropper-model-value='profile'
       data-cropper-crop-model-value='avatar_crop'
@@ -8,7 +8,7 @@
       <%= f.input :avatar, as: :file, input_html: { 'data-instant-upload-target': 'input',
             'data-action': 'instant-upload#changed' } %>
       <% if f.object.avatar.attached? %>
-        <small><%= "#{t('photo.photo_name')}: " %> <%= f.object.avatar.blob.filename.to_s  %>. <%= t('photo.change_photo_info') %></small>
+        <div class="form-text avatar-text"><%= "#{t('photo.photo_name')}: " %> <%= f.object.avatar.blob.filename.to_s  %>. <%= t('photo.change_photo_info') %></div>
       <% end %>
       <p class="selected-image-area">
         <%= cl_image_tag current_user.profile.avatar.key,
@@ -28,8 +28,6 @@
               src: url_for((current_user.profile.avatar.attached?) ? f&.object&.avatar : '') if (!current_user.profile.avatar.attached? || current_user.profile.errors.present?) && (current_user.profile.avatar.changed? || current_user.profile.new_record? || current_user.profile.avatar&.url.blank?) %>
       </p>
   </div>
-  <div class="form-group">
-    <%= f.input :bio, input_html: { rows: 3 } %>
-  </div>
+  <%= f.input :bio, input_html: { style: 'height: 100px;' } %>
   <%= f.button :submit, t('update'), class: 'btn_1 rounded' %>
 <% end %>

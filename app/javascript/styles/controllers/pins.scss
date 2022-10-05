@@ -352,12 +352,17 @@ aside.widgets {
 
 .infinite-pins {
   overflow: auto;
+  flex-direction: column;
 }
 
 //-------------------- Pins#form -------------------//
 .pin-form {
   .cover-photo.responsive {
     max-width: 400px;
+  }
+
+  .cover-photo-text {
+    margin-top: -16px;
   }
 
   .map {

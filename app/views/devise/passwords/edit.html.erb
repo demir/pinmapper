@@ -10,12 +10,8 @@
 			</figure>
       <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), method: :put, html: { 'data-turbo' => 'false' }) do |f| %>
         <%= f.hidden_field :reset_password_token %>
-        <div class="form-group">
-          <%= f.input :password, label: t('.new_password') , input_html: { class: 'form-control', id: 'password1' }, hint: t('devise.minimum_characters', count: @minimum_password_length) %>
-        </div>
-        <div class="form-group">
-          <%= f.input :password_confirmation, label: t('.new_password_confirmation') , input_html: { class: 'form-control', id: 'password2' } %>
-        </div>
+        <%= f.input :password, label: t('.new_password') , input_html: { class: 'form-control', id: 'password1' }, hint: t('devise.minimum_characters', count: @minimum_password_length) %>
+        <%= f.input :password_confirmation, label: t('.new_password_confirmation') , input_html: { class: 'form-control', id: 'password2' } %>
         <%= f.button :submit, t('.change_my_password'), class: 'btn_1 rounded full-width add_top_30' %>
         <div class="text-center add_top_10">
           <%= t('devise.already_have_an_account') %>

@@ -17,7 +17,7 @@ RSpec.describe Boards::BoardComponent, type: :component do
         render_inline(described_class.with_collection(boards,
                                                       options: { current_user:,
                                                                  show_privacy_badge: true }))
-        expect(page).to have_css '.board .badge-primary.privacy'
+        expect(page).to have_css '.board .bg-primary.privacy'
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe Boards::BoardComponent, type: :component do
         render_inline(described_class.with_collection(new_boards,
                                                       options: { current_user:,
                                                                  show_privacy_badge: true }))
-        expect(page).to have_css '.board .badge-secondary.privacy'
+        expect(page).to have_css '.board .bg-secondary.privacy'
       end
     end
   end

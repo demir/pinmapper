@@ -159,6 +159,9 @@ RSpec.describe 'Pins', type: :system, js: true do
     end
 
     it 'creates a new pin' do
+      # cookies-bar değiştirilirse aşağıdaki 2 satıra gerek kalmayabilir
+      visit root_path
+      find('.cookies-bar > .btn_1').click
       visit new_pin_path
       fill_in Pin.human_attribute_name(:name), with: Faker::Address.city
       fill_in Pin.human_attribute_name(:address), with: 'Samsun, Türkiye'
@@ -171,6 +174,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
     it 'renders new template after validation errors' do
       visit new_pin_path
+      find('.cookies-bar > .btn_1').click
       click_button I18n.t('helpers.submit.create')
       expect(page).to have_content I18n.t('simple_form.error_notification.default_message')
     end
@@ -182,6 +186,9 @@ RSpec.describe 'Pins', type: :system, js: true do
     end
 
     it 'edits a pin' do
+      # cookies-bar değiştirilirse aşağıdaki 2 satıra gerek kalmayabilir
+      visit root_path
+      find('.cookies-bar > .btn_1').click
       pin = pins.last
       visit edit_pin_path(id: pin)
       new_name = Faker::Lorem.sentence
@@ -192,6 +199,9 @@ RSpec.describe 'Pins', type: :system, js: true do
     end
 
     it 'renders edit template after validation errors' do
+      # cookies-bar değiştirilirse aşağıdaki 2 satıra gerek kalmayabilir
+      visit root_path
+      find('.cookies-bar > .btn_1').click
       pin = pins.last
       visit edit_pin_path(id: pin)
       fill_in User.human_attribute_name(:name), with: ''
@@ -345,7 +355,7 @@ RSpec.describe 'Pins', type: :system, js: true do
       context 'modal' do
         it 'show modal' do
           visit explore_index_path
-          find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
+          find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\
             '#pin_boards_added_by_owner_pin_#{pin.id}']").click
           expect(page).to have_css '.pin-boards-added-by-owner-modal.show'
         end
@@ -358,7 +368,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
           it 'visits the edit page from modal' do
             visit explore_index_path
-            find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
+            find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
             modal = find('.pin-boards-added-by-owner-modal.show')
             more_button = modal.find('.board .board-more svg', match: :first)
@@ -376,7 +386,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
           it 'delete board from modal' do
             visit explore_index_path
-            find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
+            find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
             modal = find('.pin-boards-added-by-owner-modal.show')
             more_button = modal.find('.board .board-more svg', match: :first)
@@ -395,7 +405,7 @@ RSpec.describe 'Pins', type: :system, js: true do
         context 'when boards owner is not current_user' do
           it 'not show board more button' do
             visit explore_index_path
-            find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-target=\
+            find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
             expect(page).not_to have_css '.pin-boards-added-by-owner-modal.show .board .board-more svg'
           end

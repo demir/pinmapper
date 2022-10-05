@@ -1,11 +1,11 @@
-<div class="dropdown dropleft board-more">
+<div class="dropdown dropstart board-more">
   <%= inline_svg_pack_tag 'media/images/theme/three-dots.svg', class: 'bi bi-three-dots dropdown-toggle',
                                                               width: '16px',
                                                               height: '16px',
                                                               fill: 'currentColor',
                                                               viewBox: '0 0 16 16',
                                                               id: 'board-more',
-                                                              data: { toggle: 'dropdown' } %>
+                                                              data: { 'bs-toggle': 'dropdown' } %>
   <div class="dropdown-menu" aria-labelledby="board-more">
     <% if board.user == current_user %>
       <%= link_to t('edit'), edit_board_path(board), class: 'dropdown-item', target: :_top %>
