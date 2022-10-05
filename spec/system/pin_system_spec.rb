@@ -366,8 +366,9 @@ RSpec.describe 'Pins', type: :system, js: true do
           end
           # rubocop:disable RSpec/ExampleLength
 
-          it 'visits the edit page from modal' do
+          it 'visits the edit page from modal', :focus do
             visit explore_index_path
+            find('.cookies-bar > .btn_1').click
             find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
             modal = find('.pin-boards-added-by-owner-modal.show')
