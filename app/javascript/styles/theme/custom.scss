@@ -4,11 +4,11 @@
 }
 
 .dropdown-footer {
-	border: none;
+  border: none;
   padding-right: 10px;
   padding-left: 10px;
-	@include rgba(bg, #fff, 0.05);
-	@include border-radius(3px);
+  @include rgba(bg, #fff, 0.05);
+  @include border-radius(3px);
   height: 30px;
 }
 
@@ -24,11 +24,12 @@ header {
   align-items: center;
 }
 
-header > .container {
+header>.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0;
+
   // tablet ve altındaki cihazlar için
   @media only screen and (max-width: 991px) {
     padding-left: 15px;
@@ -36,37 +37,45 @@ header > .container {
   }
 }
 
-header > .container {
+header>.container {
   display: flex;
   align-items: center;
   gap: 15px;
+
   .search {
     border: 1px solid $border-color-3;
     @include border-radius(3px);
     width: 400px;
+
     @include tablet {
       max-width: 250px;
     }
+
     &:focus-within {
       // box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 1px;
       box-shadow: 0px 0px 0px 1px $color-2;
     }
+
     form {
       display: flex;
       align-items: center;
+
       #q {
         border: 0;
+
         &:focus {
           box-shadow: none;
         }
       }
+
       button {
         border: 0;
         background: none;
         padding: 5px 9px;
         margin-right: 5px;
+
         &:hover {
-          background-color:#f4f4f4;
+          background-color: #f4f4f4;
           @include border-radius(50%);
         }
       }
@@ -90,23 +99,27 @@ header > .container {
   /* Menu */
   .main-menu {
     display: flex;
+
     .nav-menu {
       display: flex;
       align-items: center;
       gap: 20px;
+
       .user-menu {
         display: none;
       }
+
       .not-clickable {
         display: none;
       }
     }
   }
 
-  header.sticky .main-menu > ul > li span > a {
+  header.sticky .main-menu>ul>li span>a {
     color: #444;
   }
-  header.sticky .main-menu > ul > li span:hover > a {
+
+  header.sticky .main-menu>ul>li span:hover>a {
     opacity: 1;
     color: #fc5b62;
   }
@@ -115,8 +128,8 @@ header > .container {
 /* All styles for screen size under 767px */
 @media only screen and (max-width: 767px) {
 
-  header .main-menu .nav-menu{
-    .dropdown.dropdown-user  {
+  header .main-menu .nav-menu {
+    .dropdown.dropdown-user {
       display: none;
     }
 
@@ -127,14 +140,17 @@ header > .container {
     .visible-menu-item {
       padding-top: 0;
       padding-bottom: 0;
-      a:not(.btn_1){
+
+      a:not(.btn_1) {
         display: block;
         padding-top: 7.5px;
         padding-bottom: 7.5px;
+
         &:hover {
           background-color: #e4e4e4;
         }
       }
+
       .btn_1 {
         display: block;
         margin-bottom: 7.5px;
@@ -145,10 +161,12 @@ header > .container {
       li {
         padding-top: 0;
         padding-bottom: 0;
-        a{
+
+        a {
           display: block;
           padding-top: 7.5px;
           padding-bottom: 7.5px;
+
           &:hover {
             background-color: #e4e4e4;
           }
@@ -194,6 +212,7 @@ header > .container {
     transition: 0.2s;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     padding: 7.5px;
+
     .logged {
       display: inline-block;
       width: 25px;
@@ -215,9 +234,10 @@ header > .container {
 }
 
 .filters_listing {
-	&.center {
+  &.center {
     padding-top: 5px;
   }
+
   .actions {
     display: flex;
     justify-content: flex-end;
@@ -229,6 +249,7 @@ header > .container {
 
 .soft-black-link {
   color: #999;
+
   &:hover {
     color: #fc5b62;
   }
@@ -236,6 +257,7 @@ header > .container {
 
 .black-link {
   color: #000;
+
   &:hover {
     color: #fc5b62;
   }
@@ -243,6 +265,7 @@ header > .container {
 
 .black-link-555 {
   color: #555;
+
   &:hover {
     color: #fc5b62;
   }
@@ -253,22 +276,19 @@ header > .container {
 }
 
 header {
-  .dropdown-menu {
-    border-radius: 5px !important;
-    width: 200px !important;
-    left: -45px !important;
-    top: -15px !important;
-  }
   .dropdown-item {
     padding: 5px 15px !important;
     color: #444;
+
     &:hover {
       color: #fc5b62;
     }
+
     &:first-of-type {
       border-top-left-radius: 5px !important;
       border-top-right-radius: 5px !important;
     }
+
     &:last-of-type {
       border-bottom-left-radius: 5px !important;
       border-bottom-right-radius: 5px !important;
@@ -297,7 +317,7 @@ header {
   display: flex;
   gap: 10px;
 
-  > * {
+  >* {
     flex: 1 1 100%;
   }
 }
@@ -317,7 +337,8 @@ header {
 
   .form-horizontal-inputs {
     display: block;
-    > * {
+
+    >* {
       width: 100%;
     }
   }
@@ -353,7 +374,9 @@ main .container form {
 }
 
 .reset-ol-ul {
-  ol, ul {
+
+  ol,
+  ul {
     list-style: none;
     margin: 0 0 25px 0;
     padding: 0;
@@ -367,19 +390,23 @@ main .container form {
 .btn_1 {
   &.xsmall {
     padding: 7px 15px !important;
-    border: 1px solid $color-1 !important;
+    border: 1px solid $color-1  !important;
     font-weight: 400 !important;
+
     &:hover {
-      border-color: $color-2 !important;
+      border-color: $color-2  !important;
     }
   }
+
   &.outline.xsmall {
     padding: 7px 15px !important;
-    color: $color-1 !important;
+    color: $color-1  !important;
+
     &:hover {
-      color:#fff !important;
+      color: #fff !important;
     }
   }
+
   &.rounded.xsmall {
     color: #fff;
   }
@@ -390,13 +417,15 @@ main .container form {
   color: #555 !important;
   padding: 10px 15px !important;
   font-weight: 500 !important;
+
   &:hover {
-    border-color: $color-2 !important;
+    border-color: $color-2  !important;
     color: #fff !important;
   }
 }
 
-.dropdown-menu, .dropdown-menu form.button_to {
+.dropdown-menu,
+.dropdown-menu form.button_to {
   padding: 0;
 }
 
@@ -414,9 +443,11 @@ footer {
     margin-top: 15px;
     margin-bottom: 15px;
   }
+
   .follow-us-container {
     text-align: right;
   }
+
   .row.columns {
     display: flex;
     justify-content: space-between;
@@ -449,6 +480,7 @@ footer {
   @media (max-width: 767px) {
     flex-direction: column;
     gap: 10px;
+
     .btn_1 {
       width: 100%;
     }
@@ -464,6 +496,7 @@ footer {
 .username {
   color: #000;
   @include fontSize(16px);
+
   &:hover {
     color: #fc5b62;
   }
@@ -472,6 +505,7 @@ footer {
 .small-username {
   color: #000;
   @include fontSize(12px);
+
   &:hover {
     color: #fc5b62;
   }
@@ -481,17 +515,26 @@ footer {
   .title {
     display: flex;
     gap: 5px;
+
     .count {
-      margin:25px 0 0 0;
+      margin: 25px 0 0 0;
       @include fontSize(18px);
-      @include mobile {@include fontSize(16px);}
+
+      @include mobile {
+        @include fontSize(16px);
+      }
+
       color: #333333;
       font-weight: 500;
     }
   }
-	h1 {
-		@include fontSize(23px);
-		margin:25px 0 0 0;
-		@include mobile {@include fontSize(21px);}
-	}
+
+  h1 {
+    @include fontSize(23px);
+    margin: 25px 0 0 0;
+
+    @include mobile {
+      @include fontSize(21px);
+    }
+  }
 }
