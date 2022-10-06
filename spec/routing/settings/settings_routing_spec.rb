@@ -19,5 +19,13 @@ RSpec.describe SettingsController, type: :routing do
     it 'routes to #edit_profile' do
       expect(get: '/settings/edit_profile').to route_to('settings#edit_profile')
     end
+
+    it 'routes to #switch_locale' do
+      expect(get: '/settings/switch_locale').to route_to('settings#switch_locale')
+    end
+
+    it 'routes to #accept_cookies' do
+      expect(get: '/settings/accept_cookies').to route_to('settings#accept_cookies')
+    end
   end
 end

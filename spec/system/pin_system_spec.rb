@@ -211,6 +211,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
     context 'more button' do
       context 'from the index page' do
+        # rubocop:disable RSpec/ExampleLength
         it 'visits the edit page' do
           visit pins_path
           find('.cookies-bar > .btn_1').click
@@ -226,6 +227,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           expect(page).to have_current_path edit_pin_link_element_href
           expect(page).to have_field(Pin.human_attribute_name(:name), with: pin_element_text)
         end
+        # rubocop:enable RSpec/ExampleLength
 
         it 'deletes a pin' do
           visit pins_path
