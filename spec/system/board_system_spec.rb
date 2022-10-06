@@ -103,6 +103,7 @@ RSpec.describe 'Boards', type: :system, js: true do
     it 'edits a board' do
       board = boards.first
       visit edit_board_path(id: board)
+      find('.cookies-bar > .btn_1').click
       new_name = SecureRandom.hex(15)
       fill_in Board.human_attribute_name(:name), with: new_name
       click_button I18n.t('helpers.submit.update')

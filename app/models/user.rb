@@ -55,6 +55,9 @@ class User < ApplicationRecord
   validates :tags_count, presence: true
   validates :following_boards_count, presence: true
 
+  # enums
+  enum cookies_confirmation_status: { pending: 0, accepted: 1 }, _prefix: true
+
   def login
     @login || username || email
   end
