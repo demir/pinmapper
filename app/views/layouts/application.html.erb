@@ -13,9 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- GOOGLE MAPS -->
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.dig(:google, :maps, :api_key) %>&libraries=places&callback=initMap" async defer data-turbo-eval="false"></script>
-    <% if cookies[:allow_cookies].eql?('yes') %>
-      <%= render 'shared/google_analytics' %>
-    <% end %>
+    <%= render 'shared/google_tag_manager_head' %>
   </head>
 
   <body>
@@ -28,10 +26,9 @@
         <%= yield %>
       </main>
       <%= render 'shared/footer' %>
-      <% if cookies[:allow_cookies].blank? %>
-        <%= render 'shared/cookies_bar' %>
-      <% end %>
+      <%= render 'shared/cookies_bar' %>
     </div>
     <div id="toTop"></div><!-- Back to top button -->
   </body>
+  <%= render 'shared/google_tag_manager_body' %>
 </html>

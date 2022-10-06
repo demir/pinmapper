@@ -107,6 +107,12 @@ RSpec.describe 'Settings', type: :system, js: true do
       click_button I18n.t('update')
       expect(page).to have_content I18n.t('settings.profiles.update.profile_updated')
     end
+
+    it 'accept cookies' do
+      visit root_path
+      find('.cookies-bar > .btn_1').click
+      expect(page).not_to have_css '.cookies-bar'
+    end
   end
 
   context 'When not signed in' do
@@ -128,6 +134,12 @@ RSpec.describe 'Settings', type: :system, js: true do
     it 'not visits edit_profile' do
       visit settings_edit_profile_path
       expect(page).not_to have_current_path settings_edit_profile_path
+    end
+
+    it 'accept cookies' do
+      visit root_path
+      find('.cookies-bar > .btn_1').click
+      expect(page).not_to have_css '.cookies-bar'
     end
   end
 end

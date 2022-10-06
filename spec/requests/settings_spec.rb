@@ -38,33 +38,61 @@ RSpec.describe 'Settings', type: :request do
         expect(response).to have_http_status(:success)
       end
     end
+
+    describe 'GET /switch_locale' do
+      it 'returns http found' do
+        get settings_switch_locale_path, headers: headers
+        expect(response).to have_http_status(:found)
+      end
+    end
+
+    describe 'GET /accept_cookies' do
+      it 'returns http success' do
+        get settings_accept_cookies_path, headers: headers
+        expect(response).to have_http_status(:success)
+      end
+    end
   end
 
   context 'without sign in' do
     describe 'GET /change_password' do
-      it 'returns http success' do
+      it 'returns http not success' do
         get settings_change_password_path, headers: headers
         expect(response).not_to have_http_status(:success)
       end
     end
 
     describe 'GET /change_username' do
-      it 'returns http success' do
+      it 'returns http not success' do
         get settings_change_username_path, headers: headers
         expect(response).not_to have_http_status(:success)
       end
     end
 
     describe 'GET /change_email' do
-      it 'returns http success' do
+      it 'returns http not success' do
         get settings_change_email_path, headers: headers
         expect(response).not_to have_http_status(:success)
       end
     end
 
     describe 'GET /edit_profile' do
-      it 'returns http success' do
+      it 'returns http not success' do
         get settings_edit_profile_path, headers: headers
+        expect(response).not_to have_http_status(:success)
+      end
+    end
+
+    describe 'GET /switch_locale' do
+      it 'returns http found' do
+        get settings_switch_locale_path, headers: headers
+        expect(response).to have_http_status(:found)
+      end
+    end
+
+    describe 'GET /accept_cookies' do
+      it 'returns http not success' do
+        get settings_accept_cookies_path, headers: headers
         expect(response).not_to have_http_status(:success)
       end
     end

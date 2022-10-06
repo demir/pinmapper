@@ -17,6 +17,12 @@ class SettingsController < ApplicationController
     redirect_to handle_url
   end
 
+  def accept_cookies
+    current_user.cookies_confirmation_status_accepted! if current_user.present?
+
+    head :ok
+  end
+
   private
 
   def start_with_available_locales_regex(available_locales)

@@ -41,6 +41,10 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'enums' do
+    it { is_expected.to define_enum_for(:cookies_confirmation_status) }
+  end
+
   describe 'scopes' do
     it 'search users' do
       random_name = SecureRandom.hex(15)
