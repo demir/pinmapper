@@ -360,6 +360,7 @@ RSpec.describe 'Pins', type: :system, js: true do
       context 'modal' do
         it 'show modal' do
           visit explore_index_path
+          find('.cookies-bar > .btn_1').click
           find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\
             '#pin_boards_added_by_owner_pin_#{pin.id}']").click
           expect(page).to have_css '.pin-boards-added-by-owner-modal.show'
@@ -411,6 +412,7 @@ RSpec.describe 'Pins', type: :system, js: true do
         context 'when boards owner is not current_user' do
           it 'not show board more button' do
             visit explore_index_path
+            find('.cookies-bar > .btn_1').click
             find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
             expect(page).not_to have_css '.pin-boards-added-by-owner-modal.show .board .board-more svg'
