@@ -23,10 +23,14 @@
     <%= favicon_pack_tag 'favicon.png' %>
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <%= render 'shared/google_tag_manager_head' %>
   </head>
 
   <div class="clearfix"></div>
-  <%= render 'shared/toastr' %>
-  <%= yield %>
-  </div>
+  <body>
+    <%= render 'shared/toastr' %>
+    <%= yield %>
+    <%= render 'shared/cookies_bar' %>
+  </body>
+  <%= render 'shared/google_tag_manager_body' %>
 </html>
