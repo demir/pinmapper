@@ -353,7 +353,7 @@ CREATE TABLE public.friendly_id_slugs (
     sluggable_id integer NOT NULL,
     sluggable_type character varying(50),
     scope character varying,
-    created_at timestamp(6) without time zone
+    created_at timestamp without time zone
 );
 
 
@@ -688,7 +688,8 @@ CREATE TABLE public.users (
     locale character varying,
     slug character varying,
     provider character varying,
-    uid character varying
+    uid character varying,
+    cookies_confirmation_status integer DEFAULT 0
 );
 
 
@@ -1575,6 +1576,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220809231928'),
 ('20220916225455'),
 ('20220916225456'),
-('20220916225457');
+('20220916225457'),
+('20221006085217');
 
 

@@ -213,15 +213,18 @@ RSpec.describe 'Pins', type: :system, js: true do
       context 'from the index page' do
         it 'visits the edit page' do
           visit pins_path
+          find('.cookies-bar > .btn_1').click
           more_button = find('.pin .header .pin-more svg', match: :first)
           pin_element = more_button.ancestor('.pin')
+          pin_element_text = pin_element.find('.body h3 a').text
           more_button.click
           edit_pin_link_element = pin_element.find('.header .dropdown.pin-more .dropdown-menu a',
                                                    text:       I18n.t('edit'),
                                                    exact_text: true)
+          edit_pin_link_element_href = edit_pin_link_element[:href]
           edit_pin_link_element.click
-          expect(page).to have_current_path edit_pin_link_element[:href]
-          expect(page).to have_field(Pin.human_attribute_name(:name), with: pin_element.find('.body h3 a').text)
+          expect(page).to have_current_path edit_pin_link_element_href
+          expect(page).to have_field(Pin.human_attribute_name(:name), with: pin_element_text)
         end
 
         it 'deletes a pin' do
