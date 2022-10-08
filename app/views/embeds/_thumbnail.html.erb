@@ -1,0 +1,9 @@
+<% if embed.video? %>
+  <div class='embed video'>
+    <%= image_tag embed.thumbnail_url %>
+  </div>
+<% else %>
+  <div class="embed">
+    <%= embed.html.html_safe %>
+  </div>
+<% end %>

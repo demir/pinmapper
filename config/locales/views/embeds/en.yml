@@ -1,0 +1,6 @@
+en:
+  embeds:
+    sgid_not_found_message: This URL is not suitable for embed
+    embed_button_name: Embed
+    embed_dialog_input_placeholder: Paste your URL
+    embed_dialog_add_button: Add

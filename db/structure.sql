@@ -312,6 +312,40 @@ ALTER SEQUENCE public.crops_id_seq OWNED BY public.crops.id;
 
 
 --
+-- Name: embeds; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.embeds (
+    id bigint NOT NULL,
+    url character varying,
+    video boolean,
+    html text,
+    thumbnail_url character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: embeds_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.embeds_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: embeds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.embeds_id_seq OWNED BY public.embeds.id;
+
+
+--
 -- Name: follows; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -353,7 +387,7 @@ CREATE TABLE public.friendly_id_slugs (
     sluggable_id integer NOT NULL,
     sluggable_type character varying(50),
     scope character varying,
-    created_at timestamp without time zone
+    created_at timestamp(6) without time zone
 );
 
 
@@ -792,6 +826,13 @@ ALTER TABLE ONLY public.crops ALTER COLUMN id SET DEFAULT nextval('public.crops_
 
 
 --
+-- Name: embeds id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.embeds ALTER COLUMN id SET DEFAULT nextval('public.embeds_id_seq'::regclass);
+
+
+--
 -- Name: follows id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -929,6 +970,14 @@ ALTER TABLE ONLY public.boards
 
 ALTER TABLE ONLY public.crops
     ADD CONSTRAINT crops_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: embeds embeds_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.embeds
+    ADD CONSTRAINT embeds_pkey PRIMARY KEY (id);
 
 
 --
@@ -1577,6 +1626,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220916225455'),
 ('20220916225456'),
 ('20220916225457'),
-('20221006085217');
+('20221006085217'),
+('20221008004431');
 
 
