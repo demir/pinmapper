@@ -2,9 +2,6 @@ import { Controller } from 'stimulus'
 import Trix from 'trix'
 
 export default class extends Controller {
-  static get targets() {
-  }
-
   connect() {
     this.addEmbedButton()
     this.addEmbedDialog()
@@ -23,7 +20,7 @@ export default class extends Controller {
                             <div class="trix-dialog__link-fields">
                               <input type="text" name="embed" class="trix-input trix-input--dialog" placeholder="${this.element.dataset.embedDialogInputPlaceholder}" aria-label="embed code" required="" data-trix-input="" disabled="disabled" data-embedder-target="input" data-sgid-not-found-message="${this.element.dataset.sgidNotFoundMessage}">
                               <div class="trix-button-group">
-                                <input type="button" class="trix-button trix-button--dialog" data-trix-custom="add-embed" value="${this.element.dataset.embedDialogAddButton}" data-action="click->embedder#embedit" data-embedder-target="submit">
+                                <input type="button" class="trix-button trix-button--dialog" data-trix-custom="add-embed" value="${this.element.dataset.embedDialogAddButton}" data-action="click->embedder#embedit">
                               </div>
                             </div>
                           </div>
@@ -35,13 +32,13 @@ export default class extends Controller {
   showembed(e) {
     const dialog = this.toolbarElement.querySelector('[data-trix-dialog="embed"]')
     const embedInput = this.dialogsElement.querySelector('[name="embed"]')
-    if (event.target.classList.contains("trix-active")) {
-      event.target.classList.remove("trix-active");
+    if (e.target.classList.contains("trix-active")) {
+      e.target.classList.remove("trix-active");
       dialog.classList.remove("trix-active");
       delete dialog.dataset.trixActive;
       embedInput.setAttribute("disabled", "disabled");
     } else {
-      event.target.classList.add("trix-active");
+      e.target.classList.add("trix-active");
       dialog.classList.add("trix-active");
       dialog.dataset.trixActive = "";
       embedInput.removeAttribute("disabled");

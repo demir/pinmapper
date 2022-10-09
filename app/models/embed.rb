@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 class Embed < ApplicationRecord
   include ActionText::Attachable
   require 'oembed'
 
+  # callbacks
   after_create :setup
+
   def setup
     resource = oembed
     self.video = resource.video?

@@ -131,8 +131,7 @@ class Pin < ApplicationRecord
   def max_number_of_description_attachments
     return if description.body
                          .attachments
-                         .reject { |a| a.attachable.instance_of?(::Embed) }
-                         .count <= 6
+                         .count { |a| !a.attachable.instance_of?(::Embed) } <= 6
 
     errors.add(:description, :max_number_of_description_attachments)
   end

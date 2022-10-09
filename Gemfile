@@ -31,7 +31,7 @@ gem 'puma', '~> 5.6'
 gem 'pundit', '~> 2.1'
 gem 'rails', '~> 7.0.4'
 gem 'redis', '~> 5.0'
-gem "ruby-oembed"
+gem 'ruby-oembed'
 gem 'sass-rails', '~> 6.0'
 gem 'sidekiq'
 gem 'simple_form', '~> 5.1'
