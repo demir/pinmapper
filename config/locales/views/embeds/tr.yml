@@ -1,0 +1,6 @@
+tr:
+  embeds:
+    sgid_not_found_message: URL embed için uygun değil
+    embed_button_name: Yerleştirme
+    embed_dialog_input_placeholder: URL'nizi yapıştırın
+    embed_dialog_add_button: Ekle

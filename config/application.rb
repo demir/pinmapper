@@ -20,6 +20,10 @@ module Pinmapper
     config.active_support.cache_format_version = 7.0
     config.active_storage.variant_processor = :mini_magick
 
+    config.to_prepare do
+      ActionText::ContentHelper.allowed_tags << 'iframe'
+    end
+
     # After-initialize checker to add routes to reserved words
     config.after_initialize do
       # Add routes to reserved words
