@@ -10,7 +10,7 @@ export default class extends Controller {
 
   //////////////// Embeds ////////////////////////////////////////////////////
   addEmbedButton() {
-    const buttonHTML = `<button  type="button" class="trix-button tricks-embed" data-trix-attribute="embed" data-trix-action="embed"    title="${this.element.dataset.embedButtonName}" tabindex="-1">${this.element.dataset.embedButtonName}</button>`
+    const buttonHTML = `<button  type="button" id="trix-embed-button" class="trix-button tricks-embed" data-trix-attribute="embed" data-trix-action="embed"    title="${this.element.dataset.embedButtonName}" tabindex="-1">${this.element.dataset.embedButtonName}</button>`
     this.buttonGroupFileTools.insertAdjacentHTML("beforeend", buttonHTML)
   }
 

@@ -2,9 +2,12 @@
 
 FactoryBot.define do
   factory :embed do
-    url { 'MyString' }
-    video { false }
-    html { 'MyText' }
-    thumbnail_url { 'MyString' }
+    trait :video do
+      url { 'https://www.youtube.com/watch?v=mpWFrUwAN88' }
+    end
+
+    trait :not_video do
+      url { 'https://flic.kr/p/sbV9Qm' }
+    end
   end
 end
