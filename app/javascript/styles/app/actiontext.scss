@@ -27,6 +27,54 @@
       max-width: 100% !important;
     }
   }
+
+  h1 {
+    @include fontSize(32px);
+
+    @include mobile {
+      @include fontSize(22px);
+    }
+  }
+
+  h2 {
+    @include fontSize(30px);
+
+    @include mobile {
+      @include fontSize(20px);
+    }
+  }
+
+  h3 {
+    @include fontSize(28px);
+
+    @include mobile {
+      @include fontSize(18px);
+    }
+  }
+
+  h4 {
+    @include fontSize(26px);
+
+    @include mobile {
+      @include fontSize(16px);
+    }
+  }
+
+  h5 {
+    @include fontSize(24px);
+
+    @include mobile {
+      @include fontSize(14px);
+    }
+  }
+
+  h6 {
+    @include fontSize(22px);
+
+    @include mobile {
+      @include fontSize(12px);
+    }
+  }
 }
 
 trix-editor {
