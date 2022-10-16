@@ -39,4 +39,48 @@ RSpec.describe Boards::BoardComponent, type: :component do
     board = boards.first
     expect(page).to have_css "#twin_button_board_#{board.id}"
   end
+
+  context 'data sort url' do
+    let(:board) { boards.second }
+
+    context 'with current_user' do
+      before do
+        render_inline(described_class.with_collection(boards,
+                                                      options: { current_user:,
+                                                                 show_privacy_badge: true,
+                                                                 drag_sort:          true }))
+      end
+
+      it 'data sort url' do
+        move_board_by_id_path = move_board_by_id_board_path(board, locale: I18n.locale)
+        expect(page).to have_css ".board[data-sort-url='#{move_board_by_id_path}']"
+      end
+    end
+
+    context 'without current_user' do
+      before do
+        render_inline(described_class.with_collection(boards,
+                                                      options: { current_user:       nil,
+                                                                 show_privacy_badge: true,
+                                                                 drag_sort:          true }))
+      end
+
+      it 'data sort url' do
+        expect(page).to have_css '.board[data-sort-url=""]'
+      end
+    end
+
+    context 'when drag_sort false' do
+      before do
+        render_inline(described_class.with_collection(boards,
+                                                      options: { current_user:,
+                                                                 show_privacy_badge: true,
+                                                                 drag_sort:          false }))
+      end
+
+      it 'data sort url' do
+        expect(page).to have_css '.board[data-sort-url=""]'
+      end
+    end
+  end
 end

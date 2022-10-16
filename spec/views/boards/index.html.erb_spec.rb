@@ -48,4 +48,16 @@ RSpec.describe 'boards/index', type: :view do
       assert_select '.no-data p', text: I18n.t('boards.index.no_data_for_current_user'), count: 1
     end
   end
+
+  context 'drag sort' do
+    it 'drag sort controller' do
+      render
+      assert_select '.body #infinite-boards[data-controller="drag-sort"]'
+    end
+
+    it 'active' do
+      render
+      assert_select '.body #infinite-boards[data-drag-sort-state-value="true"]'
+    end
+  end
 end
