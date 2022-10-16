@@ -28,6 +28,9 @@ class Board < ApplicationRecord
   # friendly_id
   friendly_id :name, use: :history
 
+  # acts_as_list for sorting
+  acts_as_list scope: :user
+
   # counter_cultures
   counter_culture :user
   counter_culture :user,

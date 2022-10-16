@@ -12,8 +12,8 @@
       </div>
       <div class="body">
         <% if @boards.any? %>
-          <div id="infinite-boards">
-            <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user, show_privacy_badge: true })) %>
+          <div id="infinite-boards" data-controller="drag-sort" data-drag-sort-state-value="true">
+            <%= render(Boards::BoardComponent.with_collection(@boards, options: { current_user: current_user, show_privacy_badge: true, drag_sort: true })) %>
           </div>
           <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
         <% else %>
