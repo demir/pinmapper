@@ -252,7 +252,8 @@ CREATE TABLE public.boards (
     tsv tsvector,
     pins_count integer DEFAULT 0 NOT NULL,
     slug character varying,
-    description text
+    description text,
+    "position" integer
 );
 
 
@@ -1627,6 +1628,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220916225456'),
 ('20220916225457'),
 ('20221006085217'),
-('20221008004431');
+('20221008004431'),
+('20221016215701');
 
 
