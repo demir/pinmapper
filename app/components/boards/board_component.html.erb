@@ -1,4 +1,4 @@
-<div id="<%= dom_id(board) %>" class="board">
+<div id="<%= dom_id(board) %>" class="board" data-sort-url="<%= move_board_by_id_url %>">
   <div>
     <span><%= link_to "#{board.name}", board_path(board), class: "#{name_class} board-name", target: :_top %></span>
     <span class="soft-black-text">(<%= board.pins_count %>)</span>

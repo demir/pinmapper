@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class BoardsController < ApplicationController
   include Pagy::Backend
   before_action :set_board, only: %i[show edit update destroy
-                                     add_pin remove_pin follow unfollow move]
+                                     add_pin remove_pin follow unfollow move
+                                     move_board_by_id]
   before_action :set_pin, only: %i[add_pin remove_pin add_to_board_list new create]
   before_action :authorize_board
 
   # GET /boards or /boards.json
   def index
-    @pagy, @boards = pagy current_user.boards.order(created_at: :desc)
+    @pagy, @boards = pagy current_user.boards
     respond_to do |f|
       f.html
       f.turbo_stream
@@ -122,6 +124,10 @@ class BoardsController < ApplicationController
     head :ok
   end
 
+  def move_board_by_id
+    @board.insert_at(params[:position].to_i)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -155,3 +161,4 @@ class BoardsController < ApplicationController
     Board.find_ordered(added_boards.ids | not_added_boards.ids)
   end
 end
+# rubocop:enable Metrics/ClassLength

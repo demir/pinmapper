@@ -338,6 +338,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
       it 'show message for single board' do
         visit explore_index_path
+        find('.cookies-bar > .btn_1').click
         find("#pin_#{pin.id} .pin-added-by-owner a.board-link", text:  pin.owner_public_boards.first.name,
                                                                 match: :first).click
         expect(page).to have_css '.board-show'
@@ -352,6 +353,7 @@ RSpec.describe 'Pins', type: :system, js: true do
 
       it 'first board' do
         visit explore_index_path
+        find('.cookies-bar > .btn_1').click
         find("#pin_#{pin.id} .pin-added-by-owner a.board-link", text:  pin.owner_public_boards.first.name,
                                                                 match: :first).click
         expect(page).to have_css '.board-show'
