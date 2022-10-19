@@ -2,20 +2,36 @@
   <%= link_to '#', class: "#{klass_handled}", id: 'add-pin-to-board-menu', data: { 'bs-toggle': 'dropdown', 'bs-auto-close': 'outside', 'aria-haspopup': true, 'aria-expanded': false } do %><% end %>
 
   <div class="dropdown-menu add-pin-to-board" aria-labelledby="add-pin-to-board-menu" data-action="turbo:frame-load->dropdown#updateButton" >
-    <div class="header">
-      <span><%= t('boards.add_to_board') %></span>
-      <%= render(General::SearchComponent.new(path: add_to_board_list_boards_path(pin), current_user: current_user)) %>
+    <div id="add-pin-to-board-panel-board" class="slide-left">
+      <div class="header">
+        <span><%= t('boards.add_to_board') %></span>
+        <%= render(General::SearchComponent.new(path: add_to_board_list_boards_path(pin), current_user: current_user)) %>
+      </div>
+      <div class="body">
+          <span><%= t('boards.boards') %></span>
+          <%= turbo_frame_tag "add_to_board_list_body_#{dom_id(pin)}", src: add_to_board_list_boards_path(pin), loading: :lazy do %>
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border pinmapper m-4"></div>
+            </div>
+          <% end %>
+          <%= turbo_frame_tag 'new_board_form', 'data-action': 'turbo:frame-load->dropdown#scrollFormToUp' do %>
+            <%= render 'boards/new_board_button', pin: pin %>
+          <% end %>
+      </div>
     </div>
-    <div class="body">
-        <span><%= t('boards.boards') %></span>
-        <%= turbo_frame_tag "add_to_board_list_body_#{dom_id(pin)}", src: add_to_board_list_boards_path(pin), loading: :lazy do %>
-          <div class="d-flex justify-content-center">
-            <div class="spinner-border pinmapper m-4"></div>
-          </div>
-        <% end %>
-        <%= turbo_frame_tag 'new_board_form', 'data-action': 'turbo:frame-load->dropdown#scrollFormToUp' do %>
-          <%= render 'boards/new_board_button', pin: pin %>
-        <% end %>
+    <div id="add-pin-to-board-panel-section" class="visually-hidden slide-right">
+      <button data-action="click->dropdown#switchBoardsPanel" type="button" class="btn btn-primary btn-sm"><</button>
+      <div class="header">
+        <span>Bölüm Panel Başlığı</span>
+      </div>
+      <div class="body">
+          <span><%= t('boards.boards') %></span>
+          <%= turbo_frame_tag "add_to_board_list_body_#{dom_id(pin)}", src: add_to_board_list_boards_path(pin), loading: :lazy do %>
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border pinmapper m-4"></div>
+            </div>
+          <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -3,6 +3,13 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static values = { id: String }
 
+  switchBoardsPanel(event) {
+    let frameElement = event.currentTarget
+    var parentElement = frameElement.closest('.add-pin-to-board')
+    parentElement.querySelector('#add-pin-to-board-panel-board').classList.toggle('visually-hidden')
+    parentElement.querySelector('#add-pin-to-board-panel-section').classList.toggle('visually-hidden')
+  }
+
   hide() {
     let dropdowns = this.element.getElementsByClassName('add-pin-to-board-dropdown');
     for (let dropdownParent of dropdowns) {
