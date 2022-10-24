@@ -239,6 +239,41 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: board_sections; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.board_sections (
+    id bigint NOT NULL,
+    name character varying,
+    board_id bigint NOT NULL,
+    pins_count integer DEFAULT 0 NOT NULL,
+    slug character varying,
+    "position" integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: board_sections_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.board_sections_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: board_sections_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.board_sections_id_seq OWNED BY public.board_sections.id;
+
+
+--
 -- Name: boards; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -409,6 +444,39 @@ CREATE SEQUENCE public.friendly_id_slugs_id_seq
 --
 
 ALTER SEQUENCE public.friendly_id_slugs_id_seq OWNED BY public.friendly_id_slugs.id;
+
+
+--
+-- Name: pin_board_sections; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.pin_board_sections (
+    id bigint NOT NULL,
+    pin_id bigint NOT NULL,
+    board_section_id bigint NOT NULL,
+    "position" integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: pin_board_sections_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.pin_board_sections_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pin_board_sections_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.pin_board_sections_id_seq OWNED BY public.pin_board_sections.id;
 
 
 --
@@ -813,6 +881,13 @@ ALTER TABLE ONLY public.active_storage_variant_records ALTER COLUMN id SET DEFAU
 
 
 --
+-- Name: board_sections id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.board_sections ALTER COLUMN id SET DEFAULT nextval('public.board_sections_id_seq'::regclass);
+
+
+--
 -- Name: boards id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -845,6 +920,13 @@ ALTER TABLE ONLY public.follows ALTER COLUMN id SET DEFAULT nextval('public.foll
 --
 
 ALTER TABLE ONLY public.friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('public.friendly_id_slugs_id_seq'::regclass);
+
+
+--
+-- Name: pin_board_sections id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pin_board_sections ALTER COLUMN id SET DEFAULT nextval('public.pin_board_sections_id_seq'::regclass);
 
 
 --
@@ -958,6 +1040,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
+-- Name: board_sections board_sections_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.board_sections
+    ADD CONSTRAINT board_sections_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: boards boards_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -995,6 +1085,14 @@ ALTER TABLE ONLY public.follows
 
 ALTER TABLE ONLY public.friendly_id_slugs
     ADD CONSTRAINT friendly_id_slugs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pin_board_sections pin_board_sections_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pin_board_sections
+    ADD CONSTRAINT pin_board_sections_pkey PRIMARY KEY (id);
 
 
 --
@@ -1121,6 +1219,13 @@ CREATE UNIQUE INDEX index_active_storage_variant_records_uniqueness ON public.ac
 
 
 --
+-- Name: index_board_sections_on_board_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_board_sections_on_board_id ON public.board_sections USING btree (board_id);
+
+
+--
 -- Name: index_boards_on_slug; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1188,6 +1293,20 @@ CREATE UNIQUE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope
 --
 
 CREATE INDEX index_friendly_id_slugs_on_sluggable_type_and_sluggable_id ON public.friendly_id_slugs USING btree (sluggable_type, sluggable_id);
+
+
+--
+-- Name: index_pin_board_sections_on_board_section_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_pin_board_sections_on_board_section_id ON public.pin_board_sections USING btree (board_section_id);
+
+
+--
+-- Name: index_pin_board_sections_on_pin_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_pin_board_sections_on_pin_id ON public.pin_board_sections USING btree (pin_id);
 
 
 --
@@ -1487,6 +1606,14 @@ ALTER TABLE ONLY public.pin_boards
 
 
 --
+-- Name: board_sections fk_rails_199223beac; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.board_sections
+    ADD CONSTRAINT fk_rails_199223beac FOREIGN KEY (board_id) REFERENCES public.boards(id);
+
+
+--
 -- Name: pin_boards fk_rails_1fb428d9c4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1508,6 +1635,22 @@ ALTER TABLE ONLY public.pins
 
 ALTER TABLE ONLY public.user_tags
     ADD CONSTRAINT fk_rails_7156651ad8 FOREIGN KEY (tag_id) REFERENCES public.tags(id);
+
+
+--
+-- Name: pin_board_sections fk_rails_7523ef0754; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pin_board_sections
+    ADD CONSTRAINT fk_rails_7523ef0754 FOREIGN KEY (board_section_id) REFERENCES public.board_sections(id);
+
+
+--
+-- Name: pin_board_sections fk_rails_78fe59f56a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pin_board_sections
+    ADD CONSTRAINT fk_rails_78fe59f56a FOREIGN KEY (pin_id) REFERENCES public.pins(id);
 
 
 --
@@ -1629,6 +1772,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220916225457'),
 ('20221006085217'),
 ('20221008004431'),
-('20221016215701');
+('20221016215701'),
+('20221019210759'),
+('20221019212217');
 
 

@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      board_section: Section
+    attributes:
+      board_section: &board_section_attributes
+        name: Section Name
+        description: Description
+  simple_form:
+    labels:
+      board_section:
+        <<: *board_section_attributes

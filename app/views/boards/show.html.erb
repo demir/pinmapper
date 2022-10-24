@@ -51,6 +51,27 @@
         <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>
       <% end %>
       <br>
+      <% if @board.user == current_user %>
+        <%= link_to 'Bölüm Ekle', new_board_board_section_path(@board), class: 'btn_1 outline' %>
+      <% end %>
+      <br><br>
+      <h1>Board sections</h1>
+
+      <div id="board_sections">
+        <% @board.board_sections.each do |board_section| %>
+          <%= render 'board_sections/board_section', board_section: board_section %>
+          <p>
+            <%= button_to "Bölümü Sil", board_section, method: :delete, data: { confirm: t('are_you_sure'), turbo: false } %>
+          </p>
+          <p>
+            <%= link_to "Bölümü Düzenle", edit_board_section_path(board_section) %>
+          </p>
+          <p>
+            <%= link_to "Bölümü Göster", board_section %>
+          </p>
+        <% end %>
+      </div>
+      <br><br>
       <div id="infinite-pins" class="body" data-controller="drag-sort" data-drag-sort-state-value="<%= @board.user == current_user %>">
         <%= render Pins::SmallPinComponent.with_collection(@pins, current_user: @current_user, board: @board, drag_sort: @board.user == current_user) %>
         <!-- /pin_lists -->

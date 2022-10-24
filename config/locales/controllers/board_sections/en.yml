@@ -1,0 +1,8 @@
+en:
+  board_sections:
+    create:
+      success: Section created
+    update:
+      success: Section updated
+    destroy:
+      success: Section destroyed

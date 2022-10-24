@@ -66,6 +66,7 @@ Rails.application.routes.draw do
         get 'add_to_board_list/:pin_id', action: 'add_to_board_list', as: 'add_to_board_list'
         get 'following_boards'
       end
+      resources :board_sections, shallow: true, except: %i[index]
     end
     resources :tags, only: %i[show] do
       member do

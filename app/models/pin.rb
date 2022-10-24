@@ -41,6 +41,10 @@ class Pin < ApplicationRecord
   belongs_to :user
   has_many :pin_boards, dependent: :destroy
   has_many :boards, -> { order 'pin_boards.position ASC' }, through: :pin_boards, dependent: :destroy
+  has_many :pin_board_sections, dependent: :destroy
+  has_many :board_sections, lambda {
+                              order 'pin_board_sections.position ASC'
+                            }, through: :pin_board_sections, dependent: :destroy
 
   # validations
   validates :name, presence: true, length: { maximum: 128 }

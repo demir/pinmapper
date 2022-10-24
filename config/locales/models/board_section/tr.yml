@@ -1,0 +1,12 @@
+tr:
+  activerecord:
+    models:
+      board_section: Bölüm
+    attributes:
+      board_section: &board_section_attributes
+        name: Bölüm Adı
+        description: Açıklama
+  simple_form:
+    labels:
+      board_section:
+        <<: *board_section_attributes

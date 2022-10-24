@@ -16,6 +16,7 @@ class Board < ApplicationRecord
   has_many :pins, -> { order 'pin_boards.position ASC' }, through: :pin_boards, dependent: :destroy
   has_many :user_boards, dependent: :destroy
   has_many :followers, through: :user_boards, source: :user, dependent: :destroy
+  has_many :board_sections, dependent: :destroy
 
   # validations
   validates :name, presence:  true,

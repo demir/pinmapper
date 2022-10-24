@@ -1,0 +1,6 @@
+<% title t('.title') %>
+<% set_meta_tags alternate: { "en" => edit_board_section_url(@board_section, locale: :en),
+                              "tr" => edit_board_section_url(@board_section, locale: :tr) } %>
+<div class="container margin_100_55 col-lg-4">
+  <%= render 'form', board_section: @board_section %>
+<div>

@@ -1,0 +1,2 @@
+module BoardSectionsHelper
+end

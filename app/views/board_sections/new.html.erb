@@ -1,0 +1,8 @@
+<% title t('.title') %>
+<% set_meta_tags alternate: { "en" => new_board_board_section_path(@board, locale: :en),
+                              "tr" => new_board_board_section_path(@board, locale: :tr) } %>
+<div class="container margin_100_55 col-lg-4">
+  <%= turbo_frame_tag 'new_board_section_form' do %>
+    <%= render 'form', board_section: @board_section %>
+  <% end %>
+<div>
