@@ -1,13 +1,15 @@
 .boards {
-  max-width:600px;
-  margin-left:auto;
+  max-width: 600px;
+  margin-left: auto;
   margin-right: auto;
   width: 100%;
+
   >.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
   >.body {
     &#infinite-boards {
       @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.05));
@@ -21,15 +23,37 @@
     align-items: center;
     justify-content: space-between;
   }
+
   >.body {
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 16px;
   }
+
   .map {
     @include border-radius(9px);
     border: 1px solid $border-color-2;
+  }
+
+  .board-sections-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 32px;
+    margin-bottom: 16px;
+
+    .title {
+      margin: 0;
+      @include fontSize(22px);
+    }
+  }
+
+  .pins-header {
+    margin: 0;
+    @include fontSize(22px);
+    margin-top: 32px;
+    margin-bottom: 16px;
   }
 }
 
@@ -41,20 +65,25 @@
   align-items: center;
   background-color: #fff;
   padding: 16px;
-  span > a.board-name {
+
+  span>a.board-name {
     @include fontSize(18px);
   }
+
   &:not(:last-child) {
     border-bottom: 1px solid $border-color-2;
   }
+
   &:first-child {
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
   }
+
   &:last-child {
     border-bottom-left-radius: 9px;
     border-bottom-right-radius: 9px;
   }
+
   >.item {
     display: flex;
     gap: 10px;
@@ -62,14 +91,17 @@
   }
 }
 
-.dropdown-menu.add-pin-to-board{
+.dropdown-menu.add-pin-to-board {
   min-width: 340px;
   width: 100%;
+
   @media screen and (max-width: 375px) {
     min-width: 250px;
   }
+
   padding-bottom: 15px;
   @include border-radius(9px);
+
   .header {
     display: flex;
     flex-direction: column;
@@ -78,17 +110,21 @@
     padding: 20px 15px;
     @include fontSize(20px);
   }
+
   .body {
     padding: 0 15px;
     max-height: 385px;
     overflow-y: auto;
+
     >span {
       padding: 0 5px;
     }
+
     a.new_board {
       margin-top: 10px;
     }
   }
+
   border: 0;
   @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
 }
@@ -97,20 +133,24 @@
   min-width: 300px;
   width: 100%;
   gap: 50px;
+
   @media screen and (max-width: 375px) {
     max-width: 290px;
     min-width: 200px;
     gap: 5px;
   }
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 10px 5px;
   @include border-radius(9px);
+
   &:hover {
     background-color: $border-color-2;
   }
+
   >.board-name {
     @include fontSize(14px);
   }
