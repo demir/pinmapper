@@ -9,5 +9,13 @@ module BoardSections
       @current_user = current_user
       @drag_sort = drag_sort
     end
+
+    private
+
+    def move_url
+      return '' if board_section.blank? || drag_sort.blank? || current_user.blank?
+
+      move_board_section_path(board_section)
+    end
   end
 end

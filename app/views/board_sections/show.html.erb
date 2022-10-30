@@ -35,7 +35,7 @@
       <% end %>
       <br>
       <div id="infinite-pins" class="body" data-controller="drag-sort" data-drag-sort-state-value="<%= @board_section.board.user == current_user %>">
-        <%= render Pins::SmallPinComponent.with_collection(@board_section.pins, current_user: @current_user, board: @board_section.board, drag_sort: @board_section.board.user == current_user) %>
+        <%= render Pins::SmallPinComponent.with_collection(@board_section.pins, options: { current_user: @current_user, board_section: @board_section, drag_sort: @board_section.board.user == current_user }) %>
         <!-- /pin_lists -->
       </div>
       <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>

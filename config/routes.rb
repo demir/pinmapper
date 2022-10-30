@@ -61,12 +61,19 @@ Rails.application.routes.draw do
         get 'unfollow'
         patch 'move/:pin_id', action: 'move', as: 'move_pin'
         patch 'move_board_by_id'
+        patch 'move_board_section/:board_section_id', action: 'move_board_section',
+                                                      as:     'move_board_section'
       end
       collection do
         get 'add_to_board_list/:pin_id', action: 'add_to_board_list', as: 'add_to_board_list'
         get 'following_boards'
       end
-      resources :board_sections, shallow: true, except: %i[index]
+      resources :board_sections, shallow: true, except: %i[index] do
+        member do
+          patch 'move'
+          patch 'move_pin/:pin_id', action: 'move_pin', as: 'move_pin'
+        end
+      end
     end
     resources :tags, only: %i[show] do
       member do

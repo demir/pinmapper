@@ -16,4 +16,7 @@ class BoardSection < ApplicationRecord
 
   # friendly_id
   friendly_id :name, use: :history
+
+  # acts_as_list for sorting
+  acts_as_list scope: :board
 end

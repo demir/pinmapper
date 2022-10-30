@@ -1,4 +1,4 @@
-<div class="small-pin" data-sort-url="<%= move_pin_url %>">
+<div class="small-pin" data-sort-url="<%= move_url %>">
   <div class="image">
     <%= cl_image_tag(pin.cover_photo.key, transformation: [pin.cover_photo_crop_constraints, { width: 100, height: 100, crop: 'fill' }], quality: 'auto', flags: 'progressive', alt: '') if pin.cover_photo.attached? %>
   </div>

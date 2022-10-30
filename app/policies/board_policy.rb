@@ -39,6 +39,10 @@ class BoardPolicy < ApplicationPolicy
     update?
   end
 
+  def move_board_section?
+    update?
+  end
+
   def show?
     record.user == user ||
       record.public_privacy?

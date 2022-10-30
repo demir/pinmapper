@@ -32,6 +32,10 @@ class BoardsController < ApplicationController
 
   # GET /boards/1 or /boards/1.json
   def show
+    map_pin_ids = @board.pins.ids |
+                  Pin.joins(board_sections: :board)
+                     .where(board_sections: { boards: { id: @board } }).ids
+    @map_pins = Pin.where(id: map_pin_ids)
     @pagy, @pins = pagy @board.pins
     respond_to do |f|
       f.html

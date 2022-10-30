@@ -1,5 +1,5 @@
 class BoardSectionsController < ApplicationController
-  before_action :set_board_section, only: %i[show edit update destroy]
+  before_action :set_board_section, only: %i[show edit update destroy move move_pin]
   before_action :set_board
 
   # GET /board_sections/1 or /board_sections/1.json
@@ -50,6 +50,15 @@ class BoardSectionsController < ApplicationController
       format.html { redirect_to board_url(@board), notice: t('.success') }
       format.json { head :no_content }
     end
+  end
+
+  def move
+    @board_section.insert_at(params[:position].to_i)
+  end
+
+  def move_pin
+    @board_section.pin_board_sections.find_by(pin: params[:pin_id]).insert_at(params[:position].to_i)
+    head :ok
   end
 
   private
