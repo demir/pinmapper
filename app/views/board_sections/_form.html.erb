@@ -5,6 +5,7 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
+    <%= f.input :description, as: :rich_text_area, input_html: { class: 'trix-content', data: { controller: "trix", 'sgid-not-found-message': t('embeds.sgid_not_found_message'), 'embed-button-name': t('embeds.embed_button_name'), 'embed-dialog-input-placeholder': t('embeds.embed_dialog_input_placeholder'), 'embed-dialog-add-button': t('embeds.embed_dialog_add_button') } } %>
   </div>
 
   <div class="form-actions">

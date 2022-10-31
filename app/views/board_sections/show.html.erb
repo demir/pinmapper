@@ -1,12 +1,12 @@
 <% keywords = @board_section.pins.pluck(:cached_tag_list) << t('pin_base_keywords') %>
 <% set_meta_tags alternate: { "en" => board_section_url(@board_section, locale: :en),
                               "tr" => board_section_url(@board_section, locale: :tr) },
-                 description: @board_section.name,
+                 description: @board_section.description&.body&.to_plain_text,
                  keywords: keywords.join(', ').split(', ').uniq.join(', ') %>
 <% set_meta_tags og: {
       type:     'website',
       title: "#{@board_section.name} - Pinmapper",
-      description: @board_section.name,
+      description: @board_section.description&.body&.to_plain_text,
       site: :site,
       image:    "https://res.cloudinary.com/pinmapper/image/upload/og_card_#{locale}.png",
       url: board_section_url(@board_section)
@@ -14,7 +14,7 @@
 <% set_meta_tags twitter: {
       card: "summary_large_image",
       title: "#{@board_section.name} - Pinmapper",
-      description: @board_section.name,
+      description: @board_section.description&.body&.to_plain_text,
       site: :site,
       image:    "https://res.cloudinary.com/pinmapper/image/upload/og_card_#{locale}.png",
       url: board_section_url(@board_section)
@@ -29,6 +29,11 @@
           <div class="title"><h1><%= title @board_section.name %></h1><div class="count"><%= "(#{@board_section.pins_count})" %></div></div>
         </div>
       </div>
+      <% if @board_section.description.present? %>
+        <div class="description" data-controller="gallery">
+          <%= @board_section.description %>
+        </div>
+      <% end %>
       <% marker_service = MapServices::GenerateMarkers::Pin.call(@board_section.pins) %>
       <% if marker_service[:success] && marker_service[:payload].present? %>
         <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>

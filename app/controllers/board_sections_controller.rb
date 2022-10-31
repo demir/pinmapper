@@ -70,7 +70,7 @@ class BoardSectionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def board_section_params
-    params.require(:board_section).permit(:name)
+    params.require(:board_section).permit(:name, :description)
   end
 
   def set_board
