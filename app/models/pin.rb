@@ -127,12 +127,14 @@ class Pin < ApplicationRecord
   end
 
   def description_length
+    return if description.body.blank?
     return if description.body.to_plain_text.length <= 5000
 
     errors.add(:description, :too_long, **{ count: 5000 })
   end
 
   def max_number_of_description_attachments
+    return if description.body.blank?
     return if description.body
                          .attachments
                          .count { |a| !a.attachable.instance_of?(::Embed) } <= 6
