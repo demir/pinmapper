@@ -19,18 +19,24 @@
           <% end %>
       </div>
     </div>
-    <div id="add-pin-to-board-panel-section" class="visually-hidden slide-right">
-      <button data-action="click->dropdown#switchBoardsPanel" type="button" class="btn btn-primary btn-sm"><</button>
-      <div class="header">
-        <span>Bölüm Panel Başlığı</span>
+    <div id="add-pin-to-board-panel-section" class="visually-hidden slide-right board-sections-panel">
+      <div class="header-with-navigation">
+        <a data-action="click->dropdown#switchBoardsPanel" class="btn btn-default btn-sm">
+          <i class="ti-angle-left angle-navigation-button"></i>
+        </a>
+        <div class="header">
+          <span><%= t('boards.add_pin_to') %></span>
+        </div>
+        <a class="btn btn-default btn-sm invisible">
+          <i class="ti-angle-left angle-navigation-button"></i>
+        </a>
       </div>
       <div class="body">
-          <span><%= t('boards.boards') %></span>
-          <%= turbo_frame_tag "add_to_board_list_body_#{dom_id(pin)}", src: add_to_board_list_boards_path(pin), loading: :lazy do %>
+          <div id="add_to_board_section_list_body_<%= dom_id(pin) %>">
             <div class="d-flex justify-content-center">
               <div class="spinner-border pinmapper m-4"></div>
             </div>
-          <% end %>
+          </div>
       </div>
     </div>
   </div>

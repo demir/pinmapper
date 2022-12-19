@@ -63,6 +63,7 @@ Rails.application.routes.draw do
         patch 'move_board_by_id'
         patch 'move_board_section/:board_section_id', action: 'move_board_section',
                                                       as:     'move_board_section'
+        get 'add_to_board_section_list'
       end
       collection do
         get 'add_to_board_list/:pin_id', action: 'add_to_board_list', as: 'add_to_board_list'

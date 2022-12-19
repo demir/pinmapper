@@ -5,7 +5,7 @@ class BoardsController < ApplicationController
   include Pagy::Backend
   before_action :set_board, only: %i[show edit update destroy
                                      add_pin remove_pin follow unfollow move
-                                     move_board_by_id]
+                                     move_board_by_id add_to_board_section_list]
   before_action :set_pin, only: %i[add_pin remove_pin add_to_board_list new create]
   before_action :authorize_board
 
@@ -26,6 +26,18 @@ class BoardsController < ApplicationController
     @pagy, @boards = pagy(boards)
     respond_to do |f|
       f.html
+      f.turbo_stream
+    end
+  end
+
+  def add_to_board_section_list
+    @pin = Pin.find(params['pin_id'])
+    board_sections = @board.board_sections
+    %i[name].each do |param|
+      board_sections = search_board_section(board_sections, param, params[param]) if params[param].present?
+    end
+    @pagy, @board_sections = pagy(board_sections)
+    respond_to do |f|
       f.turbo_stream
     end
   end
@@ -156,6 +168,10 @@ class BoardsController < ApplicationController
 
   def search(boards, attr, attr_value)
     boards.send("trigram_search_by_#{attr}", attr_value)
+  end
+
+  def search_board_section(board_sections, attr, attr_value)
+    board_sections.send("trigram_search_by_#{attr}", attr_value)
   end
 
   def get_boards(pin)

@@ -1,5 +1,13 @@
+# frozen_string_literal: true
+
 class BoardSection < ApplicationRecord
+  include PgSearch::Model
   extend FriendlyId
+
+  # scopes
+  pg_search_scope :trigram_search_by_name,
+                  against: :name,
+                  using:   { trigram: { word_similarity: true, threshold: 0.5 } }
 
   # relations
   belongs_to :board

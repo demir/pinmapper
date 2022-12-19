@@ -14,14 +14,15 @@ export default class extends Controller {
     let dropdowns = this.element.getElementsByClassName('add-pin-to-board-dropdown');
     for (let dropdownParent of dropdowns) {
       let dropdown = dropdownParent.querySelector('.add-pin-to-board');
+      dropdown.querySelector('#add-pin-to-board-panel-board').classList.remove('visually-hidden')
+      dropdown.querySelector('#add-pin-to-board-panel-section').classList.add('visually-hidden')
       dropdownParent.querySelector('.body').scrollTop = 0;
       if (dropdown.classList.contains('show')) {
         dropdown.classList.remove('show');
-        let input = dropdownParent.querySelector('form');
-        if (input) {
-          input.reset();
-          let frame = dropdownParent.querySelector('.body > turbo-frame');
-          frame.reload();
+        let forms = dropdownParent.getElementsByClassName('form');
+        for (let form of forms) {
+          form.reset();
+          form.querySelector('#name').dispatchEvent(new Event('input'));
         }
       }
     }

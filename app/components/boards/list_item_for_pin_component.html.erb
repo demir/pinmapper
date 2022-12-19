@@ -1,5 +1,4 @@
 <div id="<%= dom_id(board) %>" class="board-list-item-for-pin">
   <span class="board-name"><%= board.name %></span>
-  <button data-action="click->dropdown#switchBoardsPanel" type="button" class="btn btn-primary btn-sm">></button>
-  <%= render Pins::Boards::AddRemoveButtonComponent.new(board: board, pin: pin, current_user: current_user) %>
+  <%= render Pins::Boards::AddRemoveButtonComponent.new(board: board, pin: pin, current_user: current_user, board_section_button: board_section_button) %>
 </div>

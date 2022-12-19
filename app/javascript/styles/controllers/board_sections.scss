@@ -2,16 +2,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #fff;
-  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
   @include border-radius(9px);
   max-height: 75px;
   width: 100%;
+  padding: 5px 5px;
 
-  .body {
+  &:hover {
+    background-color: $border-color-2;
+  }
+
+  @media screen and (max-width: 375px) {
+    max-width: 290px;
+    min-width: 200px;
+    gap: 5px;
+  }
+
+  .board-section-body {
     display: flex;
     flex-direction: column;
-    padding: 10px;
     width: 100%;
 
     p {
@@ -19,15 +27,28 @@
     }
 
     .name {
-      @include fontSize(16px);
+      @include fontSize(14px);
     }
 
     .pins-count {
-      @include fontSize(14px);
+      @include fontSize(12px);
     }
   }
 
   .more-button {
     padding-right: 10px;
+  }
+}
+
+.board-sections-panel {
+  .header-with-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sub-header {
+    margin: 10px 0;
+    padding-left: 5px;
   }
 }

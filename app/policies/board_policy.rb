@@ -60,6 +60,10 @@ class BoardPolicy < ApplicationPolicy
     index?
   end
 
+  def add_to_board_section_list?
+    index?
+  end
+
   def follow?
     return if user.blank?
 
