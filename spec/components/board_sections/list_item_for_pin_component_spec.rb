@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe BoardSections::BoardSectionComponent, type: :component do
+RSpec.describe BoardSections::ListItemForPinComponent, type: :component do
   pending "add some examples to (or delete) #{__FILE__}"
 
   # it "renders something useful" do

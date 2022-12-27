@@ -1,4 +1,4 @@
-.board-section {
+.board-section-list-item-for-pin {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,7 +17,7 @@
     gap: 5px;
   }
 
-  .board-section-body {
+  .board-section-list-item-for-pin-body {
     display: flex;
     flex-direction: column;
     width: 100%;

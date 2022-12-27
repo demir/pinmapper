@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module BoardSections
-  class BoardSectionComponent < ViewComponent::Base
+  class ListItemForPinComponent < ViewComponent::Base
+    with_collection_parameter :board_section
     attr_reader :board_section, :current_user, :drag_sort
 
     def initialize(board_section:, current_user:, drag_sort: false)
