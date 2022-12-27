@@ -2,5 +2,5 @@
   <p class="sub-header"><%= t('activerecord.models.board') %></p>
   <%= render(Boards::ListItemForPinComponent.new(board: @board, pin: @pin, current_user: current_user)) %>
   <p class="sub-header"><%= t('board_sections.board_sections') %></p>
-  <%= render(BoardSections::ListItemForPinComponent.with_collection(@board.board_sections, current_user: current_user, drag_sort: @board.user == current_user)) %>
+  <%= render(BoardSections::ListItemForPinComponent.with_collection(@board.board_sections, pin: @pin, current_user: current_user, drag_sort: @board.user == current_user)) %>
 <% end %>

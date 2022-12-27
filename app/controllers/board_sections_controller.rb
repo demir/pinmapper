@@ -1,6 +1,7 @@
 class BoardSectionsController < ApplicationController
-  before_action :set_board_section, only: %i[show edit update destroy move move_pin]
+  before_action :set_board_section, only: %i[show edit update destroy move move_pin add_pin remove_pin]
   before_action :set_board
+  before_action :set_pin, only: %i[add_pin remove_pin]
 
   # GET /board_sections/1 or /board_sections/1.json
   def show; end
@@ -61,6 +62,14 @@ class BoardSectionsController < ApplicationController
     head :ok
   end
 
+  def add_pin
+    @board_section.pins << @pin
+  end
+
+  def remove_pin
+    @board_section.pins.delete(@pin)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -75,5 +84,11 @@ class BoardSectionsController < ApplicationController
 
   def set_board
     @board = @board_section&.board.presence || Board.friendly.find(params[:board_id])
+  end
+
+  def set_pin
+    return if params[:pin_id].blank?
+
+    @pin = Pin.friendly.find(params[:pin_id])
   end
 end

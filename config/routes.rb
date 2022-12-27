@@ -71,6 +71,8 @@ Rails.application.routes.draw do
       end
       resources :board_sections, shallow: true, except: %i[index] do
         member do
+          get 'add_pin/:pin_id', action: 'add_pin', as: 'add_pin'
+          get 'remove_pin/:pin_id', action: 'remove_pin', as: 'remove_pin'
           patch 'move'
           patch 'move_pin/:pin_id', action: 'move_pin', as: 'move_pin'
         end

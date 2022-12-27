@@ -3,4 +3,7 @@
     <p class="name"><%= board_section.name %></p>
     <p class="pins-count"><%= "#{board_section.pins_count} #{t('pins.pins_tr')}" %></p>
   </div>
+  <% if render_add_remove_button? %>
+    <%= render Pins::BoardSections::AddRemoveButtonComponent.new(board_section: board_section, pin: pin, current_user: current_user) %>
+  <% end %>
 </div>
