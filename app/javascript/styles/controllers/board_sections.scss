@@ -1,3 +1,35 @@
+//-------------------- Board Section -------------------//
+
+.board-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  @include box-shadow (0px 0px 30px 0px rgba(0, 0, 0, 0.10));
+  @include border-radius(9px);
+  padding: 10px;
+  max-height: 60px;
+  width: 100%;
+
+  .board-section-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .name {
+      @include fontSize(14px);
+    }
+
+    .pins-count {
+      @include fontSize(12px);
+    }
+  }
+}
+
 .board-section-list-item-for-pin {
   display: flex;
   align-items: center;

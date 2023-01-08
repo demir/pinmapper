@@ -14,12 +14,6 @@ module BoardSections
 
     private
 
-    def move_url
-      return '' if board_section.blank? || drag_sort.blank? || current_user.blank?
-
-      move_board_section_path(board_section)
-    end
-
     def render_add_remove_button?
       pin.present?
     end

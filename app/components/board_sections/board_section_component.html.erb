@@ -1,0 +1,7 @@
+<div id="<%= dom_id(board_section) %>" class="board-section" data-sort-url="<%= move_url %>">
+  <div class="board-section-body">
+    <%= link_to truncate(board_section.name, length: 40), board_section, class: 'name black-link', title: board_section.name %>
+    <p class="pins-count"><%= "#{board_section.pins_count} #{t('pins.pins_tr')}" %></p>
+  </div>
+  <%= render(Boards::MoreButtonComponent.new(board: board_section.board, current_user: current_user )) %>
+</div>
