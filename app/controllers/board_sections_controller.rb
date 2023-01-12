@@ -55,6 +55,7 @@ class BoardSectionsController < ApplicationController
 
   def move
     @board_section.insert_at(params[:position].to_i)
+    head :ok
   end
 
   def move_pin
