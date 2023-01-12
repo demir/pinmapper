@@ -50,6 +50,8 @@ class BoardSectionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to board_url(@board), notice: t('.success') }
       format.json { head :no_content }
+      flash.now[:notice] = t('.success')
+      format.turbo_stream
     end
   end
 

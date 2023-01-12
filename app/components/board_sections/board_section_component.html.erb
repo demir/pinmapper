@@ -3,5 +3,26 @@
     <%= link_to truncate(board_section.name, length: 40), board_section, class: 'name black-link', title: board_section.name %>
     <p class="pins-count"><%= "#{board_section.pins_count} #{t('pins.pins_tr')}" %></p>
   </div>
-  <%= render(Boards::MoreButtonComponent.new(board: board_section.board, current_user: current_user )) %>
+  <%= render(General::MoreButtonComponent.new(current_user: current_user)) do %>
+    <% if board_section.board.user == current_user %>
+      <%= link_to t('edit'), edit_board_section_path(board_section), class: 'dropdown-item', target: :_top %>
+      <%= link_to t('destroy'), board_section, data: { turbo_confirm: t('are_you_sure'), turbo_method: :delete }, class: 'dropdown-item' %>
+      <%= link_to "Birleştir", "#", class: 'dropdown-item', data: { 'bs-toggle': 'modal', 'bs-target': "#modal_#{dom_id(board_section)}" } %>
+    <% end %>
+  <% end %>
+  <div class="modal fade" id="modal_<%= dom_id(board_section) %>">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title">
+            <span><%= board_section.name %></span>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Gövdesi
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
