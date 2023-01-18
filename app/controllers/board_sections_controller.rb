@@ -1,7 +1,10 @@
 class BoardSectionsController < ApplicationController
-  before_action :set_board_section, only: %i[show edit update destroy move move_pin add_pin remove_pin]
+  before_action :set_board_section, only: %i[show edit update destroy move move_pin
+                                             add_pin remove_pin select_board_sections
+                                             autocomplete merge]
   before_action :set_board
   before_action :set_pin, only: %i[add_pin remove_pin]
+  before_action :authorize_board_section
 
   # GET /board_sections/1 or /board_sections/1.json
   def show; end
@@ -73,6 +76,26 @@ class BoardSectionsController < ApplicationController
     @board_section.pins.delete(@pin)
   end
 
+  def select_board_sections; end
+
+  def autocomplete
+    list = @board.board_sections.where.not(id: @board_section)
+    list = list.trigram_search_by_name(params[:q]) if params[:q].present?
+
+    render(json: list.map { |u| { text: u.name, value: u.id } })
+  end
+
+  def merge
+    other_board_section = BoardSection.find(params[:other_board_section_id])
+    other_board_section.pins << @board_section.pins.where.not(id: other_board_section.pins)
+    @board_section.destroy
+
+    respond_to do |format|
+      format.html { redirect_to board_url(@board), notice: t('.success') }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -93,5 +116,9 @@ class BoardSectionsController < ApplicationController
     return if params[:pin_id].blank?
 
     @pin = Pin.friendly.find(params[:pin_id])
+  end
+
+  def authorize_board_section
+    authorize @board_section || BoardSection.new
   end
 end

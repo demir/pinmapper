@@ -14,3 +14,7 @@ en:
     edit:
       title: Edit Section
       edit_board_section: Edit Section
+    select_board_sections:
+      placeholder: Pick a section
+      info_message: 'You are about to move all Pins (%{pins_count}) in this section to one of the sections below.'
+      submit: Move Pins and delete section

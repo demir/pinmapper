@@ -6,3 +6,5 @@ en:
       success: Section updated
     destroy:
       success: Section destroyed
+    merge:
+      success: Section merged

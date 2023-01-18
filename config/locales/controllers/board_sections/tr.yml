@@ -6,3 +6,5 @@ tr:
       success: Bölüm güncellendi
     destroy:
       success: Bölüm silindi
+    merge:
+      success: Bölüm birleştirildi

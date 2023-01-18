@@ -1,3 +1,6 @@
+@import "tom-select/dist/scss/tom-select.bootstrap5";
+
+
 //-------------------- Board Section -------------------//
 
 .board-section {
@@ -21,10 +24,12 @@
     }
 
     .name {
+      width: fit-content;
       @include fontSize(14px);
     }
 
     .pins-count {
+      width: fit-content;
       @include fontSize(12px);
     }
   }
@@ -82,5 +87,13 @@
   .sub-header {
     margin: 10px 0;
     padding-left: 5px;
+  }
+}
+
+.select-board-section.form {
+  box-shadow: none;
+
+  .form-inputs {
+    margin-bottom: 200px;
   }
 }
