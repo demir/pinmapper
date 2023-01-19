@@ -6,6 +6,8 @@ export default class extends Controller {
   static values = { url: String }
 
   connect() {
+    if (this.element.classList.contains('tomselected')) return;
+
     let _this = this;
     var config = {
       plugins: ['clear_button'],
