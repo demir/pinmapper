@@ -17,8 +17,4 @@ class BoardSections::BoardSectionComponent < ViewComponent::Base
 
     move_board_section_path(board_section)
   end
-
-  def merge?
-    board_section.board.board_sections.where.not(id: board_section).present?
-  end
 end

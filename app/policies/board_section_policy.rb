@@ -15,10 +15,6 @@ class BoardSectionPolicy < ApplicationPolicy
     create?
   end
 
-  def index?
-    create?
-  end
-
   def update?
     record.board.user == user
   end
@@ -45,11 +41,11 @@ class BoardSectionPolicy < ApplicationPolicy
   end
 
   def add_pin?
-    record.board.user == user
+    update?
   end
 
   def remove_pin?
-    add_pin?
+    update?
   end
 
   def select_board_sections?
@@ -57,10 +53,10 @@ class BoardSectionPolicy < ApplicationPolicy
   end
 
   def autocomplete?
-    select_board_sections?
+    update?
   end
 
   def merge?
-    select_board_sections?
+    update?
   end
 end

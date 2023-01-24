@@ -31,6 +31,10 @@ class BoardSection < ApplicationRecord
   # acts_as_list for sorting
   acts_as_list scope: :board
 
+  def merge?
+    board.board_sections.where.not(id: self).present?
+  end
+
   private
 
   def description_length

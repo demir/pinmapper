@@ -46,7 +46,6 @@
           <%= @board.description %>
         </div>
       <% end %>
-      <% map_pins = Pin.joins(:boards, board_sections: :board).where(boards: { id: @board }, board_sections: { boards: { id: @board } }) %>
       <% marker_service = MapServices::GenerateMarkers::Pin.call(@map_pins) %>
       <% if marker_service[:success] && marker_service[:payload].present? %>
         <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>

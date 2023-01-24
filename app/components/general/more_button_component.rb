@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class General::MoreButtonComponent < ViewComponent::Base
-  attr_reader :current_user, :turbo, :display
+  attr_reader :display
 
-  def initialize(current_user: nil, turbo: true, display: true)
-    @current_user = current_user
-    @turbo = turbo
+  def initialize(display: true)
     @display = display
   end
 

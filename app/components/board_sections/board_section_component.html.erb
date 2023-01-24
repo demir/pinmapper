@@ -3,34 +3,16 @@
     <%= link_to truncate(board_section.name, length: 40), board_section, class: 'name black-link', title: board_section.name %>
     <p class="pins-count"><%= "#{board_section.pins_count} #{t('pins.pins_tr')}" %></p>
   </div>
-  <%= render(General::MoreButtonComponent.new(current_user: current_user)) do %>
+  <%= render(General::MoreButtonComponent.new) do %>
     <% if board_section.board.user == current_user %>
       <%= link_to t('edit'), edit_board_section_path(board_section), class: 'dropdown-item', target: :_top %>
       <%= link_to t('destroy'), board_section, data: { turbo_confirm: t('are_you_sure'), turbo_method: :delete }, class: 'dropdown-item' %>
-      <% if merge? %>
+      <% if board_section.merge? %>
         <%= link_to t('merge'), "#", class: 'dropdown-item', data: { 'bs-toggle': 'modal', 'bs-target': "#modal_#{dom_id(board_section)}" } %>
       <% end %>
     <% end %>
   <% end %>
-  <% if merge? %>
-    <div class="modal fade" id="modal_<%= dom_id(board_section) %>">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <div class="modal-title">
-              <span class="h6"><%= board_section.name %></span>
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <%= turbo_frame_tag "select_board_sections_#{dom_id(board_section)}", src: select_board_sections_board_section_path(board_section), loading: :lazy do %>
-              <div class="d-flex justify-content-center">
-                <div class="spinner-border pinmapper m-4"></div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
+  <% if board_section.merge? %>
+    <%= render partial: 'board_sections/merge_modal', locals: { board_section: board_section } %>
   <% end %>
 </div>

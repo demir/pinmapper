@@ -28,6 +28,18 @@
           <span><em></em></span>
           <div class="title"><h1><%= title @board_section.name %></h1><div class="count"><%= "(#{@board_section.pins_count})" %></div></div>
         </div>
+        <%= render(General::MoreButtonComponent.new) do %>
+          <% if @board_section.board.user == current_user %>
+            <%= link_to t('edit'), edit_board_section_path(@board_section), class: 'dropdown-item', target: :_top %>
+            <%= link_to t('destroy'), @board_section, data: { turbo_confirm: t('are_you_sure'), turbo_method: :delete }, class: 'dropdown-item' %>
+            <% if @board_section.merge? %>
+              <%= link_to t('merge'), "#", class: 'dropdown-item', data: { 'bs-toggle': 'modal', 'bs-target': "#modal_#{dom_id(@board_section)}" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% if @board_section.merge? %>
+          <%= render partial: 'board_sections/merge_modal', locals: { board_section: @board_section } %>
+        <% end %>
       </div>
       <% if @board_section.description.present? %>
         <div class="description" data-controller="gallery">
