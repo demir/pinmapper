@@ -3,7 +3,7 @@
     <%= link_to truncate(board_section.name, length: 40), board_section, class: 'name black-link', title: board_section.name %>
     <p class="pins-count"><%= "#{board_section.pins_count} #{t('pins.pins_tr')}" %></p>
   </div>
-  <%= render(General::MoreButtonComponent.new) do %>
+  <%= render(General::MoreButtonComponent.new(display: board_section.board.user == current_user)) do %>
     <% if board_section.board.user == current_user %>
       <%= link_to t('edit'), edit_board_section_path(board_section), class: 'dropdown-item', target: :_top %>
       <%= link_to t('destroy'), board_section, data: { turbo_confirm: t('are_you_sure'), turbo_method: :delete }, class: 'dropdown-item' %>
