@@ -136,6 +136,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
           pin_element.find_by_id('add-pin-to-board-menu').click
           find("#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin a:has(i.ti-angle-right)").click
+          sleep 0.3
           find("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.add-button").click
           expect(page).to(
             have_css("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.remove-button")
@@ -153,6 +154,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
           pin_element.find_by_id('add-pin-to-board-menu').click
           find("#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin a:has(i.ti-angle-right)").click
+          sleep 0.3
           find("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.remove-button").click
           expect(page).to(
             have_css("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.add-button")
