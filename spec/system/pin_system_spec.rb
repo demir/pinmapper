@@ -127,6 +127,38 @@ RSpec.describe 'Pins', type: :system, js: true do
                                    count: 0
         end
 
+        it 'add to board section' do
+          board = boards.first
+          board_sections = create_list(:board_section, 2, board:)
+          board_section = board_sections.first
+          visit pins_path
+          pin = pins.last
+          pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
+          pin_element.find_by_id('add-pin-to-board-menu').click
+          find("#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin a:has(i.ti-angle-right)").click
+          find("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.add-button").click
+          expect(page).to(
+            have_css("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.remove-button")
+          )
+        end
+
+        it 'remove from board section' do
+          board = boards.first
+          board_sections = create_list(:board_section, 2, board:)
+          board_section = board_sections.first
+          visit pins_path
+          pin = pins.last
+          board_section.pins.destroy_all
+          board_section.pins << pin
+          pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
+          pin_element.find_by_id('add-pin-to-board-menu').click
+          find("#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin a:has(i.ti-angle-right)").click
+          find("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.remove-button").click
+          expect(page).to(
+            have_css("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.add-button")
+          )
+        end
+
         it 'can infinite scroll' do
           create_list(:board, 30, user:)
           visit pins_path
