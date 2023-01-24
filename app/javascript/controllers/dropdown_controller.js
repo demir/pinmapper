@@ -31,8 +31,9 @@ export default class extends Controller {
   updateButton() {
     let dropdown = document.getElementById(this.idValue)
     let dropdownButton = dropdown.querySelector('.add_to_board_btn')
-    let removeButtons = dropdown.querySelectorAll('.add-pin-to-board .body .board-list-item-for-pin .remove-button')
-    if (removeButtons.length > 0) {
+    let anyAddedPin = dropdown.querySelectorAll('.board-list-item-for-pin[data-any-added-pin="true"]').length > 0
+    let anyRemoveButton = dropdown.querySelectorAll('.add-pin-to-board .body .list-item-for-pin-add-remove .remove-button').length > 0
+    if (anyRemoveButton || anyAddedPin) {
       if (!dropdownButton.classList.contains('added')) {
         dropdownButton.classList.add('added')
       }

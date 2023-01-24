@@ -1,4 +1,4 @@
-<div id="<%= dom_id(board) %>" class="board-list-item-for-pin">
+<div id="<%= dom_id(board) %>" class="board-list-item-for-pin list-item-for-pin-add-remove" data-any-added-pin="<%= board.all_pin_ids.include?(pin.id) %>">
   <span class="board-name"><%= board.name %></span>
   <%= render Pins::Boards::AddRemoveButtonComponent.new(board: board, pin: pin, current_user: current_user, board_section_button: board_section_button) %>
 </div>

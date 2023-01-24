@@ -52,6 +52,10 @@ class Board < ApplicationRecord
     pins_count + board_sections.sum(:pins_count)
   end
 
+  def all_pin_ids
+    pins.ids | Pin.joins(:board_sections).where(board_sections: { id: board_sections }).ids
+  end
+
   private
 
   def description_length
