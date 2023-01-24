@@ -13,11 +13,12 @@ RSpec.describe Board, type: :model do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to have_many(:pins) }
     it { is_expected.to have_many(:followers) }
+    it { is_expected.to have_rich_text(:description) }
   end
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_length_of(:description).is_at_most(500) }
+    it { is_expected.to validate_length_of(:description).is_at_most(1000) }
     it { is_expected.to validate_presence_of(:privacy) }
     it { is_expected.to validate_presence_of(:pins_count) }
   end

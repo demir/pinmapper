@@ -23,12 +23,12 @@ RSpec.describe MapServices::GenerateMarkers::Pin, type: :service do
       context 'when there is an error' do
         let(:result) { described_class.call(nil) }
 
-        it 'has no the payload key' do
-          expect(result).not_to include(:payload)
+        it 'has empty payload' do
+          expect(result[:payload]).to eq(Array(nil))
         end
 
-        it 'has the error key' do
-          expect(result).to include(:error)
+        it 'has unsuccessful response' do
+          expect(result[:success]).to be(false)
         end
       end
 

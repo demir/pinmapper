@@ -1,30 +1,19 @@
 require 'rails_helper'
 
-RSpec.describe "board_sections/new", type: :view do
-  before(:each) do
-    assign(:board_section, BoardSection.new(
-      name: "MyString",
-      board: nil,
-      pins_count: 1,
-      slug: "MyString",
-      position: 1
-    ))
+RSpec.describe 'board_sections/new', type: :view do
+  let(:board) { create(:board) }
+
+  before do
+    assign(:board, board)
+    assign(:board_section, build(:board_section, board:))
   end
 
-  it "renders new board_section form" do
+  it 'renders new board_section form' do
     render
-
-    assert_select "form[action=?][method=?]", board_sections_path, "post" do
-
-      assert_select "input[name=?]", "board_section[name]"
-
-      assert_select "input[name=?]", "board_section[board_id]"
-
-      assert_select "input[name=?]", "board_section[pins_count]"
-
-      assert_select "input[name=?]", "board_section[slug]"
-
-      assert_select "input[name=?]", "board_section[position]"
+    assert_select 'form[action=?][method=?]', board_board_sections_path(board, locale: I18n.locale),
+                  'post' do
+      assert_select 'input[name=?]', 'board_section[name]'
+      assert_select 'input[name=?]', 'board_section[description]'
     end
   end
 end

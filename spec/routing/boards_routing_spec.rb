@@ -48,6 +48,10 @@ RSpec.describe BoardsController, type: :routing do
       expect(get: '/boards/add_to_board_list/1').to route_to('boards#add_to_board_list', pin_id: '1')
     end
 
+    it 'routes to #add_to_board_section_list' do
+      expect(get: '/boards/1/add_to_board_section_list').to route_to('boards#add_to_board_section_list', id: '1')
+    end
+
     it 'routes to #follow' do
       expect(get: '/boards/1/follow').to route_to('boards#follow', id: '1')
     end
@@ -58,6 +62,14 @@ RSpec.describe BoardsController, type: :routing do
 
     it 'routes to #following_boards' do
       expect(get: '/boards/following_boards').to route_to('boards#following_boards')
+    end
+
+    it 'routes to #move' do
+      expect(patch: '/boards/1/move/2').to route_to('boards#move', id: '1', pin_id: '2')
+    end
+
+    it 'routes to #move_board_by_id' do
+      expect(patch: '/boards/1/move_board_by_id').to route_to('boards#move_board_by_id', id: '1')
     end
   end
 end
