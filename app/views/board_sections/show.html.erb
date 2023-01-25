@@ -1,0 +1,62 @@
+<% keywords = @board_section.pins.pluck(:cached_tag_list) << t('pin_base_keywords') %>
+<% set_meta_tags alternate: { "en" => board_section_url(@board_section, locale: :en),
+                              "tr" => board_section_url(@board_section, locale: :tr) },
+                 description: @board_section.description&.body&.to_plain_text,
+                 keywords: keywords.join(', ').split(', ').uniq.join(', ') %>
+<% set_meta_tags og: {
+      type:     'website',
+      title: "#{@board_section.name} - Pinmapper",
+      description: @board_section.description&.body&.to_plain_text,
+      site: :site,
+      image:    "https://res.cloudinary.com/pinmapper/image/upload/og_card_#{locale}.png",
+      url: board_section_url(@board_section)
+    } %>
+<% set_meta_tags twitter: {
+      card: "summary_large_image",
+      title: "#{@board_section.name} - Pinmapper",
+      description: @board_section.description&.body&.to_plain_text,
+      site: :site,
+      image:    "https://res.cloudinary.com/pinmapper/image/upload/og_card_#{locale}.png",
+      url: board_section_url(@board_section)
+    } %>
+
+<div class="container margin_100_55">
+  <div class="row">
+    <div class="col-lg-12 board-show">
+      <div class="header">
+        <div class="main_title_3 small-h1">
+          <span><em></em></span>
+          <div class="title"><h1><%= title @board_section.name %></h1><div class="count"><%= "(#{@board_section.pins_count})" %></div></div>
+        </div>
+        <%= render(General::MoreButtonComponent.new(display: @board_section.board.user == current_user)) do %>
+          <% if @board_section.board.user == current_user %>
+            <%= link_to t('edit'), edit_board_section_path(@board_section), class: 'dropdown-item', target: :_top %>
+            <%= link_to t('destroy'), @board_section, data: { turbo_confirm: t('are_you_sure'), turbo_method: :delete }, class: 'dropdown-item' %>
+            <% if @board_section.merge? %>
+              <%= link_to t('merge'), "#", class: 'dropdown-item', data: { 'bs-toggle': 'modal', 'bs-target': "#modal_#{dom_id(@board_section)}" } %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% if @board_section.merge? %>
+          <%= render partial: 'board_sections/merge_modal', locals: { board_section: @board_section } %>
+        <% end %>
+      </div>
+      <% if @board_section.description.present? %>
+        <div class="description" data-controller="gallery">
+          <%= @board_section.description %>
+        </div>
+      <% end %>
+      <% marker_service = MapServices::GenerateMarkers::Pin.call(@board_section.pins) %>
+      <% if marker_service[:success] && marker_service[:payload].present? %>
+        <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>
+      <% end %>
+      <h2 class="pins-header"><%= t('pins.pins') %></h2>
+      <div id="infinite-pins" class="body" data-controller="drag-sort" data-drag-sort-state-value="<%= @board_section.board.user == current_user %>">
+        <%= render Pins::SmallPinComponent.with_collection(@board_section.pins, options: { current_user: @current_user, board_section: @board_section, drag_sort: @board_section.board.user == current_user }) %>
+        <!-- /pin_lists -->
+      </div>
+      <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>
+    </div>
+  </div>
+</div>
+<!-- /container -->

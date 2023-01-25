@@ -4,12 +4,13 @@ module Pins
   module Boards
     class AddRemoveButtonComponent < ViewComponent::Base
       include Turbo::FramesHelper
-      attr_reader :board, :pin, :current_user
+      attr_reader :board, :pin, :current_user, :board_section_button
 
-      def initialize(board:, pin:, current_user:)
+      def initialize(board:, pin:, current_user:, board_section_button: false)
         @board = board
         @pin = pin
         @current_user = current_user
+        @board_section_button = board_section_button
       end
 
       def render?

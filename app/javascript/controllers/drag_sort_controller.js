@@ -10,7 +10,7 @@ export default class extends Controller {
     }
 
     this.sortable = Sortable.create(this.element, {
-      group: 'shared',
+      group: this.element,
       animation: 150,
       delay: 200,
       delayOnTouchOnly: true,

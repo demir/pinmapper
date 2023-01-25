@@ -1,0 +1,12 @@
+<div class="dropdown dropstart general-more">
+  <%= inline_svg_pack_tag 'media/images/theme/three-dots.svg', class: 'bi bi-three-dots dropdown-toggle',
+                                                              width: '16px',
+                                                              height: '16px',
+                                                              fill: 'currentColor',
+                                                              viewBox: '0 0 16 16',
+                                                              id: 'general-more',
+                                                              data: { 'bs-toggle': 'dropdown' } %>
+  <div class="dropdown-menu" aria-labelledby="general-more">
+    <%= content %>
+  </div>
+</div>

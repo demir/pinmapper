@@ -1,0 +1,14 @@
+
+<%= simple_form_for(board_section.new_record? ? [@board, @board_section] : @board_section, data: { turbo: false }) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description, as: :rich_text_area, input_html: { class: 'trix-content', data: { controller: "trix", 'sgid-not-found-message': t('embeds.sgid_not_found_message'), 'embed-button-name': t('embeds.embed_button_name'), 'embed-dialog-input-placeholder': t('embeds.embed_dialog_input_placeholder'), 'embed-dialog-add-button': t('embeds.embed_dialog_add_button') } } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn_1 rounded' %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+tr:
+  board_sections:
+    create:
+      success: Bölüm oluşturuldu
+    update:
+      success: Bölüm güncellendi
+    destroy:
+      success: Bölüm silindi
+    merge:
+      success: Bölüm birleştirildi

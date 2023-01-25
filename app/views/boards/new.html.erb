@@ -1,7 +1,7 @@
 <% title t('.title') %>
 <% set_meta_tags alternate: { "en" => new_board_url(locale: :en),
                               "tr" => new_board_url(locale: :tr) } %>
-<div class="container margin_100_55 col-lg-4">
+<div class="container margin_100_55 col-lg-5">
   <%= turbo_frame_tag 'new_board_form' do %>
     <%= render 'form', board: @board, pin: @pin %>
   <% end %>

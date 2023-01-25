@@ -1,9 +1,7 @@
-<div data-controller='toastr'>
-  <%= tag.script do %>
-    <% flash.each do |type, message| %>
-      <% next if message.blank? %>
+<%= tag.script do %>
+  <% flash.each do |type, message| %>
+    <% next if message.blank? %>
 
-      <%= toastr_flash_class(type.to_s) %>('<%= message %>')
-    <% end %>
+    <%= toastr_flash_class(type.to_s) %>('<%= message %>')
   <% end %>
-</div>
+<% end %>

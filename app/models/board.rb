@@ -16,14 +16,17 @@ class Board < ApplicationRecord
   has_many :pins, -> { order 'pin_boards.position ASC' }, through: :pin_boards, dependent: :destroy
   has_many :user_boards, dependent: :destroy
   has_many :followers, through: :user_boards, source: :user, dependent: :destroy
+  has_many :board_sections, -> { order 'board_sections.position ASC' }, dependent: :destroy
+  has_rich_text :description
 
   # validations
   validates :name, presence:  true,
                    length:    { maximum: 50 },
                    exclusion: { in: ReservedWords.all }
-  validates :description, length: { maximum: 500 }
   validates :privacy, presence: true
   validates :pins_count, presence: true
+  validate :description_length
+  validate :max_number_of_description_attachments
 
   # friendly_id
   friendly_id :name, use: :history
@@ -44,4 +47,30 @@ class Board < ApplicationRecord
   enum privacy: { public: 0, secret: 1 }, _suffix: true
 
   translate_enum :privacy
+
+  def cached_pins_count
+    pins_count + board_sections.sum(:pins_count)
+  end
+
+  def all_pin_ids
+    pins.ids | Pin.joins(:board_sections).where(board_sections: { id: board_sections }).ids
+  end
+
+  private
+
+  def description_length
+    return if description.body.blank?
+    return if description.body.to_plain_text.length <= 1000
+
+    errors.add(:description, :too_long, **{ count: 1000 })
+  end
+
+  def max_number_of_description_attachments
+    return if description.body.blank?
+    return if description.body
+                         .attachments
+                         .count { |a| !a.attachable.instance_of?(::Embed) } <= 2
+
+    errors.add(:description, :max_number_of_description_attachments)
+  end
 end

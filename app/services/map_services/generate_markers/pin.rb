@@ -16,7 +16,7 @@ module MapServices
       rescue StandardError => e
         { success: false, error: e }
       else
-        { success: true, payload: markers }
+        { success: markers.present?, payload: markers }
       end
 
       private
@@ -28,7 +28,8 @@ module MapServices
       end
 
       def generate_markers
-        return [pin_to_hash(pin)] if pin.present?
+        return Array(pin_to_hash(pin)) if pin.present?
+        return Array(nil) if pins.blank?
 
         pins.each_with_object([]) do |pin_item, markers|
           markers << pin_to_hash(pin_item)

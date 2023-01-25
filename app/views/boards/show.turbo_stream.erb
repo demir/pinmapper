@@ -1,4 +1,4 @@
 <%= turbo_stream.append "infinite-pins" do %>
-  <%= render Pins::SmallPinComponent.with_collection(@pins, current_user: @current_user) %>
+  <%= render Pins::SmallPinComponent.with_collection(@pins, options: { current_user: @current_user }) %>
 <% end %>
 <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy, format: :turbo_stream)) %>

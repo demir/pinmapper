@@ -6,30 +6,37 @@ a.like_btn {
   color: #555;
   line-height: $line-height-none;
   @include border-radius(3px);
+
   &:after {
     font-family: 'ElegantIcons';
     content: "\e030";
-    @include transition-default (all,0.5s, ease);
+    @include transition-default (all, 0.5s, ease);
   }
-  &.liked:after{
+
+  &.liked:after {
     content: "\e089";
     color: $color-1;
   }
-  &:hover.liked:after{
+
+  &:hover.liked:after {
     color: $color-1;
   }
+
   &:hover:after {
     content: "\e089";
     color: #999;
   }
+
   &.disabled {
     cursor: default;
   }
+
   &.disabled:after {
     content: "\e030";
     color: #555;
   }
 }
+
 a.add_to_board_btn {
   z-index: 1;
   @include rgba(bg, #000, 0.1);
@@ -38,25 +45,31 @@ a.add_to_board_btn {
   color: #555;
   line-height: $line-height-none;
   @include border-radius(3px);
+
   &:after {
     font-family: 'ElegantIcons';
     content: "\e012";
-    @include transition-default (all,0.5s, ease);
+    @include transition-default (all, 0.5s, ease);
   }
-  &.added:after{
+
+  &.added:after {
     content: "\e078";
     color: $color-4;
   }
-  &:hover.added:after{
+
+  &:hover.added:after {
     color: $color-4;
   }
+
   &:hover:after {
     content: "\e078";
     color: #999;
   }
+
   &.disabled {
     cursor: default;
   }
+
   &.disabled:after {
     content: "\e012";
     color: #555;
@@ -66,4 +79,23 @@ a.add_to_board_btn {
 a.add_to_board_btn.small {
   padding: 0;
   background-color: transparent;
+}
+
+.angle-navigation-button {
+  border: 0;
+  background: none;
+  padding: 10px 10px;
+  @include border-radius(50%);
+
+  &:hover {
+    background-color: #f4f4f4;
+  }
+
+  &:active {
+    background-color: #e0e0e0;
+  }
+}
+
+a:has(> .angle-navigation-button) {
+  border: 0;
 }

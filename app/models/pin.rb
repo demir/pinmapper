@@ -41,6 +41,10 @@ class Pin < ApplicationRecord
   belongs_to :user
   has_many :pin_boards, dependent: :destroy
   has_many :boards, -> { order 'pin_boards.position ASC' }, through: :pin_boards, dependent: :destroy
+  has_many :pin_board_sections, dependent: :destroy
+  has_many :board_sections, lambda {
+                              order 'pin_board_sections.position ASC'
+                            }, through: :pin_board_sections, dependent: :destroy
 
   # validations
   validates :name, presence: true, length: { maximum: 128 }
@@ -123,12 +127,14 @@ class Pin < ApplicationRecord
   end
 
   def description_length
+    return if description.body.blank?
     return if description.body.to_plain_text.length <= 5000
 
     errors.add(:description, :too_long, **{ count: 5000 })
   end
 
   def max_number_of_description_attachments
+    return if description.body.blank?
     return if description.body
                          .attachments
                          .count { |a| !a.attachable.instance_of?(::Embed) } <= 6

@@ -1,5 +1,11 @@
-<% if board.pins.include?(pin) %>
-  <%= render Pins::Boards::RemoveButtonComponent.new(board: board, pin: pin, current_user: current_user) %>
+<% if  board_section_button.blank? || board.board_sections.blank? %>
+  <% if board.pins.include?(pin) %>
+    <%= render Pins::Boards::RemoveButtonComponent.new(board: board, pin: pin, current_user: current_user) %>
+  <% else %>
+    <%= render Pins::Boards::AddButtonComponent.new(board: board, pin: pin, current_user: current_user) %>
+  <% end %>
 <% else %>
-  <%= render Pins::Boards::AddButtonComponent.new(board: board, pin: pin, current_user: current_user) %>
+  <%= link_to add_to_board_section_list_board_path(board, pin_id: pin.id), data: { 'turbo-stream': true, action: 'click->dropdown#switchBoardsPanel' }, class: 'btn btn-default btn-sm' do %>
+    <i class="ti-angle-right angle-navigation-button"></i>
+  <% end %>
 <% end %>

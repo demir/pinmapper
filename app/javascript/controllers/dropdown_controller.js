@@ -3,18 +3,26 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static values = { id: String }
 
+  switchBoardsPanel(event) {
+    let frameElement = event.currentTarget
+    var parentElement = frameElement.closest('.add-pin-to-board')
+    parentElement.querySelector('#add-pin-to-board-panel-board').classList.toggle('visually-hidden')
+    parentElement.querySelector('#add-pin-to-board-panel-section').classList.toggle('visually-hidden')
+  }
+
   hide() {
     let dropdowns = this.element.getElementsByClassName('add-pin-to-board-dropdown');
     for (let dropdownParent of dropdowns) {
       let dropdown = dropdownParent.querySelector('.add-pin-to-board');
+      dropdown.querySelector('#add-pin-to-board-panel-board').classList.remove('visually-hidden')
+      dropdown.querySelector('#add-pin-to-board-panel-section').classList.add('visually-hidden')
       dropdownParent.querySelector('.body').scrollTop = 0;
       if (dropdown.classList.contains('show')) {
         dropdown.classList.remove('show');
-        let input = dropdownParent.querySelector('form');
-        if (input) {
-          input.reset();
-          let frame = dropdownParent.querySelector('.body > turbo-frame');
-          frame.reload();
+        let forms = dropdownParent.getElementsByClassName('form');
+        for (let form of forms) {
+          form.reset();
+          form.querySelector('#name').dispatchEvent(new Event('input'));
         }
       }
     }
@@ -23,8 +31,9 @@ export default class extends Controller {
   updateButton() {
     let dropdown = document.getElementById(this.idValue)
     let dropdownButton = dropdown.querySelector('.add_to_board_btn')
-    let removeButtons = dropdown.querySelectorAll('.add-pin-to-board .body .board-list-item-for-pin .remove-button')
-    if (removeButtons.length > 0) {
+    let anyAddedPin = dropdown.querySelectorAll('.board-list-item-for-pin[data-any-added-pin="true"]').length > 0
+    let anyRemoveButton = dropdown.querySelectorAll('.add-pin-to-board .body .list-item-for-pin-add-remove .remove-button').length > 0
+    if (anyRemoveButton || anyAddedPin) {
       if (!dropdownButton.classList.contains('added')) {
         dropdownButton.classList.add('added')
       }

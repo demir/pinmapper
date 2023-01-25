@@ -1,5 +1,5 @@
 module Pinmapper
   class Application
-    VERSION = '0.9.38'
+    VERSION = '0.10.0'
   end
 end
