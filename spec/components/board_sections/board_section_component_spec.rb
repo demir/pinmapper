@@ -70,7 +70,7 @@ RSpec.describe BoardSections::BoardSectionComponent, type: :component do
     end
 
     it 'board_section#pins count' do
-      expect(page).to have_css '.board-section > .board-section-body > a.name.black-link'
+      expect(page).to have_css '.board-section > .board-section-body > p.pins-count'
     end
   end
 end

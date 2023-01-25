@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BoardSectionsController < ApplicationController
   before_action :set_board_section, only: %i[show edit update destroy move move_pin
                                              add_pin remove_pin select_board_sections
@@ -18,6 +20,7 @@ class BoardSectionsController < ApplicationController
   def edit; end
 
   # POST /board_sections or /board_sections.json
+  # rubocop:disable Metrics/MethodLength
   def create
     @board_section = BoardSection.new(board_section_params)
     @board_section.board = @board
@@ -32,6 +35,7 @@ class BoardSectionsController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   # PATCH/PUT /board_sections/1 or /board_sections/1.json
   def update
@@ -85,6 +89,7 @@ class BoardSectionsController < ApplicationController
     render(json: list.map { |u| { text: u.name, value: u.id } })
   end
 
+  # rubocop:disable Metrics/AbcSize
   def merge
     other_board_section = BoardSection.find(params[:other_board_section_id])
     other_board_section.pins << @board_section.pins.where.not(id: other_board_section.pins)
@@ -95,6 +100,7 @@ class BoardSectionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 

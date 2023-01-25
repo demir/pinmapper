@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
+# rubocop:disable RSpec/MultipleMemoizedHelpers
 RSpec.describe 'board_sections/show', type: :view do
   include Pagy::Backend
   let(:current_user) { create(:user, :confirmed) }
@@ -68,7 +71,6 @@ RSpec.describe 'board_sections/show', type: :view do
     end
   end
 
-  # rubocop:disable RSpec/MultipleMemoizedHelpers
   context 'drag sort' do
     it 'drag sort controller' do
       render
@@ -101,5 +103,5 @@ RSpec.describe 'board_sections/show', type: :view do
       end
     end
   end
-  # rubocop:enable RSpec/MultipleMemoizedHelpers
 end
+# rubocop:enable RSpec/MultipleMemoizedHelpers

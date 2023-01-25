@@ -5,6 +5,7 @@ module Pins
     with_collection_parameter :pin
     attr_reader :pin, :current_user, :board, :board_section, :drag_sort
 
+    # rubocop:disable Metrics/MethodLength
     def initialize(pin:, options:)
       o = {
         current_user:  nil,
@@ -19,9 +20,11 @@ module Pins
       @board_section = o[:board_section]
       @drag_sort = o[:drag_sort]
     end
+    # rubocop:enable Metrics/MethodLength
 
     private
 
+    # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     def move_url
       return '' if pin.blank? || drag_sort.blank? || current_user.blank?
       return '' if board.blank? && board_section.blank?
@@ -32,5 +35,6 @@ module Pins
         move_pin_board_section_path(board_section, pin.id)
       end
     end
+    # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   end
 end

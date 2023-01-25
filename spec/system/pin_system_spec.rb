@@ -127,6 +127,7 @@ RSpec.describe 'Pins', type: :system, js: true do
                                    count: 0
         end
 
+        # rubocop:disable RSpec/ExampleLength
         it 'add to board section' do
           board = boards.first
           board_sections = create_list(:board_section, 2, board:)
@@ -160,6 +161,7 @@ RSpec.describe 'Pins', type: :system, js: true do
             have_css("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.add-button")
           )
         end
+        # rubocop:enable RSpec/ExampleLength
 
         it 'can infinite scroll' do
           create_list(:board, 30, user:)

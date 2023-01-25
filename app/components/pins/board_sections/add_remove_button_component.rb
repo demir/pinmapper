@@ -1,18 +1,22 @@
 # frozen_string_literal: true
 
-class Pins::BoardSections::AddRemoveButtonComponent < ViewComponent::Base
-  include Turbo::FramesHelper
-  attr_reader :board_section, :pin, :current_user
+module Pins
+  module BoardSections
+    class AddRemoveButtonComponent < ViewComponent::Base
+      include Turbo::FramesHelper
+      attr_reader :board_section, :pin, :current_user
 
-  def initialize(board_section:, pin:, current_user:)
-    @board_section = board_section
-    @pin = pin
-    @current_user = current_user
-  end
+      def initialize(board_section:, pin:, current_user:)
+        @board_section = board_section
+        @pin = pin
+        @current_user = current_user
+      end
 
-  def render?
-    return if current_user.blank?
+      def render?
+        return if current_user.blank?
 
-    board_section.board.user == current_user
+        board_section.board.user == current_user
+      end
+    end
   end
 end

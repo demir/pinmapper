@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PinBoardSection < ApplicationRecord
   default_scope -> { order(position: :asc) }
 
