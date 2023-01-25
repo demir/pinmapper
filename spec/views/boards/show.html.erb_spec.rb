@@ -15,8 +15,10 @@ RSpec.describe 'boards/show', type: :view do
 
   before do
     board.pins << pins
+    board.board_sections << create_list(:board_section, 3, board:)
     assign(:board, board)
     assign(:pins, pins)
+    assign(:map_pins, pins)
     assign(:pagy, pagy_obj)
   end
 
@@ -31,6 +33,12 @@ RSpec.describe 'boards/show', type: :view do
 
     it 'not renders more button' do
       assert_select '.board-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 0
+    end
+
+    it 'not renders create section button' do
+      assert_select '.board-sections-header > a.btn_1.outline',
+                    text:  t('board_sections.index.create_new_board_section'),
+                    count: 0
     end
   end
 
@@ -91,6 +99,55 @@ RSpec.describe 'boards/show', type: :view do
       assert_select '.small-pin .body small.address', count: 2
       assert_select '.small-pin .body i.icon_pin_alt', count: 2
       assert_select '#infinite-pins.body'
+    end
+  end
+
+  context 'board section' do
+    context 'without currenet_user' do
+      before do
+        render
+      end
+
+      it 'not renders create section button' do
+        assert_select '.board-sections-header > a.btn_1.outline',
+                      text:  t('board_sections.index.create_new_board_section'),
+                      count: 0
+      end
+
+      it 'renders board sections' do
+        assert_select '.board-section', count: 3
+      end
+
+      it 'not renders more button' do
+        assert_select '.board-section .general-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 0
+      end
+
+      it 'not daggable' do
+        assert_select '.body:has(.board-section)[data-drag-sort-state-value="false"]', count: 1
+      end
+    end
+
+    context 'with currenet_user' do
+      before do
+        sign_in(current_user)
+        render
+      end
+
+      it 'renders board sections' do
+        assert_select '.board-section', count: 3
+      end
+
+      it 'renders more button' do
+        assert_select '.board-section .general-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 3
+      end
+
+      it 'drag sort controller' do
+        assert_select '.body:has(.board-section)[data-controller="drag-sort"]', count: 1
+      end
+
+      it 'daggable' do
+        assert_select '.body:has(.board-section)[data-drag-sort-state-value="true"]', count: 1
+      end
     end
   end
 

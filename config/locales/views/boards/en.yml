@@ -4,6 +4,7 @@ en:
     boards: Boards
     boards_tr: Boards
     add_to_board: Add to board
+    add_pin_to: Add Pin to
     there_is_no_boards: There is no Board you can add yet.
     index:
       create_new_board: Create Board

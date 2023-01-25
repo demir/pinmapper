@@ -1,0 +1,19 @@
+<%= turbo_frame_tag "select_board_sections_#{dom_id(@board_section)}" do %>
+  <%= form_with url: merge_board_section_path(@board_section), class: 'select-board-section form', method: :get do |f| %>
+    <div class="alert alert-warning" role="alert">
+      <%= t('.info_message', pins_count: @board_section.pins_count) %>
+    </div>
+    <div class="form-inputs">
+      <%= f.select :other_board_section_id, [], {},
+                    placeholder: t('.placeholder'),
+                    data: {
+                      controller: 'ts--search',
+                      ts__search_url_value: autocomplete_board_section_path
+                    } %>
+    </div>
+    <br>
+    <div class="form-actions">
+      <%= f.submit t('.submit'), class: 'btn_1 rounded' %>
+    </div>
+  <% end %>
+<% end %>

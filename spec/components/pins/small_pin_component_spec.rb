@@ -8,7 +8,7 @@ RSpec.describe Pins::SmallPinComponent, type: :component do
 
   context 'pin attributes' do
     before do
-      render_inline(described_class.new(pin:, current_user: user))
+      render_inline(described_class.new(pin:, options: { current_user: user }))
     end
 
     it 'user#image class' do
@@ -42,7 +42,7 @@ RSpec.describe Pins::SmallPinComponent, type: :component do
 
     context 'with current_user' do
       before do
-        render_inline(described_class.new(pin:, current_user: user, board:, drag_sort: true))
+        render_inline(described_class.new(pin:, options: { current_user: user, board:, drag_sort: true }))
       end
 
       it 'data sort url' do
@@ -53,7 +53,7 @@ RSpec.describe Pins::SmallPinComponent, type: :component do
 
     context 'without current_user' do
       before do
-        render_inline(described_class.new(pin:, current_user: nil, board:, drag_sort: true))
+        render_inline(described_class.new(pin:, options: { current_user: nil, board:, drag_sort: true }))
       end
 
       it 'data sort url' do
@@ -63,7 +63,7 @@ RSpec.describe Pins::SmallPinComponent, type: :component do
 
     context 'with board' do
       before do
-        render_inline(described_class.new(pin:, current_user: user, board:, drag_sort: true))
+        render_inline(described_class.new(pin:, options: { current_user: user, board:, drag_sort: true }))
       end
 
       it 'data sort url' do
@@ -74,7 +74,7 @@ RSpec.describe Pins::SmallPinComponent, type: :component do
 
     context 'without board' do
       before do
-        render_inline(described_class.new(pin:, current_user: user, board: nil, drag_sort: true))
+        render_inline(described_class.new(pin:, options: { current_user: user, board: nil, drag_sort: true }))
       end
 
       it 'data sort url' do
@@ -84,7 +84,7 @@ RSpec.describe Pins::SmallPinComponent, type: :component do
 
     context 'when drag_sort true' do
       before do
-        render_inline(described_class.new(pin:, current_user: user, board:, drag_sort: true))
+        render_inline(described_class.new(pin:, options: { current_user: user, board:, drag_sort: true }))
       end
 
       it 'data sort url' do
@@ -95,7 +95,7 @@ RSpec.describe Pins::SmallPinComponent, type: :component do
 
     context 'when drag_sort false' do
       before do
-        render_inline(described_class.new(pin:, current_user: user, board: nil, drag_sort: false))
+        render_inline(described_class.new(pin:, options: { current_user: user, board: nil, drag_sort: false }))
       end
 
       it 'data sort url' do

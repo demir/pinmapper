@@ -1,0 +1,20 @@
+en:
+  board_sections:
+    board_section: Section
+    board_sections: Sections
+    board_sections_tr: Sections
+    add_to_board_section: Add to section
+    there_is_no_board_sections: There is no Section you can add yet.
+    index:
+      create_new_board_section: Create Section
+      no_data: There is no Section yet.
+      no_data_for_current_user: There is no Section which is you have created yet. You can create now.
+    new:
+      title: Create New Section
+    edit:
+      title: Edit Section
+      edit_board_section: Edit Section
+    select_board_sections:
+      placeholder: Pick a section
+      info_message: 'You are about to move all Pins (%{pins_count}) in this section to one of the sections below.'
+      submit: Move Pins and delete section

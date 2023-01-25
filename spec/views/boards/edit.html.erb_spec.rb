@@ -17,7 +17,7 @@ RSpec.describe 'boards/edit', type: :view do
                   'post' do
       assert_select 'input[name=?]', 'board[name]'
 
-      assert_select 'textarea[name=?]', 'board[description]'
+      assert_select 'input[name=?]', 'board[description]'
 
       assert_select 'select[name=?]', 'board[privacy]'
     end

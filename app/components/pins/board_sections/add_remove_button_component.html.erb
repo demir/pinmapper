@@ -1,0 +1,5 @@
+<% if board_section.pins.include?(pin) %>
+  <%= render Pins::BoardSections::RemoveButtonComponent.new(board_section: board_section, pin: pin, current_user: current_user) %>
+<% else %>
+  <%= render Pins::BoardSections::AddButtonComponent.new(board_section: board_section, pin: pin, current_user: current_user) %>
+<% end %>

@@ -1,0 +1,19 @@
+<div class="modal fade" id="modal_<%= dom_id(board_section) %>">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span class="h6"><%= board_section.name %></span>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= turbo_frame_tag "select_board_sections_#{dom_id(board_section)}", src: select_board_sections_board_section_path(board_section), loading: :lazy do %>
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border pinmapper m-4"></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

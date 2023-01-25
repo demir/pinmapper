@@ -1,13 +1,13 @@
 <% if params[:page].blank? %>
   <%= turbo_stream.update "add_to_board_list_body_#{dom_id(@pin)}" do %>
     <div id="<%= "add_to_board_list_#{dom_id(@pin)}" %>">
-      <%= render(Boards::ListItemForPinComponent.with_collection(@boards, pin: @pin, current_user: current_user)) %>
+      <%= render(Boards::ListItemForPinComponent.with_collection(@boards, pin: @pin, current_user: current_user, board_section_button: true)) %>
     </div>
     <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy, record: @pin)) %>
   <% end %>
 <% else %>
   <%= turbo_stream.append "add_to_board_list_#{dom_id(@pin)}" do %>
-    <%= render(Boards::ListItemForPinComponent.with_collection(@boards, pin: @pin, current_user: current_user)) %>
+    <%= render(Boards::ListItemForPinComponent.with_collection(@boards, pin: @pin, current_user: current_user, board_section_button: true)) %>
   <% end %>
   <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy, record: @pin, format: :turbo_stream)) %>
 <% end %>

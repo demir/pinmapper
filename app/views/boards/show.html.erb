@@ -1,12 +1,12 @@
 <% keywords = @board.pins.pluck(:cached_tag_list) << t('pin_base_keywords') %>
 <% set_meta_tags alternate: { "en" => board_url(@board, locale: :en),
                               "tr" => board_url(@board, locale: :tr) },
-                 description: @board.description,
+                 description: @board.description&.body&.to_plain_text,
                  keywords: keywords.join(', ').split(', ').uniq.join(', ') %>
 <% set_meta_tags og: {
       type:     'website',
       title: "#{@board.name} - Pinmapper",
-      description: @board.description,
+      description: @board.description&.body&.to_plain_text,
       site: :site,
       image:    "https://res.cloudinary.com/pinmapper/image/upload/og_card_#{locale}.png",
       url: board_url(@board)
@@ -14,7 +14,7 @@
 <% set_meta_tags twitter: {
       card: "summary_large_image",
       title: "#{@board.name} - Pinmapper",
-      description: @board.description,
+      description: @board.description&.body&.to_plain_text,
       site: :site,
       image:    "https://res.cloudinary.com/pinmapper/image/upload/og_card_#{locale}.png",
       url: board_url(@board)
@@ -26,7 +26,7 @@
       <div class="header">
         <div class="main_title_3 small-h1">
           <span><em></em></span>
-          <div class="title"><h1><%= title @board.name %></h1><div class="count"><%= "(#{@board.pins_count})" %></div></div>
+          <div class="title"><h1><%= title @board.name %></h1><div class="count"><%= "(#{@board.cached_pins_count})" %></div></div>
         </div>
         <%= render(General::TwinButtonComponent.new(
             display_block: -> {
@@ -42,17 +42,29 @@
         <%= render(Boards::MoreButtonComponent.new(board: @board, current_user: current_user, turbo: false)) %>
       </div>
       <% if @board.description.present? %>
-        <p class="description">
+        <div class="description" data-controller="gallery">
           <%= @board.description %>
-        </p>
+        </div>
       <% end %>
-      <% marker_service = MapServices::GenerateMarkers::Pin.call(@pins) %>
+      <% marker_service = MapServices::GenerateMarkers::Pin.call(@map_pins) %>
       <% if marker_service[:success] && marker_service[:payload].present? %>
         <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>
       <% end %>
-      <br>
+
+      <div class="board-sections-header">
+        <h2 class="title"><%= t('board_sections.board_sections') %></h2>
+        <% if @board.user == current_user %>
+          <%= link_to t('board_sections.index.create_new_board_section'), new_board_board_section_path(@board), class: 'btn_1 outline' %>
+        <% end %>
+      </div>
+
+      <div class="body" data-controller="drag-sort" data-drag-sort-state-value="<%= @board.user == current_user %>">
+        <%= render(BoardSections::BoardSectionComponent.with_collection(@board.board_sections,current_user: current_user, drag_sort: @board.user == current_user)) %>
+      </div>
+
+      <h2 class="pins-header"><%= t('pins.pins') %></h2>
       <div id="infinite-pins" class="body" data-controller="drag-sort" data-drag-sort-state-value="<%= @board.user == current_user %>">
-        <%= render Pins::SmallPinComponent.with_collection(@pins, current_user: @current_user, board: @board, drag_sort: @board.user == current_user) %>
+        <%= render Pins::SmallPinComponent.with_collection(@pins, options: { current_user: @current_user, board: @board, drag_sort: @board.user == current_user }) %>
         <!-- /pin_lists -->
       </div>
       <%= render(General::InfiniteScrollPagyComponent.new(pagy: @pagy)) %>

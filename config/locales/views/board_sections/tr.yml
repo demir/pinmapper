@@ -1,0 +1,20 @@
+tr:
+  board_sections:
+    board_section: Bölüm
+    board_sections: Bölümler
+    board_sections_tr: Bölüm
+    add_to_board_section: Bölüme ekle
+    there_is_no_board_sections: Henüz ekleyebileceğiniz bir Bölüm yok.
+    index:
+      create_new_board_section: Bölüm Oluştur
+      no_data: Henüz hiç Bölüm yok.
+      no_data_for_current_user: Oluşturduğun bir Bölüm henüz yok. Hemen oluşturabilirsin.
+    new:
+      title: Yeni Bölüm Oluştur
+    edit:
+      title: Bölümü Düzenle
+      edit_board: Bölümü Düzenle
+    select_board_sections:
+      placeholder: Bir bölüm seçin
+      info_message: 'Bu bölümdeki bütün Pinleri (%{pins_count}) aşağıdaki bölümlerden birine taşımak üzeresiniz.'
+      submit: Pinleri taşı ve bölümü sil

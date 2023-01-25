@@ -2,7 +2,7 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
     <%= link_to cloudinary_url(blob.key, quality: 'auto', flags: 'progressive'), title: (caption_text), class: 'gallery-item', data: { 'pswp-width': blob.metadata['width'], 'pswp-height': blob.metadata['height'] } do %>
-      <%= cl_image_tag(blob.key, width: (local_assigns[:in_gallery] ? 800 : 350), height: (local_assigns[:in_gallery] ? 600 : 768), quality: 'auto', flags: 'progressive', class: 'blob-image', alt: caption_text) %>
+      <%= cl_image_tag(blob.key, width: 350, height: 768, quality: 'auto', flags: 'progressive', class: 'blob-image', alt: caption_text) %>
     <% end %>
   <% end %>
 

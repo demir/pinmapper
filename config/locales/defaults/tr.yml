@@ -33,3 +33,4 @@ tr:
   photo:
     photo_name: Fotoğraf Adı
     change_photo_info: Değiştirmek için farklı bir fotoğraf seçin.
+  merge: Birleştir
