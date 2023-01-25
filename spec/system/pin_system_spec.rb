@@ -429,8 +429,9 @@ RSpec.describe 'Pins', type: :system, js: true do
             expect(page).to have_field(Board.human_attribute_name(:name), with: board_element_text)
           end
 
-          it 'delete board from modal' do
+          it 'delete board from modal', :focus do
             visit explore_index_path
+            find('.cookies-bar > .btn_1').click
             find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
             modal = find('.pin-boards-added-by-owner-modal.show')
