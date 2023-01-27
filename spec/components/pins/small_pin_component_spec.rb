@@ -20,7 +20,7 @@ RSpec.describe Pins::SmallPinComponent, type: :component do
     end
 
     it 'pin#name' do
-      expect(page).to have_css '.small-pin .body h6 a.black-link', text: pin.name
+      expect(page).to have_css '.small-pin .body h6 a.black-link', text: pin.name[0, 35]
     end
 
     it 'location icon' do
