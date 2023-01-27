@@ -177,5 +177,13 @@ RSpec.describe 'Boards', type: :system, js: true do
       visit boards_path
       expect(page).not_to have_css '.board .board-more'
     end
+
+    it 'initialize leaflet js for map on show' do
+      board = boards.first
+      pins = create_list(:pin, 2)
+      board.pins << pins
+      visit board_path(board, locale: I18n.locale)
+      expect(page).to have_css '.map.leaflet-container .leaflet-layer'
+    end
   end
 end
