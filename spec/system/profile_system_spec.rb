@@ -73,4 +73,13 @@ RSpec.describe 'Profiles', type: :system, js: true do
       end
     end
   end
+
+  context 'signed in or not signed in' do
+    it 'initialize leaflet js for map on profile' do
+      user = create(:user, :confirmed)
+      create_list(:pin, 2, user:)
+      visit profile_path(user, locale: I18n.locale)
+      expect(page).to have_css '.map.leaflet-container .leaflet-layer'
+    end
+  end
 end
