@@ -102,56 +102,87 @@ RSpec.describe 'boards/show', type: :view do
     end
   end
 
+  # rubocop:disable RSpec/MultipleMemoizedHelpers
   context 'board section' do
-    context 'without currenet_user' do
-      before do
-        render
-      end
-
+    context 'without current_user' do
       it 'not renders create section button' do
+        render
         assert_select '.board-sections-header > a.btn_1.outline',
                       text:  t('board_sections.index.create_new_board_section'),
                       count: 0
       end
 
       it 'renders board sections' do
+        render
         assert_select '.board-section', count: 3
       end
 
       it 'not renders more button' do
+        render
         assert_select '.board-section .general-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 0
       end
 
       it 'not daggable' do
+        render
         assert_select '.body:has(.board-section)[data-drag-sort-state-value="false"]', count: 1
+      end
+
+      context 'without any board' do
+        let(:new_board) { create(:board) }
+
+        before do
+          assign(:board, new_board)
+          render
+        end
+
+        it 'does not shows section header' do
+          assert_select '.board-sections-header .title', count: 0
+        end
+
+        it 'does not shows no data message' do
+          assert_select '.board-section span > a.name', count: 0
+          assert_select '.no-data p', text: I18n.t('boards.show.no_board_section_data_for_current_user'), count: 0
+        end
       end
     end
 
-    context 'with currenet_user' do
+    context 'with current_user' do
       before do
         sign_in(current_user)
-        render
       end
 
       it 'renders board sections' do
+        render
         assert_select '.board-section', count: 3
       end
 
       it 'renders more button' do
+        render
         assert_select '.board-section .general-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 3
       end
 
       it 'drag sort controller' do
+        render
         assert_select '.body:has(.board-section)[data-controller="drag-sort"]', count: 1
       end
 
       it 'daggable' do
+        render
         assert_select '.body:has(.board-section)[data-drag-sort-state-value="true"]', count: 1
+      end
+
+      context 'without any board' do
+        it 'shows no data message' do
+          new_board = create(:board, user: current_user)
+          assign(:board, new_board)
+          render
+          assert_select '.board-section span > a.name', count: 0
+          assert_select '.no-data p', text: I18n.t('boards.show.no_board_section_data_for_current_user'), count: 1
+        end
       end
     end
   end
 
-  # rubocop:disable RSpec/MultipleMemoizedHelpers
   context 'drag sort' do
     it 'drag sort controller' do
       render
