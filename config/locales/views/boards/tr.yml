@@ -18,3 +18,5 @@ tr:
     following_boards:
       title: Takip Edilen Panolar
       no_data: Henüz takip ettiğiniz bir Pano yok.
+    show:
+      no_board_section_data_for_current_user: Oluşturduğun bir Bölüm henüz yok. Hemen oluşturabilirsin.

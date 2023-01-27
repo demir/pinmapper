@@ -8,7 +8,6 @@ tr:
     index:
       create_new_board_section: Bölüm Oluştur
       no_data: Henüz hiç Bölüm yok.
-      no_data_for_current_user: Oluşturduğun bir Bölüm henüz yok. Hemen oluşturabilirsin.
     new:
       title: Yeni Bölüm Oluştur
     edit:
