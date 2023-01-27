@@ -13,6 +13,11 @@ RSpec.describe 'Pins', type: :system, js: true do
       first_tag_element.click
       expect(page).to have_css '.tag > .header > .tag-name', text: first_tag_element.text
     end
+
+    it 'initialize leaflet js for map on show' do
+      visit pin_path(pins.first, locale: I18n.locale)
+      expect(page).to have_css '.map.leaflet-container .leaflet-layer'
+    end
   end
 
   context 'When signed in' do
@@ -429,7 +434,7 @@ RSpec.describe 'Pins', type: :system, js: true do
             expect(page).to have_field(Board.human_attribute_name(:name), with: board_element_text)
           end
 
-          it 'delete board from modal', :focus do
+          it 'delete board from modal' do
             visit explore_index_path
             find('.cookies-bar > .btn_1').click
             find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\

@@ -28,7 +28,7 @@ module MapServices
       end
 
       def generate_markers
-        return Array(pin_to_hash(pin)) if pin.present?
+        return [pin_to_hash(pin)] if pin.present?
         return Array(nil) if pins.blank?
 
         pins.each_with_object([]) do |pin_item, markers|
