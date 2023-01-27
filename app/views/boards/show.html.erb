@@ -51,16 +51,24 @@
         <%= render(General::MapComponent.new(markers: marker_service[:payload])) %>
       <% end %>
 
-      <div class="board-sections-header">
-        <h2 class="title"><%= t('board_sections.board_sections') %></h2>
-        <% if @board.user == current_user %>
-          <%= link_to t('board_sections.index.create_new_board_section'), new_board_board_section_path(@board), class: 'btn_1 outline' %>
-        <% end %>
-      </div>
+      <% if @board.user == current_user || @board.board_sections.any? %>
+        <div class="board-sections-header">
+          <h2 class="title"><%= t('board_sections.board_sections') %></h2>
+          <% if @board.user == current_user %>
+            <%= link_to t('board_sections.index.create_new_board_section'), new_board_board_section_path(@board), class: 'btn_1 outline' %>
+          <% end %>
+        </div>
+      <% end%>
 
-      <div class="body" data-controller="drag-sort" data-drag-sort-state-value="<%= @board.user == current_user %>">
-        <%= render(BoardSections::BoardSectionComponent.with_collection(@board.board_sections,current_user: current_user, drag_sort: @board.user == current_user)) %>
-      </div>
+      <% if @board.board_sections.any? %>
+        <div class="body" data-controller="drag-sort" data-drag-sort-state-value="<%= @board.user == current_user %>">
+          <%= render(BoardSections::BoardSectionComponent.with_collection(@board.board_sections,current_user: current_user, drag_sort: @board.user == current_user)) %>
+        </div>
+      <% elsif @board.user == current_user %>
+        <div class="no-data">
+          <p><%= t('.no_board_section_data_for_current_user') %></p>
+        </div>
+      <% end %>
 
       <h2 class="pins-header"><%= t('pins.pins') %></h2>
       <div id="infinite-pins" class="body" data-controller="drag-sort" data-drag-sort-state-value="<%= @board.user == current_user %>">
