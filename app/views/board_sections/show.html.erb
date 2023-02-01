@@ -31,7 +31,7 @@
         <%= render(General::MoreButtonComponent.new(display: @board_section.board.user == current_user)) do %>
           <% if @board_section.board.user == current_user %>
             <%= link_to t('edit'), edit_board_section_path(@board_section), class: 'dropdown-item', target: :_top %>
-            <%= link_to t('destroy'), @board_section, data: { turbo_confirm: t('are_you_sure'), turbo_method: :delete }, class: 'dropdown-item' %>
+            <%= button_to t('destroy'), @board_section, method: :delete, data: { confirm: t('are_you_sure'), turbo: false }, class: 'dropdown-item' %>
             <% if @board_section.merge? %>
               <%= link_to t('merge'), "#", class: 'dropdown-item', data: { 'bs-toggle': 'modal', 'bs-target': "#modal_#{dom_id(@board_section)}" } %>
             <% end %>

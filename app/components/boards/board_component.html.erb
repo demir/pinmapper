@@ -25,6 +25,11 @@
       first_button_class: first_twin_button_class,
       second_button_class: second_twin_button_class
     )) %>
-    <%= render(Boards::MoreButtonComponent.new(board: board, current_user: current_user )) %>
+    <%= render(General::MoreButtonComponent.new(display: board.user == current_user)) do %>
+      <% if board.user == current_user %>
+        <%= link_to t('edit'), edit_board_path(board), class: 'dropdown-item', target: :_top %>
+        <%= link_to t('destroy'), board, data: { turbo_confirm: t('are_you_sure'), turbo_method: :delete }, class: 'dropdown-item' %>
+      <% end %>
+    <% end %>
   </div>
 </div>

@@ -39,7 +39,12 @@
             first_button_path: follow_board_path(@board),
             second_button_path: unfollow_board_path(@board)
           )) %>
-        <%= render(Boards::MoreButtonComponent.new(board: @board, current_user: current_user, turbo: false)) %>
+        <%= render(General::MoreButtonComponent.new(display: @board.user == current_user)) do %>
+          <% if @board.user == current_user %>
+            <%= link_to t('edit'), edit_board_path(@board), class: 'dropdown-item', target: :_top %>
+            <%= button_to t('destroy'), @board, method: :delete, data: { confirm: t('are_you_sure'), turbo: false }, class: 'dropdown-item' %>
+          <% end %>
+        <% end %>
       </div>
       <% if @board.description.present? %>
         <div class="description" data-controller="gallery">

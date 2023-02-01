@@ -34,7 +34,7 @@ RSpec.describe 'boards/following_boards', type: :view do
     end
 
     it 'renders a list of boards' do
-      assert_select '.board .board-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 0
+      assert_select '.board .general-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 0
       assert_select '.board span > a.black-link', count: 2
       assert_select '.board .item a.btn_1', count: 2
     end

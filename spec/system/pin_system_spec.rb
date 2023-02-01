@@ -142,7 +142,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
           pin_element.find_by_id('add-pin-to-board-menu').click
           find("#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin a:has(i.ti-angle-right)").click
-          sleep 0.3
+          sleep 0.5
           find("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.add-button").click
           expect(page).to(
             have_css("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.remove-button")
@@ -421,11 +421,11 @@ RSpec.describe 'Pins', type: :system, js: true do
             find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
             modal = find('.pin-boards-added-by-owner-modal.show')
-            more_button = modal.find('.board .board-more svg', match: :first)
+            more_button = modal.find('.board .general-more svg', match: :first)
             board_element = more_button.ancestor('.board')
             board_element_text = board_element.find('.board .board-name').text
             more_button.click
-            edit_board_link_element = board_element.find('.item .dropdown.board-more .dropdown-menu a',
+            edit_board_link_element = board_element.find('.item .dropdown.general-more .dropdown-menu a',
                                                          text:       I18n.t('edit'),
                                                          exact_text: true)
             edit_board_link_element_href = edit_board_link_element[:href]
@@ -440,10 +440,10 @@ RSpec.describe 'Pins', type: :system, js: true do
             find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
             modal = find('.pin-boards-added-by-owner-modal.show')
-            more_button = modal.find('.board .board-more svg', match: :first)
+            more_button = modal.find('.board .general-more svg', match: :first)
             board_element = more_button.ancestor('.board')
             more_button.click
-            board_element.find('.item .dropdown.board-more .dropdown-menu a',
+            board_element.find('.item .dropdown.general-more .dropdown-menu a',
                                text:       I18n.t('destroy'),
                                exact_text: true)
                          .click
@@ -459,7 +459,7 @@ RSpec.describe 'Pins', type: :system, js: true do
             find('.cookies-bar > .btn_1').click
             find("#pin_#{pin.id} .pin-added-by-owner a.board-link[data-bs-target=\
               '#pin_boards_added_by_owner_pin_#{pin.id}']").click
-            expect(page).not_to have_css '.pin-boards-added-by-owner-modal.show .board .board-more svg'
+            expect(page).not_to have_css '.pin-boards-added-by-owner-modal.show .board .general-more svg'
           end
         end
       end

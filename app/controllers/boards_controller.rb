@@ -97,6 +97,7 @@ class BoardsController < ApplicationController
   # DELETE /boards/1 or /boards/1.json
   def destroy
     @board.destroy
+
     respond_to do |format|
       format.html { redirect_to boards_url, notice: t('.success') }
       format.json { head :no_content }

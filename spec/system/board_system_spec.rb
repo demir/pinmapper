@@ -56,7 +56,7 @@ RSpec.describe 'Boards', type: :system, js: true do
 
     it 'renders more button' do
       visit boards_path
-      expect(page).to have_css '.board .board-more'
+      expect(page).to have_css '.board .general-more'
     end
 
     it 'visits boards#show via board name link' do
@@ -124,11 +124,11 @@ RSpec.describe 'Boards', type: :system, js: true do
         # rubocop:disable RSpec/ExampleLength
         it 'visits the edit page' do
           visit boards_path
-          more_button = find('.board > .item .board-more > svg', match: :first)
+          more_button = find('.board > .item .general-more > svg', match: :first)
           board_element = more_button.ancestor('.board')
           board_element_text = board_element.find('span > a.black-link').text
           more_button.click
-          edit_board_link_element = board_element.find('.dropdown.board-more .dropdown-menu a',
+          edit_board_link_element = board_element.find('.dropdown.general-more .dropdown-menu a',
                                                        text:       I18n.t('edit'),
                                                        exact_text: true)
           edit_board_link_element_href = edit_board_link_element[:href]
@@ -141,10 +141,10 @@ RSpec.describe 'Boards', type: :system, js: true do
 
         it 'deletes a board' do
           visit boards_path
-          more_button = find('.board > .item .board-more > svg', match: :first)
+          more_button = find('.board > .item .general-more > svg', match: :first)
           board_element = more_button.ancestor('.board')
           more_button.click
-          delete_board_link_element = board_element.find('.dropdown.board-more .dropdown-menu a',
+          delete_board_link_element = board_element.find('.dropdown.general-more .dropdown-menu a',
                                                          text:       I18n.t('destroy'),
                                                          exact_text: true)
           delete_board_link_element.click
@@ -175,7 +175,7 @@ RSpec.describe 'Boards', type: :system, js: true do
   context 'When not signed in' do
     it 'renders more button' do
       visit boards_path
-      expect(page).not_to have_css '.board .board-more'
+      expect(page).not_to have_css '.board .general-more'
     end
 
     it 'initialize leaflet js for map on show' do
