@@ -159,3 +159,11 @@
     @include fontSize(14px);
   }
 }
+
+.select-board.form {
+  box-shadow: none;
+
+  .form-inputs {
+    margin-bottom: 200px;
+  }
+}

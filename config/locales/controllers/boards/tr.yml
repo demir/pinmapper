@@ -6,3 +6,6 @@ tr:
       success: Pano güncellendi
     destroy:
       success: Pano silindi
+    merge:
+      success: Pano birleştirildi
+      failure: Pano birleştirilemedi
