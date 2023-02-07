@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "add_remove_#{dom_id(@pin)}_#{dom_id(@board_section)}" do %>
+  <%= render Pins::BoardSections::RemoveButtonComponent.new(board_section: @board_section, pin: @pin, current_user: current_user) %>
+<% end %>
+
+<%= turbo_stream.replace "add-pin-to-board-menu-#{dom_id(@pin)}" do %>
+  <%= link_to '#', class: "add_to_board_btn added", id: "add-pin-to-board-menu-#{dom_id(@pin)}", data: { 'bs-toggle': 'dropdown', 'bs-auto-close': 'outside', 'aria-haspopup': true, 'aria-expanded': false } do %><% end %>
+<% end %>

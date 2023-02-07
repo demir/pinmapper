@@ -57,12 +57,6 @@ RSpec.describe Pins::Boards::AddToBoardButtonComponent, type: :component do
     it 'class' do
       expect(page).to have_css 'div[class="dropdown-menu add-pin-to-board"]'
     end
-
-    it 'data-action' do
-      expect(page).to(
-        have_css('div[data-action="turbo:frame-load->dropdown#updateButton"]')
-      )
-    end
   end
 
   describe 'header' do

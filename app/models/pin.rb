@@ -83,6 +83,12 @@ class Pin < ApplicationRecord
     Board.where(id: board_ids | board_ids_from_sections).order(created_at: :desc)
   end
 
+  def added_to_boards?(added_user = user)
+    return true if pin_boards.joins(board: :user).where(users: { id: added_user }).any?
+
+    pin_board_sections.joins(board_section: [board: :user]).where(users: { id: added_user }).any?
+  end
+
   private
 
   def delete_crops
