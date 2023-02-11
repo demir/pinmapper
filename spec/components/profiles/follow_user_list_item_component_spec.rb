@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Profiles::FollowUserListItemComponent, type: :component do
   let(:current_user) { create(:user, :confirmed) }
-  let(:followers) { create_list(:user, 10, :confirmed) }
+  let(:followers) { create_list(:user, 3, :confirmed) }
 
   before do
     render_inline(described_class.with_collection(followers, current_user:))

@@ -104,32 +104,35 @@ RSpec.describe 'Pins', type: :system, js: true do
           visit pins_path
           pin = pins.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
-          pin_element.find_by_id('add-pin-to-board-menu').click
+          pin_element.find_by_id("add-pin-to-board-menu-pin_#{pin.id}").click
           expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin",
                                    count: boards.count
         end
 
         it 'add to board' do
           visit pins_path
+          find('.cookies-bar > .btn_1').click
+          board = boards.first
           pin = pins.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
-          pin_element.find_by_id('add-pin-to-board-menu').click
-          find("#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin .add-button", match: :first).click
-          expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin .remove-button",
-                                   minimum: 1
+          pin_element.find_by_id("add-pin-to-board-menu-pin_#{pin.id}").click
+          sleep 0.5
+          find("#add_remove_pin_#{pin.id}_board_#{board.id}.add-button", match: :first).click
+          expect(page).to have_css "#add_remove_pin_#{pin.id}_board_#{board.id}.remove-button"
         end
 
         it 'remove from board' do
           visit pins_path
+          find('.cookies-bar > .btn_1').click
           pin = pins.last
           board = boards.last
           board.pins.destroy_all
           board.pins << pin
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
-          pin_element.find_by_id('add-pin-to-board-menu').click
+          pin_element.find_by_id("add-pin-to-board-menu-pin_#{pin.id}").click
+          sleep 0.5
           pin_element.find("#board_#{board.id} .remove-button").click
-          expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin .remove-button",
-                                   count: 0
+          expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin .remove-button"
         end
 
         # rubocop:disable RSpec/ExampleLength
@@ -138,14 +141,15 @@ RSpec.describe 'Pins', type: :system, js: true do
           board_sections = create_list(:board_section, 2, board:)
           board_section = board_sections.first
           visit pins_path
+          find('.cookies-bar > .btn_1').click
           pin = pins.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
-          pin_element.find_by_id('add-pin-to-board-menu').click
+          pin_element.find_by_id("add-pin-to-board-menu-pin_#{pin.id}").click
           find("#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin a:has(i.ti-angle-right)").click
-          sleep 0.5
-          find("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.add-button").click
+          sleep 1
+          find("#add_remove_pin_#{pin.id}_board_section_#{board_section.id}.add-button").click
           expect(page).to(
-            have_css("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.remove-button")
+            have_css("#add_remove_pin_#{pin.id}_board_section_#{board_section.id}.remove-button")
           )
         end
 
@@ -154,16 +158,17 @@ RSpec.describe 'Pins', type: :system, js: true do
           board_sections = create_list(:board_section, 2, board:)
           board_section = board_sections.first
           visit pins_path
+          find('.cookies-bar > .btn_1').click
           pin = pins.last
           board_section.pins.destroy_all
           board_section.pins << pin
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
-          pin_element.find_by_id('add-pin-to-board-menu').click
+          pin_element.find_by_id("add-pin-to-board-menu-pin_#{pin.id}").click
           find("#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin a:has(i.ti-angle-right)").click
           sleep 0.3
-          find("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.remove-button").click
+          find("#add_remove_pin_#{pin.id}_board_section_#{board_section.id}.remove-button").click
           expect(page).to(
-            have_css("#board_section_#{board_section.id} #add_to_board_section_#{board_section.id} a.add-button")
+            have_css("#add_remove_pin_#{pin.id}_board_section_#{board_section.id}.add-button")
           )
         end
         # rubocop:enable RSpec/ExampleLength
@@ -173,7 +178,7 @@ RSpec.describe 'Pins', type: :system, js: true do
           visit pins_path
           pin = pins.last
           pin_element = find("#add-pin-to-board-dropdown_pin_#{pin.id}")
-          pin_element.find_by_id('add-pin-to-board-menu').click
+          pin_element.find_by_id("add-pin-to-board-menu-pin_#{pin.id}").click
           scroll_to(pin_element.find(".body #add_to_board_list_pin_#{pin.id}"), align: :bottom)
           expect(page).to have_css "#add_to_board_list_pin_#{pin.id} > .board-list-item-for-pin",
                                    minimum: user.boards_count

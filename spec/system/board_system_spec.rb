@@ -152,6 +152,26 @@ RSpec.describe 'Boards', type: :system, js: true do
           expect(page).to have_content I18n.t('boards.destroy.success')
         end
       end
+
+      context 'from the show page' do
+        # rubocop:disable RSpec/ExampleLength
+        it 'merges a board' do
+          board = boards.first
+          visit board_path(board, locale: I18n.locale)
+          more_button = find('.board-show .general-more > svg', match: :first)
+          board_element = more_button.ancestor('.board-show .general-more')
+          more_button.click
+          merge_board_link_element = board_element.find('.dropdown-menu a',
+                                                        text:       I18n.t('merge'),
+                                                        exact_text: true)
+          merge_board_link_element.click
+          find('.select-board.form input#other_board_id-ts-control').click
+          find('.select-board.form .ts-dropdown .option', match: :first).click
+          click_button I18n.t('boards.select_boards.submit')
+          expect(page).to have_content I18n.t('boards.merge.success')
+        end
+        # rubocop:enable RSpec/ExampleLength
+      end
     end
 
     context 'boards#show' do
