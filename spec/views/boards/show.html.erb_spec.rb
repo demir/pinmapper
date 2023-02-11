@@ -32,7 +32,7 @@ RSpec.describe 'boards/show', type: :view do
     end
 
     it 'not renders more button' do
-      assert_select '.board-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 0
+      assert_select '.general-more .dropdown-item:nth-of-type(1)', text: t('edit'), count: 0
     end
 
     it 'not renders create section button' do
@@ -52,7 +52,7 @@ RSpec.describe 'boards/show', type: :view do
 
     it 'more button' do
       render
-      assert_select '.board-more .dropdown-item:nth-of-type(1)', text: t('edit')
+      assert_select '.general-more .dropdown-item:nth-of-type(1)', text: t('edit')
     end
 
     it 'do not show follow button when following board' do

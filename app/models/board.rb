@@ -56,6 +56,10 @@ class Board < ApplicationRecord
     pins.ids | Pin.joins(:board_sections).where(board_sections: { id: board_sections }).ids
   end
 
+  def merge?
+    user.boards.where.not(id: self).present?
+  end
+
   private
 
   def description_length

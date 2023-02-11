@@ -79,4 +79,16 @@ class BoardPolicy < ApplicationPolicy
   def following_boards?
     user.present?
   end
+
+  def select_boards?
+    add_pin?
+  end
+
+  def autocomplete?
+    add_pin?
+  end
+
+  def merge?
+    add_pin?
+  end
 end

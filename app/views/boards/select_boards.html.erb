@@ -1,0 +1,19 @@
+<%= turbo_frame_tag "select_boards_#{dom_id(@board)}" do %>
+  <%= form_with url: merge_board_path(@board), class: 'select-board form', method: :get do |f| %>
+    <div class="alert alert-warning" role="alert">
+      <%= t('.info_message', pins_count: @board.cached_pins_count) %>
+    </div>
+    <div class="form-inputs">
+      <%= f.select :other_board_id, [], {},
+                    placeholder: t('.placeholder'),
+                    data: {
+                      controller: 'ts--search',
+                      ts__search_url_value: autocomplete_board_path
+                    } %>
+    </div>
+    <br>
+    <div class="form-actions">
+      <%= f.submit t('.submit'), class: 'btn_1 rounded' %>
+    </div>
+  <% end %>
+<% end %>

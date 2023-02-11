@@ -9,7 +9,9 @@
     </div>
     <div class="item">
       <div><i class="icon_pin_alt"></i><small class="address" title="<%= pin.city_country %>"><%= truncate(pin.city_country, length: 30) %></small></div>
-      <%= render Pins::Boards::AddToBoardButtonComponent.new(pin: pin, current_user: current_user, klass: 'small') %>
+      <div class="small-add-to-board-button">
+        <%= render Pins::Boards::AddToBoardButtonComponent.new(pin: pin, current_user: current_user) %>
+      </div>
     </div>
   </div>
 </div>

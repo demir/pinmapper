@@ -19,7 +19,7 @@ RSpec.describe BoardPolicy, type: :policy do
   end
 
   permissions :update?, :edit?, :destroy?, :move?, :add_pin?, :remove_pin?,
-              :move_board_by_id?, :move_board_section? do
+              :move_board_by_id?, :move_board_section?, :merge? do
     it 'denies access if not the owner of board' do
       different_user = create(:user, :confirmed)
       expect(board_policy).not_to permit(different_user, board)

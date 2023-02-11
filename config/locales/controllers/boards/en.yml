@@ -6,3 +6,6 @@ en:
       success: Board updated
     destroy:
       success: Board destroyed
+    merge:
+      success: Board merged
+      failure: Board could not be merged
