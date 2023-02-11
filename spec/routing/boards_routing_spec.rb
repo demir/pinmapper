@@ -71,5 +71,9 @@ RSpec.describe BoardsController, type: :routing do
     it 'routes to #move_board_by_id' do
       expect(patch: '/boards/1/move_board_by_id').to route_to('boards#move_board_by_id', id: '1')
     end
+
+    it 'routes to #merge' do
+      expect(get: '/boards/1/merge').to route_to('boards#merge', id: '1')
+    end
   end
 end

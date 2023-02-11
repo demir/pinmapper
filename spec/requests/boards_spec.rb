@@ -148,19 +148,19 @@ RSpec.describe '/boards', type: :request do
         end
 
         it 'render a successful response #remove_pin' do
-          get remove_pin_board_path(id: board, pin_id: pin), headers: headers
+          get remove_pin_board_path(id: board, pin_id: pin, format: :turbo_stream), headers: headers
           expect(response).to be_successful
         end
       end
 
       context 'not added to board' do
         it 'render a successful response #add_pin' do
-          get add_pin_board_path(id: board, pin_id: pin), headers: headers
+          get add_pin_board_path(id: board, pin_id: pin, format: :turbo_stream), headers: headers
           expect(response).to be_successful
         end
 
         it 'render a successful response #remove_pin' do
-          get remove_pin_board_path(id: board, pin_id: pin), headers: headers
+          get remove_pin_board_path(id: board, pin_id: pin, format: :turbo_stream), headers: headers
           expect(response).to be_successful
         end
       end

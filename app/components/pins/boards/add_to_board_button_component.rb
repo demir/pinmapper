@@ -13,7 +13,7 @@ module Pins
       end
 
       def klass_handled
-        pin.boards.where(user: current_user).any? ? "#{klass} added" : klass
+        pin.added_to_boards?(current_user) ? "#{klass} added" : klass
       end
 
       def boards?

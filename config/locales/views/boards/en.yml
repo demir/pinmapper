@@ -20,3 +20,7 @@ en:
       no_data: There is no Board that you have following yet.
     show:
       no_board_section_data_for_current_user: There is no Section which is you have created yet. You can create now.
+    select_boards:
+      placeholder: Pick a board
+      info_message: 'You are about to move all Pins (%{pins_count}) in this board to one of the boards below.'
+      submit: Move Pins and delete board

@@ -5,7 +5,8 @@ class BoardsController < ApplicationController
   include Pagy::Backend
   before_action :set_board, only: %i[show edit update destroy
                                      add_pin remove_pin follow unfollow move
-                                     move_board_by_id add_to_board_section_list]
+                                     move_board_by_id add_to_board_section_list
+                                     select_boards autocomplete merge]
   before_action :set_pin, only: %i[add_pin remove_pin add_to_board_list new create]
   before_action :authorize_board
 
@@ -97,6 +98,7 @@ class BoardsController < ApplicationController
   # DELETE /boards/1 or /boards/1.json
   def destroy
     @board.destroy
+
     respond_to do |format|
       format.html { redirect_to boards_url, notice: t('.success') }
       format.json { head :no_content }
@@ -142,6 +144,26 @@ class BoardsController < ApplicationController
 
   def move_board_by_id
     @board.insert_at(params[:position].to_i)
+  end
+
+  def select_boards; end
+
+  def autocomplete
+    list = current_user.boards.where.not(id: @board)
+    list = list.trigram_search_by_name(params[:q]) if params[:q].present?
+
+    render(json: list.map { |u| { text: u.name, value: u.id } })
+  end
+
+  def merge
+    other_board = Board.find(params[:other_board_id])
+    board_service = BoardServices::Merge.call(from: @board, to: other_board)
+    flash_message = board_service[:success] ? { notice: t('.success') } : { alert: t('.failure') }
+
+    respond_to do |format|
+      format.html { redirect_to boards_path, flash_message }
+      format.json { head :no_content }
+    end
   end
 
   private

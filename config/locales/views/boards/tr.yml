@@ -20,3 +20,7 @@ tr:
       no_data: Henüz takip ettiğiniz bir Pano yok.
     show:
       no_board_section_data_for_current_user: Oluşturduğun bir Bölüm henüz yok. Hemen oluşturabilirsin.
+    select_boards:
+      placeholder: Bir pano seçin
+      info_message: 'Bu panodaki bütün Pinleri (%{pins_count}) aşağıdaki panolardan birine taşımak üzeresiniz.'
+      submit: Pinleri taşı ve panoyu sil

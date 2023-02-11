@@ -76,7 +76,17 @@ class Pin < ApplicationRecord
   end
 
   def owner_public_boards
-    boards.where(user:, privacy: 'public').order('pin_boards.created_at ASC')
+    board_ids = boards.where(user:, privacy: 'public').ids
+    board_ids_from_sections = board_sections.joins(board: :user)
+                                            .where(boards: { users: { id: user }, privacy: 'public' })
+                                            .pluck(:board_id)
+    Board.where(id: board_ids | board_ids_from_sections).order(created_at: :desc)
+  end
+
+  def added_to_boards?(added_user = user)
+    return true if pin_boards.joins(board: :user).where(users: { id: added_user }).any?
+
+    pin_board_sections.joins(board_section: [board: :user]).where(users: { id: added_user }).any?
   end
 
   private
