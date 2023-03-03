@@ -28,8 +28,8 @@
         <%= render(Profiles::FollowingLinkComponent.new(user: user)) %>
       </div>
     </div>
-    <div class="item">
-      <span><%= user.profile.bio %></span>
+    <div class="item bio">
+      <span><%= simple_format(auto_link(user.profile.bio, link: :urls)) %></span>
     </div>
   </div>
 </div>

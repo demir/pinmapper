@@ -52,6 +52,17 @@
           @include fontSize(20px);
         }
       }
+
+      .bio {
+        a {
+          color: #555;
+          font-weight: 500;
+
+          &:hover {
+            color: $color-1;
+          }
+        }
+      }
     }
   }
 
