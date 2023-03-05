@@ -11,7 +11,7 @@ class Profile < ApplicationRecord
   has_one_attached :avatar
 
   # validations
-  validates :bio, length: { maximum: 160 }
+  validate :bio_length
 
   def avatar_crop_constraints
     return {} if avatar_crop.blank?
@@ -31,5 +31,15 @@ class Profile < ApplicationRecord
     return if avatar_crop.blank?
 
     avatar_crop.destroy
+  end
+
+  def bio_length
+    return if bio.blank?
+
+    input_character_counter = StringServices::InputCharacterCounter.call(bio)
+    return if input_character_counter[:success].blank?
+    return if input_character_counter[:payload] <= 160
+
+    errors.add(:bio, :too_long, **{ count: 160 })
   end
 end

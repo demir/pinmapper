@@ -4,9 +4,8 @@
     flex-direction: row;
     align-content: center;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 50px;
-    height: 250px;
     padding: 20px 0;
     border-bottom: 2px solid $border-color-2;
     margin-bottom: 30px;
@@ -18,7 +17,6 @@
     @include tablet {
       padding: 0 10px;
       gap: 20px;
-      height: 230px;
     }
 
     >.profile-user-avatar {
@@ -38,6 +36,7 @@
 
       @include tablet {
         gap: 20px;
+        margin-bottom: 15px;
       }
 
       .item {
@@ -50,6 +49,21 @@
 
         .username {
           @include fontSize(20px);
+        }
+      }
+
+      .bio {
+        a {
+          color: #555;
+          font-weight: 500;
+
+          &:hover {
+            color: $color-1;
+          }
+        }
+
+        span p {
+          margin-bottom: 0;
         }
       }
     }
@@ -123,5 +137,9 @@
 
   .selected-image-area {
     margin-top: 15px;
+  }
+
+  .profile_bio {
+    margin-bottom: 8px !important;
   }
 }
