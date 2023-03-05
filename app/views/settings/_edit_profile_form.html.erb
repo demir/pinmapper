@@ -28,6 +28,9 @@
               src: url_for((current_user.profile.avatar.attached?) ? f&.object&.avatar : '') if (!current_user.profile.avatar.attached? || current_user.profile.errors.present?) && (current_user.profile.avatar.changed? || current_user.profile.new_record? || current_user.profile.avatar&.url.blank?) %>
       </p>
   </div>
-  <%= f.input :bio, input_html: { style: 'height: 100px;' } %>
+  <div data-controller="character-counter">
+    <%= f.input :bio, input_html: { style: 'height: 100px;', data: { 'character-counter-target': 'input' } } %>
+    <p><span data-character-counter-target="counter"></span> / 160</p>
+  </div>
   <%= f.button :submit, t('update'), class: 'btn_1 rounded' %>
 <% end %>

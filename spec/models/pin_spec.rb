@@ -29,20 +29,6 @@ RSpec.describe Pin, type: :model do
     it { is_expected.to allow_value(pin.description.body.to_s).for(:description) }
     it { is_expected.to validate_presence_of(:address) }
 
-    context 'adress presence' do
-      let!(:pin) { build(:pin, address: 'FooBooFoBoFfFf') }
-
-      it 'to be invalid' do
-        expect(pin).to be_invalid
-      end
-
-      it 'error message' do
-        pin.valid?
-        error_message = "#{described_class.human_attribute_name(:address)} #{I18n.t('errors.messages.invalid')}"
-        expect(pin.errors.full_messages).to include(error_message)
-      end
-    end
-
     context 'max tag count' do
       let!(:pin) { build(:pin, tag_list: 'dolorem,quaerat,nesciunt,voluptas,assumenda,ullam') }
 

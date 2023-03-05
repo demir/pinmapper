@@ -31,7 +31,7 @@ jobs:
         ports: ["6379:6379"]
         options: --entrypoint redis-server
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install Ruby version specified in `.ruby-version`
         uses: ruby/setup-ruby@v1
         with:
@@ -39,14 +39,14 @@ jobs:
       - name: Install required system packages
         run: sudo apt-get update -y && sudo apt-get install openssh-client rsync libpq-dev cmake -y
       - name: Install node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
       - name: Cache yarn cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: cache-yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -55,7 +55,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Cache node_modules
         id: cache-node-modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
@@ -100,7 +100,7 @@ jobs:
           HEADLESS: true
         run: bundle exec rspec spec/system
       - name: Upload failure screenshots
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: Failure screenshots
