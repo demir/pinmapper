@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "select_boards_#{dom_id(@board)}" do %>
   <%= form_with url: merge_board_path(@board), class: 'select-board form', method: :get do |f| %>
     <div class="alert alert-warning" role="alert">
-      <%= t('.info_message', pins_count: @board.cached_pins_count) %>
+      <%= t('.info_message', pins_count: @board.all_pins_count) %>
     </div>
     <div class="form-inputs">
       <%= f.select :other_board_id, [], {},

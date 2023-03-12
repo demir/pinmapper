@@ -48,8 +48,8 @@ class Board < ApplicationRecord
 
   translate_enum :privacy
 
-  def cached_pins_count
-    pins_count + board_sections.sum(:pins_count)
+  def all_pins_count
+    all_pin_ids.length
   end
 
   def all_pin_ids
