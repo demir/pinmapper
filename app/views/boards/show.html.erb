@@ -26,7 +26,7 @@
       <div class="header">
         <div class="main_title_3 small-h1">
           <span><em></em></span>
-          <div class="title"><h1><%= title @board.name %></h1><div class="count"><%= "(#{@board.cached_pins_count})" %></div></div>
+          <div class="title"><h1><%= title @board.name %></h1><div class="count"><%= "(#{@board.all_pins_count})" %></div></div>
         </div>
         <%= render(General::TwinButtonComponent.new(
             display_block: -> {
