@@ -1,24 +1,15 @@
-# README
+# Pinmapper
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Explore Pins around the world.
 
-Things you may want to cover:
+## Development Setup
 
-* Ruby version
+You need to create your own credentials for the development environment.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+$ bundle install
+$ bundle exec rails db:create
+$ bundle exec rails db:migrate
+$ yarn install
+$ bundle exec rails s
+```
